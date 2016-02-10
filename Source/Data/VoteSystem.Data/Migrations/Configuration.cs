@@ -5,14 +5,14 @@ namespace VoteSystem.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<VoteSystem.Data.VoteSystemDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<VoteSystemDbContext>
     {
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(VoteSystem.Data.VoteSystemDbContext context)
+        protected override void Seed(VoteSystemDbContext context)
         {
             // This method will be called after migrating to the latest version.
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -24,6 +24,10 @@ namespace VoteSystem.Data.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
+            context.VoteSystems.AddOrUpdate(
+                v => v.Name,
+                new Models.VoteSystem() { Name = "Ankk" },
+                new Models.VoteSystem() { Name = "Ankk2" });
         }
     }
 }

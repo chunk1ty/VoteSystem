@@ -2,15 +2,21 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-    
-    using VoteSystem.Data;
+
+    using Services.Data.Contracts;
 
     public class HomeController : Controller
     {
+        private IVoteSystemServices voteSystems;
+
+        public HomeController(IVoteSystemServices voteSystems)
+        {
+            this.voteSystems = voteSystems;
+        }
+
         public ActionResult Index()
         {
-            var db = new VoteSystemDbContext();
-            var usersCount = db.Users.Count();
+            var result = this.voteSystems.GetAll().ToList();
             return this.View();
         }
 

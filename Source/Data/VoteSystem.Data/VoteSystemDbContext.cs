@@ -12,7 +12,6 @@
         public VoteSystemDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<VoteSystemDbContext, Configuration>());
         }
 
         public virtual IDbSet<Question> Questions { get; set; }
