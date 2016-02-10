@@ -1,5 +1,6 @@
 ﻿namespace VoteSystem.Models
 {
+    using System.Collections.Generic;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -8,6 +9,13 @@
 
     public class User : IdentityUser
     {
+        public User()
+        {
+            this.VoteSystem = new HashSet<VoteSystem>();
+        }
+
+        public ICollection<VoteSystem> VoteSystem { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

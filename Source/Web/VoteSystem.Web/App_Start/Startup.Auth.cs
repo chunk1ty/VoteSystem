@@ -1,7 +1,4 @@
-﻿using VoteSystem.Data;
-using VoteSystem.Models;
-
-namespace VoteSystem.Web
+﻿namespace VoteSystem.Web
 {
     using System;
 
@@ -12,7 +9,8 @@ namespace VoteSystem.Web
 
     using Owin;
 
-    using VoteSystem.Web.Models;
+    using VoteSystem.Data;
+    using VoteSystem.Models;
 
     public partial class Startup
     {

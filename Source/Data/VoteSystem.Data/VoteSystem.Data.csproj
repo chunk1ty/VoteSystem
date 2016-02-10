@@ -57,6 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IVoteSystemDbContext.cs" />
+    <Compile Include="Migrations\201602091025156_InitialCreate.cs" />
+    <Compile Include="Migrations\201602091025156_InitialCreate.Designer.cs">
+      <DependentUpon>201602091025156_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="VoteSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,6 +77,11 @@
       <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
       <Name>VoteSystem.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602091025156_InitialCreate.resx">
+      <DependentUpon>201602091025156_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
