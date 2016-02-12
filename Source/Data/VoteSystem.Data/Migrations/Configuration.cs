@@ -4,12 +4,15 @@ namespace VoteSystem.Data.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<VoteSystemDbContext>
     {
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
+            //TODO Ankk: set to false in production
+            this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(VoteSystemDbContext context)
@@ -26,8 +29,8 @@ namespace VoteSystem.Data.Migrations
             //    );
             context.VoteSystems.AddOrUpdate(
                 v => v.Name,
-                new Models.VoteSystem() { Name = "Ankk" },
-                new Models.VoteSystem() { Name = "Ankk2" });
+                new VoteSystem() { Name = "Ankk", DateCreated = DateTime.Now, EndDateTime = DateTime.Now, StarDateTime = DateTime.Now },
+                new VoteSystem() { Name = "Ankk2", DateCreated = DateTime.Now, EndDateTime = DateTime.Now, StarDateTime = DateTime.Now });
         }
     }
 }
