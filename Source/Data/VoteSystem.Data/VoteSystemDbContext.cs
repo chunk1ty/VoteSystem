@@ -5,7 +5,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
 
     using VoteSystem.Data.Migrations;
-    using VoteSystem.Models;
+    using VoteSystem.Data.Models;
 
     public class VoteSystemDbContext : IdentityDbContext<User>, IVoteSystemDbContext
     {

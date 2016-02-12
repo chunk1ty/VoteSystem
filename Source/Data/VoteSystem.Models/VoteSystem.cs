@@ -1,4 +1,4 @@
-﻿namespace VoteSystem.Models
+﻿namespace VoteSystem.Data.Models
 {
     using System;
     using System.Collections.Generic;

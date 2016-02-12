@@ -1,12 +1,16 @@
-﻿namespace VoteSystem.Web.Models.Manage
+﻿namespace VoteSystem.Web.ViewModels.Account
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
 
-    public class ConfigureTwoFactorViewModel
+    public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }
 
         public ICollection<SelectListItem> Providers { get; set; }
+
+        public string ReturnUrl { get; set; }
+
+        public bool RememberMe { get; set; }
     }
 }

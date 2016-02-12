@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/Shared/_StartLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <style>
@@ -42,7 +42,7 @@
                 text-decoration: none;
             }
 
-    .title-system {
+    .vote-system-title {
         position: absolute;
         top: 300px;
         width: 100%;
@@ -50,9 +50,10 @@
         color: #ffffff !important;
     }
 
-        .title-system h1 {
+        .vote-system-title h1 {
             font-size: 70px;
             font-family: sans-serif;
+            letter-spacing: 5px;
         }
 </style>
 
@@ -61,7 +62,10 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-collapse collapse">
-                    @Html.Partial("_LoginPartial")
+                    <ul class="nav navbar-nav navbar-right navigation-bar">                       
+                        <li>@Html.ActionLink("LOG IN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                        <li>@Html.ActionLink("SIGN UP", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -71,15 +75,15 @@
                 <source src="~/Content/Videos/stars.webm" type="video/webm" />
             </video>
 
-            <div class="title-system">
+            <div class="vote-system-title">
                 <h1>
-                    Система за гласуване
+                   VOTE SYSTEM
                 </h1>
             </div>
 
             <div class="how-to-use">
-                <a href="#features" title="Как работи?">
-                    Как работи?
+                <a href="#features" title="HOW IT WORKS?">
+                     HOW IT WORKS
                     <div class="arrow"></div>
                 </a>
             </div>

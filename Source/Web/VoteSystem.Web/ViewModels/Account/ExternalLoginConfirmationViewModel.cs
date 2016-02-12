@@ -1,8 +1,8 @@
-﻿namespace VoteSystem.Web.Models.Account
+﻿namespace VoteSystem.Web.ViewModels.Account
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class ForgotViewModel
+    public class ExternalLoginConfirmationViewModel
     {
         [Required]
         [Display(Name = "Email")]

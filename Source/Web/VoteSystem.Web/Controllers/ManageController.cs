@@ -9,7 +9,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
-    using VoteSystem.Web.Models.Manage;
+    using VoteSystem.Web.ViewModels.Manage;
 
     [Authorize]
     public class ManageController : Controller

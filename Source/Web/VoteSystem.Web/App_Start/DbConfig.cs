@@ -1,4 +1,4 @@
-﻿namespace VoteSystem.Web.App_Start
+﻿namespace VoteSystem.Web
 {
     using System.Data.Entity;
 

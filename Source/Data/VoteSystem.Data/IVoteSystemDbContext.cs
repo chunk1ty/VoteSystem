@@ -3,7 +3,7 @@
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
 
-    using VoteSystem.Models;
+    using VoteSystem.Data.Models;
 
     public interface IVoteSystemDbContext
     {

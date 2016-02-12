@@ -1,11 +1,11 @@
-﻿@using VoteSystem.Web.Models.Account;
+﻿@using VoteSystem.Web.ViewModels.Account;
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
 }
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -61,7 +61,3 @@
         </section>
     </div>
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

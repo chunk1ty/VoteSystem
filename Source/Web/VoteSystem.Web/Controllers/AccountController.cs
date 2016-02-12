@@ -9,8 +9,8 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     
-    using VoteSystem.Models;
-    using VoteSystem.Web.Models.Account;
+    using VoteSystem.Data.Models;
+    using VoteSystem.Web.ViewModels.Account;
 
     [Authorize]
     public class AccountController : Controller
@@ -67,6 +67,11 @@
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return this.RedirectToAction("Index", "Home");
+            }
+
             ViewBag.ReturnUrl = returnUrl;
             return this.View();
         }
@@ -424,8 +429,6 @@
             base.Dispose(disposing);
         }
 
-        #region Helpers
-
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -458,7 +461,9 @@
             }
 
             public string LoginProvider { get; set; }
+
             public string RedirectUri { get; set; }
+
             public string UserId { get; set; }
 
             public override void ExecuteResult(ControllerContext context)
@@ -472,6 +477,5 @@
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, this.LoginProvider);
             }
         }
-        #endregion
     }
 }

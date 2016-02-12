@@ -10,7 +10,7 @@
     using Owin;
 
     using VoteSystem.Data;
-    using VoteSystem.Models;
+    using VoteSystem.Data.Models;
 
     public partial class Startup
     {

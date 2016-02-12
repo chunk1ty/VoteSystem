@@ -11,7 +11,8 @@ namespace VoteSystem.Data.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
-            //TODO Ankk: set to false in production
+
+            // TODO Ankk: set to false in production
             this.AutomaticMigrationDataLossAllowed = true;
         }
 

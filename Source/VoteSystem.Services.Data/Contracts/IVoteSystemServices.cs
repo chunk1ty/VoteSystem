@@ -2,7 +2,7 @@
 {
     using System.Linq;
 
-    using VoteSystem.Models;
+    using VoteSystem.Data.Models;
 
     public interface IVoteSystemServices
     {

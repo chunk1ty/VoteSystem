@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(VoteSystem.Web.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(VoteSystem.Web.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(VoteSystem.Web.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(VoteSystem.Web.NinjectWebCommon), "Stop")]
 
-namespace VoteSystem.Web.App_Start
+namespace VoteSystem.Web
 {
     using System;
     using System.Web;

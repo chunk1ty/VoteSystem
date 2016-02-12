@@ -1,4 +1,4 @@
-﻿namespace VoteSystem.Web.Models.Manage
+﻿namespace VoteSystem.Web.ViewModels.Manage
 {
     using System.ComponentModel.DataAnnotations;
 

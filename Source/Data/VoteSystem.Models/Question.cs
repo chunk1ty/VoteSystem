@@ -1,4 +1,4 @@
-﻿namespace VoteSystem.Models
+﻿namespace VoteSystem.Data.Models
 {
     public class Question
     {

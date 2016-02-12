@@ -2,8 +2,8 @@
 {
     using System.Linq;
 
+    using VoteSystem.Data.Models;
     using VoteSystem.Data.Repositories;
-    using VoteSystem.Models;
     using VoteSystem.Services.Data.Contracts;
 
     public class VoteSystemServices : IVoteSystemServices
