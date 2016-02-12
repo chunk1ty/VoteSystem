@@ -1,5 +1,6 @@
 ﻿namespace VoteSystem.Web.Controllers
 {
+    using System.Diagnostics;
     using System.Web.Mvc;
 
     public class IntroductionController : Controller

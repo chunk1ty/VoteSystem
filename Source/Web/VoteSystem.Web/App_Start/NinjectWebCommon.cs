@@ -6,8 +6,8 @@ namespace VoteSystem.Web
     using System;
     using System.Web;
 
-    using Data;
-    using Data.Repositories;
+    using VoteSystem.Data;
+    using VoteSystem.Data.Common;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
@@ -66,7 +66,7 @@ namespace VoteSystem.Web
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind(typeof(IVoteSystemDbContext)).To(typeof(VoteSystemDbContext));
-            kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+            kernel.Bind(typeof(IDbGenericRepository<>)).To(typeof(DbGenericRepository<>));
 
             kernel.Bind(b => b.From("VoteSystem.Services.Data")
                                     .SelectAllClasses()

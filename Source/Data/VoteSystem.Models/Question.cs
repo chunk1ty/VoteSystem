@@ -1,9 +1,9 @@
 ﻿namespace VoteSystem.Data.Models
 {
-    public class Question
-    {
-        public int Id { get; set; }
+    using Common.Models;
 
+    public class Question : BaseModel<int>
+    {
         public string Name { get; set; }
 
         public string Type { get; set; }

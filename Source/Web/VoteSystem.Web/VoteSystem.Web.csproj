@@ -195,12 +195,6 @@
     <Reference Include="Microsoft.Owin.Security.Google">
       <HintPath>..\..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Twitter">
-      <HintPath>..\..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
-      <HintPath>..\..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -274,11 +268,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -318,6 +307,7 @@
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
+    <Content Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,6 +316,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\VoteSystem.Data.Common\VoteSystem.Data.Common.csproj">
+      <Project>{8e44bc26-9e2d-4796-86f0-1d9bfba8598d}</Project>
+      <Name>VoteSystem.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\VoteSystem.Data\VoteSystem.Data.csproj">
       <Project>{398E47FA-CD30-4EA7-84FF-FE27EF94343C}</Project>
       <Name>VoteSystem.Data</Name>
@@ -334,8 +328,8 @@
       <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
       <Name>VoteSystem.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\VoteSystem.Services.Data\VoteSystem.Services.Data.csproj">
-      <Project>{960E22E8-F9EE-4067-8CC6-F6C1950FBD18}</Project>
+    <ProjectReference Include="..\..\Services\VoteSystem.Services.Data\VoteSystem.Services.Data.csproj">
+      <Project>{960e22e8-f9ee-4067-8cc6-f6c1950fbd18}</Project>
       <Name>VoteSystem.Services.Data</Name>
     </ProjectReference>
   </ItemGroup>

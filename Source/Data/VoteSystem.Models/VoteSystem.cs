@@ -1,11 +1,13 @@
 ﻿namespace VoteSystem.Data.Models
-{
+{    
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class VoteSystem
+    using Common.Models;
+
+    public class VoteSystem : BaseModel<int>
     {
         public VoteSystem()
         {
@@ -13,15 +15,10 @@
             this.Users = new HashSet<User>();
         }
 
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [Index(IsUnique = true)]
         [MaxLength(100)]
         public string Name { get; set; }
-        
-        public DateTime DateCreated { get; set; }
 
         public DateTime StarDateTime { get; set; }
 

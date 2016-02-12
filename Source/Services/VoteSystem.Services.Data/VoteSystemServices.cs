@@ -3,14 +3,14 @@
     using System.Linq;
 
     using VoteSystem.Data.Models;
-    using VoteSystem.Data.Repositories;
+    using VoteSystem.Data.Common;
     using VoteSystem.Services.Data.Contracts;
 
     public class VoteSystemServices : IVoteSystemServices
     {
-        private readonly IRepository<VoteSystem> voteSystems;
+        private readonly IDbGenericRepository<VoteSystem> voteSystems;
 
-        public VoteSystemServices(IRepository<VoteSystem> voteSystems)
+        public VoteSystemServices(IDbGenericRepository<VoteSystem> voteSystems)
         {
             this.voteSystems = voteSystems;
         }

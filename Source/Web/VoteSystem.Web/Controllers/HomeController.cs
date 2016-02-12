@@ -4,6 +4,7 @@
     using System.Web.Mvc;
 
     using Services.Data.Contracts;
+    using System.Diagnostics;
 
     [Authorize]
     public class HomeController : Controller
