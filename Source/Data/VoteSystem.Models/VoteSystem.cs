@@ -20,9 +20,10 @@
         [MaxLength(100)]
         public string Name { get; set; }
 
-        public DateTime StarDateTime { get; set; }
+        //TODO make sure that these properties are not nullable
+        public DateTime? StarDateTime { get; set; }
 
-        public DateTime EndDateTime { get; set; }
+        public DateTime? EndDateTime { get; set; }
 
         public ICollection<Question> Questions { get; set; }
 

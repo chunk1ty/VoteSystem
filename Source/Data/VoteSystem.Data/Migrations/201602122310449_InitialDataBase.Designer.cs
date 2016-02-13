@@ -7,13 +7,13 @@ namespace VoteSystem.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class InitialDataBase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialDataBase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602091025156_InitialCreate"; }
+            get { return "201602122310449_InitialDataBase"; }
         }
         
         string IMigrationMetadata.Source

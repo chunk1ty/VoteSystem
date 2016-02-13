@@ -10,9 +10,9 @@ namespace VoteSystem.Data.Migrations
     {
         public Configuration()
         {
-            // TODO Ankk: set to false in production
-            this.AutomaticMigrationsEnabled = false;
-            this.AutomaticMigrationDataLossAllowed = false;
+            // TODO Ankk: set to false in production and create migration by my self
+            this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(VoteSystemDbContext context)
@@ -27,10 +27,10 @@ namespace VoteSystem.Data.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
-            context.VoteSystems.AddOrUpdate(
-                v => v.Name,
-                new VoteSystem() { Name = "Ankk", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now },
-                new VoteSystem() { Name = "Ankk2", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now });
+            //context.VoteSystems.AddOrUpdate(
+            //    v => v.Name,
+            //    new VoteSystem() { Name = "Ankk", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now },
+            //    new VoteSystem() { Name = "Ankk2", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now });
         }
     }
 }

@@ -9,6 +9,7 @@
     using System.Linq;
     using System;
     using VoteSystem.Data.Common.Models;
+
     public class VoteSystemDbContext : IdentityDbContext<User>, IVoteSystemDbContext
     {
         public VoteSystemDbContext()

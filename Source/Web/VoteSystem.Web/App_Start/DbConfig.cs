@@ -7,7 +7,7 @@
 
     public class DbConfig
     {
-        public static void Initialize()
+        public static void RegisterDb()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<VoteSystemDbContext, Configuration>());
         }

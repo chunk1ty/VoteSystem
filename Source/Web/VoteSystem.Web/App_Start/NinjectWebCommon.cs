@@ -14,6 +14,7 @@ namespace VoteSystem.Web
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Web.Common;
+    using System.Data.Entity;
 
     public static class NinjectWebCommon 
     {
@@ -65,8 +66,9 @@ namespace VoteSystem.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(typeof(IVoteSystemDbContext)).To(typeof(VoteSystemDbContext));
             kernel.Bind(typeof(IDbGenericRepository<>)).To(typeof(DbGenericRepository<>));
+            //TODO check this binding IVoteSystemDbContext
+            kernel.Bind(typeof(DbContext)).To(typeof(VoteSystemDbContext));
 
             kernel.Bind(b => b.From("VoteSystem.Services.Data")
                                     .SelectAllClasses()

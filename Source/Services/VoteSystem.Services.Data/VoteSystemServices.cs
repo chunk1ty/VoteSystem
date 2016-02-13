@@ -5,7 +5,7 @@
     using VoteSystem.Data.Models;
     using VoteSystem.Data.Common;
     using VoteSystem.Services.Data.Contracts;
-
+    
     public class VoteSystemServices : IVoteSystemServices
     {
         private readonly IDbGenericRepository<VoteSystem> voteSystems;
