@@ -1,4 +1,4 @@
-﻿namespace VoteSystem.Services.Web
+﻿namespace VoteSystem.Services.Web.Contracts
 {
     using System;
 

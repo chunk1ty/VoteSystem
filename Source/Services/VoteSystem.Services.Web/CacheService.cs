@@ -4,7 +4,9 @@
     using System.Web;
     using System.Web.Caching;
 
-    public class HttpCacheService : ICacheService
+    using VoteSystem.Services.Web.Contracts;
+
+    public class CacheService : ICacheService
     {
         private static readonly object LockObject = new object();
 

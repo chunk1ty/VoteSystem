@@ -5,7 +5,7 @@
     using VoteSystem.Services.Data.Contracts;
 
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IRateSystemService voteSystems;
 

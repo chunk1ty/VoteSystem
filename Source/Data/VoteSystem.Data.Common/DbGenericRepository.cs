@@ -59,7 +59,7 @@
             this.Context.SaveChanges();
         }
 
-        // TODO remove it ?
+        // TODO do i need it ?
         public virtual void Update(T entity)
         {
             var entry = this.Context.Entry(entity);
@@ -69,12 +69,6 @@
             }
 
             entry.State = EntityState.Modified;
-        }
-        
-        // TODO Why ??
-        public void Dispose()
-        {
-            throw new NotImplementedException();
         }
     }
 }

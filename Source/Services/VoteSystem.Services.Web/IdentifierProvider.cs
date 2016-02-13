@@ -3,9 +3,11 @@
     using System;
     using System.Text;
 
+    using VoteSystem.Services.Web.Contracts;
+
     public class IdentifierProvider : IIdentifierProvider
     {
-        private const string Salt = ".12312313123";
+        private const string Salt = ".123456";
 
         public int DecodeId(string urlId)
         {

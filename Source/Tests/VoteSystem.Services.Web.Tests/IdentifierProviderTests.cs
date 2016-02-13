@@ -1,5 +1,6 @@
 ﻿namespace VoteSystem.Services.Web.Tests
 {
+    using Contracts;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]

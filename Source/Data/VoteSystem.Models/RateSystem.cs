@@ -20,7 +20,7 @@
         [MaxLength(100)]
         public string Name { get; set; }
 
-        // TODO make sure that these properties are not nullable
+        // TODO make sure that these properties are not null-able; and in the view model
         public DateTime? StarDateTime { get; set; }
 
         public DateTime? EndDateTime { get; set; }

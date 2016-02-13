@@ -11,7 +11,8 @@
     {
     }
 
-    public interface IDbGenericRepository<T, in TKey> : IDisposable where T : BaseModel<TKey>
+    public interface IDbGenericRepository<T, in TKey>
+       where T : BaseModel<TKey>
     {
         IQueryable<T> All();
 

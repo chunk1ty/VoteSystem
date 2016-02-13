@@ -1,16 +1,14 @@
 ﻿namespace VoteSystem.Web.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
 
-    using Services.Data.Contracts;
-    using System.Linq;
-
+    using VoteSystem.Services.Data.Contracts;
+    using VoteSystem.Services.Web.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
-    using ViewModels;
-    using Data.Models;
-    using VoteSystem.Services.Web;
+    using VoteSystem.Web.ViewModels;
 
-    public class IntroductionController : Controller
+    public class IntroductionController : BaseController
     {
         private IRateSystemService rateSystems;
         private IQuestionService questions;
@@ -25,9 +23,10 @@
 
         public ActionResult Intro()
         {
+            //TODO create cache from BaseController property
             var system = this.cache.Get(
                 "rateSystems",
-                () => rateSystems.GetAll().To<RateSystemViewModel>().ToList(),
+                () => this.rateSystems.GetAll().To<RateSystemViewModel>().ToList(),
                 1 * 60);
 
             return this.View(system);
