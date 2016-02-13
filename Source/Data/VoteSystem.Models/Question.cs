@@ -8,8 +8,8 @@
 
         public string Type { get; set; }
 
-        public int VoteSystemId { get; set; }
+        public int RateSystemId { get; set; }
 
-        public virtual VoteSystem VoteSystem { get; set; }
+        public virtual RateSystem RateSystem { get; set; }
     }
 }

@@ -11,7 +11,7 @@
 
         IDbSet<Question> Questions { get; set; }
 
-        IDbSet<VoteSystem> VoteSystems { get; set; }
+        IDbSet<RateSystem> RateSystems { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 

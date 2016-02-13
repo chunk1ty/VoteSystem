@@ -41,9 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IQuestionService.cs" />
-    <Compile Include="Contracts\IVoteSystemService.cs" />
+    <Compile Include="Contracts\IRateSystemService.cs" />
     <Compile Include="QuestionService.cs" />
-    <Compile Include="VoteSystemService.cs" />
+    <Compile Include="RateSystemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

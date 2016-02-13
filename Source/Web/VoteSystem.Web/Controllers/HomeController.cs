@@ -7,9 +7,9 @@
     [Authorize]
     public class HomeController : Controller
     {
-        private IVoteSystemService voteSystems;
+        private IRateSystemService voteSystems;
 
-        public HomeController(IVoteSystemService voteSystems)
+        public HomeController(IRateSystemService voteSystems)
         {
             this.voteSystems = voteSystems;
         }

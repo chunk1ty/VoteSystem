@@ -7,9 +7,9 @@
 
     using Common.Models;
 
-    public class VoteSystem : BaseModel<int>
+    public class RateSystem : BaseModel<int>
     {
-        public VoteSystem()
+        public RateSystem()
         {
             this.Questions = new HashSet<Question>();
             this.Users = new HashSet<User>();

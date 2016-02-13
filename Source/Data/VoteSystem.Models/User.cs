@@ -11,10 +11,10 @@
     {
         public User()
         {
-            this.VoteSystem = new HashSet<VoteSystem>();
+            this.RateSystems = new HashSet<RateSystem>();
         }
 
-        public ICollection<VoteSystem> VoteSystem { get; set; }
+        public ICollection<RateSystem> RateSystems { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

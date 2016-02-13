@@ -18,7 +18,7 @@
 
         public virtual IDbSet<Question> Questions { get; set; }
 
-        public virtual IDbSet<VoteSystem> VoteSystems { get; set; }
+        public virtual IDbSet<RateSystem> RateSystems { get; set; }
 
         public static VoteSystemDbContext Create()
         {
