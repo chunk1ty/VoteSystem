@@ -59,7 +59,7 @@
             this.Context.SaveChanges();
         }
 
-        //TODO remove it ?
+        // TODO remove it ?
         public virtual void Update(T entity)
         {
             var entry = this.Context.Entry(entity);
@@ -71,7 +71,7 @@
             entry.State = EntityState.Modified;
         }
         
-        //TODO Why ??
+        // TODO Why ??
         public void Dispose()
         {
             throw new NotImplementedException();

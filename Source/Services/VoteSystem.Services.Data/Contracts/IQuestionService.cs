@@ -1,6 +1,6 @@
 ﻿namespace VoteSystem.Services.Data.Contracts
 {
-    public interface IQuestionServices
+    public interface IQuestionService
     {
     }
 }

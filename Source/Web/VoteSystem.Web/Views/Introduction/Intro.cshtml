@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<VoteSystem.Web.ViewModels.VoteSystemViewModel>
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -70,7 +71,7 @@
             </div>
         </div>
 
-        <div id="intro" style="height: 955px; min-height: 500px;">
+        @*<div id="intro" style="height: 955px; min-height: 500px;">
             <video autoplay loop>
                 <source src="~/Content/Videos/stars.webm" type="video/webm" />
             </video>
@@ -87,7 +88,7 @@
                     <div class="arrow"></div>
                 </a>
             </div>
-        </div>
+        </div>*@
 
         <section id="features" style="height: 955px; min-height: 500px;">
           

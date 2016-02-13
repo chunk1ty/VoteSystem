@@ -4,7 +4,7 @@
 
     using VoteSystem.Data.Models;
 
-    public interface IVoteSystemServices
+    public interface IVoteSystemService
     {
         IQueryable<VoteSystem> GetAll();
     }

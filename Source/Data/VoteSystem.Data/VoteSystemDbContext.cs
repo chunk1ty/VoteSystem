@@ -1,14 +1,13 @@
 ﻿namespace VoteSystem.Data
 {
+    using System;
     using System.Data.Entity;
+    using System.Linq;
 
     using Microsoft.AspNet.Identity.EntityFramework;
-
-    using VoteSystem.Data.Migrations;
-    using VoteSystem.Data.Models;
-    using System.Linq;
-    using System;
+  
     using VoteSystem.Data.Common.Models;
+    using VoteSystem.Data.Models;
 
     public class VoteSystemDbContext : IdentityDbContext<User>, IVoteSystemDbContext
     {

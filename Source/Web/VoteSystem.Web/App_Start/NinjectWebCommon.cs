@@ -4,17 +4,17 @@
 namespace VoteSystem.Web
 {
     using System;
+    using System.Data.Entity;
     using System.Web;
-
-    using VoteSystem.Data;
-    using VoteSystem.Data.Common;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Web.Common;
-    using System.Data.Entity;
+   
+    using VoteSystem.Data;
+    using VoteSystem.Data.Common;
 
     public static class NinjectWebCommon 
     {
@@ -67,7 +67,8 @@ namespace VoteSystem.Web
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind(typeof(IDbGenericRepository<>)).To(typeof(DbGenericRepository<>));
-            //TODO check this binding IVoteSystemDbContext
+
+            // TODO check this binding IVoteSystemDbContext
             kernel.Bind(typeof(DbContext)).To(typeof(VoteSystemDbContext));
 
             kernel.Bind(b => b.From("VoteSystem.Services.Data")

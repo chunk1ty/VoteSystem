@@ -27,7 +27,7 @@ namespace VoteSystem.Data.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
-            //context.VoteSystems.AddOrUpdate(
+            // context.VoteSystems.AddOrUpdate(
             //    v => v.Name,
             //    new VoteSystem() { Name = "Ankk", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now },
             //    new VoteSystem() { Name = "Ankk2", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now });

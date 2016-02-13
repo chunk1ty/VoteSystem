@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Common", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Data", "Services\VoteSystem.Services.Data\VoteSystem.Services.Data.csproj", "{960E22E8-F9EE-4067-8CC6-F6C1950FBD18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web.Infrastructure", "Web\VoteSystem.Web.Infrastructure\VoteSystem.Web.Infrastructure.csproj", "{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{960E22E8-F9EE-4067-8CC6-F6C1950FBD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{960E22E8-F9EE-4067-8CC6-F6C1950FBD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{960E22E8-F9EE-4067-8CC6-F6C1950FBD18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +63,6 @@ Global
 		{82CB736C-95EF-42AB-9D42-E6210DF6D20D} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 		{8E44BC26-9E2D-4796-86F0-1D9BFBA8598D} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 		{960E22E8-F9EE-4067-8CC6-F6C1950FBD18} = {A5398FDD-2BE7-452F-9808-E5D3C5B58CC3}
+		{0653B67B-D6C6-4C6A-A3F3-64BDD670C958} = {99FC36D3-D963-4263-BF69-8BD11F801E2B}
 	EndGlobalSection
 EndGlobal

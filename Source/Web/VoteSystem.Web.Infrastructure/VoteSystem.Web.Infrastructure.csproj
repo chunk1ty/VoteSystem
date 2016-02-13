@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{960E22E8-F9EE-4067-8CC6-F6C1950FBD18}</ProjectGuid>
+    <ProjectGuid>{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VoteSystem.Services.Data</RootNamespace>
-    <AssemblyName>VoteSystem.Services.Data</AssemblyName>
+    <RootNamespace>VoteSystem.Web.Infrastructure</RootNamespace>
+    <AssemblyName>VoteSystem.Web.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,25 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IQuestionService.cs" />
-    <Compile Include="Contracts\IVoteSystemService.cs" />
-    <Compile Include="QuestionService.cs" />
-    <Compile Include="VoteSystemService.cs" />
+    <Compile Include="Mapping\AutoMapperConfig.cs" />
+    <Compile Include="Mapping\IHaveCustomMappings.cs" />
+    <Compile Include="Mapping\IMapFrom.cs" />
+    <Compile Include="Mapping\IMapTo.cs" />
+    <Compile Include="Mapping\QueryableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\VoteSystem.Data.Common\VoteSystem.Data.Common.csproj">
-      <Project>{8e44bc26-9e2d-4796-86f0-1d9bfba8598d}</Project>
-      <Name>VoteSystem.Data.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\VoteSystem.Data\VoteSystem.Data.csproj">
-      <Project>{398E47FA-CD30-4EA7-84FF-FE27EF94343C}</Project>
-      <Name>VoteSystem.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\VoteSystem.Models\VoteSystem.Models.csproj">
-      <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
-      <Name>VoteSystem.Models</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -235,6 +235,8 @@
     <Compile Include="ViewModels\Manage\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\VoteSystemViewModel.cs" />
+    <Compile Include="ViewModels\QuestionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -331,6 +333,10 @@
     <ProjectReference Include="..\..\Services\VoteSystem.Services.Data\VoteSystem.Services.Data.csproj">
       <Project>{960e22e8-f9ee-4067-8cc6-f6c1950fbd18}</Project>
       <Name>VoteSystem.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VoteSystem.Web.Infrastructure\VoteSystem.Web.Infrastructure.csproj">
+      <Project>{0653b67b-d6c6-4c6a-a3f3-64bdd670c958}</Project>
+      <Name>VoteSystem.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

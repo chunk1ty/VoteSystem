@@ -1,17 +1,15 @@
 ﻿namespace VoteSystem.Web.Controllers
 {
-    using System.Linq;
     using System.Web.Mvc;
 
-    using Services.Data.Contracts;
-    using System.Diagnostics;
+    using VoteSystem.Services.Data.Contracts;
 
     [Authorize]
     public class HomeController : Controller
     {
-        private IVoteSystemServices voteSystems;
+        private IVoteSystemService voteSystems;
 
-        public HomeController(IVoteSystemServices voteSystems)
+        public HomeController(IVoteSystemService voteSystems)
         {
             this.voteSystems = voteSystems;
         }
