@@ -91,17 +91,17 @@
         </div>*@
 
         <section id="features" style="height: 955px; min-height: 500px;">
-            @*@foreach (var item in Model)
+            @foreach (var item in Model)
             {
                 <div>
                     <h1>Rate system name : @item.Name</h1> 
                     <br />
-                    @foreach (var item2 in item.Questions)
+                    @*@foreach (var item2 in item.Questions)
                     {
                         <h2>Question name: @item2.Name</h2>
-                    }
+                    }*@
                 </div>
-            }*@
+            }
         </section>
 
         <section id="about-me" style="height: 955px; min-height: 500px;">

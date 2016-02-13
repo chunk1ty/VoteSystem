@@ -12,10 +12,10 @@ namespace VoteSystem.Web
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Web.Common;
-   
+
     using VoteSystem.Data;
     using VoteSystem.Data.Common;
-
+    using Services.Web;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
@@ -74,6 +74,8 @@ namespace VoteSystem.Web
             kernel.Bind(b => b.From("VoteSystem.Services.Data")
                                     .SelectAllClasses()
                                     .BindDefaultInterface());
+
+            kernel.Bind(typeof(ICacheService)).To(typeof(HttpCacheService));
         }        
     }
 }

@@ -334,6 +334,10 @@
       <Project>{960e22e8-f9ee-4067-8cc6-f6c1950fbd18}</Project>
       <Name>VoteSystem.Services.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\VoteSystem.Services.Web\VoteSystem.Services.Web.csproj">
+      <Project>{987bb8b6-3320-4a56-bf9f-a2bc56f6d5db}</Project>
+      <Name>VoteSystem.Services.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VoteSystem.Web.Infrastructure\VoteSystem.Web.Infrastructure.csproj">
       <Project>{0653b67b-d6c6-4c6a-a3f3-64bdd670c958}</Project>
       <Name>VoteSystem.Web.Infrastructure</Name>
