@@ -20,6 +20,8 @@
         padding-left: 40px;
         padding-top: 0 !important;
         padding-bottom: 17px;
+        color: #555;
+        font-weight:100; 
     }
 
     .remember-label-class {
