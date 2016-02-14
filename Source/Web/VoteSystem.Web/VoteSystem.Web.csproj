@@ -252,16 +252,18 @@
     <Compile Include="ViewModels\QuestionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\1.jpg" />
-    <Content Include="Content\Images\vote1_blured.jpg" />
-    <Content Include="Content\Images\vote2.jpg" />
-    <Content Include="Content\Images\vote1.jpg" />
-    <Content Include="Content\Images\vote3.jpg" />
-    <Content Include="Content\Scripts\main.js" />
+    <Content Include="Content\css\forms.css" />
+    <Content Include="Content\images\1.jpg" />
+    <Content Include="Content\images\vote1_blured.jpg" />
+    <Content Include="Content\images\vote2.jpg" />
+    <Content Include="Content\images\vote1.jpg" />
+    <Content Include="Content\images\vote3.jpg" />
+    <Content Include="Content\scripts\main.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -276,7 +278,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\Videos\stars.webm" />
+    <Content Include="Content\videos\stars.webm" />
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Administration\Views\Administration\Index.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
@@ -327,6 +329,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Settings.StyleCop" />
+    <Content Include="Views\Shared\_SocialButtons.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

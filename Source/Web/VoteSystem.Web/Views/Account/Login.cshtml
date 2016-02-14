@@ -5,46 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .login-form {
-        color: white;
-        text-align: center;
-        font-weight: 300;
-        padding-bottom: 40px;
-    }
-
-    .row {
-        font-family: 'Roboto', 'sans-serif';
-        padding-top: 100px;
-        width: 100%;
-    }
-
-    .input-group {
-        padding: 20px 20px 0 20px;
-    }
-
-    .checkbox {
-        padding-left: 40px;
-        padding-top: 20px !important;
-        padding-bottom: 13px;
-    }
-
-    .remember-label-class {
-        padding-left: 5px !important;
-    }
-
-    h3 {
-        font-weight: 100;
-        padding-left: 20px;
-    }
-</style>
+@section Styles {
+   @Styles.Render("~/Content/forms-css")
+}
 
 <div class="row">
     <div class="col-lg-4 col-lg-offset-4">
         <h1 class="login-form">Login Form</h1>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3>Use a local account to log in.</h3>
+                <h3 class="my-panel-title">Use a local account to log in.</h3>
             </div>
             <div class="panel-body">
                 <section id="loginForm">
@@ -58,16 +28,16 @@
                                 <i class="glyphicon glyphicon-user"></i>
                             </span>
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email address." })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger", style = "padding-left: 20px" })
 
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-lock"></i>
                             </span>
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password." })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </div>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", style = "padding-left: 20px" })
 
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe)
@@ -75,7 +45,7 @@
                         </div>
 
                         <div class="input-group" style="width: 100%; padding-top: 0">
-                            <input type="submit" value="Sign in!" class="btn btn-success" style="width: 100%"/>
+                            <input id="submit-btn" type="submit" value="Sign in!" class="btn btn-success" style="width: 100%"/>
                         </div>
                     }
                 </section>
@@ -91,6 +61,7 @@
                 </span>
             </div>
         </div>
+        @Html.Partial("_SocialButtons")
     </div>
 </div>
 
