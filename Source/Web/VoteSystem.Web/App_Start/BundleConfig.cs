@@ -42,7 +42,10 @@
                 "~/Content/bootstrap-theme/js/maps/gdp-data.js",
                 "~/Content/bootstrap-theme/js/maps/jquery-jvectormap-world-mill-en.js",
                 "~/Content/bootstrap-theme/js/maps/jquery-jvectormap-us-aea-en.js",
-                "~/Content/bootstrap-theme/js/skycons/skycons.js"
+                "~/Content/bootstrap-theme/js/skycons/skycons.js",
+                 "~/Content/bootstrap-theme/js/notify/pnotify.core.js",
+                 "~/Content/bootstrap-theme/js/notify/pnotify.buttons.js",
+                 "~/Content/bootstrap-theme/js/notify/pnotify.nonblock.js"
                 ));
             //<script src = "~/Content/bootstrap-theme/js/jquery.min.js" ></ script >
             //< script src="~/Content/bootstrap-theme/js/nprogress.js"></script>

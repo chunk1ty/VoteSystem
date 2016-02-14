@@ -936,7 +936,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\videos\stars.webm" />
     <Content Include="Areas\Administration\Views\web.config" />
-    <Content Include="Areas\Administration\Views\Administration\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Administration\Create.cshtml" />
     <Content Include="Content\bootstrap-theme\css\datatables\images\Sorting icons.psd" />
     <Content Include="Content\bootstrap-theme\fonts\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\bootstrap-theme\fonts\fonts\fontawesome-webfont.svg" />

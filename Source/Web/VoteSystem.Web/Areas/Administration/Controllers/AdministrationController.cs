@@ -20,14 +20,14 @@
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(RateSystemViewModel model)
+        public ActionResult Create(RateSystemViewModel model)
         {
             if (ModelState.IsValid)
             {

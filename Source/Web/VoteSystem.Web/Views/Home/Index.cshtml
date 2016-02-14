@@ -1,6 +1,33 @@
-﻿@{
+﻿@model IEnumerable<VoteSystem.Web.ViewModels.RateSystemViewModel>
+@{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
 <h2>HOME INDEX</h2>
 
+@if (ViewBag.NotificationMessage != null)
+{
+    //TODO make it works
+    @section Scripts{
+        <script>
+            $(function () {
+                new PNotify({
+                    title: "Password reset",
+                    type: "success",
+                    text: @((string)ViewBag.NotificationMessage)});
+            });
+        </script>
+    }
+}
+
+@*@section Scripts{
+    <script type="text/javascript">
+            var permanotice, tooltip, _alert;
+            $(function () {
+                new PNotify({
+                    title: "Password reset",
+                    type: "success",
+                    text: "ankk"});
+            });
+    </script>
+}*@

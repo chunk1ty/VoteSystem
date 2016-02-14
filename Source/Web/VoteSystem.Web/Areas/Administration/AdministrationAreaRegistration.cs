@@ -17,7 +17,7 @@
             context.MapRoute(
                 "Administration_default",
                 "Administration/{action}",
-                new { controller = "Administration", action = "Index"});
+                new { controller = "Administration", action = "Create"});
         }
     }
 }

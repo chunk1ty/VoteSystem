@@ -4,12 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section Styles {
+    @Styles.Render("~/Content/gentelella-css")
+}
+
 <div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="Introduction/Index" class="site_title">
+                    <a href="~/Introduction/Index" class="site_title">
                         <i class="fa fa-paw"></i>
                         <span>Vote System</span>
                     </a>
@@ -40,7 +44,7 @@
                                 </a>
                                 <ul class="nav child_menu" style="display: none">
                                     <li>
-                                        <a href="#">Dashboard</a>
+                                        @Html.ActionLink("Dashboard", "Index", "Home", new { area = string.Empty }, htmlAttributes: new { title = "Manage" })
                                     </li>
                                 </ul>
                             </li>
@@ -54,11 +58,23 @@
                                     </a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li>
-                                            <a href="#">Create</a>
+                                            @Html.ActionLink("Create", "Create", "Administration", new {area = "Administration" }, htmlAttributes: new { title = "Manage" })
                                         </li>
                                     </ul>
                                 </li>
                             }
+                            <li>
+                                <a>
+                                    <i class="fa fa-gear"></i>
+                                    Settings
+                                    <span class="fa fa-chevron-down"></span>
+                                </a>
+                                <ul class="nav child_menu" style="display: none">
+                                    <li>
+                                        @Html.ActionLink("Change password", "ChangePassword", "Manage", new { area = string.Empty }, htmlAttributes: new { title = "Manage" })
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
 
@@ -84,14 +100,8 @@
                                     <a href="javascript:;">Profile</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
-                                    </a>
-                                </li>
-                                <li>
                                     @*TODO do i really need AntiForgeryToken?*@
-                                    @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                    @using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                                     {
                                         @Html.AntiForgeryToken()
                                     }
@@ -125,8 +135,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/gentallela-js")
-}
-
-@section Styles {
-    @Styles.Render("~/Content/gentelella-css")
+    @RenderSection("scripts", required: false)
 }
