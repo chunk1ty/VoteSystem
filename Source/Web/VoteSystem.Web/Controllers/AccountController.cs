@@ -8,10 +8,10 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    
+
     using VoteSystem.Data.Models;
     using VoteSystem.Web.ViewModels.Account;
-
+    using Common;
     [Authorize]
     public class AccountController : BaseController
     {

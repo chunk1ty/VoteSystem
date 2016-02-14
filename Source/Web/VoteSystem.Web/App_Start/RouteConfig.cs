@@ -9,15 +9,25 @@
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    "SpecificRoute", 
+            //    "{action}", 
+            //    new { controller = "Introduction", action = "Index"});
+
+            //routes.MapRoute(
+            //   "SpecificRoute2",
+            //   "{controller}",
+            //   new { controller = "Introduction", action = "Index" });
+
             routes.MapRoute(
                 name: "Intro",
                 url: "{controller}/{action}",
-                defaults: new { controller = "Introduction", action = "Intro" });
+                defaults: new { controller = "Introduction", action = "Index" });
 
             //routes.MapRoute(
             //   name: "Default",
-            //   url: "{controller}/{action}/{id}",
-            //   defaults: new { controller = "Introduction", action = "Intro", id = UrlParameter.Optional });
+            //   url: "{controller}/{action}",
+            //   defaults: new { controller = "Introduction", action = "Intro"});
         }
     }
 }

@@ -15,7 +15,9 @@ namespace VoteSystem.Web
 
     using VoteSystem.Data;
     using VoteSystem.Data.Common;
-
+    using Services.Web.Contracts;
+    using Services.Web;
+    using Common;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
@@ -71,12 +73,12 @@ namespace VoteSystem.Web
             // TODO check this binding IVoteSystemDbContext
             kernel.Bind(typeof(DbContext)).To(typeof(VoteSystemDbContext));
 
-            kernel.Bind(b => b.From("VoteSystem.Services.Data")
+            kernel.Bind(b => b.From(GlobalConstants.DataServicesAssembly)
                                     .SelectAllClasses()
                                     .BindDefaultInterface());
 
             // TODO bind the entire assembly
-            // kernel.Bind(typeof(ICacheService)).To(typeof(CacheService));
+            kernel.Bind(typeof(ICacheService)).To(typeof(CacheService));
         }        
     }
 }

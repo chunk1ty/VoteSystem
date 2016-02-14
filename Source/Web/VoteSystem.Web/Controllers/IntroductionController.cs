@@ -12,19 +12,16 @@
     {
         private IRateSystemService rateSystems;
         private IQuestionService questions;
-        private ICacheService cache;
 
-        public IntroductionController(IRateSystemService rateSystems, IQuestionService questions, ICacheService cache)
+        public IntroductionController(IRateSystemService rateSystems, IQuestionService questions)
         {
             this.rateSystems = rateSystems;
             this.questions = questions;
-            this.cache = cache;
         }
 
-        public ActionResult Intro()
+        public ActionResult Index()
         {
-            //TODO create cache from BaseController property
-            var system = this.cache.Get(
+            var system = base.Cache.Get(
                 "rateSystems",
                 () => this.rateSystems.GetAll().To<RateSystemViewModel>().ToList(),
                 1 * 60);

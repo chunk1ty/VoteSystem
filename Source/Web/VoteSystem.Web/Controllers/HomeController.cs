@@ -1,5 +1,6 @@
 ﻿namespace VoteSystem.Web.Controllers
 {
+    using Common;
     using System.Web.Mvc;
 
     using VoteSystem.Services.Data.Contracts;
@@ -7,15 +8,13 @@
     [Authorize]
     public class HomeController : BaseController
     {
-        private IRateSystemService voteSystems;
-
-        public HomeController(IRateSystemService voteSystems)
-        {
-            this.voteSystems = voteSystems;
-        }
-
         public ActionResult Index()
         {
+            if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+                return this.RedirectToAction("Index", "Administration", new { area = "Administration" });
+            }
+
             return this.View();
         }
 
