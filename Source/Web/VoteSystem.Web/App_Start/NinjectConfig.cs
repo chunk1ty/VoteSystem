@@ -1,5 +1,5 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(VoteSystem.Web.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(VoteSystem.Web.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(VoteSystem.Web.NinjectConfig), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(VoteSystem.Web.NinjectConfig), "Stop")]
 
 namespace VoteSystem.Web
 {
@@ -18,7 +18,8 @@ namespace VoteSystem.Web
     using Services.Web.Contracts;
     using Services.Web;
     using Common;
-    public static class NinjectWebCommon 
+
+    public static class NinjectConfig
     {
         private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 

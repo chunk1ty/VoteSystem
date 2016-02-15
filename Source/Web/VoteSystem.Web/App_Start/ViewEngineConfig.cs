@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
 
-    public class ViewEngine
+    public class ViewEngineConfig
     {
         public static void RegisterViewEngine()
         {

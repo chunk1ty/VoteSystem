@@ -1,5 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
-@using VoteSystem.Common;
+@using VoteSystem.Common
+@using VoteSystem.Web.Areas.Administration.Controllers
+@using VoteSystem.Web.Infrastructure.Constants;
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -44,7 +47,7 @@
                                 </a>
                                 <ul class="nav child_menu" style="display: none">
                                     <li>
-                                        @Html.ActionLink("Dashboard", "Index", "Home", new { area = string.Empty }, htmlAttributes: new { title = "Manage" })
+                                        @(Html.ActionLink<HomeController>("Dashboard", c => c.Index(), new {area = string.Empty}, htmlAttributes: new { title = "Dashboard" }))
                                     </li>
                                 </ul>
                             </li>
@@ -58,7 +61,7 @@
                                     </a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li>
-                                            @Html.ActionLink("Create", "Create", "Administration", new {area = "Administration" }, htmlAttributes: new { title = "Manage" })
+                                            @(Html.ActionLink<AdministrationController>("Create", c => c.Create(), new { area = "Administration" }, htmlAttributes: new { title = "Create" }))
                                         </li>
                                     </ul>
                                 </li>
@@ -71,7 +74,7 @@
                                 </a>
                                 <ul class="nav child_menu" style="display: none">
                                     <li>
-                                        @Html.ActionLink("Change password", "ChangePassword", "Manage", new { area = string.Empty }, htmlAttributes: new { title = "Manage" })
+                                        @(Html.ActionLink<ManageController>("Change password", c => c.ChangePassword(), new { area = string.Empty }, htmlAttributes: new { title = "Manage" }))
                                     </li>
                                 </ul>
                             </li>
@@ -100,7 +103,7 @@
                                     <a href="javascript:;">Profile</a>
                                 </li>
                                 <li>
-                                    @*TODO do i really need AntiForgeryToken?*@
+                                    @*TODO do i really need AntiForgeryToken?*@    
                                     @using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                                     {
                                         @Html.AntiForgeryToken()
@@ -120,7 +123,7 @@
         <div class="right_col" role="main">
             @RenderBody()
             <!-- footer content -->
-            @Html.Partial("_FooterPartial")
+            @Html.Partial(PartialViewConstants.FooterPartial)
             <!-- /footer content -->
         </div>
         <!-- /page content -->

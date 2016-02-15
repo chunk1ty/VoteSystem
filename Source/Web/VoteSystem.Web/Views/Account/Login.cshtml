@@ -1,4 +1,6 @@
 ﻿@using VoteSystem.Web.ViewModels.Account;
+@using VoteSystem.Web.Infrastructure.Constants;
+
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
@@ -53,15 +55,15 @@
             </div>
             <div class="panel-footer">
                 <span style="padding-left: 20px">
-                    @Html.ActionLink("Register as a new user", "Register")
+                    @(Html.ActionLink<AccountController>("Register as a new user", c=> c.Register()))
                 </span>
                 @*Enable this once you have account confirmation enabled for password reset functionality*@
                 <span class="pull-right" style="padding-right: 20px">
-                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    @(Html.ActionLink<AccountController>("Forgot your password?", c => c.ForgotPassword()))
                 </span>
             </div>
         </div>
-        @Html.Partial("_SocialButtonsPartial")
+        @Html.Partial(PartialViewConstants.SocialButtonPartial)
     </div>
 </div>
 

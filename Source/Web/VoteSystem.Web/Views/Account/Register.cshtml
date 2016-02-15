@@ -1,4 +1,7 @@
-﻿@model VoteSystem.Web.ViewModels.Account.RegisterViewModel
+﻿@using VoteSystem.Web.Infrastructure.Constants;
+
+@model VoteSystem.Web.ViewModels.Account.RegisterViewModel
+
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -53,7 +56,7 @@
                 </section>
             </div>
         </div>
-        @Html.Partial("_SocialButtonsPartial")
+        @Html.Partial(PartialViewConstants.SocialButtonPartial)
     </div>
 </div>
 
