@@ -53,15 +53,20 @@ namespace VoteSystem.Data.Migrations
         {
             if (context.RateSystems.Count() == 0)
             {
+               RateSystem ankk = new RateSystem() { Id = 1, RateSystemName = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                RateSystem ankk1 = new RateSystem() { Id = 2, RateSystemName = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                RateSystem ank2 = new RateSystem() { Id = 3, RateSystemName = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+
+                context.SaveChanges();
                 context.RateSystems.AddOrUpdate(
-                new RateSystem() { RateSystemName = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now },
-                new RateSystem() { RateSystemName = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now },
-                new RateSystem() { RateSystemName = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now });
+                );
 
                 for (int i = 0; i < 20; i++)
                 {
                     Random rd = new Random();
-                    context.Questions.AddOrUpdate(new Question() { QuestionName = "Question" + i,  RateSystemId = rd.Next(1, 4) });
+                    Question q = new Question() {Id=i+ 1, QuestionName = "Question" + i, RateSystemId = rd.Next(1, 4) };
+                    context.Questions.AddOrUpdate(q);
+                    context.SaveChanges();
                 }
 
                 context.SaveChanges();

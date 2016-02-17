@@ -1,16 +1,39 @@
-﻿@model VoteSystem.Web.ViewModels.QuestionViewModel
+﻿@using VoteSystem.Web.Infrastructure.Constants
+
+@model VoteSystem.Web.ViewModels.QuestionViewModel
+
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
 <h2>Create</h2>
 
-@using (Html.BeginForm<QuestionController>(c => c.Create(Model.RateSystemId), FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.EditorFor(m => m.Name);
-    @Html.EditorFor(m => m.Type)
-    @Html.HiddenFor(m => m.RateSystemId)
-
+@*@using (Html.BeginForm<QuestionController>(c => c.Create(Model.RateSystemId), FormMethod.Post))
+{*@
+    <div id="question-section">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.RateSystemId)
+        
+    </div>
+  
+    <button id="more-question-btn">Add more</button>
     <button type="submit"> sent </button>
+@*}*@
+
+@section Scripts{
+    <script>
+        $("#more-question-btn").on('click', function () {           
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("More", "Question")',
+                success: function (html) {
+                    $('#question-section').append(html);
+                },
+                error: function () {
+                    aler('Can not add new question');
+                }
+
+            });
+        });
+    </script>    
 }

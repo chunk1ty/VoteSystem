@@ -1020,6 +1020,7 @@
     <Content Include="Areas\Administration\Views\VoteSystem\Create.cshtml" />
     <Content Include="Areas\Administration\Views\VoteSystem\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Question\_QuestionAndAnswersPartial.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />

@@ -8,7 +8,7 @@
     using Web.Controllers;
     using VoteSystem.Web.Infrastructure.Mapping;
     using System.Linq;
-
+    using Infrastructure.Constants;
     public class QuestionController : AdministrationController
     {
         private IQuestionService questions;
@@ -40,6 +40,12 @@
             this.questions.Add(dbModel);
             
             return this.RedirectToAction<QuestionController>(c => c.Create(model.RateSystemId));
+        }
+
+        [HttpPost]
+        public ActionResult More()
+        {
+            return this.PartialView(PartialViewConstants.QuestionAndAnswersPartial);
         }
     }
 }

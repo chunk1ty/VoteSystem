@@ -7,8 +7,6 @@
     {
         public string QuestionName { get; set; }
 
-        public string Type { get; set; }
-
         public int RateSystemId { get; set; }
     }
 }
