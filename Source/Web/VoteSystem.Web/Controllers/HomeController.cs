@@ -20,7 +20,7 @@
         public ActionResult Index()
         {
             var systems = this.rateSystems
-                            .GetAll()
+                            .AllActive()
                             .To<RateSystemViewModel>()
                             .ToList();
 

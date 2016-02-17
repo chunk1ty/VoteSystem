@@ -1,0 +1,16 @@
+﻿@model VoteSystem.Web.ViewModels.QuestionViewModel
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm<QuestionController>(c => c.Create(Model.RateSystemId), FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.EditorFor(m => m.Name);
+    @Html.EditorFor(m => m.Type)
+    @Html.HiddenFor(m => m.RateSystemId)
+
+    <button type="submit"> sent </button>
+}

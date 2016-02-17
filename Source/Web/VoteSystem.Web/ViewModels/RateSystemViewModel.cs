@@ -8,7 +8,9 @@
 
     public class RateSystemViewModel : IMapFrom<RateSystem>, IMapTo<RateSystem>
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
+
+        public string RateSystemName { get; set; }
        
         public DateTime? StarDateTime { get; set; }
 

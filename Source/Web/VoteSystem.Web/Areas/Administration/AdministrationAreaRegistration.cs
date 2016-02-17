@@ -14,10 +14,18 @@
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+            //context.MapRoute(
+            //    "Administration_custom",
+            //    "Administration/{action}",
+            //    new { controller = "VoteSystem", action = "Index" });
+
             context.MapRoute(
-                "Administration_default",
-                "Administration/{action}",
-                new { controller = "Administration", action = "Create"});
+              name: "Administration_default",
+              url: "Administration/{controller}/{action}/{id}",
+              defaults: new {
+                          controller = "VoteSystem",
+                          action = "Index",
+                          id = UrlParameter.Optional});
         }
     }
 }

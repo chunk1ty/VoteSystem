@@ -1,5 +1,6 @@
 ﻿namespace VoteSystem.Services.Data
 {
+    using System;
     using VoteSystem.Data.Common;
     using VoteSystem.Data.Models;
     using VoteSystem.Services.Data.Contracts;
@@ -11,6 +12,12 @@
         public QuestionService(IDbGenericRepository<Question> questions)
         {
             this.questions = questions;
+        }
+
+        public void Add(Question question)
+        {
+            this.questions.Add(question);
+            this.questions.SaveChanges();
         }
     }
 }

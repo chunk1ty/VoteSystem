@@ -8,33 +8,11 @@
     using VoteSystem.Web.Infrastructure.Mapping;
     using Data.Models;
     using System.Linq;
+    using System.Web.Mvc.Expressions;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class AdministrationController : BaseController
     {
-        private IRateSystemService rateSystems;
-
-        public AdministrationController(IRateSystemService rateSystems)
-        {
-            this.rateSystems = rateSystems;
-        }
-
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return this.View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(RateSystemViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var dbModel = this.Mapper.Map<RateSystem>(model);
-            }
-
-            return this.View();
-        }
+       
     }
 }

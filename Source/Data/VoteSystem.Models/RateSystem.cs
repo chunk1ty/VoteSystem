@@ -18,7 +18,7 @@
         [Required]
         [Index(IsUnique = true)]
         [MaxLength(100)]
-        public string Name { get; set; }
+        public string RateSystemName { get; set; }
 
         // TODO make sure that these properties are not null-able; and in the view model
         public DateTime? StarDateTime { get; set; }

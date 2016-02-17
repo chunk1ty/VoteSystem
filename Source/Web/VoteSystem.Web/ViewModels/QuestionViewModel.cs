@@ -5,8 +5,10 @@
 
     public class QuestionViewModel : IMapFrom<Question>, IMapTo<Question>
     {
-        public string Name { get; set; }
+        public string QuestionName { get; set; }
 
         public string Type { get; set; }
+
+        public int RateSystemId { get; set; }
     }
 }

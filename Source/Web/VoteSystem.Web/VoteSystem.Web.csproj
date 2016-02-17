@@ -223,6 +223,8 @@
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\QuestionController.cs" />
+    <Compile Include="Areas\Administration\Controllers\VoteSystemController.cs" />
     <Compile Include="Controllers\AccountController.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -941,7 +943,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\videos\stars.webm" />
     <Content Include="Areas\Administration\Views\web.config" />
-    <Content Include="Areas\Administration\Views\Administration\Create.cshtml" />
     <Content Include="Content\bootstrap-theme\css\datatables\images\Sorting icons.psd" />
     <Content Include="Content\bootstrap-theme\fonts\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\bootstrap-theme\fonts\fonts\fontawesome-webfont.svg" />
@@ -1016,6 +1017,9 @@
     <Content Include="Content\bootstrap-theme\js\datatables\unit_testing\templates\js_data_mixed_types.php" />
     <Content Include="Content\bootstrap-theme\js\datatables\unit_testing\templates\two_tables.php" />
     <Content Include="Content\bootstrap-theme\js\maps\us-unemployment.json" />
+    <Content Include="Areas\Administration\Views\VoteSystem\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\VoteSystem\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Question\Create.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -1069,6 +1073,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\Views\Administration\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
