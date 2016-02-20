@@ -1,7 +1,6 @@
 ﻿namespace VoteSystem.Data.Models
 {
-    using Common.Models;
-    using System.Collections.Generic;
+    using VoteSystem.Data.Common.Models;
 
     public class QuestionAnswers : BaseModel<int>
     {

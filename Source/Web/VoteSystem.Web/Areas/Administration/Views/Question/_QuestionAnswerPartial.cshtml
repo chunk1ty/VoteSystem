@@ -1,11 +1,9 @@
-﻿@using HtmlHelpers.BeginCollectionItem
-@model VoteSystem.Web.ViewModels.QuestionAnswerViewModel
+﻿@model VoteSystem.Web.ViewModels.QuestionAnswerViewModel
 
-@using (Html.BeginCollectionItem(ViewData["ContainerPrefix"] + ".QuestionAnswers"))
+@using (Html.BeginCollectionItem((string)ViewBag.ContainerPrefix + ".QuestionAnswers"))
 {
     <h4>Answer</h4>
     <div>
         @Html.TextBoxFor(m => m.QuestionAnswerName)
     </div>
-    <a href="#" class="deleteRow">Delete</a>
 }

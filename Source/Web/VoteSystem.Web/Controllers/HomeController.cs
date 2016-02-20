@@ -1,11 +1,11 @@
 ﻿namespace VoteSystem.Web.Controllers
 {
-    using Common;
-    using Infrastructure.Mapping;
     using System.Linq;
     using System.Web.Mvc;
-    using ViewModels;
+
     using VoteSystem.Services.Data.Contracts;
+    using VoteSystem.Web.Infrastructure.Mapping;
+    using VoteSystem.Web.ViewModels;
 
     [Authorize]
     public class HomeController : BaseController

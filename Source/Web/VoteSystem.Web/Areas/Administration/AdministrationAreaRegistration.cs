@@ -20,12 +20,14 @@
             //    new { controller = "VoteSystem", action = "Index" });
 
             context.MapRoute(
-              name: "Administration_default",
-              url: "Administration/{controller}/{action}/{id}",
-              defaults: new {
-                          controller = "VoteSystem",
-                          action = "Index",
-                          id = UrlParameter.Optional});
+                name: "Administration_default",
+                url: "Administration/{controller}/{action}/{id}",
+                defaults: new
+                {
+                    controller = "VoteSystem",
+                    action = "Index",
+                    id = UrlParameter.Optional
+                });
         }
     }
 }

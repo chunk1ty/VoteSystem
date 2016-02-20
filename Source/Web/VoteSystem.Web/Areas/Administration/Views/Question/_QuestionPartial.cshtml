@@ -1,6 +1,4 @@
-﻿@using HtmlHelpers.BeginCollectionItem
-
-@model VoteSystem.Web.ViewModels.QuestionViewModel
+﻿@model VoteSystem.Web.ViewModels.QuestionViewModel
 
 @{ 
     var currentBtnId = Guid.NewGuid();
@@ -31,7 +29,6 @@
         var currentQuestionName = $('.@currentQuestionClass')
                                                         .attr('name')
                                                         .substring(0, 47);
-
         $.ajax({
             type: 'GET',
             url: '@Url.Action("MoreAnswers", "Question")',
@@ -45,26 +42,3 @@
         });
     });
 </script>
-
-
-@*@using HtmlHelpers.BeginCollectionItem
-@model VoteSystem.Web.ViewModels.QuestionAnswerViewModel
-
-@using (Html.BeginCollectionItem("QuestionAnswers"))
-{
-    <h4>Answer</h4>
-    <div>
-        @Html.TextBoxFor(m => m.QuestionAnswerName)
-    </div>
-    <a href="#" class="deleteRow">Delete</a>
-}
-
-@section Scripts
-{
-    <script>
-        $("a.deleteRow").live("click", function(){
-        $(this).parents("div.employeeRow:first").remove();
-        return false;
-        });
-    </script>
-}*@

@@ -7,6 +7,7 @@
 @using (Html.BeginForm<QuestionController>(c => c.Create(), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+
     <div id="add-more-questions" class="btn btn-default">New Question</div>
 
     <div id="question-list">

@@ -21,7 +21,7 @@
 
         public ActionResult Index()
         {
-            var system = base.Cache.Get(
+            var system = this.Cache.Get(
                 "rateSystems",
                 () => this.rateSystems.GetAll().To<RateSystemViewModel>().ToList(),
                 1 * 60);

@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="editor-field col-xs-4">
-                @Html.EditorFor(m => m.RateSystemName, new { @class = "form-control pull-left full-editor" })
+                @Html.TextBoxFor(m => m.RateSystemName, new { @class = "form-control pull-left full-editor" })
             </div>
             <div class="editor-field col-xs-4">
                 <span class="glyphicon glyphicon-question-sign text-primary" title="Enter title of exam" data-tooltip="true"></span>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="editor-field col-xs-4">
-                @Html.EditorFor(m => m.EndDateTime, new { @class = "form-control pull-left full-editor" })
+                @Html.TextBoxFor(m => m.EndDateTime, new { @class = "form-control pull-left full-editor" })
             </div>
             <div class="editor-field col-xs-4">
                 <span class="glyphicon glyphicon-question-sign text-primary" title="Enter title of exam" data-tooltip="true"></span>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="editor-field col-xs-4">
-                @Html.EditorFor(m => m.StarDateTime, new { @class = "form-control pull-left full-editor" })
+                @Html.TextBoxFor(m => m.StarDateTime, new { @class = "form-control pull-left full-editor" })
             </div>
             <div class="editor-field col-xs-4">
                 <span class="glyphicon glyphicon-question-sign text-primary" title="Enter title of exam" data-tooltip="true"></span>
@@ -65,6 +65,6 @@
     }
 </div>
 
-@*@section Scripts {
+@section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
-    }*@
+}

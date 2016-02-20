@@ -12,12 +12,12 @@ namespace VoteSystem.Web
     using Ninject;
     using Ninject.Extensions.Conventions;
     using Ninject.Web.Common;
-
+   
+    using VoteSystem.Common;
     using VoteSystem.Data;
     using VoteSystem.Data.Common;
-    using Services.Web.Contracts;
-    using Services.Web;
-    using Common;
+    using VoteSystem.Services.Web;
+    using VoteSystem.Services.Web.Contracts;
 
     public static class NinjectConfig
     {

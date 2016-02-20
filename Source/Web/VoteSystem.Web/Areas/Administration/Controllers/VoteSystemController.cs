@@ -1,13 +1,14 @@
 ﻿namespace VoteSystem.Web.Areas.Administration.Controllers
 {
-    using Data.Models;
-    using Services.Data.Contracts;
+    using System.Linq;
     using System.Web.Mvc;
     using System.Web.Mvc.Expressions;
-    using ViewModels;
-    using Web.Controllers;
+
+    using VoteSystem.Data.Models;
+    using VoteSystem.Services.Data.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
-    using System.Linq;
+    using VoteSystem.Web.ViewModels;
+
     public class VoteSystemController : AdministrationController
     {
         private IRateSystemService rateSystems;
@@ -43,8 +44,8 @@
                 return this.View();
             }
 
-            var dbModel = this.Mapper.Map<RateSystem>(model);
-            this.rateSystems.Add(dbModel);
+            var modelDb = this.Mapper.Map<RateSystem>(model);
+            this.rateSystems.Add(modelDb);
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }

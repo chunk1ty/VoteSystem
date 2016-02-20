@@ -22,7 +22,8 @@ namespace VoteSystem.Data.Migrations
         protected override void Seed(VoteSystemDbContext context)
         {
             this.CreateAdministrator(context);
-            //this.SimpleData(context);
+
+            // this.SimpleData(context);
         }
 
         private void CreateAdministrator(VoteSystemDbContext context)
@@ -58,13 +59,12 @@ namespace VoteSystem.Data.Migrations
                 RateSystem ank2 = new RateSystem() { Id = 3, RateSystemName = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
 
                 context.SaveChanges();
-                context.RateSystems.AddOrUpdate(
-                );
+                context.RateSystems.AddOrUpdate(ankk);
 
                 for (int i = 0; i < 20; i++)
                 {
                     Random rd = new Random();
-                    Question q = new Question() {Id=i+ 1, QuestionName = "Question" + i, RateSystemId = rd.Next(1, 4) };
+                    Question q = new Question() { Id = i + 1, QuestionName = "Question" + i, RateSystemId = rd.Next(1, 4) };
                     context.Questions.AddOrUpdate(q);
                     context.SaveChanges();
                 }
