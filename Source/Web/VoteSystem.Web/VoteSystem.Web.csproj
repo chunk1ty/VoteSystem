@@ -52,6 +52,10 @@
       <HintPath>..\..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="BeginCollectionItem, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
       <Private>True</Private>
@@ -255,6 +259,8 @@
     <Compile Include="ViewModels\Manage\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\QuestionAndAnswersViewModel.cs" />
+    <Compile Include="ViewModels\QuestionAnswerViewModel.cs" />
     <Compile Include="ViewModels\RateSystemViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
   </ItemGroup>
@@ -1020,7 +1026,8 @@
     <Content Include="Areas\Administration\Views\VoteSystem\Create.cshtml" />
     <Content Include="Areas\Administration\Views\VoteSystem\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Create.cshtml" />
-    <Content Include="Areas\Administration\Views\Question\_QuestionAndAnswersPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Question\_QuestionPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Question\_QuestionAnswerPartial.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -1070,6 +1077,7 @@
     <Content Include="Views\Shared\_DashboardLayout.cshtml" />
     <Content Include="Settings.StyleCop" />
     <Content Include="Views\Shared\_SocialButtonsPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

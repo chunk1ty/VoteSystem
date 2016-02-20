@@ -8,7 +8,8 @@
     using Web.Controllers;
     using VoteSystem.Web.Infrastructure.Mapping;
     using System.Linq;
-    using Infrastructure.Constants;
+    using Common;
+
     public class QuestionController : AdministrationController
     {
         private IQuestionService questions;
@@ -19,33 +20,42 @@
         }
 
         [HttpGet]
-        public ActionResult Create(int voteSystemId)
+        public ActionResult Create()
         {
-            QuestionViewModel model = new QuestionViewModel();
-            model.RateSystemId = voteSystemId;
+            QuestionAndAnswersViewModel questionsAndAnswers = new QuestionAndAnswersViewModel();
 
-            return this.View(model);
+            return this.View(questionsAndAnswers);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(QuestionViewModel model)
+        public ActionResult Create(QuestionAndAnswersViewModel model)
         {
+            var request = this.Request;
             if (!ModelState.IsValid)
             {
                 return this.View();
             }
 
-            var dbModel = this.Mapper.Map<Question>(model);
-            this.questions.Add(dbModel);
-            
-            return this.RedirectToAction<QuestionController>(c => c.Create(model.RateSystemId));
+            //var dbModel = this.Mapper.Map<Question>(model);
+            //this.questions.Add(dbModel);
+
+            //return this.RedirectToAction<QuestionController>(c => c.Create(model.RateSystemId));
+            return this.RedirectToAction<QuestionController>(c => c.Create());
         }
 
-        [HttpPost]
-        public ActionResult More()
+        [HttpGet]
+        public ActionResult MoreQuestions()
         {
-            return this.PartialView(PartialViewConstants.QuestionAndAnswersPartial);
+            return this.PartialView(PartialViewConstants.QuestionPartial, new QuestionViewModel());
+        }
+
+        [HttpGet]
+        public ActionResult MoreAnswers(string containerPrefix)
+        {          
+            ViewData["ContainerPrefix"] = containerPrefix;
+
+            return this.PartialView(PartialViewConstants.QuestionAnswerPartial, new QuestionAnswerViewModel());
         }
     }
 }

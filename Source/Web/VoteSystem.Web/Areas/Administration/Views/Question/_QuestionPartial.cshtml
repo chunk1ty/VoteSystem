@@ -1,0 +1,70 @@
+﻿@using HtmlHelpers.BeginCollectionItem
+
+@model VoteSystem.Web.ViewModels.QuestionViewModel
+
+@{ 
+    var currentBtnId = Guid.NewGuid();
+    var currentQuestionList = currentBtnId + "-list";
+    var currentQuestionClass = Guid.NewGuid();
+}
+
+<h2>Current Question</h2>
+@using (Html.BeginCollectionItem("Questions"))
+{ 
+    <div>
+        @Html.TextBoxFor(m => m.QuestionName, new {@class = currentQuestionClass })
+    </div>
+
+    <div class="@currentQuestionList">
+        @foreach (var item in Model.QuestionAnswers)
+        {
+            Html.RenderPartial(PartialViewConstants.QuestionAnswerPartial);
+        }
+    </div>
+}
+<hr />
+<div id="@currentBtnId">Add answer</div>
+
+<script>
+    $("#@currentBtnId").on('click', function () {
+        // Get question name and remove .QuestionName; 47 is position of dot
+        var currentQuestionName = $('.@currentQuestionClass')
+                                                        .attr('name')
+                                                        .substring(0, 47);
+
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("MoreAnswers", "Question")',
+            data: { containerPrefix: currentQuestionName },
+            success: function (html) {
+                $('.@currentQuestionList').append(html);
+            },
+            error: function () {
+                alert('Can not add new answer');
+            }
+        });
+    });
+</script>
+
+
+@*@using HtmlHelpers.BeginCollectionItem
+@model VoteSystem.Web.ViewModels.QuestionAnswerViewModel
+
+@using (Html.BeginCollectionItem("QuestionAnswers"))
+{
+    <h4>Answer</h4>
+    <div>
+        @Html.TextBoxFor(m => m.QuestionAnswerName)
+    </div>
+    <a href="#" class="deleteRow">Delete</a>
+}
+
+@section Scripts
+{
+    <script>
+        $("a.deleteRow").live("click", function(){
+        $(this).parents("div.employeeRow:first").remove();
+        return false;
+        });
+    </script>
+}*@

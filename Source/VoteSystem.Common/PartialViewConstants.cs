@@ -1,4 +1,4 @@
-﻿namespace VoteSystem.Web.Infrastructure.Constants
+﻿namespace VoteSystem.Common
 {
     public class PartialViewConstants
     {
@@ -6,6 +6,8 @@
 
         public const string FooterPartial = "_FooterPartial";
 
-        public const string QuestionAndAnswersPartial = "_QuestionAndAnswersPartial";
+        public const string QuestionAnswerPartial = "_QuestionAnswerPartial";
+
+        public const string QuestionPartial = "_QuestionPartial";
     }
 }

@@ -1,39 +1,39 @@
-﻿@using VoteSystem.Web.Infrastructure.Constants
-
-@model VoteSystem.Web.ViewModels.QuestionViewModel
+﻿@model VoteSystem.Web.ViewModels.QuestionAndAnswersViewModel
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<h2>Create</h2>
+@using (Html.BeginForm<QuestionController>(c => c.Create(), FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div id="add-more-questions" class="btn btn-default">New Question</div>
 
-@*@using (Html.BeginForm<QuestionController>(c => c.Create(Model.RateSystemId), FormMethod.Post))
-{*@
-    <div id="question-section">
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(m => m.RateSystemId)
-        
+    <div id="question-list">
+        @foreach (var question in Model.Questions)
+        {
+            Html.RenderPartial(PartialViewConstants.QuestionPartial);
+        }
     </div>
-  
-    <button id="more-question-btn">Add more</button>
-    <button type="submit"> sent </button>
-@*}*@
+
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+}
 
 @section Scripts{
-    <script>
-        $("#more-question-btn").on('click', function () {           
+    <script type="text/javascript">
+        $('#add-more-questions').on('click', function () {
             $.ajax({
-                type: 'POST',
-                url: '@Url.Action("More", "Question")',
+                type: 'GET',
+                url: '@Url.Action("MoreQuestions", "Question")',
                 success: function (html) {
-                    $('#question-section').append(html);
+                    $('#question-list').append(html);
                 },
-                error: function () {
-                    aler('Can not add new question');
+                error: function (ex) {
+                    alert('Can not add new question ' + ex);
                 }
-
             });
         });
-    </script>    
+    </script>
 }
