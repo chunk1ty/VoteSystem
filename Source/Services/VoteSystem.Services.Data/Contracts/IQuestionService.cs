@@ -5,5 +5,7 @@
     public interface IQuestionService
     {
         void Add(Question question);
+
+        void SaveChanges();
     }
 }

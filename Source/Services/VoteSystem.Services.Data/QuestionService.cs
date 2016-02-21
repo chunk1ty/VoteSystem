@@ -17,6 +17,10 @@
         public void Add(Question question)
         {
             this.questions.Add(question);
+        }
+
+        public void SaveChanges()
+        {
             this.questions.SaveChanges();
         }
     }

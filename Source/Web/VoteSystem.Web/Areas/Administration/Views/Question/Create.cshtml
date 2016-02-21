@@ -3,23 +3,24 @@
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
-
-@using (Html.BeginForm<QuestionController>(c => c.Create(), FormMethod.Post))
+@*TODO use kenov library*@
+@*@using (Html.BeginForm<QuestionController>(c => c.Create(), FormMethod.Post))*@
+@using (Html.BeginForm("Create", "Question", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-
+    @Html.Hidden("rateSystemId", (int)ViewBag.RateSystemId)
     <div id="add-more-questions" class="btn btn-default">New Question</div>
 
     <div id="question-list">
         @foreach (var question in Model.Questions)
-        {
+        {           
             Html.RenderPartial(PartialViewConstants.QuestionPartial);
         }
     </div>
 
-        <div>
-            <input type="submit" value="Save" />
-        </div>
+    <div>
+        <input type="submit" value="Save" />
+    </div>
 }
 
 @section Scripts{

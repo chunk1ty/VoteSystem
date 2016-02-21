@@ -11,6 +11,8 @@
             this.QuestionAnswers = new HashSet<QuestionAnswerViewModel>();
         }
 
+        public int Id { get; set; }
+
         public string QuestionName { get; set; }
 
         public int RateSystemId { get; set; }

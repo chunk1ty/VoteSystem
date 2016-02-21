@@ -1,5 +1,6 @@
 ﻿namespace VoteSystem.Web.Areas.Administration.Controllers
 {
+    using Data.Models;
     using System.Web.Mvc;
     using System.Web.Mvc.Expressions;
 
@@ -17,25 +18,33 @@
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(int rateSystemId)
         {
-            QuestionAndAnswersViewModel questionsAndAnswers = new QuestionAndAnswersViewModel();
-
-            return this.View(questionsAndAnswers);
+            ViewBag.RateSystemId = rateSystemId;
+            return this.View(new QuestionAndAnswersViewModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(QuestionAndAnswersViewModel model)
+        public ActionResult Create(QuestionAndAnswersViewModel model, int rateSystemId)
         {
-            var request = this.Request;
-
             if (!ModelState.IsValid)
             {
                 return this.View();
             }
-          
-            return this.RedirectToAction<QuestionController>(c => c.Create());
+
+            foreach (var question in model.Questions)
+            {
+                var questionDbModel = this.Mapper.Map<Question>(question);
+                // TODO think better way with automapper (rateSystemId)
+                questionDbModel.RateSystemId = rateSystemId;
+
+                this.questions.Add(questionDbModel);
+            }
+
+            this.questions.SaveChanges();
+
+            return this.RedirectToAction<QuestionController>(c => c.Create(1));
         }
 
         [HttpGet]

@@ -24,6 +24,7 @@
         public void Add(RateSystem system)
         {
             this.rateSystems.Add(system);
+            // TODO remove savechanges
             this.rateSystems.SaveChanges();
         }
 

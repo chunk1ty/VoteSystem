@@ -72,7 +72,9 @@ namespace VoteSystem.Web
             kernel.Bind(typeof(IDbGenericRepository<>)).To(typeof(DbGenericRepository<>));
 
             // TODO check this binding IVoteSystemDbContext
+            // InRequestScope for using one db context
             kernel.Bind(typeof(DbContext)).To(typeof(VoteSystemDbContext));
+                                    //.InRequestScope();
 
             kernel.Bind(b => b.From(GlobalConstants.DataServicesAssembly)
                                     .SelectAllClasses()

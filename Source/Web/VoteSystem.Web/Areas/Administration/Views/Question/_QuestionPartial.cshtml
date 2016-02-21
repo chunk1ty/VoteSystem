@@ -8,7 +8,8 @@
 
 <h2>Current Question</h2>
 @using (Html.BeginCollectionItem("Questions"))
-{ 
+{
+    @Html.HiddenFor(m => m.Id)
     <div>
         @Html.TextBoxFor(m => m.QuestionName, new {@class = currentQuestionClass })
     </div>

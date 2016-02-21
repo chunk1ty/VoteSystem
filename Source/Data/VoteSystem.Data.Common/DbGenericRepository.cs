@@ -5,7 +5,7 @@
     using System.Linq;
 
     using VoteSystem.Data.Common.Models;
-
+    
     public class DbGenericRepository<T> : IDbGenericRepository<T> where T : BaseModel<int>
     {
         public DbGenericRepository(DbContext context)
@@ -30,7 +30,7 @@
 
         public IQueryable<T> AllWithDeleted()
         {
-            return this.DbSet;
+            return this.DbSet.AsQueryable();
         }
 
         public T GetById(int id)
@@ -38,11 +38,13 @@
             return this.All().FirstOrDefault(x => x.Id == id);
         }
 
+        // TODO Do i need atach and detach ?
         public void Add(T entity)
         {
             this.DbSet.Add(entity);
         }
 
+        // TODO Do i need atach and detach ?
         public void Delete(T entity)
         {
             entity.IsDeleted = true;
