@@ -3,7 +3,23 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<h2>HOME INDEX</h2>
+<h2>Active vote systems</h2>
+
+<table>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @item.RateSystemName
+                </td>
+                <td>
+                    @(Html.ActionLink<FillRateSystemController>("Join", c => c.Fill(item.Id)))
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>
 
 @if (ViewBag.NotificationMessage != null)
 {
@@ -18,11 +34,4 @@
             });
         </script>
     }
-}
-
-@foreach (var item in Model)
-{
-    <div>
-        @item.RateSystemName
-    </div>
 }

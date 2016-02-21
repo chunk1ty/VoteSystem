@@ -233,6 +233,7 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\FillRateSystemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IntroductionController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -1078,6 +1079,7 @@
     <Content Include="Settings.StyleCop" />
     <Content Include="Views\Shared\_SocialButtonsPartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
+    <Content Include="Views\FillRateSystem\Fill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<VoteSystem.Web.ViewModels.QuestionViewModel>
+
+@{    
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2>Fill</h2>
+
+@using (Html.BeginForm("Fill", "FillRateSystem", FormMethod.Post))
+{ 
+    foreach (var question in Model)
+    {
+        <h3>@question.QuestionName</h3>
+        foreach (var answers in question.QuestionAnswers)
+        {
+            <div>
+                @Html.RadioButtonFor(m => question.MyProperty, "false", new { id = answers.Id})
+                <label>
+                    @answers.QuestionAnswerName
+                </label>
+            </div>
+        }
+    }
+
+    <button type="submit">Save</button>
+}

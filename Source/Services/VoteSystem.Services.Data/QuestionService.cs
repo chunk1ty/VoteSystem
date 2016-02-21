@@ -1,6 +1,7 @@
 ﻿namespace VoteSystem.Services.Data
 {
     using System;
+    using System.Linq;
     using VoteSystem.Data.Common;
     using VoteSystem.Data.Models;
     using VoteSystem.Services.Data.Contracts;
@@ -22,6 +23,14 @@
         public void SaveChanges()
         {
             this.questions.SaveChanges();
+        }
+
+        public IQueryable<Question> GetAll(int rateSystemId)
+        {
+            // TODO x.IsDeleted ?
+            return this.questions
+                            .All()
+                            .Where(x => x.RateSystemId == rateSystemId);
         }
     }
 }

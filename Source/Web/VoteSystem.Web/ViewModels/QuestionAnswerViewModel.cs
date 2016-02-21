@@ -5,6 +5,8 @@
 
     public class QuestionAnswerViewModel : IMapFrom<QuestionAnswers>, IMapTo<QuestionAnswers>
     {
+        public int Id { get; set; }
+
         public string QuestionAnswerName { get; set; }
 
         public int QuestionId { get; set; }
