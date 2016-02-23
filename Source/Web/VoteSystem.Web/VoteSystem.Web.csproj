@@ -228,7 +228,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\QuestionController.cs" />
-    <Compile Include="Areas\Administration\Controllers\VoteSystemController.cs" />
+    <Compile Include="Areas\Administration\Controllers\RateSystemController.cs" />
     <Compile Include="Controllers\AccountController.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -1024,8 +1024,8 @@
     <Content Include="Content\bootstrap-theme\js\datatables\unit_testing\templates\js_data_mixed_types.php" />
     <Content Include="Content\bootstrap-theme\js\datatables\unit_testing\templates\two_tables.php" />
     <Content Include="Content\bootstrap-theme\js\maps\us-unemployment.json" />
-    <Content Include="Areas\Administration\Views\VoteSystem\Create.cshtml" />
-    <Content Include="Areas\Administration\Views\VoteSystem\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\RateSystem\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\RateSystem\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Create.cshtml" />
     <Content Include="Areas\Administration\Views\Question\_QuestionPartial.cshtml" />
     <Content Include="Areas\Administration\Views\Question\_QuestionAnswerPartial.cshtml" />

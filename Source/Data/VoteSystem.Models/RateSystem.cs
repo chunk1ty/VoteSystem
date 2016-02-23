@@ -7,13 +7,16 @@
 
     using Common.Models;
 
-    public class RateSystem : BaseModel<int>
+    public class RateSystem : AuditInfo
     {
         public RateSystem()
         {
             this.Questions = new HashSet<Question>();
             this.Users = new HashSet<User>();
         }
+
+        [Key]
+        public int Id { get; set; }
 
         [Required]
         [Index(IsUnique = true)]

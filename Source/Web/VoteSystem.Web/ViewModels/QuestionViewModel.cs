@@ -8,7 +8,7 @@
     {
         public QuestionViewModel()
         {
-            this.QuestionAnswers = new HashSet<QuestionAnswerViewModel>();
+            this.QuestionAnswers = new List<QuestionAnswerViewModel>();
         }
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@
 
         public int RateSystemId { get; set; }
 
-        public IEnumerable<QuestionAnswerViewModel> QuestionAnswers { get; set; }
+        public IList<QuestionAnswerViewModel> QuestionAnswers { get; set; }
     }
 }

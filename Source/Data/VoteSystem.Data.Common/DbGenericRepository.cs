@@ -6,7 +6,7 @@
 
     using VoteSystem.Data.Common.Models;
     
-    public class DbGenericRepository<T> : IDbGenericRepository<T> where T : BaseModel<int>
+    public class DbGenericRepository<T> : IDbGenericRepository<T> where T : class
     {
         public DbGenericRepository(DbContext context)
         {
@@ -23,45 +23,45 @@
 
         protected DbContext Context { get; set; }
 
-        public IQueryable<T> All()
-        {
-            return this.DbSet.Where(x => !x.IsDeleted);
-        }
-
-        public IQueryable<T> AllWithDeleted()
+        public virtual IQueryable<T> All()
         {
             return this.DbSet.AsQueryable();
         }
 
-        public T GetById(int id)
+        public virtual T GetById(object id)
         {
-            return this.All().FirstOrDefault(x => x.Id == id);
+            return this.DbSet.Find(id);
+        }
+       
+        public virtual void Add(T entity)
+        {
+            var entry = this.Context.Entry(entity);
+
+            if (entry.State != EntityState.Detached)
+            {
+                entry.State = EntityState.Added;
+            }
+            else
+            {
+                this.DbSet.Add(entity);
+            }
+        }
+       
+        public virtual void Delete(T entity)
+        {
+            var entry = this.Context.Entry(entity);
+
+            if (entry.State != EntityState.Deleted)
+            {
+                entry.State = EntityState.Deleted;
+            }
+            else
+            {
+                this.DbSet.Attach(entity);
+                this.DbSet.Remove(entity);
+            }
         }
 
-        // TODO Do i need atach and detach ?
-        public void Add(T entity)
-        {
-            this.DbSet.Add(entity);
-        }
-
-        // TODO Do i need atach and detach ?
-        public void Delete(T entity)
-        {
-            entity.IsDeleted = true;
-            entity.DeletedOn = DateTime.Now;
-        }
-
-        public void HardDelete(T entity)
-        {
-            this.DbSet.Remove(entity);
-        }
-
-        public void SaveChanges()
-        {
-            this.Context.SaveChanges();
-        }
-
-        // TODO do i need it ?
         public virtual void Update(T entity)
         {
             var entry = this.Context.Entry(entity);
@@ -71,6 +71,27 @@
             }
 
             entry.State = EntityState.Modified;
+        }
+
+        public virtual T Attach(T entity)
+        {
+            return this.Context.Set<T>().Attach(entity);
+        }
+
+        public virtual void Detach(T entity)
+        {
+            var entry = this.Context.Entry(entity);
+            entry.State = EntityState.Detached;
+        }
+
+        public void SaveChanges()
+        {
+            this.Context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            this.Context.Dispose();
         }
     }
 }

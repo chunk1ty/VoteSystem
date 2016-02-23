@@ -3,7 +3,7 @@
     using VoteSystem.Data.Models;
     using VoteSystem.Web.Infrastructure.Mapping;
 
-    public class QuestionAnswerViewModel : IMapFrom<QuestionAnswers>, IMapTo<QuestionAnswers>
+    public class QuestionAnswerViewModel : IMapFrom<QuestionAnswer>, IMapTo<QuestionAnswer>
     {
         public int Id { get; set; }
 

@@ -12,9 +12,12 @@
         public User()
         {
             this.RateSystems = new HashSet<RateSystem>();
+            this.UserAnswers = new HashSet<UserAnswer>();
         }
 
         public ICollection<RateSystem> RateSystems { get; set; }
+
+        public ICollection<UserAnswer> UserAnswers { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

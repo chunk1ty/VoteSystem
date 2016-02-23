@@ -69,12 +69,15 @@ namespace VoteSystem.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(typeof(IDbGenericRepository<>)).To(typeof(DbGenericRepository<>));
+            kernel.Bind(typeof(IDbGenericRepository<>))
+                .To(typeof(DbGenericRepository<>));
+            kernel.Bind(typeof(IDeletableEntityRepository<>))
+               .To(typeof(DeletableEntityRepository<>));
 
             // TODO check this binding IVoteSystemDbContext
             // InRequestScope for using one db context
-            kernel.Bind(typeof(DbContext)).To(typeof(VoteSystemDbContext));
-                                    //.InRequestScope();
+            kernel.Bind(typeof(DbContext)).To(typeof(VoteSystemDbContext))
+                                    .InRequestScope();
 
             kernel.Bind(b => b.From(GlobalConstants.DataServicesAssembly)
                                     .SelectAllClasses()

@@ -5,20 +5,11 @@
 
     using VoteSystem.Data.Common.Models;
 
-    // TODO: Why BaseModel<int> instead BaseModel<TKey>?
-    public interface IDbGenericRepository<T> : IDbGenericRepository<T, int>
-       where T : BaseModel<int>
-    {
-    }
-
-    public interface IDbGenericRepository<T, in TKey>
-       where T : BaseModel<TKey>
+    public interface IDbGenericRepository<T> : IDisposable where T : class
     {
         IQueryable<T> All();
 
-        IQueryable<T> AllWithDeleted();
-
-        T GetById(TKey id);
+        T GetById(object id);
 
         void Add(T entity);
 
@@ -26,7 +17,9 @@
 
         void Delete(T entity);
 
-        void HardDelete(T entity);
+        T Attach(T entity);
+
+        void Detach(T entity);
 
         void SaveChanges();
     }

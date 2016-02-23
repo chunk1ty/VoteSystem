@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VoteSystem.Web.ViewModels.QuestionViewModel>
+﻿@model IList<VoteSystem.Web.ViewModels.QuestionViewModel>
 
 @{    
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -6,21 +6,22 @@
 
 <h2>Fill</h2>
 
+@*TODO use mvc extension for beginform*@
 @using (Html.BeginForm("Fill", "FillRateSystem", FormMethod.Post))
-{ 
-    foreach (var question in Model)
+{
+    @Html.AntiForgeryToken()
+    <h2>FOR</h2>
+    for (int i = 0; i < Model.Count; i++)
     {
-        <h3>@question.QuestionName</h3>
-        foreach (var answers in question.QuestionAnswers)
-        {
-            <div>
-                @Html.RadioButtonFor(m => question.MyProperty, "false", new { id = answers.Id})
-                <label>
-                    @answers.QuestionAnswerName
-                </label>
-            </div>
+        @Html.HiddenFor(m => m[i].Id)
+        @Html.HiddenFor(m => m[i].RateSystemId)
+        <h3>@Model[i].QuestionName</h3>
+            for (int j = 0; j < Model[i].QuestionAnswers.Count; j++)
+            {
+                @Html.Label(Model[i].QuestionAnswers[j].QuestionAnswerName)
+                @Html.RadioButtonFor(m => m[i].QuestionName, Model[i].QuestionAnswers[j].Id)
         }
-    }
-
+    }   
+     
     <button type="submit">Save</button>
 }

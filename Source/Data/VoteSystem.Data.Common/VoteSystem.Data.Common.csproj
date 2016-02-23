@@ -50,9 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbGenericRepository.cs" />
+    <Compile Include="DeletableEntityRepository.cs" />
     <Compile Include="IDbGenericRepository.cs" />
-    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="IDeletableEntityRepository.cs" />
     <Compile Include="Models\IAuditInfo.cs" />
+    <Compile Include="Models\AuditInfo.cs" />
+    <Compile Include="Models\DeletableEntity.cs" />
     <Compile Include="Models\IDeletableEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

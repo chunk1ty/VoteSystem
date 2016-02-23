@@ -9,11 +9,11 @@
     using VoteSystem.Web.Infrastructure.Mapping;
     using VoteSystem.Web.ViewModels;
 
-    public class VoteSystemController : AdministrationController
+    public class RateSystemController : AdministrationController
     {
         private IRateSystemService rateSystems;
 
-        public VoteSystemController(IRateSystemService rateSystems)
+        public RateSystemController(IRateSystemService rateSystems)
         {
             this.rateSystems = rateSystems;
         }
@@ -47,7 +47,7 @@
             var modelDb = this.Mapper.Map<RateSystem>(model);
             this.rateSystems.Add(modelDb);
 
-            return this.RedirectToAction<VoteSystemController>(c => c.Index());
+            return this.RedirectToAction<RateSystemController>(c => c.Index());
         }
     }
 }

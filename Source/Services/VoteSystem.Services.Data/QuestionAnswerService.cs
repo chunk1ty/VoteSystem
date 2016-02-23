@@ -7,14 +7,14 @@
 
     public class QuestionAnswerService : IQuestionAnswerService
     {
-        private readonly IDbGenericRepository<QuestionAnswers> questionAndAnswers;
+        private readonly IDbGenericRepository<QuestionAnswer> questionAndAnswers;
 
-        public QuestionAnswerService(IDbGenericRepository<QuestionAnswers> questionAndAnswers)
+        public QuestionAnswerService(IDbGenericRepository<QuestionAnswer> questionAndAnswers)
         {
             this.questionAndAnswers = questionAndAnswers;
         }
 
-        public void Add(QuestionAnswers questionAndAnswers)
+        public void Add(QuestionAnswer questionAndAnswers)
         {
             this.questionAndAnswers.Add(questionAndAnswers);
         }
