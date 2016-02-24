@@ -6,8 +6,8 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Common.Models;
-
-    public class RateSystem : AuditInfo
+    // TODO use AuditInfo later ...
+    public class RateSystem /*: AuditInfo*/
     {
         public RateSystem()
         {

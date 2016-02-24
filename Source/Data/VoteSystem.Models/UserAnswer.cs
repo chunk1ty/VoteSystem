@@ -3,7 +3,8 @@
     using Common.Models;
     using System.ComponentModel.DataAnnotations;
 
-    public class UserAnswer : AuditInfo
+    // TODO use AuditInfo later ...
+    public class UserAnswer //: AuditInfo
     {
         [Key]
         public int Id { get; set; }
@@ -14,8 +15,8 @@
 
         public virtual User User { get; set; }
 
-        public int QuestionId { get; set; }
+        public int QuestionAnswerId { get; set; }
 
-        public virtual Question Question { get; set; }
+        public virtual QuestionAnswer QuestionAnswer { get; set; }
     }
 }

@@ -44,8 +44,7 @@
             {
                 var currentAnswer = new UserAnswer
                 {
-                    Answer = int.Parse(question.QuestionName),
-                    QuestionId = question.Id,
+                    QuestionAnswerId = int.Parse(question.QuestionName),
                     UserId = this.User.Identity.GetUserId()
                 };
 
