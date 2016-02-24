@@ -1,7 +1,5 @@
 ﻿namespace VoteSystem.Services.Data
 {
-    using System;
-    using System.Collections.Generic;
     using VoteSystem.Data.Common;
     using VoteSystem.Data.Models;
     using VoteSystem.Services.Data.Contracts;

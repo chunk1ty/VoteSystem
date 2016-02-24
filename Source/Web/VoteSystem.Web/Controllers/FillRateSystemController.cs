@@ -1,24 +1,22 @@
 ﻿namespace VoteSystem.Web.Controllers
 {
-    using Data.Models;
-    using Services.Data.Contracts;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
-    using ViewModels;
-    using VoteSystem.Web.Infrastructure.Mapping;
     using System.Web.Mvc.Expressions;
+
     using Microsoft.AspNet.Identity;
-    using Data.Common;
+
+    using VoteSystem.Data.Models;
+    using VoteSystem.Services.Data.Contracts;
+    using VoteSystem.Web.Infrastructure.Mapping;
+    using VoteSystem.Web.ViewModels;
 
     public class FillRateSystemController : BaseController
     {
         private IQuestionService questions;
         private IUserAnswerService userAnswers;
-        //private IDbGenericRepository<UserAnswer> userAnswers;
-        //IDbGenericRepository<UserAnswer>
+        
         public FillRateSystemController(IQuestionService questions, IUserAnswerService userAnswers)
         {
             this.questions = questions;
@@ -28,7 +26,7 @@
         public ActionResult Fill(int rateSystemID)
         {
             var questions = this.questions
-                                .GetAll(rateSystemID)
+                                .GetAllQuestions(rateSystemID)
                                 .To<QuestionViewModel>()
                                 .ToList();
 
@@ -39,7 +37,11 @@
         [ValidateAntiForgeryToken]
         public ActionResult Fill(IEnumerable<QuestionViewModel> questions)
         {
-            // TODO add model validation
+            if (!ModelState.IsValid)
+            {
+                return this.View(questions);
+            }
+           
             foreach (var question in questions)
             {
                 var currentAnswer = new UserAnswer

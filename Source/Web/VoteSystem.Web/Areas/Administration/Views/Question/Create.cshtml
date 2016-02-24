@@ -3,9 +3,8 @@
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
-@*TODO use kenov library*@
-@*@using (Html.BeginForm<QuestionController>(c => c.Create(), FormMethod.Post))*@
-@using (Html.BeginForm("Create", "Question", FormMethod.Post))
+
+@using (Html.BeginForm<QuestionController>(c => c.Create(0), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.Hidden("rateSystemId", (int)ViewBag.RateSystemId)
@@ -28,7 +27,7 @@
         $('#add-more-questions').on('click', function () {
             $.ajax({
                 type: 'GET',
-                url: '@Url.Action("MoreQuestions", "Question")',
+                url: '@Url.Action("MoreQuestions", "Ajax")',
                 success: function (html) {
                     $('#question-list').append(html);
                 },

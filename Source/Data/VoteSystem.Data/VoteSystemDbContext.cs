@@ -20,6 +20,10 @@
 
         public virtual IDbSet<RateSystem> RateSystems { get; set; }
 
+        public virtual IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
+
+        public virtual IDbSet<UserAnswer> UserAnswers { get; set; }
+
         public static VoteSystemDbContext Create()
         {
             return new VoteSystemDbContext();
@@ -42,6 +46,7 @@
                         e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified))))
             {
                 var entity = (IAuditInfo)entry.Entity;
+
                 if (entry.State == EntityState.Added && entity.CreatedOn == default(DateTime))
                 {
                     entity.CreatedOn = DateTime.Now;

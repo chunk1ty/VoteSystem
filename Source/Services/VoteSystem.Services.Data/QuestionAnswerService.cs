@@ -23,6 +23,5 @@
         {
             this.questionAndAnswers.SaveChanges();
         }
-    
     }
 }

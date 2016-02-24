@@ -1,20 +1,29 @@
 ﻿namespace VoteSystem.Web.Areas.Administration.Controllers
 {
-    using Services.Data.Contracts;
+    using System.Linq;
     using System.Web.Mvc;
+
+    using VoteSystem.Services.Data.Contracts;
+    using VoteSystem.Web.Infrastructure.Mapping;
+    using VoteSystem.Web.ViewModels;
 
     public class ResultController : AdministrationController
     {
-        private IUserAnswerService userAnswers;
+        private IQuestionService questions;
 
-        public ResultController(IUserAnswerService userAnswers)
+        public ResultController(IQuestionService questions)
         {
-            this.userAnswers = userAnswers;
+            this.questions = questions;
         }
 
-        public ActionResult Index(int reteSystemId)
+        public ActionResult Index(int rateSystemId)
         {
-            return this.View();
+            var result = this.questions
+                .GetUsersAnswers(rateSystemId)
+                .To<QuestionViewModel>()
+                .ToList();
+
+            return this.View(result);
         }
     }
 }

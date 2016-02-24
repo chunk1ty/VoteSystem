@@ -1,10 +1,9 @@
 ﻿namespace VoteSystem.Web.Areas.Administration.Controllers
 {
-    using Data.Models;
     using System.Web.Mvc;
     using System.Web.Mvc.Expressions;
 
-    using VoteSystem.Common;
+    using VoteSystem.Data.Models;
     using VoteSystem.Services.Data.Contracts;
     using VoteSystem.Web.ViewModels;
 
@@ -35,8 +34,7 @@
 
             foreach (var question in model.Questions)
             {
-                var questionDbModel = this.Mapper.Map<Question>(question);
-                // TODO think better way with automapper (rateSystemId)
+                var questionDbModel = this.Mapper.Map<Question>(question);               
                 questionDbModel.RateSystemId = rateSystemId;
 
                 this.questions.Add(questionDbModel);
@@ -45,21 +43,6 @@
             this.questions.SaveChanges();
 
             return this.RedirectToAction<QuestionController>(c => c.Create(1));
-        }
-
-        [HttpGet]
-        public ActionResult MoreQuestions()
-        {
-            return this.PartialView(PartialViewConstants.QuestionPartial, new QuestionViewModel());
-        }
-
-        // TODO extract in another controller QuestionAnswerController
-        [HttpGet]
-        public ActionResult MoreAnswers(string containerPrefix)
-        {
-            ViewBag.ContainerPrefix = containerPrefix;
-
-            return this.PartialView(PartialViewConstants.QuestionAnswerPartial, new QuestionAnswerViewModel());
         }
     }
 }

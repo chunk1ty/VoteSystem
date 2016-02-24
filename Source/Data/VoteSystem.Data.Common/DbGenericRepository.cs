@@ -3,8 +3,6 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
-
-    using VoteSystem.Data.Common.Models;
     
     public class DbGenericRepository<T> : IDbGenericRepository<T> where T : class
     {
@@ -65,6 +63,7 @@
         public virtual void Update(T entity)
         {
             var entry = this.Context.Entry(entity);
+
             if (entry.State == EntityState.Detached)
             {
                 this.DbSet.Attach(entity);

@@ -1,10 +1,10 @@
 ﻿namespace VoteSystem.Data.Models
 {
-    using Common.Models;
     using System.ComponentModel.DataAnnotations;
 
-    // TODO use AuditInfo later ...
-    public class UserAnswer //: AuditInfo
+    using VoteSystem.Data.Common.Models;
+   
+    public class UserAnswer : AuditInfo
     {
         [Key]
         public int Id { get; set; }

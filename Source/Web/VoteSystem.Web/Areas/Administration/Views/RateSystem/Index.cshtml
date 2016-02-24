@@ -17,9 +17,9 @@
         {
             <tr>                
                 <td>@item.RateSystemName</td>
-                <td>@(Html.ActionLink<QuestionController>("Add questions", c => c.Create(item.Id))))</td>
+                <td>@(Html.ActionLink<QuestionController>("Add questions", c => c.Create(item.Id)))</td>
                 <td>Add users</td>
-                <td>ankk</td>
+                <td>@(Html.ActionLink<ResultController>("View", c => c.Index(item.Id)))</td>
             </tr>
         }
     </tbody>

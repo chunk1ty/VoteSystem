@@ -6,9 +6,11 @@
 
     public interface IRateSystemService
     {
-        IQueryable<RateSystem> GetAll();
-
         void Add(RateSystem system);
+
+        void SaveChanges();
+
+        IQueryable<RateSystem> GetAll();
 
         IQueryable<RateSystem> AllActive();
     }

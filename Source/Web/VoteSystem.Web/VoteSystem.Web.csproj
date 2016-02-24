@@ -227,6 +227,7 @@
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\AjaxController.cs" />
     <Compile Include="Areas\Administration\Controllers\QuestionController.cs" />
     <Compile Include="Areas\Administration\Controllers\RateSystemController.cs" />
     <Compile Include="Areas\Administration\Controllers\ResultController.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="ViewModels\QuestionAnswerViewModel.cs" />
     <Compile Include="ViewModels\RateSystemViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\UserAnswerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-social.css" />
@@ -1028,8 +1030,9 @@
     <Content Include="Areas\Administration\Views\RateSystem\Create.cshtml" />
     <Content Include="Areas\Administration\Views\RateSystem\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Create.cshtml" />
-    <Content Include="Areas\Administration\Views\Question\_QuestionPartial.cshtml" />
-    <Content Include="Areas\Administration\Views\Question\_QuestionAnswerPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Ajax\_QuestionPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Ajax\_QuestionAnswerPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Result\Index.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -1050,8 +1053,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Introduction\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -1085,8 +1086,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Administration\Views\Administration\" />
-    <Folder Include="Areas\Administration\Views\Result\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

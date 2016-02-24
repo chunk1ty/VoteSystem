@@ -2,10 +2,10 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using VoteSystem.Data.Common.Models;
 
-    // TODO use AuditInfo later ...
-    public class QuestionAnswer //: AuditInfo
+    using VoteSystem.Data.Common.Models;
+    
+    public class QuestionAnswer : AuditInfo
     {
         public QuestionAnswer()
         {

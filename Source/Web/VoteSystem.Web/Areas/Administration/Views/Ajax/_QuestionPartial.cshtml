@@ -32,13 +32,13 @@
                                                         .substring(0, 47);
         $.ajax({
             type: 'GET',
-            url: '@Url.Action("MoreAnswers", "Question")',
+            url: '@Url.Action("MoreAnswers", "Ajax")',
             data: { containerPrefix: currentQuestionName },
             success: function (html) {
                 $('.@currentQuestionList').append(html);
             },
-            error: function () {
-                alert('Can not add new answer');
+            error: function (ex) {
+                alert('Can not add new answer' + ex);
             }
         });
     });

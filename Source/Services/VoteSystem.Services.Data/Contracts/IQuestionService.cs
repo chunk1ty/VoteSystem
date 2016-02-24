@@ -1,6 +1,7 @@
 ﻿namespace VoteSystem.Services.Data.Contracts
 {
     using System.Linq;
+
     using VoteSystem.Data.Models;
 
     public interface IQuestionService
@@ -9,6 +10,8 @@
 
         void SaveChanges();
 
-        IQueryable<Question> GetAll(int rateSystemId);
+        IQueryable<Question> GetAllQuestions(int rateSystemId);
+
+        IQueryable<Question> GetUsersAnswers(int rateSystemId);
     }
 }

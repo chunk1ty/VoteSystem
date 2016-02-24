@@ -12,9 +12,9 @@
 
         public string RateSystemName { get; set; }
        
-        public DateTime? StarDateTime { get; set; }
+        public DateTime StarDateTime { get; set; }
 
-        public DateTime? EndDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
 
         public ICollection<QuestionViewModel> Questions { get; set; }
     }

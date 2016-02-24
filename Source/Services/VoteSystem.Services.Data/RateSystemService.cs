@@ -9,11 +9,21 @@
 
     public class RateSystemService : IRateSystemService
     {
-        private readonly IDbGenericRepository<RateSystem> rateSystems;
+        private readonly IDeletableEntityRepository<RateSystem> rateSystems;
 
-        public RateSystemService(IDbGenericRepository<RateSystem> rateSystems)
+        public RateSystemService(IDeletableEntityRepository<RateSystem> rateSystems)
         {
             this.rateSystems = rateSystems;
+        }
+
+        public void Add(RateSystem system)
+        {
+            this.rateSystems.Add(system);
+        }
+
+        public void SaveChanges()
+        {
+            this.rateSystems.SaveChanges();
         }
 
         public IQueryable<RateSystem> GetAll()
@@ -21,17 +31,10 @@
             return this.rateSystems.All();
         }
 
-        public void Add(RateSystem system)
-        {
-            this.rateSystems.Add(system);
-            // TODO remove savechanges
-            this.rateSystems.SaveChanges();
-        }
-
         public IQueryable<RateSystem> AllActive()
         {
-            return
-                this.rateSystems.All()
+            return this.rateSystems
+                    .All()
                     .Where(x => x.StarDateTime <= DateTime.Now && DateTime.Now <= x.EndDateTime);
         }
     }

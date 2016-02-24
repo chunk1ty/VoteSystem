@@ -10,13 +10,11 @@
 
     public class IntroductionController : BaseController
     {
-        private IRateSystemService rateSystems;
-        private IQuestionService questions;
+        private IRateSystemService rateSystems;       
 
-        public IntroductionController(IRateSystemService rateSystems, IQuestionService questions)
+        public IntroductionController(IRateSystemService rateSystems)
         {
-            this.rateSystems = rateSystems;
-            this.questions = questions;
+            this.rateSystems = rateSystems;            
         }
 
         public ActionResult Index()

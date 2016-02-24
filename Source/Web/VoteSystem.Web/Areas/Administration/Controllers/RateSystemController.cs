@@ -46,6 +46,7 @@
 
             var modelDb = this.Mapper.Map<RateSystem>(model);
             this.rateSystems.Add(modelDb);
+            this.rateSystems.SaveChanges();
 
             return this.RedirectToAction<RateSystemController>(c => c.Index());
         }

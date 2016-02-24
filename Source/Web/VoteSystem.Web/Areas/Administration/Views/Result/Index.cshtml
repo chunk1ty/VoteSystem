@@ -1,0 +1,21 @@
+﻿@model IEnumerable<VoteSystem.Web.ViewModels.QuestionViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2>Result Index</h2>
+
+@foreach (var quesion in Model)
+{
+    <div>
+        <div>
+            @quesion.QuestionName
+        </div>
+        @foreach (var item in quesion.QuestionAnswers)
+        {
+            @item.QuestionAnswerName <span> - @item.UserAnswers.Count</span>
+        }
+    </div>
+}

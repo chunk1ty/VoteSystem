@@ -5,9 +5,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Common.Models;
-    // TODO use AuditInfo later ...
-    public class RateSystem /*: AuditInfo*/
+    using VoteSystem.Data.Common.Models;
+   
+    public class RateSystem : DeletableEntity, IAuditInfo
     {
         public RateSystem()
         {
@@ -22,14 +22,17 @@
         [Index(IsUnique = true)]
         [MaxLength(100)]
         public string RateSystemName { get; set; }
+       
+        public DateTime StarDateTime { get; set; }
 
-        // TODO make sure that these properties are not null-able; and in the view model
-        public DateTime? StarDateTime { get; set; }
-
-        public DateTime? EndDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
 
         public ICollection<Question> Questions { get; set; }
 
         public ICollection<User> Users { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
     }
 }

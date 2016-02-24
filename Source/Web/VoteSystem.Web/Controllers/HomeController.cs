@@ -26,20 +26,5 @@
 
             return this.View(systems);
         }
-
-        public ActionResult About()
-        {
-            return this.View();
-        }
-
-        public ActionResult Contact()
-        {            
-            return this.View();
-        }
-
-        public ActionResult Intro()
-        {
-            return this.View();
-        }
     }
 }

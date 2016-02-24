@@ -3,8 +3,6 @@
     using System;
     using System.Linq;
 
-    using VoteSystem.Data.Common.Models;
-
     public interface IDbGenericRepository<T> : IDisposable where T : class
     {
         IQueryable<T> All();
