@@ -1,29 +1,23 @@
-﻿@model IEnumerable<VoteSystem.Web.ViewModels.RateSystemViewModel>
+﻿@using VoteSystem.Web.Infrastructure.Extensions
+
+@model IEnumerable<VoteSystem.Web.ViewModels.RateSystemViewModel>
+
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<h2>Active vote systems</h2>
-
-<table>
-    @foreach (var item in Model)
-    {
-        <tbody>
-            <tr>
-                <td>
-                    @item.RateSystemName
-                </td>
-                <td>
-                    @(Html.ActionLink<FillRateSystemController>("Join", c => c.Fill(item.Id)))
-                </td>
-            </tr>
-        </tbody>
-    }
-</table>
+@section styles { 
+    <style>
+        a.paginate_button.current {
+            background-color: rgba(38, 185, 154, 0.59) !important;
+            border-color: rgba(38, 185, 154, 0.59) !important;
+        }
+    </style>
+}
 
 @if (ViewBag.NotificationMessage != null)
 {
-    //TODO make it works
+    //TODO make it works notifications
     @section Scripts{
         <script>
             $(function () {
@@ -34,4 +28,44 @@
             });
         </script>
     }
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Vote systems</h2>               
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="example" class="table table-striped responsive-utilities jambo_table">
+                    <thead>
+                        <tr>
+                            <th class="col-md-3 col-sm-3 col-xs-3">Status</th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">Name</th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">Join</th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">Time to end</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="col-md-3 col-sm-3 col-xs-3">Active for now</td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">@item.RateSystemName</td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">@(Html.ActionLink<FillRateSystemController>("Join", c => c.Fill(item.Id)))</td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">@Html.TimeDisplay(item.EndDateTime)</td>
+                            </tr>
+                         }
+                    </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @*TODO add it to the bundle config*@
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/Custom/home-grid.js"></script>
 }

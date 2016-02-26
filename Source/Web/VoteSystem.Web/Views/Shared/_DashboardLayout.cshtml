@@ -6,8 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section Styles {
+@section styles {
     @Styles.Render("~/Content/gentelella-css")
+    @RenderSection("styles", required: false)
 }
 
 <div class="container body">
@@ -138,7 +139,7 @@
 </div>
 
 
-@section Scripts {
+@section scripts {
     @Scripts.Render("~/bundles/gentallela-js")
     @RenderSection("scripts", required: false)
 }
