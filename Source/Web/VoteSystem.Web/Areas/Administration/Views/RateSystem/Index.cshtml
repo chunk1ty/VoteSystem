@@ -3,24 +3,51 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<table class="table">
-    <thead>
-        <tr>            
-            <th>System</th>
-            <th>Add Questions</th>
-            <th>Add Users</th>
-            <th>Results</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>                
-                <td>@item.RateSystemName</td>
-                <td>@(Html.ActionLink<QuestionController>("Add questions", c => c.Create(item.Id)))</td>
-                <td>Add users</td>
-                <td>@(Html.ActionLink<ResultController>("View", c => c.Index(item.Id)))</td>
-            </tr>
+@section styles {
+    <style>
+        a.paginate_button.current {
+            background-color: rgba(38, 185, 154, 0.59) !important;
+            border-color: rgba(38, 185, 154, 0.59) !important;
         }
-    </tbody>
-</table>
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Vote systems</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="admin-grid" class="table table-striped responsive-utilities jambo_table">
+                    <thead>
+                        <tr>
+                            <th class="col-md-3 col-sm-3 col-xs-3">System</th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">Add Questions</th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">Add Users</th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">Results</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="col-md-3 col-sm-3 col-xs-3">@item.RateSystemName</td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">@(Html.ActionLink<QuestionController>("Add questions", c => c.Create(item.Id)))</td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">Add users</td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">@(Html.ActionLink<ResultController>("View", c => c.Index(item.Id)))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @*TODO add it to the bundle config*@
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/Custom/admin-grid.js"></script>
+}
