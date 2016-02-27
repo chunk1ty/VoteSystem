@@ -6,27 +6,59 @@
     var currentQuestionClass = Guid.NewGuid();
 }
 
-<h2>Current Question</h2>
-@using (Html.BeginCollectionItem("Questions"))
-{
-    @Html.HiddenFor(m => m.Id)
-    <div>
-        @Html.TextBoxFor(m => m.QuestionName, new {@class = currentQuestionClass })
-    </div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                @*TODO question number*@
+                <h2>Question #</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="close-link">
+                            <i class="fa fa-close"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <div class="form-horizontal form-label-left">
+                    @using (Html.BeginCollectionItem("Questions"))
+                    {
+                        @Html.HiddenFor(m => m.Id)
 
-    <div class="@currentQuestionList">
-        @foreach (var item in Model.QuestionAnswers)
-        {
-            Html.RenderPartial(PartialViewConstants.QuestionAnswerPartial);
-        }
-    </div>
-}
-<hr />
-<div id="@currentBtnId">Add answer</div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.QuestionName, new{ @class="control-label col-md-3 col-sm-3 col-xs-12" })
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(m => m.QuestionName, new { @class = "form-control col-md-7 col-xs-12 " + currentQuestionClass, placeholder = "Enter question name" })
+                            </div>
 
+                            <div id="@currentBtnId" class="btn btn-primary">Add New Answer</div>
+                        </div>
+
+                        <div class="@currentQuestionList">
+                            @foreach (var item in Model.QuestionAnswers)
+                            {
+                                Html.RenderPartial(PartialViewConstants.QuestionAnswerPartial);
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*TODO optimize : only 1 script tag*@
 <script>
     $("#@currentBtnId").on('click', function () {
-        // Get question name and remove .QuestionName; 47 is position of dot
+        // Get question guid name; 47 is position of dot
         var currentQuestionName = $('.@currentQuestionClass')
                                                         .attr('name')
                                                         .substring(0, 47);

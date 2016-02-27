@@ -23,10 +23,10 @@
                 <table id="admin-grid" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                         <tr>
-                            <th class="col-md-3 col-sm-3 col-xs-3">System</th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">System Name</th>
                             <th class="col-md-3 col-sm-3 col-xs-3">Add Questions</th>
                             <th class="col-md-3 col-sm-3 col-xs-3">Add Users</th>
-                            <th class="col-md-3 col-sm-3 col-xs-3">Results</th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +36,14 @@
                                 <td class="col-md-3 col-sm-3 col-xs-3">@item.RateSystemName</td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">@(Html.ActionLink<QuestionController>("Add questions", c => c.Create(item.Id)))</td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">Add users</td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">@(Html.ActionLink<ResultController>("View", c => c.Index(item.Id)))</td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="@(Url.Action<ResultController>(c => c.Index(item.Id)))" class="btn btn-primary btn-xs">
+                                        <i class="fa fa-folder"></i>
+                                        Results
+                                    </a>
+                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                </td>
                             </tr>
                         }
                     </tbody>

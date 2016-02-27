@@ -1,6 +1,7 @@
 ﻿namespace VoteSystem.Web.ViewModels
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
     using VoteSystem.Data.Models;
     using VoteSystem.Web.Infrastructure.Mapping;
 
@@ -13,6 +14,7 @@
 
         public int Id { get; set; }
 
+        [DisplayName("Question Name")]
         public string QuestionName { get; set; }
 
         public int RateSystemId { get; set; }

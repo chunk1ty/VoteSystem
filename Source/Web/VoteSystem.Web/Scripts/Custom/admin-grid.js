@@ -4,7 +4,7 @@
     $('#admin-grid').dataTable({
         pagingType: "full_numbers",
         "oLanguage": {
-            "sSearch": "Search by System name: "
+            "sSearch": "Search by System Name: "
         },
         columnDefs: [{
             targets: [0]

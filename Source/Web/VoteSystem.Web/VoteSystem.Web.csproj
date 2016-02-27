@@ -1133,6 +1133,7 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\Custom\questionController.js" />
     <Content Include="Scripts\Custom\admin-grid.js" />
     <Content Include="Scripts\Custom\calendars.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />

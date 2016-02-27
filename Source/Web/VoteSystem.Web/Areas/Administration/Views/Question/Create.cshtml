@@ -8,7 +8,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.Hidden("rateSystemId", (int)ViewBag.RateSystemId)
-    <div id="add-more-questions" class="btn btn-default">New Question</div>
+    @Html.Hidden("more-question-url", Url.Action<AjaxController>(c => c.MoreQuestions()))   
 
     <div id="question-list">
         @foreach (var question in Model.Questions)
@@ -18,23 +18,11 @@
     </div>
 
     <div>
-        <input type="submit" value="Save" />
+        <span id="add-more-questions" class="btn btn-default">New Question</span>
+        <input type="submit" class="btn btn-success" value="Save" />
     </div>
 }
 
-@section Scripts{
-    <script type="text/javascript">
-        $('#add-more-questions').on('click', function () {
-            $.ajax({
-                type: 'GET',
-                url: '@Url.Action("MoreQuestions", "Ajax")',
-                success: function (html) {
-                    $('#question-list').append(html);
-                },
-                error: function (ex) {
-                    alert('Can not add new question ' + ex);
-                }
-            });
-        });
-    </script>
+@section scripts{
+    <script src="~/Scripts/Custom/questionController.js"></script>
 }
