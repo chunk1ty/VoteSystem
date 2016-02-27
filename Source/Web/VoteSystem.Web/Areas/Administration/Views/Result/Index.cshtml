@@ -1,21 +1,42 @@
-﻿@model IEnumerable<VoteSystem.Web.ViewModels.QuestionViewModel>
+﻿@model int
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
+   
+@Html.Hidden("get-all-questions-url", Url.Action<ResultController>(c => c.GetAllQuestions(Model)));
 
-<h2>Result Index</h2>
-
-@foreach (var quesion in Model)
-{
-    <div>
-        <div>
-            @quesion.QuestionName
+<div class="row">
+    <div id="root"></div>
+    <script id="question-template" type="text/x-handlebars-template">
+        {{#each questions}}
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>{{questionName}}</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a href="#"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div id="echart-pie-{{@@index}}" style="height: 350px"> </div>
+                </div>
+            </div>
         </div>
-        @foreach (var item in quesion.QuestionAnswers)
-        {
-            @item.QuestionAnswerName <span> - @item.UserAnswers.Count</span>
-        }
-    </div>
-}
+        {{/each}}
+    </script>
+</div>
+
+@section scripts{
+    @*TODO add js files to bundle config*@
+    <script src="~/Content/bootstrap-theme/js/echart/echarts-all.js"></script>
+    <script src="~/Content/bootstrap-theme/js/echart/green.js"></script>
+    <script src="~/Scripts/handlebars.min.js"></script>
+    <script src="~/Scripts/Custom/resultController.js"></script>
+} 

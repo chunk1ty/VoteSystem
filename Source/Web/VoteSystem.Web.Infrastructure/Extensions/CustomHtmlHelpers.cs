@@ -12,21 +12,23 @@
             string timeAsString = string.Empty;
             if (ts.Days <= 0)
             {
-                timeAsString = String.Format("{0} hour{1} {2} minute{3}",
-                                                  ts.Hours,
-                                                  ts.Hours == 1 ? "" : "s",
-                                                  ts.Minutes,
-                                                  ts.Minutes == 1 ? "" : "s",
-                                                  ts.Days);
+                timeAsString = string.Format(
+                                            "{0} hour{1} {2} minute{3}",
+                                            ts.Hours,
+                                            ts.Hours == 1 ? string.Empty : "s",
+                                            ts.Minutes,
+                                            ts.Minutes == 1 ? string.Empty : "s",
+                                            ts.Days);
             }
             else
             {
-                timeAsString = String.Format("{4} days {0} hour{1} {2} minute{3}",
-                                                      ts.Hours,
-                                                      ts.Hours == 1 ? "" : "s",
-                                                      ts.Minutes,
-                                                      ts.Minutes == 1 ? "" : "s",
-                                                      ts.Days);
+                timeAsString = string.Format(
+                                            "{4} days {0} hour{1} {2} minute{3}",
+                                            ts.Hours,
+                                            ts.Hours == 1 ? string.Empty : "s",
+                                            ts.Minutes,
+                                            ts.Minutes == 1 ? string.Empty : "s",
+                                            ts.Days);
             }
 
             return timeAsString;

@@ -22,9 +22,7 @@
                 "~/Scripts/bootstrap.js"));
            
             bundles.Add(new ScriptBundle("~/bundles/gentallela-js").Include(
-                "~/Content/bootstrap-theme/js/nicescroll/jquery.nicescroll.min.js",
-                "~/Content/bootstrap-theme/js/custom.js"
-                ));
+                "~/Content/bootstrap-theme/js/nicescroll/jquery.nicescroll.min.js"));
         }
 
         private static void RegisterStyles(BundleCollection bundles)

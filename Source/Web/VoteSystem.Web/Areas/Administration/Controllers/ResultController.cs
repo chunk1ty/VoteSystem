@@ -3,9 +3,7 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using VoteSystem.Services.Data.Contracts;
-    using VoteSystem.Web.Infrastructure.Mapping;
-    using VoteSystem.Web.ViewModels;
+    using VoteSystem.Services.Data.Contracts;    
 
     public class ResultController : AdministrationController
     {
@@ -18,12 +16,26 @@
 
         public ActionResult Index(int rateSystemId)
         {
-            var result = this.questions
-                .GetUsersAnswers(rateSystemId)
-                .To<QuestionViewModel>()
-                .ToList();
+            return this.View(rateSystemId);
+        }
 
-            return this.View(result);
+        public ActionResult GetAllQuestions(int rateSystemId)
+        {
+            var result = this.questions
+               .GetUsersAnswers(rateSystemId)
+               .Select(x => new
+               {
+                   questionName = x.QuestionName,
+                   questionAnswers = x.QuestionAnswers.Select(
+                       y => new
+                       {
+                           questionAnswerName = y.QuestionAnswerName,
+                           userAnswerCount = y.UserAnswers.Count
+                       })
+               })
+               .ToList();
+
+            return this.Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }
