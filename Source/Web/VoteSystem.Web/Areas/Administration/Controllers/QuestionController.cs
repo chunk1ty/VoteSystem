@@ -29,7 +29,7 @@
         {
             if (!ModelState.IsValid)
             {
-                return this.View();
+                return this.View(model);
             }
 
             foreach (var question in model.Questions)

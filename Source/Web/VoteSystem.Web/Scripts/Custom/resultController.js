@@ -53,9 +53,6 @@
                                         }
                                     }
                                 },
-                                restore: {
-                                    show: true
-                                },
                                 saveAsImage: {
                                     show: true
                                 }

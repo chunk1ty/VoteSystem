@@ -21,6 +21,14 @@
             this.rateSystems.Add(system);
         }
 
+        public void Delete(int rateSystemId)
+        {
+            var rateSystem = this.rateSystems.GetById(rateSystemId);
+            this.rateSystems.Delete(rateSystem);
+
+            this.SaveChanges();
+        }
+
         public void SaveChanges()
         {
             this.rateSystems.SaveChanges();

@@ -8,6 +8,8 @@
     {
         void Add(RateSystem system);
 
+        void Delete(int rateSystemId);
+
         void SaveChanges();
 
         IQueryable<RateSystem> GetAll();

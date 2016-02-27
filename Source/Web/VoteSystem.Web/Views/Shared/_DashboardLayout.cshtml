@@ -61,10 +61,10 @@
                                     </a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li>
-                                            @(Html.ActionLink<RateSystemController>("Create", c => c.Create(), new { area = "Administration" }, htmlAttributes: new { title = "Create" }))
+                                            @(Html.ActionLink<RateSystemController>("Dashboard", c => c.Index(), new { area = "Administration" }, htmlAttributes: new { title = "Index" }))
                                         </li>
                                         <li>
-                                            @(Html.ActionLink<RateSystemController>("Index", c => c.Index(), new { area = "Administration" }, htmlAttributes: new { title = "Index" }))
+                                            @(Html.ActionLink<RateSystemController>("Create", c => c.Create(), new { area = "Administration" }, htmlAttributes: new { title = "Create" }))
                                         </li>
                                     </ul>
                                 </li>

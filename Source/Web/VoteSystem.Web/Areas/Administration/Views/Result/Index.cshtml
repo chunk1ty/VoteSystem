@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
    
-@Html.Hidden("get-all-questions-url", Url.Action<ResultController>(c => c.GetAllQuestions(Model)));
+@Html.Hidden("get-all-questions-url", Url.Action<ResultController>(c => c.GetAllQuestions(Model)))
 
 <div class="row">
     <div id="root"></div>
@@ -16,10 +16,14 @@
                     <h2>{{questionName}}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
-                            <a href="#"><i class="fa fa-chevron-up"></i></a>
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-close"></i></a>
+                            <a class="close-link">
+                                <i class="fa fa-close"></i>
+                            </a>
                         </li>
                     </ul>
                     <div class="clearfix"></div>

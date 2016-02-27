@@ -12,49 +12,76 @@
     </style>
 }
 
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Vote systems</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <table id="admin-grid" class="table table-striped responsive-utilities jambo_table">
-                    <thead>
-                        <tr>
-                            <th class="col-md-3 col-sm-3 col-xs-3">System Name</th>
-                            <th class="col-md-3 col-sm-3 col-xs-3">Add Questions</th>
-                            <th class="col-md-3 col-sm-3 col-xs-3">Add Users</th>
-                            <th class="col-md-3 col-sm-3 col-xs-3">Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+@Html.Hidden("delete-rate-system-url", Url.Action<AjaxController>(c => c.DeleteRateSystem(0)))
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Vote systems</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table id="admin-grid" class="table table-striped responsive-utilities jambo_table">
+                        <thead>
                             <tr>
-                                <td class="col-md-3 col-sm-3 col-xs-3">@item.RateSystemName</td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">@(Html.ActionLink<QuestionController>("Add questions", c => c.Create(item.Id)))</td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">Add users</td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">
-                                    <a href="@(Url.Action<ResultController>(c => c.Index(item.Id)))" class="btn btn-primary btn-xs">
-                                        <i class="fa fa-folder"></i>
-                                        Results
-                                    </a>
-                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                </td>
+                                <th class="col-md-3 col-sm-3 col-xs-3">System Name</th>
+                                <th class="col-md-3 col-sm-3 col-xs-3">Add Questions</th>
+                                <th class="col-md-3 col-sm-3 col-xs-3">Add Users</th>
+                                <th class="col-md-3 col-sm-3 col-xs-3">Edit</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    @Html.Hidden("rate-system-" + item.Id, item.Id)
+                                    <td class="col-md-3 col-sm-3 col-xs-3">@item.RateSystemName</td>
+                                    <td class="col-md-3 col-sm-3 col-xs-3">@(Html.ActionLink<QuestionController>("Add questions", c => c.Create(item.Id)))</td>
+                                    <td class="col-md-3 col-sm-3 col-xs-3">Add users</td>
+                                    <td class="col-md-3 col-sm-3 col-xs-3">
+                                        <a href="@(Url.Action<ResultController>(c => c.Index(item.Id)))" class="btn btn-primary btn-xs">
+                                            <i class="fa fa-folder"></i>
+                                            Results
+                                        </a>
+                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                        <button type="button" class="delete-btn btn btn-danger btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">
+                                            <i class="fa fa-trash-o"></i> Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@section Scripts {
-    @*TODO add it to the bundle config*@
-    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
-    <script src="~/Scripts/Custom/admin-grid.js"></script>
-}
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Delete Vote System</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Are you sure you want to delete <span id="modal-content" style="color:red;"></span> vote system ?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cancel-btn" class="btn btn-default" data-dismiss="modal" style="margin: 0;">Cancel</button>
+                    <button type="button" id="delete-rate-system-btn" class="btn btn-danger">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @*TODO add it to the bundle config*@
+        <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+        <script src="~/Scripts/Custom/adminController.js"></script>
+    }
