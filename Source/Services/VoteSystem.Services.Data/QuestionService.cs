@@ -38,6 +38,7 @@
         {
             return this.questions
                 .All()
+                .Where(x => x.RateSystemId == rateSystemId)                
                 .Include(x => x.QuestionAnswers
                                 .Select(y => y.UserAnswers));
         }

@@ -10,10 +10,14 @@
 
         void Delete(int rateSystemId);
 
-        void SaveChanges();
+        void Update(RateSystem system);
 
         IQueryable<RateSystem> GetAll();
 
         IQueryable<RateSystem> AllActive();
+
+        RateSystem GetById(int rateSystemId);
+
+        void SaveChanges();
     }
 }

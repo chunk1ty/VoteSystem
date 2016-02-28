@@ -19,6 +19,7 @@
         public void Add(RateSystem system)
         {
             this.rateSystems.Add(system);
+            this.SaveChanges();
         }
 
         public void Delete(int rateSystemId)
@@ -26,6 +27,12 @@
             var rateSystem = this.rateSystems.GetById(rateSystemId);
             this.rateSystems.Delete(rateSystem);
 
+            this.SaveChanges();
+        }
+
+        public void Update(RateSystem system)
+        {
+            this.rateSystems.Update(system);
             this.SaveChanges();
         }
 
@@ -44,6 +51,11 @@
             return this.rateSystems
                     .All()
                     .Where(x => x.StarDateTime <= DateTime.Now && DateTime.Now <= x.EndDateTime);
+        }
+
+        public RateSystem GetById(int rateSystemId)
+        {
+            return this.rateSystems.GetById(rateSystemId);
         }
     }
 }

@@ -1,0 +1,26 @@
+﻿@model VoteSystem.Web.ViewModels.RateSystemViewModel
+
+<div class="form-group">
+    @Html.LabelFor(m => m.RateSystemName, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        @Html.TextBoxFor(m => m.RateSystemName, new { @class = "form-control col-md-7 col-xs-12" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.StarDateTime, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        @Html.TextBoxFor(m => m.StarDateTime, new { id = "start-date", @class = "form-control col-md-7 col-xs-12 has-feedback-left" })
+        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+        <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.EndDateTime, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        @Html.TextBoxFor(m => m.EndDateTime, new { id = "end-date", @class = "form-control col-md-7 col-xs-12 has-feedback-left" })
+        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+        <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+    </div>
+</div>

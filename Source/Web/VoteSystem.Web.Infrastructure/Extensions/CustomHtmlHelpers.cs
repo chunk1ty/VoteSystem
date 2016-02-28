@@ -3,6 +3,8 @@
     using System;
     using System.Web.Mvc;
 
+    using HtmlTags;
+
     public static class CustomHtmlHelpers
     {
         public static string TimeDisplay(this HtmlHelper helper, DateTime endDate)
@@ -32,6 +34,36 @@
             }
 
             return timeAsString;
+        }
+
+        public static HtmlTag RateSystemStatus(this HtmlHelper helper, DateTime startDate, DateTime endDate)
+        {
+            if (startDate == null)
+            {
+                throw new ArgumentNullException("Start date can not be null");
+            }
+
+            if (endDate == null)
+            {
+                throw new ArgumentNullException("End date can not be null");
+            }
+            
+            HtmlTag status = new HtmlTag("span");
+           
+            if (startDate <= DateTime.Now && DateTime.Now <= endDate)
+            {
+                status.Text("Active").AddClass("btn btn-success btn-xs");
+            }
+            else if (startDate > DateTime.Now)
+            {
+                status.Text("Upcoming").AddClass("btn btn-warning btn-xs");
+            }
+            else if (endDate < DateTime.Now)
+            {
+                status.Text("Past").AddClass("btn btn-danger btn-xs");
+            }
+
+            return status;
         }
     }
 }

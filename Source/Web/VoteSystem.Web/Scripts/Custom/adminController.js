@@ -11,21 +11,22 @@
             "sSearch": "Search by System Name: "
         },
         columnDefs: [{
-            targets: [0],
-        }, {
             targets: [1],
-            "sortable": false
         }, {
             targets: [2],
-            "searchable": false,
             "sortable": false
         }, {
             targets: [3],
             "searchable": false,
             "sortable": false
+        }, {
+            targets: [4],
+            "searchable": false,
+            "sortable": false
         }]
     });
 
+    //TODO get rigth System name
     $('tbody').on('click', '.delete-btn', function () {
         selectedRateSystem = $(this)
                 .closest('tr')

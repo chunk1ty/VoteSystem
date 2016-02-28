@@ -42,7 +42,7 @@
 
             this.questions.SaveChanges();
 
-            return this.RedirectToAction<QuestionController>(c => c.Create(1));
+            return this.RedirectToAction<RateSystemController>(c => c.Index());
         }
     }
 }
