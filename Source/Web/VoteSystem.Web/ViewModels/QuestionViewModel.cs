@@ -17,6 +17,8 @@
 
         [Required]
         [DisplayName("Question Name")]
+        [MinLength(2, ErrorMessage = "The question name can not be less than 2 symbols.")]
+        [MaxLength(200, ErrorMessage = "The question name can not be greater than 200 symbols.")]
         public string QuestionName { get; set; }
 
         public int RateSystemId { get; set; }

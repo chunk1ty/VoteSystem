@@ -11,6 +11,8 @@
         public int Id { get; set; }
 
         [Required]
+        [MinLength(2, ErrorMessage = "The answer can not be less than 2 symbols.")]
+        [MaxLength(100, ErrorMessage = "The answer can not be greater than 100 symbols.")]
         [DisplayName("Answer")]
         public string QuestionAnswerName { get; set; }
 

@@ -4,12 +4,20 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
+@section styles {
+    <style>
+        .validation-summary-errors ul {
+            list-style-type: none;
+        }
+    </style>
+}
+
 @using (Html.BeginForm<QuestionController>(c => c.Edit(0), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.Hidden("rateSystemId", (int)ViewBag.RateSystemId)
+    @Html.HiddenFor(m => m.RateSystemId)
     @Html.Hidden("more-question-url", Url.Action<AjaxController>(c => c.MoreQuestions()))
-
+   
     <div id="question-list">
         @foreach (var question in Model.Questions)
         {
@@ -17,12 +25,14 @@
         }
     </div>
 
-    <div>
+    <div class="text-center">
         <span id="add-more-questions" class="btn btn-default">New Question</span>
         <input type="submit" class="btn btn-success" value="Edit" />
     </div>
 }
 
+@*TODO add in new separate bundle*@
 @section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/Custom/questionController.js"></script>
 }

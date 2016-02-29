@@ -20,23 +20,28 @@
         [HttpGet]
         public ActionResult Create(int rateSystemId)
         {
-            ViewBag.RateSystemId = rateSystemId;
-            return this.View(new QuestionAndAnswersViewModel());
+            return this.View(new QuestionAndAnswersViewModel() { RateSystemId = rateSystemId});
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(QuestionAndAnswersViewModel model, int rateSystemId)
+        public ActionResult Create(QuestionAndAnswersViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || model == null)
             {
+                return this.View(model);
+            }
+
+            if (model.Questions.Count() == 0)
+            {
+                this.ModelState.AddModelError(string.Empty, "You have to add at least one question!");
                 return this.View(model);
             }
 
             foreach (var question in model.Questions)
             {
                 var questionDbModel = this.Mapper.Map<Question>(question);               
-                questionDbModel.RateSystemId = rateSystemId;
+                questionDbModel.RateSystemId = model.RateSystemId;
 
                 this.questions.Add(questionDbModel);
             }
@@ -49,25 +54,30 @@
         [HttpGet]
         public ActionResult Edit(int rateSystemId)
         {
-            ViewBag.RateSystemId = rateSystemId;
             var questions = this.questions
                 .GetAllQuestions(rateSystemId)
                 .To<QuestionViewModel>()
                 .ToList();
 
-            return this.View(new QuestionAndAnswersViewModel() { Questions = questions });
+            return this.View(new QuestionAndAnswersViewModel() { Questions = questions, RateSystemId = rateSystemId });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(QuestionAndAnswersViewModel model, int rateSystemId)
+        public ActionResult Edit(QuestionAndAnswersViewModel model)
         {
             if (!ModelState.IsValid || model == null)
             {
                 return this.View(model);
             }
 
-            var allExistingQuestions = this.questions.GetAllQuestions(rateSystemId);
+            if (model.Questions.Count() == 0)
+            {
+                this.ModelState.AddModelError(string.Empty, "You have to add at least one question!");
+                return this.View(model);
+            }
+
+            var allExistingQuestions = this.questions.GetAllQuestions(model.RateSystemId);
 
             foreach (var existingQuestion in allExistingQuestions)
             {
@@ -77,10 +87,10 @@
             this.questions.SaveChanges();
 
             foreach (var question in model.Questions)
-            {   
+            {
                 var questionDbModel = this.Mapper.Map<Question>(question);
-                questionDbModel.RateSystemId = rateSystemId;
-                
+                questionDbModel.RateSystemId = model.RateSystemId;
+
                 this.questions.Add(questionDbModel);
             }
 

@@ -12,6 +12,11 @@
         .daterangepicker th {
             border-radius: 0;
         }
+
+         .validation-summary-errors ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
     </style>
  }
 
@@ -27,8 +32,8 @@
                 @using (Html.BeginForm<RateSystemController>(c => c.Edit(Model.Id), FormMethod.Post, null, new { @class = "form-horizontal form-label-left" }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary("", new { @class = "text-danger" })
                     @Html.HiddenFor(m => m.Id)
+
                     @Html.EditorForModel()
 
                     <div class="ln_solid"></div>
@@ -44,6 +49,7 @@
     </div>
 </div>
 
+@*TODO add in new separate bundle*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Content/bootstrap-theme/js/moment.min.js"></script>    

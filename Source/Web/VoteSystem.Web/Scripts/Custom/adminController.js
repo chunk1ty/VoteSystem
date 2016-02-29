@@ -11,9 +11,13 @@
             "sSearch": "Search by System Name: "
         },
         columnDefs: [{
+            targets: [0],
+            "searchable": false,            
+        }, {
             targets: [1],
         }, {
             targets: [2],
+            "searchable": false,
             "sortable": false
         }, {
             targets: [3],
@@ -26,7 +30,7 @@
         }]
     });
 
-    //TODO get rigth System name
+    //TODO get right System name
     $('tbody').on('click', '.delete-btn', function () {
         selectedRateSystem = $(this)
                 .closest('tr')
@@ -38,6 +42,7 @@
                 .closest('tr')
                 .children()
                 .first()
+                .next()
                 .next()
                 .text());
     });
@@ -54,7 +59,7 @@
                     .remove();
             },
             error: function (ex) {
-
+                alert('Can not delete rate system!');
             }
         });
     });

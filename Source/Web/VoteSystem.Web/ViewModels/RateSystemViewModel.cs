@@ -14,6 +14,8 @@
 
         [Required]
         [DisplayName("Name")]
+        [MinLength(5, ErrorMessage = "The rate system name can not be less than 5 symbols.")]
+        [MaxLength(100, ErrorMessage = "The rate system name can not be greater than 100 symbols.")]
         public string RateSystemName { get; set; }
 
         [Required]

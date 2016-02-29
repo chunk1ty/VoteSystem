@@ -37,9 +37,10 @@
                             @Html.LabelFor(m => m.QuestionName, new{ @class="control-label col-md-3 col-sm-3 col-xs-12" })
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 @Html.TextBoxFor(m => m.QuestionName, new { @class = "current-question form-control col-md-7 col-xs-12 " + currentQuestionClass, placeholder = "Enter question name" })
+                                @Html.ValidationMessageFor(m => m.QuestionName, null, new { @class= "text-danger" })
                             </div>
 
-                            <div id="@currentBtnId" class="btn btn-primary">Add New Answer</div>
+                            <div id="@currentBtnId" class="btn btn-dark">Add New Answer</div>
                         </div>
 
                         <div class="@currentQuestionList">

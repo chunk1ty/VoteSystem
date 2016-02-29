@@ -10,6 +10,8 @@
             this.Questions = new HashSet<QuestionViewModel>();
         }
 
+        public int RateSystemId { get; set; }
+
         public IEnumerable<QuestionViewModel> Questions { get; set; }
     }
 }

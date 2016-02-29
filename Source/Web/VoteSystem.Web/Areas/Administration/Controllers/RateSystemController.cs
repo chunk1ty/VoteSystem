@@ -44,6 +44,12 @@
                 return this.View(model);
             }
 
+            if (model.StarDateTime >= model.EndDateTime)
+            {
+                this.ModelState.AddModelError(string.Empty, "Start date can not be greater than end date.");
+                return this.View(model);
+            }
+
             var modelDb = this.Mapper.Map<RateSystem>(model);
             this.rateSystems.Add(modelDb);
 
@@ -65,6 +71,12 @@
         {
             if (!ModelState.IsValid || model == null)
             {
+                return this.View(model);
+            }
+
+            if (model.StarDateTime >= model.EndDateTime)
+            {
+                this.ModelState.AddModelError(string.Empty, "Start date can not be greater than end date.");
                 return this.View(model);
             }
 
