@@ -8,10 +8,12 @@
     {
         void Add(Question question);
 
-        void SaveChanges();
+        void Delete(Question question);
 
         IQueryable<Question> GetAllQuestions(int rateSystemId);
 
         IQueryable<Question> GetUsersAnswers(int rateSystemId);
+
+        void SaveChanges();
     }
 }

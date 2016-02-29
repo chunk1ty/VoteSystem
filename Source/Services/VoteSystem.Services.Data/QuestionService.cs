@@ -9,9 +9,9 @@
 
     public class QuestionService : IQuestionService
     {
-        private readonly IDeletableEntityRepository<Question> questions;
+        private readonly IDbGenericRepository<Question> questions;
 
-        public QuestionService(IDeletableEntityRepository<Question> questions)
+        public QuestionService(IDbGenericRepository<Question> questions)
         {
             this.questions = questions;
         }
@@ -21,9 +21,9 @@
             this.questions.Add(question);
         }
 
-        public void SaveChanges()
+        public void Delete(Question question)
         {
-            this.questions.SaveChanges();
+            this.questions.Delete(question);
         }
 
         public IQueryable<Question> GetAllQuestions(int rateSystemId)
@@ -41,6 +41,11 @@
                 .Where(x => x.RateSystemId == rateSystemId)                
                 .Include(x => x.QuestionAnswers
                                 .Select(y => y.UserAnswers));
+        }
+
+        public void SaveChanges()
+        {
+            this.questions.SaveChanges();
         }
     }
 }

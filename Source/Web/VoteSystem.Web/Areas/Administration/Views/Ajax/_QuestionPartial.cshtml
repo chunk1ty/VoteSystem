@@ -36,7 +36,7 @@
                         <div class="form-group">
                             @Html.LabelFor(m => m.QuestionName, new{ @class="control-label col-md-3 col-sm-3 col-xs-12" })
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                @Html.TextBoxFor(m => m.QuestionName, new { @class = "form-control col-md-7 col-xs-12 " + currentQuestionClass, placeholder = "Enter question name" })
+                                @Html.TextBoxFor(m => m.QuestionName, new { @class = "current-question form-control col-md-7 col-xs-12 " + currentQuestionClass, placeholder = "Enter question name" })
                             </div>
 
                             <div id="@currentBtnId" class="btn btn-primary">Add New Answer</div>
@@ -45,7 +45,7 @@
                         <div class="@currentQuestionList">
                             @foreach (var item in Model.QuestionAnswers)
                             {
-                                Html.RenderPartial(PartialViewConstants.QuestionAnswerPartial);
+                                Html.RenderPartial(PartialViewConstants.QuestionAnswerPartial, item);
                             }
                         </div>
                     }

@@ -1,0 +1,28 @@
+﻿@model VoteSystem.Web.ViewModels.QuestionAndAnswersViewModel
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@using (Html.BeginForm<QuestionController>(c => c.Edit(0), FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("rateSystemId", (int)ViewBag.RateSystemId)
+    @Html.Hidden("more-question-url", Url.Action<AjaxController>(c => c.MoreQuestions()))
+
+    <div id="question-list">
+        @foreach (var question in Model.Questions)
+        {
+            Html.RenderPartial(PartialViewConstants.QuestionPartial, question);
+        }
+    </div>
+
+    <div>
+        <span id="add-more-questions" class="btn btn-default">New Question</span>
+        <input type="submit" class="btn btn-success" value="Edit" />
+    </div>
+}
+
+@section scripts{
+    <script src="~/Scripts/Custom/questionController.js"></script>
+}
