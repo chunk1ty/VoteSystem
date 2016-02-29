@@ -3,13 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="vote-system" content="Web application for votting" />
+    <meta name="description" content="Web application for voting" />
+    <meta name="author" content="Andriyan Krastev" />
+    <meta name="keywords" content="vote rate system" />
     <title>Vote System</title>
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/gentelella-css")
     @RenderSection("styles", required: false)
     @*TODO: added here because of problem with edit questions*@
     <script src="~/Scripts/jquery-2.2.0.js"></script>
+    <link href="~/Content/bootstrap-theme/css/animate.min.css" rel="stylesheet" />
 </head>
 <body class="nav-md">
     @RenderBody()
@@ -17,6 +20,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script src="~/Content/bootstrap-theme/js/custom.js"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="~/Content/bootstrap-theme/images/img.jpg" alt="..." class="img-circle profile_img">
+                        <img src="~/Content/bootstrap-theme/images/user.png" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
@@ -97,7 +97,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="~/Content/bootstrap-theme/images/img.jpg" alt="">
+                                <img src="~/Content/bootstrap-theme/images/user.png" alt="">
                                 @User.Identity.GetUserName()
                                 <span class="fa fa-angle-down"></span>
                             </a>
@@ -141,5 +141,6 @@
 
 @section scripts {
     @Scripts.Render("~/bundles/gentallela-js")
+    @Scripts.Render("~/bundles/my-scripts");
     @RenderSection("scripts", required: false)
 }

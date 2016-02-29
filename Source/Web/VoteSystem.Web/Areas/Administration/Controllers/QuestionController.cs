@@ -1,13 +1,14 @@
 ﻿namespace VoteSystem.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
     using System.Web.Mvc.Expressions;
 
     using VoteSystem.Data.Models;
     using VoteSystem.Services.Data.Contracts;
-    using VoteSystem.Web.ViewModels;
     using VoteSystem.Web.Infrastructure.Mapping;
-    using System.Linq;
+    using VoteSystem.Web.ViewModels;
+
     public class QuestionController : AdministrationController
     {
         private IQuestionService questions;
@@ -20,7 +21,7 @@
         [HttpGet]
         public ActionResult Create(int rateSystemId)
         {
-            return this.View(new QuestionAndAnswersViewModel() { RateSystemId = rateSystemId});
+            return this.View(new QuestionAndAnswersViewModel() { RateSystemId = rateSystemId });
         }
 
         [HttpPost]
