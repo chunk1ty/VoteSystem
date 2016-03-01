@@ -1,0 +1,16 @@
+﻿@model IEnumerable<VoteSystem.Web.ViewModels.QuestionViewModel>
+
+@{
+    ViewBag.Title = "Preview";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="row">
+    @Html.DisplayForModel()
+</div>
+
+<div class="text-center">
+    <a href="@(Url.Action<RateSystemController>(c => c.Index()))" class="btn btn-dark">
+        Back
+    </a>
+</div>

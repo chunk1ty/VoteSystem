@@ -47,12 +47,17 @@
                                     @item.RateSystemName
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="@(Url.Action<QuestionController>(c => c.Preview(item.Id)))" class="btn btn-dark btn-xs">
+                                        <i class="fa fa-folder"></i>
+                                        Preview
+                                    </a>
+                                    <a href="@(Url.Action<QuestionController>(c => c.Edit(item.Id)))" class="btn btn-dark btn-xs">
+                                        <i class="fa fa-pencil"></i>
+                                        Edit
+                                    </a>
                                     <a href="@(Url.Action<QuestionController>(c => c.Create(item.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-plus"></i>
                                         Add
-                                    </a>
-                                    <a href="@(Url.Action<QuestionController>(c => c.Edit(item.Id)))"  class="btn btn-dark btn-xs">
-                                        <i class="fa fa-pencil"></i> Edit
                                     </a>
                                 </td>
                                 <td class="col-md-2 col-sm-2 col-xs-2">

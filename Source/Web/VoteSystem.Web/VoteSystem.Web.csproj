@@ -457,6 +457,8 @@
     <Content Include="Areas\Administration\Views\RateSystem\EditorTemplates\RateSystemViewModel.cshtml" />
     <Content Include="Areas\Administration\Views\RateSystem\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Question\Preview.cshtml" />
+    <Content Include="Areas\Administration\Views\Question\DisplayTemplates\QuestionViewModel.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\Custom\questionController.js" />
     <Content Include="Scripts\Custom\adminController.js" />

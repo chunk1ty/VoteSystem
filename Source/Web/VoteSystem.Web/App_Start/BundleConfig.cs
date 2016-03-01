@@ -24,10 +24,11 @@
             // TODO Uncaught TypeError: Cannot read property 'innerHTML' of null resultController is needed only when i display the results
             bundles.Add(new ScriptBundle("~/bundles/my-scripts").Include(
                "~/Scripts/Custom/questionController.js",
-               "~/Scripts/Custom/adminController.js",              
-               "~/Scripts/Custom/resultController.js",
+               "~/Scripts/Custom/adminController.js",
                "~/Scripts/Custom/home-grid.js",
                "~/Scripts/Custom/calendars.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/resultController").Include("~/Scripts/Custom/resultController.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/gentallela-js").Include(
                 "~/Content/bootstrap-theme/js/nicescroll/jquery.nicescroll.min.js",

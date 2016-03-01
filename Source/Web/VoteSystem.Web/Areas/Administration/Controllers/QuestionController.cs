@@ -63,6 +63,7 @@
             return this.View(new QuestionAndAnswersViewModel() { Questions = questions, RateSystemId = rateSystemId });
         }
 
+        // TODO optimize method
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(QuestionAndAnswersViewModel model)
@@ -98,6 +99,16 @@
             this.questions.SaveChanges();
 
             return this.RedirectToAction<RateSystemController>(c => c.Index());
+        }
+        
+        public ActionResult Preview(int rateSystemId)
+        {
+            var questionsAsVM = this.questions
+                .GetAllQuestions(rateSystemId)
+                .To<QuestionViewModel>()
+                .ToList();
+
+            return this.View(questionsAsVM);
         }
     }
 }
