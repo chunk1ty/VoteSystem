@@ -275,6 +275,9 @@
     <Content Include="Content\bootstrap-theme\css\animate.min.css" />
     <Content Include="Content\bootstrap-theme\css\custom.css" />
     <Content Include="Content\bootstrap-theme\css\daterangepicker\daterangepicker.css" />
+    <Content Include="Content\bootstrap-theme\css\icheck\green%402x.png" />
+    <Content Include="Content\bootstrap-theme\css\icheck\green.css" />
+    <Content Include="Content\bootstrap-theme\css\icheck\green.png" />
     <Content Include="Content\bootstrap-theme\fonts\css\font-awesome.css" />
     <Content Include="Content\bootstrap-theme\fonts\css\font-awesome.min.css" />
     <Content Include="Content\bootstrap-theme\images\sort_asc.png" />
@@ -287,6 +290,7 @@
     <Content Include="Content\bootstrap-theme\js\datepicker\daterangepicker.js" />
     <Content Include="Content\bootstrap-theme\js\echart\echarts-all.js" />
     <Content Include="Content\bootstrap-theme\js\echart\green.js" />
+    <Content Include="Content\bootstrap-theme\js\icheck.min.js" />
     <Content Include="Content\bootstrap-theme\js\moment.min.js" />
     <Content Include="Content\bootstrap-theme\js\nicescroll\jquery.nicescroll.min.js" />
     <Content Include="Content\bootstrap.css" />

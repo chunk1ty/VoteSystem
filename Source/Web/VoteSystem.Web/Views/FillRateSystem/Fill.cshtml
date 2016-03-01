@@ -1,26 +1,62 @@
 ﻿@model IList<VoteSystem.Web.ViewModels.QuestionViewModel>
 
-@{    
+@{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<h2>Fill</h2>
+@section styles {
+    <style>
+        .radio label {
+            padding-left: 5px;
+        }
+    </style>    
+}
 
 @using (Html.BeginForm<FillRateSystemController>(c => c.Fill(0), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <h2>FOR</h2>
-    for (int i = 0; i < Model.Count; i++)
-    {
-        @Html.HiddenFor(m => m[i].Id)
-        @Html.HiddenFor(m => m[i].RateSystemId)
-        <h3>@Model[i].QuestionName</h3>
-            for (int j = 0; j < Model[i].QuestionAnswers.Count; j++)
-            {
-                @Html.Label(Model[i].QuestionAnswers[j].QuestionAnswerName)
-                @Html.RadioButtonFor(m => m[i].QuestionName, Model[i].QuestionAnswers[j].Id)
+
+    <div class="row">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            @Html.HiddenFor(m => m[i].Id)
+            @Html.HiddenFor(m => m[i].RateSystemId)
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>@Model[i].QuestionName</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="close-link">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+                        @for (int j = 0; j < Model[i].QuestionAnswers.Count; j++)
+                        {
+                            <div class="radio">
+                                @Html.RadioButtonFor(m => m[i].QuestionName, Model[i].QuestionAnswers[j].Id, new { @class = "flat" })
+                                @Html.Label(Model[i].QuestionAnswers[j].QuestionAnswerName)
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         }
-    }   
-     
-    <button type="submit">Save</button>
+    </div>
+
+    <div class="text-center">
+        <a href="@(Url.Action<HomeController>(c => c.Index()))" class="btn btn-dark">Back</a>
+        <button class="btn btn-success" type="submit">Save</button>
+    </div>
 }

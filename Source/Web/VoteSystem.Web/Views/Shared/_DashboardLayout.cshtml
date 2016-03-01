@@ -21,8 +21,7 @@
                         <span>Vote System</span>
                     </a>
                 </div>
-                <div class="clearfix"></div>
-                <!-- menu profile quick info -->
+                <div class="clearfix"></div>               
                 <div class="profile">
                     <div class="profile_pic">
                         <img src="~/Content/bootstrap-theme/images/user.png" alt="..." class="img-circle profile_img">
@@ -31,10 +30,8 @@
                         <span>Welcome,</span>
                         <h2>@User.Identity.GetUserName()</h2>
                     </div>
-                </div>
-                <!-- /menu profile quick info -->
-                <br />
-                <!-- sidebar menu -->
+                </div>                
+                <br />                
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <h3>General</h3>
@@ -47,7 +44,7 @@
                                 </a>
                                 <ul class="nav child_menu" style="display: none">
                                     <li>
-                                        @(Html.ActionLink<HomeController>("Dashboard", c => c.Index(), new {area = string.Empty}, htmlAttributes: new { title = "Dashboard" }))
+                                        @(Html.ActionLink<HomeController>("Dashboard", c => c.Index(), new { area = string.Empty }, htmlAttributes: new { title = "Dashboard" }))
                                     </li>
                                 </ul>
                             </li>
@@ -141,6 +138,6 @@
 
 @section scripts {
     @Scripts.Render("~/bundles/gentallela-js")
-    @Scripts.Render("~/bundles/my-scripts");
+    @Scripts.Render("~/bundles/my-scripts")
     @RenderSection("scripts", required: false)
 }

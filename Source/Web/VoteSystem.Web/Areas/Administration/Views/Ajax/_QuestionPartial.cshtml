@@ -4,6 +4,7 @@
     var currentBtnId = Guid.NewGuid();
     var currentQuestionList = currentBtnId + "-list";
     var currentQuestionClass = Guid.NewGuid();
+    int counter = Convert.ToInt32(ViewData["counter"]);
 }
 
 <div class="row">
@@ -11,7 +12,7 @@
         <div class="x_panel">
             <div class="x_title">
                 @*TODO question number*@
-                <h2>Question #</h2>
+                <h2>Question #@counter</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link">
@@ -56,7 +57,7 @@
     </div>
 </div>
 
-@*TODO optimize : only 1 script tag*@
+@*TODO optimize : only 1 script tag at DOM*@
 <script>
     $("#@currentBtnId").on('click', function () {
         // Get question guid name; 47 is position of dot

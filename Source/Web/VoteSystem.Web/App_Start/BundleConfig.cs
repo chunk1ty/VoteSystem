@@ -36,6 +36,7 @@
                 "~/Content/bootstrap-theme/js/datepicker/daterangepicker.js",
                 "~/Content/bootstrap-theme/js/echart/echarts-all.js",
                 "~/Content/bootstrap-theme/js/echart/green.js",
+                "~/Content/bootstrap-theme/js/icheck.min.js",
                 "~/Scripts/handlebars.min.js",                
                 "~/Scripts/DataTables/jquery.dataTables.js",
                 "~/Content/bootstrap-theme/js/custom.js"));
@@ -53,7 +54,9 @@
             bundles.Add(new StyleBundle("~/Content/gentelella-css").Include(
                  "~/Content/bootstrap-theme/fonts/css/font-awesome.min.css",                
                 "~/Content/bootstrap-theme/css/custom.css",
-                 "~/Content/bootstrap-theme/css/daterangepicker/daterangepicker.css"));
+                "~/Content/bootstrap-theme/css/daterangepicker/daterangepicker.css",
+                "~/Content/bootstrap-theme/css/animate.min.css",
+                "~/Content/bootstrap-theme/css/icheck/green.css"));
         }
     }
 }

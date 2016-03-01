@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    int counter = 0;
 }
 
 @section styles {
@@ -21,12 +22,13 @@
     <div id="question-list">
         @foreach (var question in Model.Questions)
         {
-            Html.RenderPartial(PartialViewConstants.QuestionPartial, question);
+            counter++;
+            Html.RenderPartial(PartialViewConstants.QuestionPartial, question, new ViewDataDictionary{ { "counter", counter } });
         }
     </div>
 
     <div class="text-center">
-        <span id="add-more-questions" class="btn btn-default">New Question</span>
+        <span id="add-more-questions" class="btn btn-dark">New Question</span>
         <input type="submit" class="btn btn-success" value="Edit" />
     </div>
 }
