@@ -61,7 +61,10 @@
                                     </a>
                                 </td>
                                 <td class="col-md-2 col-sm-2 col-xs-2">
-                                    Add users
+                                    <a href="@(Url.Action<UserController>(c => c.Index()))" class="btn btn-dark btn-xs">
+                                        <i class="fa fa-plus"></i>
+                                        Add
+                                    </a>
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
                                     <a href="@(Url.Action<ResultController>(c => c.Index(item.Id)))" class="btn btn-dark btn-xs">

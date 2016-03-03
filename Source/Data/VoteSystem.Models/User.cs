@@ -15,6 +15,12 @@
             this.UserAnswers = new HashSet<UserAnswer>();
         }
 
+        public string FN { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
         public ICollection<RateSystem> RateSystems { get; set; }
 
         public ICollection<UserAnswer> UserAnswers { get; set; }

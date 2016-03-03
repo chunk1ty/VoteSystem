@@ -1,0 +1,64 @@
+﻿@model IEnumerable<VoteSystem.Web.ViewModels.UserViewModel>
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Add users</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="user-grid" class="table table-striped responsive-utilities jambo_table">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1 col-sm-1 col-xs-1">
+                                <input id="example-select-all" class="tableflat" type="checkbox" name="select_all" value="1" />
+                            </th>
+                            <th class="col-md-2 col-sm-2 col-xs-2">
+                                Faculty number
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                First Name
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                Last Name
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                E-mail
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td class="a-center col-md-1 col-sm-1 col-xs-1">                                    
+                                </td>
+                                <td class="col-md-2 col-sm-2 col-xs-2">
+                                    @user.FN
+                                </td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">
+                                    @user.FirstName
+                                </td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">
+                                    @user.LastName
+                                </td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">
+                                   @user.Email
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/userController");    
+}

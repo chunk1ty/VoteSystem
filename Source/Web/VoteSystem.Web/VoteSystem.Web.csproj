@@ -231,6 +231,7 @@
     <Compile Include="Areas\Administration\Controllers\QuestionController.cs" />
     <Compile Include="Areas\Administration\Controllers\RateSystemController.cs" />
     <Compile Include="Areas\Administration\Controllers\ResultController.cs" />
+    <Compile Include="Areas\Administration\Controllers\UserController.cs" />
     <Compile Include="Controllers\AccountController.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -267,6 +268,7 @@
     <Compile Include="ViewModels\RateSystemViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\UserAnswerViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-social.css" />
@@ -463,11 +465,13 @@
     <Content Include="Areas\Administration\Views\Question\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Preview.cshtml" />
     <Content Include="Areas\Administration\Views\Question\DisplayTemplates\QuestionViewModel.cshtml" />
+    <Content Include="Areas\Administration\Views\User\Index.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\Custom\questionController.js" />
     <Content Include="Scripts\Custom\adminController.js" />
     <Content Include="Scripts\Custom\calendars.js" />
     <Content Include="Scripts\Custom\resultController.js" />
+    <Content Include="Scripts\Custom\userController.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.foundation.js" />

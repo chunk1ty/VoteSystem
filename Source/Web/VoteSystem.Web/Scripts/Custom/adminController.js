@@ -6,31 +6,30 @@
 
     //grid settings
     $('#admin-grid').dataTable({
-        pagingType: "full_numbers",
-        "oLanguage": {
-            "sSearch": "Search by System Name: "
-        },
         columnDefs: [{
             targets: [0],
-            "searchable": false,            
+            searchable: false,
         }, {
             targets: [1],
         }, {
             targets: [2],
-            "searchable": false,
-            "sortable": false
+            searchable: false,
+            sortable: false
         }, {
             targets: [3],
-            "searchable": false,
-            "sortable": false
+            searchable: false,
+            sortable: false
         }, {
             targets: [4],
-            "searchable": false,
-            "sortable": false
-        }]
+            searchable: false,
+            sortable: false
+        }],
+        pagingType: "full_numbers",
+        oLanguage: {
+            sSearch: "Search by System Name: "
+        },
     });
 
-    //TODO get right System name
     $('tbody').on('click', '.delete-btn', function () {
         selectedRateSystem = $(this)
                 .closest('tr')

@@ -6,7 +6,7 @@
     using VoteSystem.Web.Controllers;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    public class AdministrationController : BaseController
+    public abstract class AdministrationController : BaseController
     {       
     }
 }
