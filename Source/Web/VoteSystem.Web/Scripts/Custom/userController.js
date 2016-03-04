@@ -7,11 +7,7 @@
             targets: [0],
             searchable: false,
             orderable: false,
-            className: 'dt-body-center',
-            //render: function (data, type, full, meta) {
-            //    return '<input type="checkbox" class="tableflat" name="id[]" value="'
-            //        + $('<div/>').text(data).html() + '">';
-            //}
+            className: 'dt-body-center'
         }, {
             targets: [1],
             searchable: true,
@@ -52,27 +48,5 @@
                 el.indeterminate = true;
             }
         }
-    });
-
-    // Handle form submission event
-    $('#frm-example').on('submit', function (e) {
-        var form = this;
-
-        // Iterate over all checkboxes in the table
-        table.$('input[type="checkbox"]').each(function () {
-            // If checkbox doesn't exist in DOM
-            if (!$.contains(document, this)) {
-                // If checkbox is checked
-                if (this.checked) {
-                    // Create a hidden element 
-                    $(form).append(
-                       $('<input>')
-                          .attr('type', 'hidden')
-                          .attr('name', this.name)
-                          .val(this.value)
-                    );
-                }
-            }
-        });
     });
 }($));

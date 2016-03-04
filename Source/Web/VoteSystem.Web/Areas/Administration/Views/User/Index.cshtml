@@ -4,6 +4,15 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
+@section styles {
+    <style>
+         a.paginate_button.current {
+            background-color: rgba(38, 185, 154, 0.59) !important;
+            border-color: rgba(38, 185, 154, 0.59) !important;
+        }
+    </style>
+}
+
 @using (Html.BeginForm<UserController>(c => c.Index(), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -39,10 +48,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @Html.EditorFor(m => m.Users)
+                            @for (int i = 0; i < Model.Users.Count; i++)
+                            {
+                                @Html.EditorFor(m => m.Users[i], "UserViewModel")
+                            }                           
                         </tbody>
                     </table>
-                    
                 </div>
             </div>
         </div>

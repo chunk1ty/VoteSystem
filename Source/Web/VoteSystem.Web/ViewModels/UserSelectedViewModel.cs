@@ -7,10 +7,10 @@
     {
         public UserSelectedViewModel()
         {
-            this.Users = new HashSet<UserViewModel>();
+            this.Users = new List<UserViewModel>();
         }
 
-        public IEnumerable<UserViewModel> Users { get; set; }
+        public IList<UserViewModel> Users { get; set; }
 
         public IList<string> GetSelectedUsers()
         {
