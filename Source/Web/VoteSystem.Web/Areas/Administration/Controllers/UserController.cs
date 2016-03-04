@@ -1,7 +1,9 @@
 ﻿namespace VoteSystem.Web.Areas.Administration.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.Mvc.Expressions;
 
     using VoteSystem.Services.Data.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
@@ -23,7 +25,38 @@
                 .To<UserViewModel>()
                 .ToList();
 
-            return View(users);
+            var userSelectedVM = new UserSelectedViewModel()
+            {
+                Users = users
+            };           
+
+            return View(userSelectedVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(UserSelectedViewModel model)
+        {
+            // get the ids of the items selected:
+            //var selectedIds = model.getSelectedIds();
+
+            // Use the ids to retrieve the records for the selected people
+            // from the database:
+            //var selectedPeople = from x in Db.People
+            //                     where selectedIds.Contains(x.Id)
+            //                     select x;
+
+            //// Process according to your requirements:
+            //foreach (var person in selectedPeople)
+            //{
+            //    System.Diagnostics.Debug.WriteLine(
+            //        string.Format("{0} {1}", person.firstName, person.LastName));
+            //}
+
+            // Redirect somewhere meaningful (probably to somewhere showing 
+            // the results of your processing):
+
+            return this.RedirectToAction<UserController>(c => c.Index());
         }
     }
 }

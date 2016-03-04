@@ -22,6 +22,7 @@ namespace VoteSystem.Data.Migrations
         protected override void Seed(VoteSystemDbContext context)
         {
             this.CreateAdministrator(context);
+            this.CreateUsers(context, 20);
 
             // this.SimpleData(context);
         }
@@ -47,6 +48,27 @@ namespace VoteSystem.Data.Migrations
 
                 // Assign user to admin role
                 userManager.AddToRole(user.Id, GlobalConstants.AdministratorRoleName);
+            }
+        }
+
+        private void CreateUsers(VoteSystemDbContext context, int numberOfUsers)
+        {
+            const string UserPassword = "123456";
+
+            for (int i = 0; i < numberOfUsers; i++)
+            {
+                var userStore = new UserStore<User>(context);
+                var userManager = new UserManager<User>(userStore);
+                var user = new User
+                {
+                    UserName = "User" + i,
+                    Email = "User" + i + "@abv.bg",
+                    FN = "1000" + i,
+                    FirstName = "FirstUserName" + i,
+                    LastName = "LastUserName" + i
+                };
+
+                userManager.Create(user, UserPassword);
             }
         }
 

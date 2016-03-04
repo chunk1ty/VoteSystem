@@ -8,10 +8,10 @@
             searchable: false,
             orderable: false,
             className: 'dt-body-center',
-            render: function (data, type, full, meta) {
-                return '<input type="checkbox" class="tableflat" name="id[]" value="'
-                    + $('<div/>').text(data).html() + '">';
-            }
+            //render: function (data, type, full, meta) {
+            //    return '<input type="checkbox" class="tableflat" name="id[]" value="'
+            //        + $('<div/>').text(data).html() + '">';
+            //}
         }, {
             targets: [1],
             searchable: true,
