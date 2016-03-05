@@ -12,11 +12,10 @@
 
         public IList<UserViewModel> Users { get; set; }
 
-        public IList<string> GetSelectedUsers()
+        public IList<UserViewModel> GetSelectedUsers()
         {
             return this.Users
                         .Where(u => u.IsSelect)
-                        .Select(u => u.Id)
                         .ToList();
         }
     }

@@ -1,5 +1,6 @@
 ﻿namespace VoteSystem.Services.Data
 {
+    using System;
     using System.Data.Entity;
     using System.Linq;
 
@@ -36,12 +37,17 @@
 
         public IQueryable<Question> GetUsersAnswers(int rateSystemId)
         {
-            return this.questions
-                .All()
-                .Where(x => x.RateSystemId == rateSystemId)                
-                .Include(x => x.QuestionAnswers
-                                .Select(y => y.UserAnswers));
+            throw new NotImplementedException();
         }
+
+        //public IQueryable<Question> GetUsersAnswers(int rateSystemId)
+        //{
+        //    return this.questions
+        //        .All()
+        //        .Where(x => x.RateSystemId == rateSystemId)
+        //        .Include(x => x.QuestionAnswers
+        //                        .Select(y => y.UserAnswers));
+        //}
 
         public void SaveChanges()
         {

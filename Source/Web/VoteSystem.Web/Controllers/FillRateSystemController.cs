@@ -42,18 +42,18 @@
                 return this.View(questions);
             }
            
-            foreach (var question in questions)
-            {
-                var currentAnswer = new UserAnswer
-                {
-                    QuestionAnswerId = int.Parse(question.QuestionName),
-                    UserId = this.User.Identity.GetUserId()
-                };
+            //foreach (var question in questions)
+            //{
+            //    var currentAnswer = new ParticipantAnswer
+            //    {
+            //        QuestionAnswerId = int.Parse(question.QuestionName),
+            //        UserId = this.User.Identity.GetUserId()
+            //    };
 
-                this.userAnswers.Add(currentAnswer);
-            }
+            //    this.userAnswers.Add(currentAnswer);
+            //}
 
-            this.userAnswers.SaveChanges();
+            //this.userAnswers.SaveChanges();
 
             return this.RedirectToAction<HomeController>(c => c.Index());
         }

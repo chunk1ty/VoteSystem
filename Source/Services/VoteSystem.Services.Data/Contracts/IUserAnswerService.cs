@@ -4,7 +4,7 @@
 
     public interface IUserAnswerService
     {
-        void Add(UserAnswer userAnswers);
+        void Add(ParticipantAnswer userAnswers);
 
         void SaveChanges();
     }

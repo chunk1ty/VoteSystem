@@ -38,7 +38,7 @@
         public ActionResult Index(UserSelectedViewModel model)
         {
             // get the ids of the items selected:
-            //var selectedIds = model.getSelectedIds();
+            var getSelectedUsers = model.GetSelectedUsers();
 
             // Use the ids to retrieve the records for the selected people
             // from the database:

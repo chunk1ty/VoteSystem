@@ -9,7 +9,7 @@
     {
         public QuestionAnswer()
         {
-            this.UserAnswers = new HashSet<UserAnswer>();
+            this.ParticipantAnswers = new HashSet<ParticipantAnswer>();
         }
 
         [Key]
@@ -21,6 +21,6 @@
 
         public virtual Question Question { get; set; }
 
-        public ICollection<UserAnswer> UserAnswers { get; set; }
+        public ICollection<ParticipantAnswer> ParticipantAnswers { get; set; }
     }
 }

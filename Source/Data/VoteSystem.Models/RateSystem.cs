@@ -12,7 +12,7 @@
         public RateSystem()
         {
             this.Questions = new HashSet<Question>();
-            this.Users = new HashSet<User>();
+            this.Participants = new HashSet<Participant>();
         }
 
         [Key]
@@ -28,7 +28,7 @@
 
         public ICollection<Question> Questions { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        public ICollection<Participant> Participants { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

@@ -9,13 +9,15 @@
     {
         IDbSet<User> Users { get; set; }
 
+        IDbSet<Participant> Participants { get; set; }
+
+        IDbSet<ParticipantAnswer> ParticipantAnswers { get; set; }
+
         IDbSet<Question> Questions { get; set; }
 
         IDbSet<RateSystem> RateSystems { get; set; }
 
         IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
-
-        IDbSet<UserAnswer> UserAnswers { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 

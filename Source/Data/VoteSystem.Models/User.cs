@@ -11,8 +11,7 @@
     {
         public User()
         {
-            this.RateSystems = new HashSet<RateSystem>();
-            this.UserAnswers = new HashSet<UserAnswer>();
+            this.Participants = new HashSet<Participant>();
         }
 
         public string FN { get; set; }
@@ -21,9 +20,7 @@
 
         public string LastName { get; set; }
 
-        public ICollection<RateSystem> RateSystems { get; set; }
-
-        public ICollection<UserAnswer> UserAnswers { get; set; }
+        public ICollection<Participant> Participants { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

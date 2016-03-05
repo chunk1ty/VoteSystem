@@ -6,14 +6,14 @@
 
     public class UserAnswerService : IUserAnswerService
     {
-        private readonly IDbGenericRepository<UserAnswer> userAnswers;
+        private readonly IDbGenericRepository<ParticipantAnswer> userAnswers;
 
-        public UserAnswerService(IDbGenericRepository<UserAnswer> userAnswers)
+        public UserAnswerService(IDbGenericRepository<ParticipantAnswer> userAnswers)
         {
             this.userAnswers = userAnswers;
         }
 
-        public void Add(UserAnswer userAnswers)
+        public void Add(ParticipantAnswer userAnswers)
         {
             this.userAnswers.Add(userAnswers);
         }
