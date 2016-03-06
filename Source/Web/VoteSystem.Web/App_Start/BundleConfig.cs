@@ -32,6 +32,8 @@
 
             bundles.Add(new ScriptBundle("~/bundles/userController").Include("~/Scripts/Custom/userController.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/userPreviewController").Include("~/Scripts/Custom/userPreviewController.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/gentallela-js").Include(
                 "~/Content/bootstrap-theme/js/nicescroll/jquery.nicescroll.min.js",
                 "~/Content/bootstrap-theme/js/moment.min.js",

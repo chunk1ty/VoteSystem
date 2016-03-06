@@ -31,52 +31,61 @@
                             <th class="col-md-1 col-sm-1 col-xs-1">Status</th>
                             <th class="col-md-3 col-sm-3 col-xs-3">System Name</th>
                             <th class="col-md-3 col-sm-3 col-xs-3">Questions</th>
-                            <th class="col-md-2 col-sm-2 col-xs-2">Add Users</th>
+                            <th class="col-md-2 col-sm-2 col-xs-2">Participants</th>
                             <th class="col-md-3 col-sm-3 col-xs-3">Edit</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var rateSystem in Model)
                         {
                             <tr>
-                                @Html.Hidden("rate-system-" + item.Id, item.Id)
+                                @Html.Hidden("rate-system-" + rateSystem.Id, rateSystem.Id)
                                 <td class="col-md-1 col-sm-1 col-xs-1">
-                                    @Html.RateSystemStatus(item.StarDateTime, item.EndDateTime)
+                                    @Html.RateSystemStatus(rateSystem.StarDateTime, rateSystem.EndDateTime)
+                                </td>
+                                <td class="col-md-2 col-sm-2 col-xs-2">
+                                    @rateSystem.RateSystemName
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
-                                    @item.RateSystemName
-                                </td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">
-                                    <a href="@(Url.Action<QuestionController>(c => c.Preview(item.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<QuestionController>(c => c.Create(rateSystem.Id)))" class="btn btn-dark btn-xs">
+                                        <i class="fa fa-plus"></i>
+                                        Add
+                                    </a>
+                                    <a href="@(Url.Action<QuestionController>(c => c.Preview(rateSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-folder"></i>
                                         Preview
                                     </a>
-                                    <a href="@(Url.Action<QuestionController>(c => c.Edit(item.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<QuestionController>(c => c.Edit(rateSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-pencil"></i>
                                         Edit
                                     </a>
-                                    <a href="@(Url.Action<QuestionController>(c => c.Create(item.Id)))" class="btn btn-dark btn-xs">
+                                </td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="@(Url.Action<UserController>(c => c.Add(rateSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-plus"></i>
                                         Add
                                     </a>
-                                </td>
-                                <td class="col-md-2 col-sm-2 col-xs-2">
-                                    <a href="@(Url.Action<UserController>(c => c.Index()))" class="btn btn-dark btn-xs">
-                                        <i class="fa fa-plus"></i>
-                                        Add
+                                    <a href="@(Url.Action<UserController>(c => c.Preview(rateSystem.Id)))" class="btn btn-dark btn-xs">
+                                        <i class="fa fa-folder"></i>
+                                        Preview
+                                    </a>
+                                    <a href="@(Url.Action<UserController>(c => c.Remove(rateSystem.Id)))" class="btn btn-dark btn-xs">
+                                        <i class="fa fa-trash-o"></i>
+                                        Remove
                                     </a>
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
-                                    <a href="@(Url.Action<ResultController>(c => c.Index(item.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<ResultController>(c => c.Index(rateSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-folder"></i>
                                         Results
                                     </a>
-                                    <a href="@(Url.Action<RateSystemController>(c => c.Edit(item.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<RateSystemController>(c => c.Edit(rateSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-pencil"></i>
                                         Edit
                                     </a>
                                     <button type="button" class="delete-btn btn btn-dark btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">
-                                        <i class="fa fa-trash-o"></i> Delete
+                                        <i class="fa fa-trash-o"></i>
+                                        Remove
                                     </button>
                                 </td>
                             </tr>

@@ -1,0 +1,56 @@
+﻿@model VoteSystem.Web.ViewModels.UserSelectedViewModel
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@section styles {
+    <style>
+         a.paginate_button.current {
+            background-color: rgba(38, 185, 154, 0.59) !important;
+            border-color: rgba(38, 185, 154, 0.59) !important;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Participants</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="user-preview-grid" class="table table-striped responsive-utilities jambo_table">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2 col-sm-2 col-xs-2">
+                                Faculty number
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                First Name
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                Last Name
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                E-mail
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Users.Count; i++)
+                        {
+                            @Html.DisplayFor(m => m.Users[i], "UserViewModel")
+                        }                           
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/userPreviewController");    
+}

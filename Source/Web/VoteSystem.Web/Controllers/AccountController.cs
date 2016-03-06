@@ -11,7 +11,7 @@
 
     using VoteSystem.Data.Models;
     using VoteSystem.Web.ViewModels.Account;
-    using Common;
+   
     [Authorize]
     public class AccountController : BaseController
     {

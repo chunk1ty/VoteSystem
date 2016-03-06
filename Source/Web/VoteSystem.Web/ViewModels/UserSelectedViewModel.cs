@@ -10,6 +10,8 @@
             this.Users = new List<UserViewModel>();
         }
 
+        public int RateSystemId { get; set; }
+
         public IList<UserViewModel> Users { get; set; }
 
         public IList<UserViewModel> GetSelectedUsers()

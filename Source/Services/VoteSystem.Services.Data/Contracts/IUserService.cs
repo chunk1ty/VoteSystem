@@ -6,6 +6,8 @@
 
     public interface IUserService
     {
-        IQueryable<User> GetAll();
+        IQueryable<User> GetAllUnselectUsers(int rateSystemId);
+
+        IQueryable<User> GetAllSelectUsers(int rateSystemId);
     }
 }

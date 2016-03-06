@@ -1,5 +1,7 @@
 ﻿namespace VoteSystem.Web.Areas.Administration.Controllers
 {
+    using Data.Models;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -12,51 +14,105 @@
     public class UserController : AdministrationController
     {
         private IUserService users;
+        private IParticipantService participants;
 
-        public UserController(IUserService users)
+        public UserController(IUserService users, IParticipantService participants)
         {
             this.users = users;
+            this.participants = participants;
         }
         
-        public ActionResult Index()
+        public ActionResult Add(int rateSystemId)
         {
             var users = this.users
-                .GetAll()
+                .GetAllUnselectUsers(rateSystemId)
                 .To<UserViewModel>()
                 .ToList();
 
             var userSelectedVM = new UserSelectedViewModel()
             {
-                Users = users
+                Users = users,
+                RateSystemId = rateSystemId
             };           
 
-            return View(userSelectedVM);
+            return this.View(userSelectedVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(UserSelectedViewModel model)
+        public ActionResult Add(UserSelectedViewModel model)
         {
-            // get the ids of the items selected:
             var getSelectedUsers = model.GetSelectedUsers();
 
-            // Use the ids to retrieve the records for the selected people
-            // from the database:
-            //var selectedPeople = from x in Db.People
-            //                     where selectedIds.Contains(x.Id)
-            //                     select x;
+            foreach (var participant in getSelectedUsers)
+            {
+                var currentParticipant = new Participant()
+                {
+                    RateSystemId = model.RateSystemId,
+                    UserId = participant.Id
+                };
 
-            //// Process according to your requirements:
-            //foreach (var person in selectedPeople)
-            //{
-            //    System.Diagnostics.Debug.WriteLine(
-            //        string.Format("{0} {1}", person.firstName, person.LastName));
-            //}
+                this.participants.Add(currentParticipant);
+            }
 
-            // Redirect somewhere meaningful (probably to somewhere showing 
-            // the results of your processing):
+            this.participants.SaveChanges();
 
-            return this.RedirectToAction<UserController>(c => c.Index());
+            return this.RedirectToAction<UserController>(c => c.Add(model.RateSystemId));
+        }
+
+        public ActionResult Remove(int rateSystemId)
+        {
+            var users = this.users
+                .GetAllSelectUsers(rateSystemId)
+                .To<UserViewModel>()
+                .ToList();
+
+            var userSelectedVM = new UserSelectedViewModel()
+            {
+                Users = users,
+                RateSystemId = rateSystemId
+            };
+
+            return this.View(userSelectedVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Remove(UserSelectedViewModel model)
+        {
+            var getSelectedUsers = model.GetSelectedUsers();
+
+            foreach (var participant in getSelectedUsers)
+            {
+                var currentParticipant = this.participants.GetParticipantByRateSystemIdAndUserId(model.RateSystemId, participant.Id);
+
+                if (currentParticipant == null)
+                {
+                    throw new ArgumentNullException("Participant can not be found!");
+                }
+
+                this.participants.Remove(currentParticipant);
+            }
+
+            this.participants.SaveChanges();
+
+            return this.RedirectToAction<UserController>(c => c.Remove(model.RateSystemId));
+        }
+
+        public ActionResult Preview(int rateSystemId)
+        {
+            var users = this.users
+                .GetAllSelectUsers(rateSystemId)
+                .To<UserViewModel>()
+                .ToList();
+
+            var userSelectedVM = new UserSelectedViewModel()
+            {
+                Users = users,
+                RateSystemId = rateSystemId
+            };
+
+            return this.View(userSelectedVM);
         }
     }
 }

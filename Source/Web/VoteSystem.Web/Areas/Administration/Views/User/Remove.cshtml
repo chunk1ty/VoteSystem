@@ -13,16 +13,20 @@
     </style>
 }
 
-@using (Html.BeginForm<UserController>(c => c.Index(), FormMethod.Post))
+@using (Html.BeginForm<UserController>(c => c.Remove(0), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.RateSystemId)
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <div class="text-center">
-                        <button class="btn btn-dark" type="submit">Add</button>
+                        <button class="btn btn-dark" type="submit">
+                            <i class="fa fa-trash-o"></i>
+                            Remove
+                        </button>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -59,6 +63,7 @@
         </div>
     </div>
 }
+
 @section scripts{
     @Scripts.Render("~/bundles/userController");    
 }
