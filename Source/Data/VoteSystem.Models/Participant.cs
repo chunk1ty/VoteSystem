@@ -1,7 +1,8 @@
 ﻿namespace VoteSystem.Data.Models
 {
     using System.Collections.Generic;
-   
+    using System.ComponentModel.DataAnnotations;
+
     public class Participant
     {
         public Participant()
@@ -9,6 +10,7 @@
             this.ParticipantAnswers = new HashSet<ParticipantAnswer>();
         }
 
+        [Key]
         public int Id { get; set; }
 
         public string UserId { get; set; }

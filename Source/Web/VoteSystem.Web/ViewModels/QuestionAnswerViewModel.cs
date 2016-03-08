@@ -18,6 +18,6 @@
 
         public int QuestionId { get; set; }
 
-        public IList<UserAnswerViewModel> UserAnswers { get; set; }
+        public IList<ParticipantAnswerViewModel> UserAnswers { get; set; }
     }
 }

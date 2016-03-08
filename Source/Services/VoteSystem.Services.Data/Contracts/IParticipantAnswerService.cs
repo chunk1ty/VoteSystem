@@ -2,7 +2,7 @@
 {
     using VoteSystem.Data.Models;
 
-    public interface IUserAnswerService
+    public interface IParticipantAnswerService
     {
         void Add(ParticipantAnswer userAnswers);
 

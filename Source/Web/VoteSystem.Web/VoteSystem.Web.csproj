@@ -253,6 +253,7 @@
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\FillRateSystem\FillQuestionsViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -267,7 +268,7 @@
     <Compile Include="ViewModels\QuestionAnswerViewModel.cs" />
     <Compile Include="ViewModels\RateSystemViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
-    <Compile Include="ViewModels\UserAnswerViewModel.cs" />
+    <Compile Include="ViewModels\ParticipantAnswerViewModel.cs" />
     <Compile Include="ViewModels\UserSelectedViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>

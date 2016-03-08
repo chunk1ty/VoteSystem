@@ -37,17 +37,12 @@
 
         public IQueryable<Question> GetUsersAnswers(int rateSystemId)
         {
-            throw new NotImplementedException();
+            return this.questions
+                .All()
+                .Where(x => x.RateSystemId == rateSystemId)
+                .Include(x => x.QuestionAnswers
+                                .Select(y => y.ParticipantAnswers.Count));
         }
-
-        //public IQueryable<Question> GetUsersAnswers(int rateSystemId)
-        //{
-        //    return this.questions
-        //        .All()
-        //        .Where(x => x.RateSystemId == rateSystemId)
-        //        .Include(x => x.QuestionAnswers
-        //                        .Select(y => y.UserAnswers));
-        //}
 
         public void SaveChanges()
         {

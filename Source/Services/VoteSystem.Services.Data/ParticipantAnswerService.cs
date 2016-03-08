@@ -4,11 +4,11 @@
     using VoteSystem.Data.Models;
     using VoteSystem.Services.Data.Contracts;
 
-    public class UserAnswerService : IUserAnswerService
+    public class ParticipantAnswerService : IParticipantAnswerService
     {
         private readonly IDbGenericRepository<ParticipantAnswer> userAnswers;
 
-        public UserAnswerService(IDbGenericRepository<ParticipantAnswer> userAnswers)
+        public ParticipantAnswerService(IDbGenericRepository<ParticipantAnswer> userAnswers)
         {
             this.userAnswers = userAnswers;
         }

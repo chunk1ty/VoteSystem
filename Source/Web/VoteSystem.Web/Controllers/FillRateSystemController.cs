@@ -11,23 +11,26 @@
     using VoteSystem.Services.Data.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
     using VoteSystem.Web.ViewModels;
+    using ViewModels.FillRateSystem;
 
     public class FillRateSystemController : BaseController
     {
         private IQuestionService questions;
-        private IUserAnswerService userAnswers;
+        private IParticipantService participants;
+        private IParticipantAnswerService participantAnswers;
         
-        public FillRateSystemController(IQuestionService questions, IUserAnswerService userAnswers)
+        public FillRateSystemController(IQuestionService questions, IParticipantService participants, IParticipantAnswerService userAnswers)
         {
             this.questions = questions;
-            this.userAnswers = userAnswers;
+            this.participants = participants;
+            this.participantAnswers = userAnswers;
         }
 
         public ActionResult Fill(int rateSystemID)
         {
             var questions = this.questions
                                 .GetAllQuestions(rateSystemID)
-                                .To<QuestionViewModel>()
+                                .To<FillQuestionsViewModel>()
                                 .ToList();
 
             return this.View(questions);
@@ -35,25 +38,27 @@
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Fill(IEnumerable<QuestionViewModel> questions)
+        public ActionResult Fill(IList<FillQuestionsViewModel> questions)
         {
             if (!ModelState.IsValid)
             {
                 return this.View(questions);
             }
-           
-            //foreach (var question in questions)
-            //{
-            //    var currentAnswer = new ParticipantAnswer
-            //    {
-            //        QuestionAnswerId = int.Parse(question.QuestionName),
-            //        UserId = this.User.Identity.GetUserId()
-            //    };
 
-            //    this.userAnswers.Add(currentAnswer);
-            //}
+            var participant = this.participants.GetParticipantByRateSystemIdAndUserId(questions[0].RateSystemId, User.Identity.GetUserId());
 
-            //this.userAnswers.SaveChanges();
+            foreach (var question in questions)
+            {
+                var currentAnswer = new ParticipantAnswer
+                {
+                    QuestionAnswerId = int.Parse(question.QuestionName),
+                    ParticipantId = participant.Id.ToString()
+                };
+
+                this.participantAnswers.Add(currentAnswer);
+            }
+
+            this.participantAnswers.SaveChanges();
 
             return this.RedirectToAction<HomeController>(c => c.Index());
         }

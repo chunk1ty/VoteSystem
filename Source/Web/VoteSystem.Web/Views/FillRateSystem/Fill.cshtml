@@ -1,4 +1,4 @@
-﻿@model IList<VoteSystem.Web.ViewModels.QuestionViewModel>
+﻿@model IList<VoteSystem.Web.ViewModels.FillRateSystem.FillQuestionsViewModel>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -15,13 +15,11 @@
 @using (Html.BeginForm<FillRateSystemController>(c => c.Fill(0), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m[0].RateSystemId)
 
     <div class="row">
         @for (int i = 0; i < Model.Count; i++)
         {
-            @Html.HiddenFor(m => m[i].Id)
-            @Html.HiddenFor(m => m[i].RateSystemId)
-
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
