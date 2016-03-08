@@ -46,11 +46,15 @@
             return this.rateSystems.All();
         }
 
-        public IQueryable<RateSystem> AllActive()
+        public IQueryable<RateSystem> AllActive(string UserId)
         {
             return this.rateSystems
                     .All()
-                    .Where(x => x.StarDateTime <= DateTime.Now && DateTime.Now <= x.EndDateTime);
+                    .Where(x => 
+                            x.StarDateTime <= DateTime.Now && 
+                            DateTime.Now <= x.EndDateTime &&
+                            x.Participants.Any(y =>
+                                                y.UserId == UserId));
         }
 
         public RateSystem GetById(int rateSystemId)

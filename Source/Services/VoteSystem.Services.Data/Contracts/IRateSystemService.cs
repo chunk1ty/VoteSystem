@@ -14,7 +14,7 @@
 
         IQueryable<RateSystem> GetAll();
 
-        IQueryable<RateSystem> AllActive();
+        IQueryable<RateSystem> AllActive(string UserId);
 
         RateSystem GetById(int rateSystemId);
 

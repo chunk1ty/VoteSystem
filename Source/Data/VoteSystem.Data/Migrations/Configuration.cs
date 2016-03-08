@@ -43,7 +43,14 @@ namespace VoteSystem.Data.Migrations
                 // Create admin user
                 var userStore = new UserStore<User>(context);
                 var userManager = new UserManager<User>(userStore);
-                var user = new User { UserName = AdministratorUserName, Email = AdministratorUserName };
+                var user = new User
+                {
+                    UserName = AdministratorUserName,
+                    Email = AdministratorUserName,
+                    FN = "10001",
+                    FirstName = "Admin",
+                    LastName = "Admin"
+                };
                 userManager.Create(user, AdministratorPassword);
 
                 // Assign user to admin role
@@ -61,8 +68,8 @@ namespace VoteSystem.Data.Migrations
                 var userManager = new UserManager<User>(userStore);
                 var user = new User
                 {
-                    UserName = "User" + i,
-                    Email = "User" + i + "@abv.bg",
+                    UserName = "user" + i + "@abv.bg",
+                    Email = "user" + i + "@abv.bg",
                     FN = "1000" + i,
                     FirstName = "FirstUserName" + i,
                     LastName = "LastUserName" + i
