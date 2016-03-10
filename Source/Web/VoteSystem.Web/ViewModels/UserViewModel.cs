@@ -1,7 +1,7 @@
 ﻿namespace VoteSystem.Web.ViewModels
 {
-    using VoteSystem.Web.Infrastructure.Mapping;
     using VoteSystem.Data.Models;
+    using VoteSystem.Web.Infrastructure.Mapping;
 
     public class UserViewModel : IMapFrom<User>
     {

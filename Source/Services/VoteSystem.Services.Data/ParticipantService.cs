@@ -25,11 +25,11 @@
             this.participants.Delete(participant);
         }
 
-        public Participant GetParticipantByRateSystemIdAndUserId(int rateSystemId, string UserId)
+        public Participant GetParticipantByRateSystemIdAndUserId(int rateSystemId, string userId)
         {
             return this.participants
                 .All()
-                .Where(x => x.RateSystemId == rateSystemId && x.UserId == UserId)
+                .Where(x => x.RateSystemId == rateSystemId && x.UserId == userId)
                 .FirstOrDefault();
         }
 

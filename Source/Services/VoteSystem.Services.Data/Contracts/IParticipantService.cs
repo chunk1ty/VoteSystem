@@ -8,7 +8,7 @@
 
         void Remove(Participant participant);
 
-        Participant GetParticipantByRateSystemIdAndUserId(int rateSystemId, string UserId);
+        Participant GetParticipantByRateSystemIdAndUserId(int rateSystemId, string userId);
 
         void SaveChanges();
     }

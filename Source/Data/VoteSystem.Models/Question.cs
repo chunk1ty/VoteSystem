@@ -18,6 +18,8 @@
 
         public string QuestionName { get; set; }
 
+        public bool HasMultipleAnswers { get; set; }
+
         public int RateSystemId { get; set; }
 
         public virtual RateSystem RateSystem { get; set; }

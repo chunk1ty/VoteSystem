@@ -1,5 +1,5 @@
 ﻿namespace VoteSystem.Web.Controllers
-{
+{   
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -7,11 +7,10 @@
 
     using Microsoft.AspNet.Identity;
 
+    using ViewModels.FillRateSystem;
     using VoteSystem.Data.Models;
     using VoteSystem.Services.Data.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
-    using VoteSystem.Web.ViewModels;
-    using ViewModels.FillRateSystem;
 
     public class FillRateSystemController : BaseController
     {
@@ -36,6 +35,7 @@
             return this.View(questions);
         }
         
+        // TODO this method looks so ugly make it beautiful ...
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Fill(IList<FillQuestionsViewModel> questions)
@@ -49,16 +49,31 @@
 
             foreach (var question in questions)
             {
-                var currentAnswer = new ParticipantAnswer
+                var currentAnswer = new ParticipantAnswer();
+
+                if (question.HasMultipleAnswers)
                 {
-                    QuestionAnswerId = int.Parse(question.QuestionName),
-                    ParticipantId = participant.Id.ToString()
-                };
+                    foreach (var answer in question.QuestionAnswers)
+                    {
+                        if (answer.IsChecked)
+                        {
+                            currentAnswer.QuestionAnswerId = answer.Id;
+                            currentAnswer.ParticipantId = participant.Id.ToString();
 
-                this.participantAnswers.Add(currentAnswer);
+                            this.participantAnswers.Add(currentAnswer);
+                            this.participantAnswers.SaveChanges();
+                        }
+                    }
+                }
+                else
+                {
+                    currentAnswer.QuestionAnswerId = int.Parse(question.QuestionName);
+                    currentAnswer.ParticipantId = participant.Id.ToString();
+
+                    this.participantAnswers.Add(currentAnswer);
+                    this.participantAnswers.SaveChanges();
+                } 
             }
-
-            this.participantAnswers.SaveChanges();
 
             return this.RedirectToAction<HomeController>(c => c.Index());
         }

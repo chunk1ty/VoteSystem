@@ -1,11 +1,9 @@
 ﻿namespace VoteSystem.Web.ViewModels.FillRateSystem
 {
-    using Data.Models;
-    using Infrastructure.Mapping;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
+
+    using VoteSystem.Data.Models;
+    using VoteSystem.Web.Infrastructure.Mapping;
 
     public class FillQuestionsViewModel : IMapFrom<Question>, IMapTo<Question>
     {
@@ -15,6 +13,8 @@
         }
         
         public string QuestionName { get; set; }
+
+        public bool HasMultipleAnswers { get; set; }
 
         public int RateSystemId { get; set; }
 

@@ -1,12 +1,11 @@
 ﻿namespace VoteSystem.Web.Areas.Administration.Controllers
 {
-    using Data.Models;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Mvc.Expressions;
 
+    using VoteSystem.Data.Models;
     using VoteSystem.Services.Data.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
     using VoteSystem.Web.ViewModels;

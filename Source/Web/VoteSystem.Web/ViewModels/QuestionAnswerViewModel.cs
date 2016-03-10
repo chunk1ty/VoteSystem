@@ -10,11 +10,14 @@
     {
         public int Id { get; set; }
 
-        [Required]
+        // TODO required broke logic when user fill rate system. Create separate VM for filling.
+        //[Required]
         [MinLength(2, ErrorMessage = "The answer can not be less than 2 symbols.")]
         [MaxLength(100, ErrorMessage = "The answer can not be greater than 100 symbols.")]
         [DisplayName("Answer")]
         public string QuestionAnswerName { get; set; }
+
+        public bool IsChecked { get; set; }
 
         public int QuestionId { get; set; }
 

@@ -46,7 +46,7 @@
             return this.rateSystems.All();
         }
 
-        public IQueryable<RateSystem> AllActive(string UserId)
+        public IQueryable<RateSystem> AllActive(string userId)
         {
             return this.rateSystems
                     .All()
@@ -54,7 +54,7 @@
                             x.StarDateTime <= DateTime.Now && 
                             DateTime.Now <= x.EndDateTime &&
                             x.Participants.Any(y =>
-                                                y.UserId == UserId));
+                                                y.UserId == userId));
         }
 
         public RateSystem GetById(int rateSystemId)

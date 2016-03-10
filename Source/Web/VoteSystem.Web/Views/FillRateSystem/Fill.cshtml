@@ -20,6 +20,7 @@
     <div class="row">
         @for (int i = 0; i < Model.Count; i++)
         {
+            @Html.HiddenFor(m => Model[i].HasMultipleAnswers)
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
@@ -42,10 +43,21 @@
                     <div class="x_content">
                         @for (int j = 0; j < Model[i].QuestionAnswers.Count; j++)
                         {
-                            <div class="radio">
-                                @Html.RadioButtonFor(m => m[i].QuestionName, Model[i].QuestionAnswers[j].Id, new { @class = "flat" })
-                                @Html.Label(Model[i].QuestionAnswers[j].QuestionAnswerName)
-                            </div>
+                            if (Model[i].HasMultipleAnswers)
+                            {
+                                <div class="radio">
+                                    @Html.CheckBoxFor(m => m[i].QuestionAnswers[j].IsChecked, new { @class = "flat" })
+                                    @Html.Label(Model[i].QuestionAnswers[j].QuestionAnswerName)
+                                    @Html.HiddenFor(m => m[i].QuestionAnswers[j].Id)
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="radio">
+                                    @Html.RadioButtonFor(m => m[i].QuestionName, Model[i].QuestionAnswers[j].Id, new { @class = "flat" })
+                                    @Html.Label(Model[i].QuestionAnswers[j].QuestionAnswerName)
+                                </div>
+                            }
                         }
                     </div>
                 </div>

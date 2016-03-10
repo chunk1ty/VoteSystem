@@ -21,6 +21,10 @@
         [MaxLength(200, ErrorMessage = "The question name can not be greater than 200 symbols.")]
         public string QuestionName { get; set; }
 
+        [Required]
+        [DisplayName("Do you want multiple answers?")]
+        public bool HasMultipleAnswers { get; set; }
+
         public int RateSystemId { get; set; }
 
         public IList<QuestionAnswerViewModel> QuestionAnswers { get; set; }
