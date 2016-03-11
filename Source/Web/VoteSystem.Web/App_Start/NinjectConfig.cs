@@ -85,6 +85,7 @@ namespace VoteSystem.Web
 
             // TODO bind the entire assembly
             kernel.Bind(typeof(ICacheService)).To(typeof(CacheService));
+            kernel.Bind(typeof(IIdentifierProvider)).To(typeof(IdentifierProvider));
         }        
     }
 }

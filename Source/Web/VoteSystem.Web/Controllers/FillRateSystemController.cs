@@ -25,7 +25,7 @@
             this.participantAnswers = userAnswers;
         }
 
-        public ActionResult Fill(int rateSystemID)
+        public ActionResult Fill(string rateSystemID)
         {
             var questions = this.questions
                                 .GetAllQuestions(rateSystemID)

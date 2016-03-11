@@ -12,7 +12,7 @@
     </style>    
 }
 
-@using (Html.BeginForm<FillRateSystemController>(c => c.Fill(0), FormMethod.Post))
+@using (Html.BeginForm<FillRateSystemController>(c => c.Fill(string.Empty), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m[0].RateSystemId)

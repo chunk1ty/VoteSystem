@@ -10,6 +10,8 @@
 
         void Delete(Question question);
 
+        IQueryable<Question> GetAllQuestions(string rateSystemId);
+
         IQueryable<Question> GetAllQuestions(int rateSystemId);
 
         IQueryable<Question> GetUsersAnswers(int rateSystemId);

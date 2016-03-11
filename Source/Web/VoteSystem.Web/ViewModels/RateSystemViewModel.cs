@@ -4,13 +4,24 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    
+
     using VoteSystem.Data.Models;
     using VoteSystem.Web.Infrastructure.Mapping;
+    using VoteSystem.Services.Web.Contracts;
+    using VoteSystem.Services.Web;
 
     public class RateSystemViewModel : IMapFrom<RateSystem>, IMapTo<RateSystem>
     {
         public int Id { get; set; }
+
+        public string EncodedId
+        {
+            get
+            {
+                IIdentifierProvider identifier = new IdentifierProvider();
+                return identifier.EncodeId(this.Id);
+            }
+        }
 
         [Required]
         [DisplayName("Name")]

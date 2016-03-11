@@ -33,15 +33,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var system in Model)
                         {
                             <tr>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
                                     <span class="btn btn-success btn-xs">Active</span>
                                 </td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">@item.RateSystemName</td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">@(Html.ActionLink<FillRateSystemController>("Join", c => c.Fill(item.Id)))</td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">@Html.TimeDisplay(item.EndDateTime)</td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">@system.RateSystemName</td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">@(Html.ActionLink<FillRateSystemController>("Join", c => c.Fill(system.EncodedId)))</td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">@Html.TimeDisplay(system.EndDateTime)</td>
                             </tr>
                          }
                     </tbody>
