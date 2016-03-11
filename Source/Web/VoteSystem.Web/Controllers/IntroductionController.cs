@@ -4,7 +4,6 @@
     using System.Web.Mvc;
 
     using VoteSystem.Services.Data.Contracts;
-    using VoteSystem.Services.Web.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
     using VoteSystem.Web.ViewModels;
 
@@ -17,6 +16,7 @@
             this.rateSystems = rateSystems;            
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var system = this.Cache.Get(

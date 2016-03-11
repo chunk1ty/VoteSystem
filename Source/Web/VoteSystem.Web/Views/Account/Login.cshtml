@@ -2,9 +2,10 @@
 @using VoteSystem.Common;
 
 @model LoginViewModel
+
 @{
-    ViewBag.Title = "Log in";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string returnUrl = (string)ViewBag.ReturnUrl;
 }
 
 @section Styles {
@@ -20,7 +21,7 @@
             </div>
             <div class="panel-body">
                 <section id="loginForm">
-                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    @using (Html.BeginForm<AccountController>(c => c.Login(returnUrl), FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))                 
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -70,9 +71,3 @@
 <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 955px; width: 1903px; z-index: -999999; position: fixed;">
     <img src="~/Content/Images/1.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1903px; height: 1268.67px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -156.833px;">
 </div>
-
-@*<div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>*@

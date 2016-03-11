@@ -33,6 +33,7 @@
         public IQueryable<Question> GetAllQuestions(string rateSystemId)
         {
             var rateSystemIntId = this.identifierProvider.DecodeId(rateSystemId);
+
             // TODO x.IsDeleted ? if i use deletable entity
             return this.questions
                             .All()

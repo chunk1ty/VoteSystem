@@ -6,9 +6,9 @@
     using System.ComponentModel.DataAnnotations;
 
     using VoteSystem.Data.Models;
-    using VoteSystem.Web.Infrastructure.Mapping;
-    using VoteSystem.Services.Web.Contracts;
     using VoteSystem.Services.Web;
+    using VoteSystem.Services.Web.Contracts;
+    using VoteSystem.Web.Infrastructure.Mapping;
 
     public class RateSystemViewModel : IMapFrom<RateSystem>, IMapTo<RateSystem>
     {

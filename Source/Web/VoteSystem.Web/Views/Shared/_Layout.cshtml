@@ -11,12 +11,11 @@
     @Styles.Render("~/Content/gentelella-css")
     @RenderSection("styles", required: false)
     @*TODO: added here because of problem with edit questions*@
-    <script src="~/Scripts/jquery-2.2.0.js"></script>
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body class="nav-md">
     @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

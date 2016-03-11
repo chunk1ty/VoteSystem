@@ -8,6 +8,7 @@
     using VoteSystem.Services.Web.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
 
+    [Authorize]
     public abstract class BaseController : Controller
     {
         [Inject]

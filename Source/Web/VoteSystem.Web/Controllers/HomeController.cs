@@ -8,8 +8,7 @@
     using VoteSystem.Services.Data.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
     using VoteSystem.Web.ViewModels;
-
-    [Authorize]
+    
     public class HomeController : BaseController
     {
         private IRateSystemService rateSystems;

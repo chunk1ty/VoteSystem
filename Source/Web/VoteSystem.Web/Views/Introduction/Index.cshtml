@@ -110,3 +110,12 @@
         @Html.Partial(PartialViewConstants.FooterPartial)
     </div>
 </div>
+
+@section scripts {
+    <script>
+        $('video').on('ended', function () {
+            this.load();
+            this.play();
+        });
+    </script>
+}
