@@ -9,7 +9,7 @@
 
         public bool IsSelect { get; set; }
 
-        public string FN { get; set; }
+        public int FN { get; set; }
 
         public string Email { get; set; }
 

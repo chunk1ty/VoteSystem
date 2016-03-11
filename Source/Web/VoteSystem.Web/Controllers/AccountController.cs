@@ -162,8 +162,16 @@
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FN = model.FacultyNumber,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
                 var result = await this.UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -176,6 +184,7 @@
 
                     return this.RedirectToAction("Index", "Home");
                 }
+
                 this.AddErrors(result);
             }
 

@@ -35,6 +35,30 @@
 
                         <div class="input-group">
                             <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Enter first name." })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger", style = "padding-left: 20px" })
+
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Enter last name." })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger", style = "padding-left: 20px" })
+
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            @Html.TextBoxFor(m => m.FacultyNumber, new { @class = "form-control", placeholder = "Enter faculty number." })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.FacultyNumber, "", new { @class = "text-danger", style = "padding-left: 20px" })
+
+                        <div class="input-group">
+                            <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-lock"></i>
                             </span>
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password." })

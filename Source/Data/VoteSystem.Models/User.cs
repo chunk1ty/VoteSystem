@@ -14,7 +14,7 @@
             this.Participants = new HashSet<Participant>();
         }
 
-        public string FN { get; set; }
+        public int FN { get; set; }
 
         public string FirstName { get; set; }
 

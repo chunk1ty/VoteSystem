@@ -47,7 +47,7 @@ namespace VoteSystem.Data.Migrations
                 {
                     UserName = AdministratorUserName,
                     Email = AdministratorUserName,
-                    FN = "10001",
+                    FN = 10001,
                     FirstName = "Admin",
                     LastName = "Admin"
                 };
@@ -70,7 +70,7 @@ namespace VoteSystem.Data.Migrations
                 {
                     UserName = "user" + i + "@abv.bg",
                     Email = "user" + i + "@abv.bg",
-                    FN = "1000" + i,
+                    FN = 1000 + i,
                     FirstName = "FirstUserName" + i,
                     LastName = "LastUserName" + i
                 };

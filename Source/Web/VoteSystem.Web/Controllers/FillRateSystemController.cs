@@ -12,6 +12,7 @@
     using VoteSystem.Services.Data.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
 
+    [Authorize]
     public class FillRateSystemController : BaseController
     {
         private IQuestionService questions;
