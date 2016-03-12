@@ -12,7 +12,15 @@
             TimeSpan ts = endDate - DateTime.Now;
 
             string timeAsString = string.Empty;
-            if (ts.Days <= 0)
+
+            if (ts.Hours == 0 && ts.Days == 0)
+            {
+                timeAsString = string.Format(
+                                           "{0} minute{1}",                                         
+                                           ts.Minutes,
+                                           ts.Minutes == 1 ? string.Empty : "s");
+            }
+            else if (ts.Days == 0)
             {
                 timeAsString = string.Format(
                                             "{0} hour{1} {2} minute{3}",

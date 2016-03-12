@@ -11,8 +11,13 @@
         {
             this.QuestionAnswers = new List<QuestionAnswerViewModel>();
         }
-        
+
+        public int Id { get; set; }
+
         public string QuestionName { get; set; }
+
+        // dummy way to detect user answer when question has radio group
+        public string RadioGroupAnswer { get; set; }
 
         public bool HasMultipleAnswers { get; set; }
 

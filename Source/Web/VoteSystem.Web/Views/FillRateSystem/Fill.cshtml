@@ -9,6 +9,10 @@
         .radio label {
             padding-left: 5px;
         }
+
+        .my-error-class {
+            color: #E74C3C;
+        }
     </style>    
 }
 
@@ -18,13 +22,16 @@
     @Html.HiddenFor(m => m[0].RateSystemId)
 
     <div class="row">
-        @for (int i = 0; i < Model.Count; i++)
+        @for (int question = 0; question < Model.Count; question++)
         {
-            @Html.HiddenFor(m => Model[i].HasMultipleAnswers)
+            @Html.HiddenFor(m => m[question].HasMultipleAnswers)
+            @Html.HiddenFor(m => m[question].QuestionName)
+            @Html.HiddenFor(m => m[question].Id)
+
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>@Model[i].QuestionName</h2>
+                        <h2>@Model[question].QuestionName</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
                                 <a class="collapse-link">
@@ -41,21 +48,26 @@
                     </div>
 
                     <div class="x_content">
-                        @for (int j = 0; j < Model[i].QuestionAnswers.Count; j++)
+                        <div>
+                            @Html.ValidationMessage(Model[question].Id.ToString(), new { @class = "my-error-class" })
+                        </div>
+                        @for (int answer = 0; answer < Model[question].QuestionAnswers.Count; answer++)
                         {
-                            if (Model[i].HasMultipleAnswers)
+                            if (Model[question].HasMultipleAnswers)
                             {
                                 <div class="radio">
-                                    @Html.CheckBoxFor(m => m[i].QuestionAnswers[j].IsChecked, new { @class = "flat" })
-                                    @Html.Label(Model[i].QuestionAnswers[j].QuestionAnswerName)
-                                    @Html.HiddenFor(m => m[i].QuestionAnswers[j].Id)
+                                    @Html.CheckBoxFor(m => m[question].QuestionAnswers[answer].IsChecked, new { @class = "flat" })
+                                    @Html.Label(Model[question].QuestionAnswers[answer].QuestionAnswerName)
+                                    @Html.HiddenFor(m => m[question].QuestionAnswers[answer].Id)
+                                    @Html.HiddenFor(m => m[question].QuestionAnswers[answer].QuestionAnswerName)
                                 </div>
                             }
                             else
                             {
                                 <div class="radio">
-                                    @Html.RadioButtonFor(m => m[i].QuestionName, Model[i].QuestionAnswers[j].Id, new { @class = "flat" })
-                                    @Html.Label(Model[i].QuestionAnswers[j].QuestionAnswerName)
+                                    @Html.RadioButtonFor(m => m[question].RadioGroupAnswer, Model[question].QuestionAnswers[answer].Id, new { @class = "flat" })
+                                    @Html.Label(Model[question].QuestionAnswers[answer].QuestionAnswerName)
+                                    @Html.HiddenFor(m => m[question].QuestionAnswers[answer].QuestionAnswerName)
                                 </div>
                             }
                         }

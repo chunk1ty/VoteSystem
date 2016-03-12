@@ -16,7 +16,7 @@
         [MaxLength(100, ErrorMessage = "The answer can not be greater than 100 symbols.")]
         [DisplayName("Answer")]
         public string QuestionAnswerName { get; set; }
-
+        
         public bool IsChecked { get; set; }
 
         public int QuestionId { get; set; }

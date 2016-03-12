@@ -53,6 +53,14 @@
 
                 if (question.HasMultipleAnswers)
                 {
+                    bool isNotChecked = question.QuestionAnswers.All(x => x.IsChecked == false);
+
+                    if (isNotChecked)
+                    {
+                        this.ModelState.AddModelError(question.Id.ToString(), "You have to check at least one option!");
+                        return this.View(questions);
+                    }
+
                     foreach (var answer in question.QuestionAnswers)
                     {
                         if (answer.IsChecked)
@@ -67,7 +75,13 @@
                 }
                 else
                 {
-                    currentAnswer.QuestionAnswerId = int.Parse(question.QuestionName);
+                    if (question.RadioGroupAnswer == null)
+                    {
+                        this.ModelState.AddModelError(question.Id.ToString(), "You have to select option!");
+                        return this.View(questions);
+                    }
+
+                    currentAnswer.QuestionAnswerId = int.Parse(question.RadioGroupAnswer);
                     currentAnswer.ParticipantId = participant.Id.ToString();
 
                     this.participantAnswers.Add(currentAnswer);
