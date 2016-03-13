@@ -76,7 +76,7 @@
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
                                     <a href="@(Url.Action<ResultController>(c => c.Index(rateSystem.Id)))" class="btn btn-dark btn-xs">
-                                        <i class="fa fa-folder"></i>
+                                        <i class="fa fa-pie-chart"></i>
                                         Results
                                     </a>
                                     <a href="@(Url.Action<RateSystemController>(c => c.Edit(rateSystem.Id)))" class="btn btn-dark btn-xs">
@@ -112,8 +112,12 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" id="cancel-btn" class="btn btn-default" data-dismiss="modal" style="margin: 0;">Cancel</button>
-                <button type="button" id="delete-rate-system-btn" class="btn btn-danger">Yes</button>
+                <button type="button" id="cancel-btn" class="btn btn-dark" data-dismiss="modal" style="margin: 0;">
+                    Cancel
+                </button>
+                <button type="button" id="delete-rate-system-btn" class="btn btn-danger">
+                    Yes
+                </button>
             </div>
         </div>
     </div>

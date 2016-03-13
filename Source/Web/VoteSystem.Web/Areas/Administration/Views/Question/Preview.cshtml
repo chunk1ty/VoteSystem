@@ -4,12 +4,13 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<div class="row">
-    @Html.DisplayForModel()
-</div>
-
 <div class="text-center">
-    <a href="@(Url.Action<RateSystemController>(c => c.Index()))" class="btn btn-dark">
+    <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
+        <i class="glyphicon glyphicon-arrow-left"></i>
         Back
     </a>
+</div>
+
+<div class="row">
+    @Html.DisplayForModel()
 </div>

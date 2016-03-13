@@ -19,7 +19,22 @@
     @Html.HiddenFor(m => m.RateSystemId)
     @Html.Hidden("more-question-url", Url.Action<AjaxController>(c => c.MoreQuestions()))
     <div class="text-center">
-        @Html.ValidationSummary(true, null, new {@class = "text-danger" })
+        @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="text-center">
+        <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+            Back
+        </a>
+        <span id="add-more-questions" class="btn btn-dark">
+            <i class="fa fa-plus"></i>
+            New Question
+        </span>
+        <button type="submit" class="btn btn-dark">
+            <i class="glyphicon glyphicon-floppy-disk"></i>
+            Save
+        </button>
     </div>
 
     <div id="question-list">
@@ -28,11 +43,6 @@
             counter++;
             Html.RenderPartial(PartialViewConstants.QuestionPartial, question, new ViewDataDictionary { { "counter", counter } });
         }
-    </div>
-
-    <div class="text-center">
-        <span id="add-more-questions" class="btn btn-dark">New Question</span>
-        <input type="submit" class="btn btn-success" value="Save" />
     </div>
 }
 
