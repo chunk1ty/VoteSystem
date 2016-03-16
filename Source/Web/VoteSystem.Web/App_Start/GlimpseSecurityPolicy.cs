@@ -2,8 +2,7 @@ namespace VoteSystem.Web
 {
     using Glimpse.AspNet.Extensions;
     using Glimpse.Core.Extensibility;
-
-    using VoteSystem.Common;
+    using Infrastructure.Extensions;
 
     public class GlimpseSecurityPolicy : IRuntimePolicy
     {
@@ -22,8 +21,8 @@ namespace VoteSystem.Web
             //You can perform a check like the one below to control Glimpse's permissions within your application.
             // More information about RuntimePolicies can be found at http://getglimpse.com/Help/Custom-Runtime-Policy
             var httpContext = policyContext.GetHttpContext();
-            
-            if (!httpContext.User.IsInRole(GlobalConstants.AdministratorRoleName))
+           
+            if (!httpContext.User.IsAdministrator())
             {
                 return RuntimePolicy.Off;
             }

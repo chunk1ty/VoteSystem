@@ -3,119 +3,85 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*TODO place in separate css file/ First check do i really need it*@
-<style>
-    body {
-        margin: 0;
-    }
+@section styles {  
+    @Styles.Render("~/bundles/introduction-page-css")
+}
 
-    video {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        z-index: 0;
-        background-size: cover;
-    }
+<div id="wrap">
+    <header class="masthead"></header>
+   
+    <div id="nav" class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav pull-right">                    
+                    <li>
+                        <a href="#features">
+                            Начало
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about-me">
+                            За мен
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact-me">
+                            Контакти
+                        </a>
+                    </li>
+                    <li>
+                        @(Html.ActionLink<AccountController>("Вход", c => c.Login(string.Empty), new { area = string.Empty }, htmlAttributes: new { id = "loginLink" }))
+                    </li>
+                    <li>
+                        @(Html.ActionLink<AccountController>("Регистрация", c => c.Register(), new { area = string.Empty }, htmlAttributes: new { id = "registerLink" }))
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    .navbar-inverse {
-        background-color: transparent;
-        border-color: transparent;
-    }
+    <div style="height: 955px; min-height: 500px;">
+        <video autoplay loop>
+            <source src="~/Content/Videos/stars.webm" type="video/webm" />
+        </video>
 
-    .how-to-use {
-        position: absolute;
-        bottom: 25px;
-        text-align: center;
-        width: 100%;
-    }
-
-        .how-to-use a {
-            font-size: 30px;
-            color: #ffffff;
-            opacity: 0.7;
-        }
-
-            .how-to-use a:hover {
-                opacity: 1;
-                text-decoration: none;
-            }
-
-    .vote-system-title {
-        position: absolute;
-        top: 300px;
-        width: 100%;
-        text-align: center;
-        color: #ffffff !important;
-    }
-
-        .vote-system-title h1 {
-            font-size: 70px;
-            font-family: sans-serif;
-            letter-spacing: 5px;
-        }
-</style>
-
-<div id="page-wraper">
-    <div class="wrapper">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right navigation-bar">
-                        <li>
-                            @(Html.ActionLink<AccountController>("LOG IN", c => c.Login(string.Empty), new { area = string.Empty }, htmlAttributes: new { id = "loginLink" }))
-                        </li>
-                        <li>
-                            @(Html.ActionLink<AccountController>("SIGN UP", c => c.Register(), new { area = string.Empty }, htmlAttributes: new { id = "registerLink" }))
-                        </li>
-                    </ul>
+        <div class="container container-table">
+            <div class="row vertical-center-row">
+                <div class="text-center col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+                    <h1 class="vote-system-title">
+                        СИСТЕМА ЗА ГЛАСУВАНЕ
+                    </h1>
                 </div>
             </div>
         </div>
-
-        <div id="intro" style="height: 955px; min-height: 500px;">
-            <video autoplay loop>
-                <source src="~/Content/Videos/stars.webm" type="video/webm" />
-            </video>
-
-            <div class="vote-system-title">
-                <h1>
-                   VOTE SYSTEM
-                </h1>
-            </div>
-
-            <div class="how-to-use">
-                <a href="#features" title="HOW IT WORKS?">
-                     HOW IT WORKS
-                    <div class="arrow"></div>
-                </a>
-            </div>
-        </div>
-
-        <section id="features" style="height: 955px; min-height: 500px;">
-            Sit amet sem venenatis nec lobortis sem suscipit nullam nec imperdiet velit mauris eu nisi a felis imperdiet porta at ac nulla vivamus faucibus felis nec dolor pretium eget pellentesque dolor suscipit maecenas vitae enim arcu, at tincidunt nunc pellentesque eleifend vulputate lacus, vel semper sem ornare sit amet proin sem sapien, auctor vel faucibus id, aliquet vitae ipsum etiam auctor ultricies ante, at dapibus urna viverra sed nullam mi arcu, tempor vitae interdum a, sodales non urna vestibulum dignissim auctor mauris, ac elementum purus fermentum vitae duis placerat laoreet risus, sit amet eleifend tellus lobortis non vivamus iaculis dapibus leo a ornare cras vel sem at felis convallis mollis posuere ultrices dolor sed tellus arcu, accumsan a consectetur sit amet, volutpat eget lorem phasellus quis ipsum orci integer sodales tincidunt nibh a elementum ut ac libero nec orci euismod euismod nec at nulla duis malesuada faucibus porta aliquam nec consequat eros sed porttitor placerat dolor, accumsan imperdiet neque ornare in aenean non elit non leo porta mattis mauris non dolor nunc, id congue odio donec tellus nisl, semper id consectetur vitae, dapibus dictum nisl morbi sed augue purus sed dictum diam convallis tortor interdum volutpat phasellus dapibus arcu sit amet neque vulputate sed elementum orci fringilla in hac habitasse platea dictumst maecenas ut dui diam curabitur adipiscing vestibulum libero, nec varius dui pulvinar eget vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; aliquam dui neque, varius eu laoreet vel.
-        </section>
-
-        <section id="about-me" style="height: 955px; min-height: 500px;">
-            Sit amet sem venenatis nec lobortis sem suscipit nullam nec imperdiet velit mauris eu nisi a felis imperdiet porta at ac nulla vivamus faucibus felis nec dolor pretium eget pellentesque dolor suscipit maecenas vitae enim arcu, at tincidunt nunc pellentesque eleifend vulputate lacus, vel semper sem ornare sit amet proin sem sapien, auctor vel faucibus id, aliquet vitae ipsum etiam auctor ultricies ante, at dapibus urna viverra sed nullam mi arcu, tempor vitae interdum a, sodales non urna vestibulum dignissim auctor mauris, ac elementum purus fermentum vitae duis placerat laoreet risus, sit amet eleifend tellus lobortis non vivamus iaculis dapibus leo a ornare cras vel sem at felis convallis mollis posuere ultrices dolor sed tellus arcu, accumsan a consectetur sit amet, volutpat eget lorem phasellus quis ipsum orci integer sodales tincidunt nibh a elementum ut ac libero nec orci euismod euismod nec at nulla duis malesuada faucibus porta aliquam nec consequat eros sed porttitor placerat dolor, accumsan imperdiet neque ornare in aenean non elit non leo porta mattis mauris non dolor nunc, id congue odio donec tellus nisl, semper id consectetur vitae, dapibus dictum nisl morbi sed augue purus sed dictum diam convallis tortor interdum volutpat phasellus dapibus arcu sit amet neque vulputate sed elementum orci fringilla in hac habitasse platea dictumst maecenas ut dui diam curabitur adipiscing vestibulum libero, nec varius dui pulvinar eget vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; aliquam dui neque, varius eu laoreet vel.
-        </section>
-
-        <section id="contact-me" style="height: 955px; min-height: 500px;">
-            Sit amet sem venenatis nec lobortis sem suscipit nullam nec imperdiet velit mauris eu nisi a felis imperdiet porta at ac nulla vivamus faucibus felis nec dolor pretium eget pellentesque dolor suscipit maecenas vitae enim arcu, at tincidunt nunc pellentesque eleifend vulputate lacus, vel semper sem ornare sit amet proin sem sapien, auctor vel faucibus id, aliquet vitae ipsum etiam auctor ultricies ante, at dapibus urna viverra sed nullam mi arcu, tempor vitae interdum a, sodales non urna vestibulum dignissim auctor mauris, ac elementum purus fermentum vitae duis placerat laoreet risus, sit amet eleifend tellus lobortis non vivamus iaculis dapibus leo a ornare cras vel sem at felis convallis mollis posuere ultrices dolor sed tellus arcu, accumsan a consectetur sit amet, volutpat eget lorem phasellus quis ipsum orci integer sodales tincidunt nibh a elementum ut ac libero nec orci euismod euismod nec at nulla duis malesuada faucibus porta aliquam nec consequat eros sed porttitor placerat dolor, accumsan imperdiet neque ornare in aenean non elit non leo porta mattis mauris non dolor nunc, id congue odio donec tellus nisl, semper id consectetur vitae, dapibus dictum nisl morbi sed augue purus sed dictum diam convallis tortor interdum volutpat phasellus dapibus arcu sit amet neque vulputate sed elementum orci fringilla in hac habitasse platea dictumst maecenas ut dui diam curabitur adipiscing vestibulum libero, nec varius dui pulvinar eget vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; aliquam dui neque, varius eu laoreet vel.
-        </section>
-
-        @Html.Partial(PartialViewConstants.FooterPartial)
     </div>
+
+    <section id="features" style="height: 955px; min-height: 500px;">
+        Идея на приложението е да замени традиционото (и досадно) попълване на хартиени анкети.
+        Преди началото на всяка анкета (ако сте добавени към нея) ще получите е-майл кога започва и кога свършва.
+        Приложението е с интуитивен и опростен приятелски интерфейс.
+    </section>
+
+    <section id="about-me" style="height: 955px; min-height: 500px;">
+        Здравейте. Аз се казвам Андриян Невелино Кръстев и съм създателя на това приложение.
+
+        Използвам най-новите C# и JavaScript технологии като ASP.NET MVC, ASP.NET Web API, Entity Framework, AngularJS, jQuery, Twitter Bootstrap и други.
+
+        Също така съм студент (магистратура) в Русенски университет "Ангел Кънчев" със специалност Компютърни Системи и Технологии.
+    </section>
+
+    <section id="contact-me" style="height: 955px; min-height: 500px;">
+        Kontakti
+    </section>
 </div>
 
 @section scripts {
-    <script>
-        $('video').on('ended', function () {
-            this.load();
-            this.play();
-        });
-    </script>
+    @Scripts.Render("~/bundles/introduction-page-js")
 }

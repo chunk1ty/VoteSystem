@@ -324,6 +324,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom\forms.css" />
+    <Content Include="Content\Custom\introduction-page.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.dataTables.css" />
@@ -426,7 +427,6 @@
     <Content Include="Content\images\vote2.jpg" />
     <Content Include="Content\images\vote1.jpg" />
     <Content Include="Content\images\vote3.jpg" />
-    <Content Include="Content\scripts\main.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -498,6 +498,7 @@
     <Content Include="Areas\Administration\Views\User\DisplayTemplates\UserViewModel.cshtml" />
     <None Include="Properties\PublishProfiles\VoteSystem.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\Custom\introduction-page.js" />
     <Content Include="Scripts\Custom\questionController.js" />
     <Content Include="Scripts\Custom\adminController.js" />
     <Content Include="Scripts\Custom\calendars.js" />
