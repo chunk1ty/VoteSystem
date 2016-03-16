@@ -11,7 +11,7 @@
 
     using VoteSystem.Data.Models;
     using VoteSystem.Web.ViewModels.Account;
-   
+    using System;
     [Authorize]
     public class AccountController : BaseController
     {
@@ -180,7 +180,12 @@
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    UriBuilder url = new UriBuilder(callbackUrl);
+                    url.Port = -1;
+                    string cleanUrl = url.Uri.ToString();
+
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + cleanUrl + "\">here</a>");
 
                     return this.RedirectToAction("Index", "Home");
                 }
