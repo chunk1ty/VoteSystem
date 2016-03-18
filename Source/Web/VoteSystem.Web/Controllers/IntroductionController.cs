@@ -1,6 +1,8 @@
 ﻿namespace VoteSystem.Web.Controllers
 {
+    using Microsoft.AspNet.Identity;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using ViewModels.Introduction;
     using VoteSystem.Services.Data.Contracts;
@@ -29,12 +31,17 @@
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Index(FeedbackViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Index(FeedbackViewModel model)
         {
-            //var system = this.Cache.Get(
-            //    "rateSystems",
-            //    () => this.rateSystems.GetAll().To<RateSystemViewModel>().ToList(),
-            //    1 * 60);
+            if (model == null || !ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            EmailService email = new EmailService();
+
+            await email.SendFeedbackEmailAsync(model);
 
             return this.RedirectToAction("Index");
         }

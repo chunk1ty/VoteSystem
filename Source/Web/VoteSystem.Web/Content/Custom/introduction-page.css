@@ -10,8 +10,6 @@
     height: 100%;
     /* Negative indent footer by its height */
     margin: 0 auto -60px;
-    /* Pad bottom by footer height */
-    padding: 0 0 60px;
 }
 
 /* Set the fixed height of the footer here */
@@ -175,4 +173,22 @@ body {
 
 .navbar-inverse .navbar-nav > .active > a:hover {
     background-color: #2A3F54;
+}
+
+.error-message {
+    height: 30px;
+    margin-top: 5px;
+    margin-left: 15px;
+    color: red;
+}
+
+.contact-info-title {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 20px;
+}
+
+.footer-title {
+    color: #E7E7E7;
+    font-size: 15px;
 }

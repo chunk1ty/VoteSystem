@@ -5,16 +5,49 @@
     using Microsoft.AspNet.Identity;
     using SendGrid;
     using System;
+    using ViewModels.Introduction;
 
     public class EmailService : IIdentityMessageService
     {
         public async Task SendAsync(IdentityMessage message)
         {
-            await configSendGridasync(message);
+            await ConfigSendGridasync(message);
         }
 
-        // Use NuGet to install SendGrid (Basic C# client lib) 
-        private async Task configSendGridasync(IdentityMessage message)
+        public async Task SendFeedbackEmailAsync(FeedbackViewModel message)
+        {
+            await FeedbackEmailAsync(message);
+        }
+
+        private async Task FeedbackEmailAsync(FeedbackViewModel message)
+        {
+            var myMessage = new SendGridMessage();
+
+            myMessage.AddTo("andriyan.krastev@gmail.com");
+            myMessage.From = new System.Net.Mail.MailAddress(message.Email, message.Name);
+            myMessage.Subject = message.Subject;
+            myMessage.Html = message.Message;
+
+            var transportWeb = new Web("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");
+
+            try
+            {
+                if (transportWeb != null)
+                {
+                    await transportWeb.DeliverAsync(myMessage);
+                }
+                else
+                {
+                    await Task.FromResult(0);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private async Task ConfigSendGridasync(IdentityMessage message)
         {
             var myMessage = new SendGridMessage();
 
@@ -26,23 +59,19 @@
             var transportWeb = new Web("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");
             try
             {
-                // Send the email.
                 if (transportWeb != null)
                 {
                     await transportWeb.DeliverAsync(myMessage);
                 }
                 else
                 {
-                    //Trace.TraceError("Failed to create Web transport.");
                     await Task.FromResult(0);
                 }
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-
         }
     }
 }

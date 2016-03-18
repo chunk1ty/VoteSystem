@@ -133,22 +133,54 @@
                         </h1>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content" style="margin-top: 6%;">
+                    <div class="x_content">
                         <div class="row" style="width: 50%; margin: auto;">
-                            Вашето мнение е важно за мен.
-                            За препоръки или открити бъгове не се колебайте, а ми пишете. :)
+                            <div class="col-md-12 contact-info-title text-center">
+                                Вашето мнение е важно за мен.
+                                <p>
+                                    За препоръки или открити бъгове може да ми пишете.
+                                </p>
+                            </div>
                             @using (Html.BeginForm<IntroductionController>(c => c.Index(), FormMethod.Post, null, new {@class = "form-horizontal" }))
                             {
+                                @Html.AntiForgeryToken()
+
                                 <div class="col-md-6">
-                                    @Html.TextBoxFor(m => m.Name, new {@class = "form-control" })
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                    @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+                                    <div>
+                                        <div>
+                                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Име" })
+                                        </div>
+                                        <div class="error-message">
+                                            @Html.ValidationMessageFor(m => m.Name)
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Имейл" })
+                                        </div>
+                                        <div class="error-message">
+                                            @Html.ValidationMessageFor(m => m.Email)
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = "Тема" })
+                                        </div>
+                                        <div class="error-message">
+                                            @Html.ValidationMessageFor(m => m.Subject)
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
+                                    <div>
+                                        @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Съобщение", rows = 5 })
+                                    </div>
+                                    <div class="error-message">
+                                        @Html.ValidationMessageFor(m => m.Message)
+                                    </div>
                                 </div>
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-dark">
+                                    <button type="submit" class="btn btn-dark" style="margin-top: 20px;">
                                         Изпрати
                                     </button>
                                 </div>
@@ -160,8 +192,10 @@
         </div>
     </section>
 
+    @Html.Partial(PartialViewConstants.FooterPartial)
 </div>
 
 @section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/introduction-page-js")
 }
