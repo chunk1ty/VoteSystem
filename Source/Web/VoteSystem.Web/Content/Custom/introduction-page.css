@@ -110,7 +110,6 @@
     }
 
 section {
-    color: #ffffff;
     min-height: 400px;
     height: auto !important;
     height: 100%;
@@ -134,8 +133,12 @@ header.masthead {
 }
 
 .nav.navbar-nav > li > a, .vertical-center-row, .vertical-center-row a {
-    color: white !important;
+    color: #E7E7E7 !important;
     font-size: 17px;
+    margin-bottom: 0;
+}
+.nav.navbar-nav > li > a:hover {
+   
 }
 
 .container-table {
@@ -152,4 +155,24 @@ header.masthead {
     display: table-cell;
     vertical-align: top;
     padding-bottom: 100px;
+}
+
+.navbar-inverse {
+    background-color: #2A3F54;
+    border-color: #2A3F548;
+}
+
+body {
+    background-color: white;
+    color: #73879C;
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+    border: 3px solid #1ABB9C;
+    color: #1ABB9C !important;
+    background-color: #2A3F54;
+}
+
+.navbar-inverse .navbar-nav > .active > a:hover {
+    background-color: #2A3F54;
 }

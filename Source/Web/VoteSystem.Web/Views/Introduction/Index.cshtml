@@ -1,15 +1,15 @@
-﻿@model IEnumerable<VoteSystem.Web.ViewModels.RateSystemViewModel>
+﻿@model VoteSystem.Web.ViewModels.Introduction.FeedbackViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section styles {  
+@section styles {
     @Styles.Render("~/bundles/introduction-page-css")
 }
 
 <div id="wrap">
     <header class="masthead"></header>
-   
+
     <div id="nav" class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -20,7 +20,7 @@
                 </button>
             </div>
             <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav pull-right">                    
+                <ul class="nav navbar-nav pull-right">
                     <li>
                         <a href="#features">
                             Начало
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <div style="height: 955px; min-height: 500px;">
+    <div style="height: 600px; min-height: 300px;">
         <video autoplay loop>
             <source src="~/Content/Videos/stars.webm" type="video/webm" />
         </video>
@@ -64,22 +64,102 @@
     </div>
 
     <section id="features" style="height: 955px; min-height: 500px;">
-        Идея на приложението е да замени традиционото (и досадно) попълване на хартиени анкети.
-        Преди началото на всяка анкета (ако сте добавени към нея) ще получите е-майл кога започва и кога свършва.
-        Приложението е с интуитивен и опростен приятелски интерфейс.
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="height: 800px; min-height: 500px;">
+                    <div class="x_title">
+                        <h1 class="text-center">
+                            Начало
+                        </h1>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content" style="margin-top: 6%;">
+                        <div class="row" style="width: 70%; margin: auto;">
+                            <div class="col-md-5">
+                                <div class="text-center">
+                                    <img src="~/Content/images/krastev.png" width="350" />
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-md-offset-2 mb-30">
+                                Идея на приложението е да замени традиционото (и досадно) попълване на хартиени анкети.
+                                Преди началото на всяка анкета (ако сте добавени към нея) ще получите е-майл кога започва и кога свършва.
+                                Приложението е с интуитивен и опростен приятелски интерфейс.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="about-me" style="height: 955px; min-height: 500px;">
-        Здравейте. Аз се казвам Андриян Невелино Кръстев и съм създателя на това приложение.
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="height: 800px; min-height: 500px;">
+                    <div class="x_title">
+                        <h1 class="text-center">
+                            За мен
+                        </h1>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content" style="margin-top: 6%;">
+                        <div class="row" style="width: 70%; margin: auto;">
+                            <div class="col-md-5">
+                                <div class="text-center">
+                                    <img src="~/Content/images/krastev.png" width="350" />
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-md-offset-2 mb-30">
+                                Здравейте. Аз се казвам Андриян Невелино Кръстев и съм създателя на това приложение.
 
-        Използвам най-новите C# и JavaScript технологии като ASP.NET MVC, ASP.NET Web API, Entity Framework, AngularJS, jQuery, Twitter Bootstrap и други.
+                                Използвам най-новите C# и JavaScript технологии като ASP.NET MVC, ASP.NET Web API, Entity Framework, AngularJS, jQuery, Twitter Bootstrap и други.
 
-        Също така съм студент (магистратура) в Русенски университет "Ангел Кънчев" със специалност Компютърни Системи и Технологии.
+                                Също така съм студент (магистратура) в Русенски университет "Ангел Кънчев" със специалност Компютърни Системи и Технологии.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="contact-me" style="height: 955px; min-height: 500px;">
-        Kontakti
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="height: 800px; min-height: 500px;">
+                    <div class="x_title">
+                        <h1 class="text-center">
+                            Контакти
+                        </h1>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content" style="margin-top: 6%;">
+                        <div class="row" style="width: 50%; margin: auto;">
+                            Вашето мнение е важно за мен.
+                            За препоръки или открити бъгове не се колебайте, а ми пишете. :)
+                            @using (Html.BeginForm<IntroductionController>(c => c.Index(), FormMethod.Post, null, new {@class = "form-horizontal" }))
+                            {
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(m => m.Name, new {@class = "form-control" })
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-dark">
+                                        Изпрати
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
 </div>
 
 @section scripts {

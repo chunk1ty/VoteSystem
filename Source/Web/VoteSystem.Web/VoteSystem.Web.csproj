@@ -278,6 +278,7 @@
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\FillRateSystem\FillQuestionsViewModel.cs" />
+    <Compile Include="ViewModels\Introduction\FeedbackViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -423,6 +424,7 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\images\1.jpg" />
+    <Content Include="Content\images\krastev.png" />
     <Content Include="Content\images\vote1_blured.jpg" />
     <Content Include="Content\images\vote2.jpg" />
     <Content Include="Content\images\vote1.jpg" />

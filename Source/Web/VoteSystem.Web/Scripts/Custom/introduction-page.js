@@ -19,17 +19,18 @@ $('body').scrollspy({
 
 /* smooth scrolling for scroll to top */
 $('.scroll-top').click(function () {
-    $('body,html').animate({
+    $('body').animate({
         scrollTop: 0
-    }, 1000);
+    }, 500);
 })
 
 /* smooth scrolling for nav sections */
 $('#nav .navbar-nav li>a').click(function () {
+    //debugger;
     var link = $(this).attr('href');
     var posi = $(link).offset().top;
 
-    $('body,html').animate({
+    $('body').animate({
         scrollTop: posi
-    }, 700);
+    }, 500);
 });

@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using System.Web.Mvc;
-
+    using ViewModels.Introduction;
     using VoteSystem.Services.Data.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
     using VoteSystem.Web.ViewModels;
@@ -19,12 +19,24 @@
         [AllowAnonymous]
         public ActionResult Index()
         {
-            var system = this.Cache.Get(
-                "rateSystems",
-                () => this.rateSystems.GetAll().To<RateSystemViewModel>().ToList(),
-                1 * 60);
+            //var system = this.Cache.Get(
+            //    "rateSystems",
+            //    () => this.rateSystems.GetAll().To<RateSystemViewModel>().ToList(),
+            //    1 * 60);
 
-            return this.View(system);
+            return this.View(new FeedbackViewModel());
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Index(FeedbackViewModel model)
+        {
+            //var system = this.Cache.Get(
+            //    "rateSystems",
+            //    () => this.rateSystems.GetAll().To<RateSystemViewModel>().ToList(),
+            //    1 * 60);
+
+            return this.RedirectToAction("Index");
         }
     }
 }
