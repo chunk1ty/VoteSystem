@@ -1,7 +1,6 @@
 ﻿'use strict';
 
 $(document).ready(function () {
-    spinner.stop();
     scaleVideoContainer();
 
     initBannerVideoSize('.video-container .poster img');    
