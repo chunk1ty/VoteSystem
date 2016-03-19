@@ -1,6 +1,8 @@
 ﻿'use strict';
 
 $(document).ready(function () {
+    var windowWidth = $(window).width();
+
     scaleVideoContainer();
 
     initBannerVideoSize('.video-container .poster img');    
@@ -55,14 +57,43 @@ $(document).ready(function () {
     $('#float-menu-btn').on('click', function () {
         $('#navigation-menu-btn').removeClass('pull-right').addClass('text-center');
         $('#title-menu-btn').removeClass('pull-left').addClass('text-center');
-    });
+    });    
    
     $('.navbar-header')
-        .width($('.container').width())
+        .width(windowWidth)
         .css({
-            'margin-left': '0px',
+            'margin-left': '0',
+            'margin-right': '0'
+        });
+    
+    $('footer')
+        .width(windowWidth - 40)
+        .css({
+            'margin-left': '0',
             'margin-right': '0px'
         });
+   
+    $(window).resize(function () {
+        windowWidth = $(window).width();
+        $('.navbar-header')
+           .width(windowWidth)
+           .css({
+               'margin-left': '0',
+               'margin-right': '0'
+           });
+
+        $('footer')
+         .width(windowWidth - 40)
+         .css({
+             'margin-left': '0',
+             'margin-right': '0'
+         });
+    });
+
+     var navMain = $("#nav-main");
+     navMain.on("click", "a", null, function () {
+         navMain.collapse('hide');
+     });
 });
 
 function scaleVideoContainer() {
