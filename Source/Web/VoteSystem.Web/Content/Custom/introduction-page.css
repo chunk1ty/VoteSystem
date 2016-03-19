@@ -62,8 +62,83 @@
         -webkit-transition: all .6s ease-in-out;
     }
 
-#footer > .container {
-}
+.homepage-hero-module {
+        border-right: none;
+        border-left: none;
+        position: relative;
+    }
+
+    .no-video .video-container video,
+    .touch .video-container video {
+        display: none;
+    }
+
+    .no-video .video-container .poster,
+    .touch .video-container .poster {
+        display: block !important;
+    }
+
+    .video-container {
+        position: relative;
+        bottom: 0%;
+        left: 0%;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background: #000;
+    }
+
+        .video-container .poster img {
+            width: 100%;
+            bottom: 0;
+            position: absolute;
+        }
+
+        .video-container .filter {
+            z-index: 100;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.4);
+            width: 100%;
+        }
+
+        .video-container .title-container {
+            z-index: 1000;
+            position: absolute;
+            top: 35%;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+        }
+
+        .video-container .description .inner {
+            font-size: 1em;
+            width: 45%;
+            margin: 0 auto;
+        }
+
+        .video-container .link {
+            position: absolute;
+            bottom: 3em;
+            width: 100%;
+            text-align: center;
+            z-index: 1001;
+            font-size: 2em;
+            color: #fff;
+        }
+
+            .video-container .link a {
+                color: #fff;
+            }
+
+        .video-container video {
+            position: absolute;
+            z-index: 0;
+            bottom: 0;
+        }
+
+            .video-container video.fillWidth {
+                width: 100%;
+            }
 
 @media (min-width: 767px) {
     .navbar-nav.nav-justified > li {
@@ -126,8 +201,9 @@ video {
 }
 
 header.masthead {
-    height: 100%;
-    min-height: 320px;
+    height: 400px;
+    min-height: 100px;
+    position: absolute;
 }
 
 .nav.navbar-nav > li > a, .vertical-center-row, .vertical-center-row a {
@@ -135,8 +211,9 @@ header.masthead {
     font-size: 17px;
     margin-bottom: 0;
 }
+
 .nav.navbar-nav > li > a:hover {
-   
+   color: #1ABB9C !important;  
 }
 
 .container-table {
@@ -186,9 +263,38 @@ body {
     margin-top: 5%;
     margin-bottom: 5%;
     font-size: 20px;
+    width: 100%;
 }
 
 .footer-title {
     color: #E7E7E7;
     font-size: 15px;
+}
+
+.about-me-info {
+    font-size: 20px;
+    text-align: justify;
+}
+
+.about-me-row {
+    width: 60%;
+    margin: auto;
+}
+
+.introduction-info {
+     font-size: 20px;
+}
+
+@media (max-width: 425px) {
+    .about-me-row {
+        width: 100%;
+    }
+
+    .about-me-info {
+        font-size: 17px;   
+    }
+
+    img {
+        width: 22em;
+    }
 }

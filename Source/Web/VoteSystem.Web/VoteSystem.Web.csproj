@@ -424,6 +424,7 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\images\1.jpg" />
+    <Content Include="Content\images\anketa.png" />
     <Content Include="Content\images\krastev.png" />
     <Content Include="Content\images\vote1_blured.jpg" />
     <Content Include="Content\images\vote2.jpg" />
