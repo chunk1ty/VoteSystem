@@ -295,6 +295,11 @@ body {
     }
 
     img {
-        width: 22em;
+        width: 17em;
+        height: 17em;
     }
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: #1ABB9C;
 }

@@ -46,6 +46,23 @@ $(document).ready(function () {
             scrollTop: posi
         }, 500);
     });
+
+    if ($('.navbar-collapse').hasClass('in')) {
+        console.log(17);
+        console.log($('#float-menu').child);
+    }
+
+    $('#float-menu-btn').on('click', function () {
+        $('#navigation-menu-btn').removeClass('pull-right').addClass('text-center');
+        $('#title-menu-btn').removeClass('pull-left').addClass('text-center');
+    });
+   
+    $('.navbar-header')
+        .width($('.container').width())
+        .css({
+            'margin-left': '0px',
+            'margin-right': '0px'
+        });
 });
 
 function scaleVideoContainer() {
