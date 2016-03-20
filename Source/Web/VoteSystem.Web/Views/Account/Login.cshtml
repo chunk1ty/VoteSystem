@@ -1,5 +1,4 @@
 ﻿@using VoteSystem.Web.ViewModels.Account;
-@using VoteSystem.Common;
 
 @model LoginViewModel
 
@@ -9,65 +8,49 @@
 }
 
 @section Styles {
-   @Styles.Render("~/Content/forms-css")
+    @Styles.Render("~/Content/forms-css")
 }
 
-<div class="row">
-    <div class="col-lg-4 col-lg-offset-4">
-        <h1 class="login-form">Login Form</h1>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="my-panel-title">Use a local account to log in.</h3>
+<div id="wrapper">
+    <div id="login" class="animate form">
+        <section class="login_content">
+            @using (Html.BeginForm<AccountController>(c => c.Login(returnUrl), FormMethod.Post))
+            {
+            @Html.AntiForgeryToken()
+
+            <h1>Вход</h1>
+
+            <div>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email address." })
             </div>
-            <div class="panel-body">
-                <section id="loginForm">
-                    @using (Html.BeginForm<AccountController>(c => c.Login(returnUrl), FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))                 
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email address." })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger", style = "padding-left: 20px" })
-
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-lock"></i>
-                            </span>
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password." })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", style = "padding-left: 20px" })
-
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe, new { @class = "remember-label-class" })
-                        </div>
-
-                        <div class="input-group" style="width: 100%; padding-top: 0">
-                            <input id="submit-btn" type="submit" value="Sign in!" class="btn btn-success" style="width: 100%"/>
-                        </div>
-                    }
-                </section>
-
+            <div class="error-message">
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger"})
             </div>
-            <div class="panel-footer">
-                <span style="padding-left: 20px">
-                    @(Html.ActionLink<AccountController>("Register as a new user", c=> c.Register()))
-                </span>
-                @*Enable this once you have account confirmation enabled for password reset functionality*@
-                <span class="pull-right" style="padding-right: 20px">
-                    @(Html.ActionLink<AccountController>("Forgot your password?", c => c.ForgotPassword()))
-                </span>
+            <div>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password." })
             </div>
-        </div>
-        @Html.Partial(PartialViewConstants.SocialButtonPartial)
+            <div class="error-message">
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger"})
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                <button id="submit-btn" type="submit" class="btn btn-dark" style="width: 100%">
+                    Вход
+                </button>
+            </div>
+
+            <div class="separator">
+                <p class="change_link">
+                    @(Html.ActionLink<AccountController>("Регистрация", c => c.Register()))
+                    @(Html.ActionLink<AccountController>("Забравена парола?", c => c.ForgotPassword()))
+                    @(Html.ActionLink<IntroductionController>("Начало", c => c.Index()))                   
+                </p>
+            </div>
+            }
+        </section>
     </div>
 </div>
 
-<div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 955px; width: 1903px; z-index: -999999; position: fixed;">
-    <img src="~/Content/Images/1.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1903px; height: 1268.67px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -156.833px;">
-</div>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

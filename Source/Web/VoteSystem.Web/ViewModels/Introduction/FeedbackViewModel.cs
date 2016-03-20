@@ -10,7 +10,8 @@
         [Required(ErrorMessage = "Темата е задължителна.")]
         public string Subject { get; set; }
 
-        [Required(ErrorMessage = "Имайла е задължителен.")]
+        [Required(ErrorMessage = "Имeйла е задължителен.")]
+        [EmailAddress(ErrorMessage = "Невалиден имейл формат.")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Съобщението е задължително.")]
