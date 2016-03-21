@@ -477,10 +477,10 @@
             string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
             var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
 
-            //UriBuilder url = new UriBuilder(callbackUrl);
-            //url.Port = -1;
-            //callbackUrl = url.Uri.ToString();
-            
+            UriBuilder url = new UriBuilder(callbackUrl);
+            url.Port = -1;
+            callbackUrl = url.Uri.ToString();
+
             await UserManager.SendEmailAsync(user.Id, "Промяна на парола.", "Натиснете въведете нова парола като натиснете: <a href=\"" + callbackUrl + "\">тук.</a>");
         }
 
@@ -492,10 +492,10 @@
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
 
-            //UriBuilder url = new UriBuilder(callbackUrl);
-            //url.Port = -1;
-            //callbackUrl = url.Uri.ToString();
-            
+            UriBuilder url = new UriBuilder(callbackUrl);
+            url.Port = -1;
+            callbackUrl = url.Uri.ToString();
+
             await UserManager.SendEmailAsync(user.Id, "Потвърждаване на имейл.", "Моля потвърдете вашият имейл като натиснете <a href=\"" + callbackUrl + "\">тук.</a>");
         }
 
