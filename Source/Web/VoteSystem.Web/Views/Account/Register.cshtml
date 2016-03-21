@@ -52,7 +52,7 @@
                 </div>
 
                 <div>
-                    @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Повтори парола." })
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Повтори парола." })
                 </div>
                 <div class="error-message">
                     @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
@@ -61,7 +61,7 @@
 
                 <div>
                     <button id="submit-btn" type="submit" class="btn btn-dark" style="width: 100%">
-                        Изпрати
+                        Създай
                     </button>
                 </div>
 

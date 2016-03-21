@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
+    using System.Web.Mvc.Expressions;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
@@ -12,6 +13,8 @@
     using VoteSystem.Data.Models;
     using VoteSystem.Web.ViewModels.Account;
     using System;
+    using Infrastructure.NotificationSystem;
+
     [Authorize]
     public class AccountController : BaseController
     {
@@ -63,20 +66,30 @@
             }
         }
 
-        // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public async Task<ActionResult> Login(string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {
-                return this.RedirectToAction("Index", "Home");
+                var user = await UserManager.FindByNameAsync(User.Identity.Name);
+                if (user == null)
+                {
+                    ViewBag.ReturnUrl = returnUrl;
+                    return this.View();
+                }
+
+                bool isEmailConfirmed = await UserManager.IsEmailConfirmedAsync(user.Id);
+
+                if (isEmailConfirmed)
+                {
+                    return this.RedirectToAction("Index", "Home");
+                }
             }
 
             ViewBag.ReturnUrl = returnUrl;
             return this.View();
         }
-       
-        // POST: /Account/Login
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -87,12 +100,23 @@
                 return this.View(model);
             }
 
-            // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await this.SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
+                    var user = await UserManager.FindByNameAsync(model.Email);
+
+                    if (user != null)
+                    {
+                        if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                        {
+                            this.AddNotification("Потвърдете имейлът си за да влезете.", NotificationType.ERROR);
+
+                            return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
+                        }
+                    }
+
                     return this.RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
@@ -100,7 +124,6 @@
                     return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    // Invalid login attempt.
                     ModelState.AddModelError(string.Empty, "Невалиден имейл или парола.");
                     return this.View(model);
             }
@@ -147,15 +170,13 @@
                     return this.View(model);
             }
         }
-        
-        // GET: /Account/Register
+
         [AllowAnonymous]
         public ActionResult Register()
         {
             return this.View();
         }
-        
-        // POST: /Account/Register
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -171,34 +192,23 @@
                     FirstName = model.FirstName,
                     LastName = model.LastName
                 };
-                var result = await this.UserManager.CreateAsync(user, model.Password);
 
+                var result = await this.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await this.SendEmalForNewUser(user);
 
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    this.AddNotification("Проверете имейлът си за да активирате акаунта.", NotificationType.WARNING);
 
-                    UriBuilder url = new UriBuilder(callbackUrl);
-                    url.Port = -1;
-                    string cleanUrl = url.Uri.ToString();
-
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + cleanUrl + "\">here</a>");
-
-                    return this.RedirectToAction("Index", "Home");
+                    return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
                 }
 
                 this.AddErrors(result);
             }
-
-            // If we got this far, something failed, redisplay form
+            
             return this.View(model);
         }
-
-        // GET: /Account/ConfirmEmail
+        
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
@@ -206,11 +216,21 @@
             {
                 return this.View("Error");
             }
-            var result = await this.UserManager.ConfirmEmailAsync(userId, code);
-            return this.View(result.Succeeded ? "ConfirmEmail" : "Error");
-        }
 
-        // GET: /Account/ForgotPassword
+            var result = await this.UserManager.ConfirmEmailAsync(userId, code);
+
+            if (result.Succeeded)
+            {
+                this.AddNotification("Успешно активирахте вашият акаунт.", NotificationType.SUCCESS);
+            }
+            else
+            {
+                this.AddNotification("Неуспешно активирахте вашият акаунт.", NotificationType.ERROR);
+            }
+
+            return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
+        }
+       
         [AllowAnonymous]
         public ActionResult ForgotPassword(string returnUrl)
         {
@@ -218,8 +238,7 @@
 
             return this.View();
         }
-        
-        // POST: /Account/ForgotPassword
+       
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -228,46 +247,30 @@
             if (ModelState.IsValid)
             {
                 var user = await this.UserManager.FindByNameAsync(model.Email);
+
                 if (user == null || !(await this.UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return this.View("ForgotPasswordConfirmation");
+                    this.AddNotification("Въведеният имейл не съществува.", NotificationType.ERROR);
+
+                    return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
                 }
+               
+                await SendEmailForForgotPassword(user);
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                this.AddNotification("Проверете вашият имейл за въвеждане на нова парола.", NotificationType.INFO);
 
-                //UriBuilder url = new UriBuilder(callbackUrl);
-                //url.Port = -1;
-                //string cleanUrl = url.Uri.ToString();
-
-                // TODO change callbackUrl with cleanUrl
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
             }
-
-            // If we got this far, something failed, redisplay form
+           
             return this.View(model);
         }
         
-        // GET: /Account/ForgotPasswordConfirmation
-        [AllowAnonymous]
-        public ActionResult ForgotPasswordConfirmation()
-        {
-            return this.View();
-        }
-       
-        // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
             return code == null ? this.View("Error") : this.View();
         }
        
-        // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -280,8 +283,7 @@
 
             var user = await this.UserManager.FindByNameAsync(model.Email);
             if (user == null)
-            {
-                // Don't reveal that the user does not exist
+            {                
                 return this.RedirectToAction("ResetPasswordConfirmation", "Account");
             }
 
@@ -295,8 +297,7 @@
 
             return this.View();
         }
-
-        // GET: /Account/ResetPasswordConfirmation
+       
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
@@ -468,6 +469,34 @@
                 return this.Redirect(returnUrl);
             }
             return this.RedirectToAction("Index", "Home");
+        }
+
+        // TODO extract in another service ?
+        private async Task SendEmailForForgotPassword(User user)
+        {
+            string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+            var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+            //UriBuilder url = new UriBuilder(callbackUrl);
+            //url.Port = -1;
+            //callbackUrl = url.Uri.ToString();
+            
+            await UserManager.SendEmailAsync(user.Id, "Промяна на парола.", "Натиснете въведете нова парола като натиснете: <a href=\"" + callbackUrl + "\">тук.</a>");
+        }
+
+        // TODO extract in another service ?
+        private async Task SendEmalForNewUser(User user)
+        {
+            await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+            //UriBuilder url = new UriBuilder(callbackUrl);
+            //url.Port = -1;
+            //callbackUrl = url.Uri.ToString();
+            
+            await UserManager.SendEmailAsync(user.Id, "Потвърждаване на имейл.", "Моля потвърдете вашият имейл като натиснете <a href=\"" + callbackUrl + "\">тук.</a>");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

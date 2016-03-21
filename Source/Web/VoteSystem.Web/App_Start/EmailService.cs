@@ -52,7 +52,7 @@
             var myMessage = new SendGridMessage();
 
             myMessage.AddTo(message.Destination);
-            myMessage.From = new System.Net.Mail.MailAddress("andriyan.krastev@gmail.com", "AK");
+            myMessage.From = new System.Net.Mail.MailAddress("andriyan.krastev@gmail.com", "Система за гласуване.");
             myMessage.Subject = message.Subject;
             myMessage.Html = message.Body;
 

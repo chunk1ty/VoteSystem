@@ -595,11 +595,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Introduction\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
@@ -619,6 +617,10 @@
     <Content Include="Views\Shared\_SocialButtonsPartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
     <Content Include="Views\FillRateSystem\Fill.cshtml" />
+    <Content Include="Views\Shared\Notifications\_ErrorNotificationPartial.cshtml" />
+    <Content Include="Views\Shared\Notifications\_WarningNotificationPartial.cshtml" />
+    <Content Include="Views\Shared\Notifications\_SuccessNotificationPartial.cshtml" />
+    <Content Include="Views\Shared\Notifications\_InfoNotificationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
