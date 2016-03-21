@@ -212,8 +212,10 @@
 
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
-        public ActionResult ForgotPassword()
+        public ActionResult ForgotPassword(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
+
             return this.View();
         }
         

@@ -3,38 +3,32 @@
     using System.ComponentModel.DataAnnotations;
 
     public class RegisterViewModel
-    {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+    {        
+        [Required(ErrorMessage = "Имeйла е задължителен.")]
+        [EmailAddress(ErrorMessage = "Невалиден имейл формат.")]
         public string Email { get; set; }
 
-        [Required]
-        [MinLength(2, ErrorMessage = "First name can not be less than 2 symbols.")]
-        [MaxLength(20, ErrorMessage = "First name can not be greater than 20 symbols.")]
-        [Display(Name = "First Name")]
+        [Required(ErrorMessage = "Името е задължително.")]
+        [MinLength(2, ErrorMessage = "Името не може да е по-малко от 2 букви.")]
+        [MaxLength(20, ErrorMessage = "Името не може да е по-голямо от 20 букви.")]        
         public string FirstName { get; set; }
 
-        [Required]
-        [MinLength(2, ErrorMessage = "Last Name can not be less than 2 symbols.")]
-        [MaxLength(20, ErrorMessage = "Last Name can not be greater than 20 symbols.")]
-        [Display(Name = "Last Name")]
+        [Required(ErrorMessage = "Фамилията е задължителна.")]
+        [MinLength(2, ErrorMessage = "Фамилията не може да е по-малка от 2 букви.")]
+        [MaxLength(20, ErrorMessage = "Фамилията не може да е по-голяма от 20 букви.")]        
         public string LastName { get; set; }
 
-        [Required]
-        [Range(10000, 9999999, ErrorMessage = "Faculty Number should be in the range between 10000 and 9999999")]
-        [Display(Name = "Faculty Number")]
+        [Required(ErrorMessage = "Факултетният номер е задължителен.")]
+        [Range(10000, 9999999, ErrorMessage = "Факултетният номер трябва да е между 10000 и 9999999")]        
         public int FacultyNumber { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Required(ErrorMessage = "Паролата е задължителна.")]
+        [StringLength(100, ErrorMessage = "Паролата трябва да е с дължина минимум {2} символа.", MinimumLength = 6)]
+        [DataType(DataType.Password)]        
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [DataType(DataType.Password)]       
+        [Compare("Password", ErrorMessage = "Паролата несъвпада.")]
         public string ConfirmPassword { get; set; }
     }
 }

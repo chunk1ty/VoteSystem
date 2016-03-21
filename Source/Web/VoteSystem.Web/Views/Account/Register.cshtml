@@ -10,83 +10,72 @@
     @Styles.Render("~/Content/forms-css")
 }
 
-<div class="row">
-    <div class="col-lg-4 col-lg-offset-4">
-        <h1 class="login-form">Register Form</h1>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="my-panel-title">Create a new account.</h3>
-            </div>
-            <div class="panel-body">
-                <section id="loginForm">
-                    @using (Html.BeginForm<AccountController>(c => c.Register(), FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
-                   {
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div id="wrapper">
+    <div class="animate form">
+        <section class="login_content">
+            @using (Html.BeginForm<AccountController>(c => c.Register(), FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
 
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email address." })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger", style = "padding-left: 20px" })
+                <h1>Нов профил</h1>
 
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Enter first name." })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger", style = "padding-left: 20px" })
+                <div>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Имейл." })
+                </div>
+                <div class="error-message">
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+                <div>
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Име." })
+                </div>
+                <div class="error-message">
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                </div>
+                <div>
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Фамилия." })
+                </div>
+                <div class="error-message">
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                </div>
+                <div>
+                    @Html.TextBoxFor(m => m.FacultyNumber, new { @class = "form-control", placeholder = "Факултетен номер." })
+                </div>
+                <div class="error-message">
+                    @Html.ValidationMessageFor(m => m.FacultyNumber, "", new { @class = "text-danger" })
+                </div>
 
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Enter last name." })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger", style = "padding-left: 20px" })
+                <div>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Парола." })
+                </div>
+                <div class="error-message">
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })                    
+                </div>
 
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            @Html.TextBoxFor(m => m.FacultyNumber, new { @class = "form-control", placeholder = "Enter faculty number." })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.FacultyNumber, "", new { @class = "text-danger", style = "padding-left: 20px" })
+                <div>
+                    @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Повтори парола." })
+                </div>
+                <div class="error-message">
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
 
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-lock"></i>
-                            </span>
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password." })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", style = "padding-left: 20px" })
+                <div>
+                    <button id="submit-btn" type="submit" class="btn btn-dark" style="width: 100%">
+                        Изпрати
+                    </button>
+                </div>
 
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-lock"></i>
-                        </span>
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm password." })
-                    </div>
-                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger", style = "padding-left: 20px" })
-
-                        <div class="input-group" style="width: 100%; padding-top: 0">
-                            <input id="submit-btn" type="submit" value="Register" class="btn btn-success" style="width: 100%" />
-                        </div>
-                    }
-                </section>
-            </div>
-        </div>
-        @Html.Partial(PartialViewConstants.SocialButtonPartial)
+                <div class="separator">
+                    <p class="change_link">
+                        @(Html.ActionLink<AccountController>("Вход", c => c.Login(string.Empty)))    
+                        @(Html.ActionLink<IntroductionController>("Начало", c => c.Index()))
+                    </p>
+                </div>
+            }
+        </section>
     </div>
 </div>
 
-<div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 955px; width: 1903px; z-index: -999999; position: fixed;">
-    <img src="~/Content/Images/1.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1903px; height: 1268.67px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -156.833px;">
-</div>
-
-@section Scripts {
+@section scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}              

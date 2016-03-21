@@ -16,36 +16,36 @@
         <section class="login_content">
             @using (Html.BeginForm<AccountController>(c => c.Login(returnUrl), FormMethod.Post))
             {
-            @Html.AntiForgeryToken()
+                @Html.AntiForgeryToken()
 
-            <h1>Вход</h1>
+                <h1>Вход</h1>
 
-            <div>
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email address." })
-            </div>
-            <div class="error-message">
-                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger"})
-            </div>
-            <div>
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password." })
-            </div>
-            <div class="error-message">
-                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger"})
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            </div>
-            <div>
-                <button id="submit-btn" type="submit" class="btn btn-dark" style="width: 100%">
-                    Вход
-                </button>
-            </div>
+                <div>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email address." })
+                </div>
+                <div class="error-message">
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger"})
+                </div>
+                <div>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password." })
+                </div>
+                <div class="error-message">
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger"})
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
+                <div>
+                    <button id="submit-btn" type="submit" class="btn btn-dark" style="width: 100%">
+                        Вход
+                    </button>
+                </div>
 
-            <div class="separator">
-                <p class="change_link">
-                    @(Html.ActionLink<AccountController>("Регистрация", c => c.Register()))
-                    @(Html.ActionLink<AccountController>("Забравена парола?", c => c.ForgotPassword()))
-                    @(Html.ActionLink<IntroductionController>("Начало", c => c.Index()))                   
-                </p>
-            </div>
+                <div class="separator">
+                    <p class="change_link">
+                        @(Html.ActionLink<AccountController>("Регистрация", c => c.Register()))
+                        @(Html.ActionLink<AccountController>("Забравена парола?", c => c.ForgotPassword(returnUrl)))
+                        @(Html.ActionLink<IntroductionController>("Начало", c => c.Index()))                   
+                    </p>
+                </div>
             }
         </section>
     </div>
