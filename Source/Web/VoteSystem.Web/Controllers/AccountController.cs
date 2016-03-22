@@ -282,26 +282,26 @@
             }
 
             var user = await this.UserManager.FindByNameAsync(model.Email);
+
             if (user == null)
             {                
-                return this.RedirectToAction("ResetPasswordConfirmation", "Account");
+                this.ModelState.AddModelError("IncorectEmail", "Имейл адресът не съществува.");
+
+                return this.View(model);
             }
 
             var result = await this.UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return this.RedirectToAction("ResetPasswordConfirmation", "Account");
+                this.AddNotification("Успешно променихте вашата парола.", NotificationType.SUCCESS);
+
+                return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
             }
+           
+            this.ModelState.AddModelError(string.Empty, "Невалиден имейл адрес или токен.");
 
-            this.AddErrors(result);
-
-            return this.View();
-        }
-       
-        [AllowAnonymous]
-        public ActionResult ResetPasswordConfirmation()
-        {
-            return this.View();
+            return this.View(model);
+           
         }
         
         // POST: /Account/ExternalLogin
@@ -417,8 +417,7 @@
             ViewBag.ReturnUrl = returnUrl;
             return this.View(model);
         }
-        
-        // POST: /Account/LogOff
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -481,7 +480,7 @@
             url.Port = -1;
             callbackUrl = url.Uri.ToString();
 
-            await UserManager.SendEmailAsync(user.Id, "Промяна на парола.", "Натиснете въведете нова парола като натиснете: <a href=\"" + callbackUrl + "\">тук.</a>");
+            await UserManager.SendEmailAsync(user.Id, "Промяна на парола.", "Въведете новата парола като натиснете: <a href=\"" + callbackUrl + "\">тук.</a>");
         }
 
         // TODO extract in another service ?
