@@ -43,10 +43,17 @@
                 "~/Content/bootstrap-theme/js/icheck.min.js",
                 "~/Scripts/handlebars.min.js",                
                 "~/Scripts/DataTables/jquery.dataTables.js",
+                "~/Scripts/spin.min.js",
                 "~/Content/bootstrap-theme/js/custom.js"));
 
             bundles.Add(new StyleBundle("~/bundles/introduction-page-js").Include(
                   "~/Scripts/Custom/introduction-page.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/spiner").Include(
+                 "~/Scripts/spin.min.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/spinerController").Include(
+                  "~/Scripts/Custom/spinnerController.js"));
         }
 
         private static void RegisterStyles(BundleCollection bundles)

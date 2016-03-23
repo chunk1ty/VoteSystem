@@ -11,8 +11,8 @@
     @Styles.Render("~/Content/gentelella-css")
     @RenderSection("styles", required: false)
     @*TODO: added here because of problem with edit questions*@
-    @Scripts.Render("~/bundles/jquery")
-    <script src="~/Scripts/spin.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")    
+    @Scripts.Render("~/bundles/spiner")
 </head>
 <body class="nav-md">
     <div id="site-spinner"></div>
@@ -40,7 +40,7 @@
     
     @RenderBody()
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/spinerController")
     @RenderSection("scripts", required: false)
-    <script src="~/Scripts/Custom/spinnerController.js"></script>
 </body>
 </html>

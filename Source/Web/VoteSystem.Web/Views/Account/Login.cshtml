@@ -25,13 +25,13 @@
                 <h1>Вход</h1>
 
                 <div>
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter email address." })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Имейл" })
                 </div>
                 <div class="error-message">
                     @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                 </div>
                 <div>
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password." })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Парола" })
                 </div>
                 <div class="error-message">
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
