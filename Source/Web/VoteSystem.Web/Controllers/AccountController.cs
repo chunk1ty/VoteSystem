@@ -184,9 +184,10 @@
         {
             if (ModelState.IsValid)
             {
+                string userName = model.FirstName + " " + model.LastName;
                 var user = new User
                 {
-                    UserName = model.Email,
+                    UserName = userName,
                     Email = model.Email,
                     FN = model.FacultyNumber,
                     FirstName = model.FirstName,

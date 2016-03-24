@@ -16,8 +16,7 @@
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
                     <a href="~/Introduction/Index" class="site_title">
-                        <i class="fa fa-paw"></i>
-                        <span>Vote System</span>
+                        <span>Система за гласуване</span>
                     </a>
                 </div>
                 <div class="clearfix"></div>
@@ -26,7 +25,7 @@
                         <img src="~/Content/bootstrap-theme/images/user.png" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>Welcome,</span>
+                        <span>Добре дошли,</span>
                         <h2>@User.Identity.GetUserName()</h2>
                     </div>
                 </div>
@@ -38,12 +37,12 @@
                             <li>
                                 <a>
                                     <i class="fa fa-home"></i>
-                                    Home
+                                    Начало
                                     <span class="fa fa-chevron-down"></span>
                                 </a>
                                 <ul class="nav child_menu" style="display: none">
                                     <li>
-                                        @(Html.ActionLink<HomeController>("Dashboard", c => c.Index(), new { area = string.Empty }, htmlAttributes: new { title = "Dashboard" }))
+                                        @(Html.ActionLink<HomeController>("Табло", c => c.Index(), new { area = string.Empty }, htmlAttributes: new { title = "Табло" }))
                                     </li>
                                 </ul>
                             </li>
@@ -52,12 +51,12 @@
                                 <li>
                                     <a>
                                         <i class="fa fa-edit"></i>
-                                        Admin
+                                        Администрация
                                         <span class="fa fa-chevron-down"></span>
                                     </a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li>
-                                            @(Html.ActionLink<RateSystemController>("Dashboard", c => c.Index(), new { area = "Administration" }, htmlAttributes: new { title = "Index" }))
+                                            @(Html.ActionLink<RateSystemController>("Табло", c => c.Index(), new { area = "Administration" }, htmlAttributes: new { title = "Табло" }))
                                         </li>
                                         <li>
                                             @(Html.ActionLink<RateSystemController>("Create", c => c.Create(), new { area = "Administration" }, htmlAttributes: new { title = "Create" }))
@@ -71,12 +70,12 @@
                             <li>
                                 <a>
                                     <i class="fa fa-gear"></i>
-                                    Settings
+                                    Настройки
                                     <span class="fa fa-chevron-down"></span>
                                 </a>
                                 <ul class="nav child_menu" style="display: none">
                                     <li>
-                                        @(Html.ActionLink<ManageController>("Change password", c => c.ChangePassword(), new { area = string.Empty }, htmlAttributes: new { title = "Manage" }))
+                                        @(Html.ActionLink<ManageController>("Смяна на парола", c => c.ChangePassword(), new { area = string.Empty }, htmlAttributes: new { title = "Manage" }))
                                     </li>
                                 </ul>
                             </li>
@@ -102,7 +101,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
                                 <li>
-                                    <a href="javascript:;">Profile</a>
+                                    <a href="#">Профил</a>
                                 </li>
                                 <li>
                                     @using (Html.BeginForm<AccountController>(c => c.LogOff(), FormMethod.Post, new { area = string.Empty }, new { id = "logoutForm", @class = "navbar-right" }))
@@ -110,7 +109,8 @@
                                         @Html.AntiForgeryToken()
                                     }
                                     <a href="javascript:document.getElementById('logoutForm').submit()">
-                                        <i class="fa fa-sign-out pull-right"></i> Log Out
+                                        <i class="fa fa-sign-out pull-right"></i>
+                                        Изход
                                     </a>
                                 </li>
                             </ul>

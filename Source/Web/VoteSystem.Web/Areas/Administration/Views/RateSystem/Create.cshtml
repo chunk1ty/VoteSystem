@@ -16,35 +16,36 @@
         }
     </style>
  }
-
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <div class="text-center">
-                    <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
-                        <i class="glyphicon glyphicon-arrow-left"></i>
-                        Cancel
-                    </a>                   
-                    <button class="btn btn-dark" type="submit">
-                        <i class="fa fa-plus"></i>
-                        Create
-                    </button>
+@using (Html.BeginForm<RateSystemController>(c => c.Create(), FormMethod.Post, null, new { @class = "form-horizontal form-label-left" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <div class="text-center">
+                        <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
+                            <i class="glyphicon glyphicon-arrow-left"></i>
+                            Cancel
+                        </a>                   
+                        <button class="btn btn-dark" type="submit">
+                            <i class="fa fa-plus"></i>
+                            Create
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <br />
-                @using (Html.BeginForm<RateSystemController>(c => c.Create(), FormMethod.Post, null, new { @class = "form-horizontal form-label-left" }))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.EditorForModel()
-                }
+                <div class="x_content">
+                    <br />
+               
+                   
+                        @Html.EditorForModel()
+               
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")    
 }
