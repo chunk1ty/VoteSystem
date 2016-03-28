@@ -12,7 +12,7 @@
         <div class="x_panel">
             <div class="x_title">
                 @*TODO question number*@
-                <h2>Question #@counter</h2>
+                <h2>Въпрос #@counter</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link">
@@ -37,11 +37,11 @@
                         <div class="form-group">
                             @Html.LabelFor(m => m.QuestionName, new{ @class="control-label col-md-3 col-sm-3 col-xs-12" })
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                @Html.TextBoxFor(m => m.QuestionName, new { @class = "current-question form-control col-md-7 col-xs-12 " + currentQuestionClass, placeholder = "Enter question name" })
+                                @Html.TextBoxFor(m => m.QuestionName, new { @class = "current-question form-control col-md-7 col-xs-12 " + currentQuestionClass, placeholder = "Име на въпроса." })
                                 @Html.ValidationMessageFor(m => m.QuestionName, null, new { @class= "text-danger" })
                             </div>
 
-                            <div id="@currentBtnId" class="btn btn-dark">Add New Answer</div>
+                            <div id="@currentBtnId" class="btn btn-dark">Добави нов отговор</div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">

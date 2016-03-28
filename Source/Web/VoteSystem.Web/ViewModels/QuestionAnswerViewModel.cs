@@ -12,9 +12,9 @@
 
         // TODO required broke logic when user fill rate system. Create separate VM for filling.
         //[Required]
-        [MinLength(2, ErrorMessage = "The answer can not be less than 2 symbols.")]
-        [MaxLength(100, ErrorMessage = "The answer can not be greater than 100 symbols.")]
-        [DisplayName("Answer")]
+        [MinLength(2, ErrorMessage = "Отговорът не може да е по кратък от 2 символа")]
+        [MaxLength(100, ErrorMessage = "Отговорът не може да е по голям от 100 символа")]
+        [DisplayName("Отговор")]
         public string QuestionAnswerName { get; set; }
         
         public bool IsChecked { get; set; }

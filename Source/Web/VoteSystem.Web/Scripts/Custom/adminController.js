@@ -25,9 +25,17 @@
             sortable: false
         }],
         pagingType: "full_numbers",
-        oLanguage: {
-            sSearch: "Search by System Name: "
-        },
+        language: {
+            search: "Търсене по име на система: ",
+            info: "Страница _PAGE_ от _PAGES_ страници.",
+            lengthMenu: "Покажи _MENU_ системи.",
+            paginate: {
+                first: "Първа",
+                last: "Последна",
+                next: "Следваща",
+                previous: "Предишна"
+            },
+        }
     });
 
     $('tbody').on('click', '.delete-btn', function () {

@@ -16,13 +16,13 @@
         public int Id { get; set; }
 
         [Required]
-        [DisplayName("Question Name")]
-        [MinLength(2, ErrorMessage = "The question name can not be less than 2 symbols.")]
-        [MaxLength(200, ErrorMessage = "The question name can not be greater than 200 symbols.")]
+        [DisplayName("Име на въпроса")]
+        [MinLength(2, ErrorMessage = "Въпросът не може да е по-малък от 2 символа.")]
+        [MaxLength(200, ErrorMessage = "Въпросът не може да е по-голям от 100 символа.")]
         public string QuestionName { get; set; }
 
         [Required]
-        [DisplayName("Do you want multiple answers?")]
+        [DisplayName("Бихте ли желали да има повече от един отговор?")]
         public bool HasMultipleAnswers { get; set; }
 
         public int RateSystemId { get; set; }

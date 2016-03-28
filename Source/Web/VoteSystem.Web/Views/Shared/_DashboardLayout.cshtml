@@ -8,9 +8,15 @@
 
 @section styles {
     @RenderSection("styles", required: false)
+
+    <style>
+        body {            
+            background: white;
+        }
+    </style>
 }
 
-<div class="container body">
+<div class="container body" style="display: none;">
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
@@ -32,7 +38,7 @@
                 <br />
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>General</h3>
+                        <h3>Генерален</h3>
                         <ul class="nav side-menu">
                             <li>
                                 <a>
@@ -122,20 +128,35 @@
        
         <div class="right_col" role="main">
             @RenderBody()
-           
-            @Html.Partial(PartialViewConstants.FooterPartial)
         </div>
     </div>
-</div>
-<div id="custom_notifications" class="custom-notifications dsp_none" style="display: none">
-    <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
-    <div class="clearfix"></div>
-    <div id="notif-group" class="tabbed_notifications"></div>
-</div>
 
+    <div id="custom_notifications" class="custom-notifications dsp_none" style="display: none">
+        <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
+        <div class="clearfix"></div>
+        <div id="notif-group" class="tabbed_notifications"></div>
+    </div>
+
+    @Html.Partial(PartialViewConstants.FooterPartial)
+</div>
 
 @section scripts {
     @Scripts.Render("~/bundles/gentallela-js")
     @Scripts.Render("~/bundles/my-scripts")
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $('.right_col').height($(window).height() - 113);
+            $('body').css('background', '#2A3F54');           
+            $('.container.body').show();
+            $('#site-spinner').remove();
+        });
+
+        $(window).resize(function () {
+            $('.right_col').height($(window).height() - 113);
+            $('body').css('background', '#2A3F54');
+            $('.container.body').show();
+            $('#site-spinner').remove();
+        });
+    </script>
 }

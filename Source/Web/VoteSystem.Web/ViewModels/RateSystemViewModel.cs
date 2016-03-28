@@ -24,18 +24,18 @@
         }
 
         [Required]
-        [DisplayName("Name")]
-        [MinLength(5, ErrorMessage = "The rate system name can not be less than 5 symbols.")]
-        [MaxLength(100, ErrorMessage = "The rate system name can not be greater than 100 symbols.")]
+        [DisplayName("Име")]
+        [MinLength(5, ErrorMessage = "Името на системата не може да бъде по-малко от 5 символа.")]
+        [MaxLength(100, ErrorMessage = "Името на системата не може да бъде по-голямо от 100 символа.")]
         public string RateSystemName { get; set; }
 
         [Required]
-        [DisplayName("Start Date")]
+        [DisplayName("Начална дата")]
         [DataType(DataType.DateTime)]
         public DateTime StarDateTime { get; set; }
 
         [Required]
-        [DisplayName("End Date")]
+        [DisplayName("Крайна дата")]
         [DataType(DataType.DateTime)]
         public DateTime EndDateTime { get; set; }
 

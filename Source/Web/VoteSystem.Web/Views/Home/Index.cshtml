@@ -23,17 +23,27 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Vote systems</h2>               
+                <h2>
+                    Активни системи за гласуване
+                </h2>               
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <table id="example" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                         <tr>
-                            <th class="col-md-3 col-sm-3 col-xs-3">Status</th>
-                            <th class="col-md-3 col-sm-3 col-xs-3">Name</th>
-                            <th class="col-md-3 col-sm-3 col-xs-3">Join</th>
-                            <th class="col-md-3 col-sm-3 col-xs-3">Time to end</th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                Статус
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                Име
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                Действие
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                Оставащо време
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,11 +51,27 @@
                         {
                             <tr>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
-                                    <span class="btn btn-success btn-xs">Active</span>
+                                    <span class="btn btn-success btn-xs">
+                                        Active
+                                    </span>
                                 </td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">@system.RateSystemName</td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">@(Html.ActionLink<FillRateSystemController>("Join", c => c.Fill(system.EncodedId)))</td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">@Html.TimeDisplay(system.EndDateTime)</td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">
+                                    @system.RateSystemName
+                                </td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">
+                                    <a href="@(Url.Action<FillRateSystemController>( c => c.Fill(system.EncodedId)))" class="btn btn-dark btn-xs">
+                                        <i class="fa fa-play"></i>
+                                        Старт
+                                    </a>
+
+                                    <a href="@(Url.Action<FillRateSystemController>(c => c.Fill(system.EncodedId)))" class="btn btn-dark btn-xs">
+                                        <i class="fa fa-folder"></i>
+                                        Преглед
+                                    </a>
+                                </td>
+                                <td class="col-md-3 col-sm-3 col-xs-3">
+                                    @Html.TimeDisplay(system.EndDateTime)
+                                </td>
                             </tr>
                          }
                     </tbody>

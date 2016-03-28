@@ -16,29 +16,30 @@
             if (ts.Hours == 0 && ts.Days == 0)
             {
                 timeAsString = string.Format(
-                                           "{0} minute{1}",                                         
+                                           "{0} минут{1}",                                         
                                            ts.Minutes,
-                                           ts.Minutes == 1 ? string.Empty : "s");
+                                           ts.Minutes == 1 ? "а" : "и");
             }
             else if (ts.Days == 0)
             {
                 timeAsString = string.Format(
-                                            "{0} hour{1} {2} minute{3}",
+                                            "{0} час{1} {2} минут{3}",
                                             ts.Hours,
-                                            ts.Hours == 1 ? string.Empty : "s",
+                                            ts.Hours == 1 ? string.Empty : "а",
                                             ts.Minutes,
-                                            ts.Minutes == 1 ? string.Empty : "s",
+                                            ts.Minutes == 1 ? "а" : "и",
                                             ts.Days);
             }
             else
             {
                 timeAsString = string.Format(
-                                            "{4} days {0} hour{1} {2} minute{3}",
+                                            "{4} д{5} {0} час{1} {2} минут{3}",
                                             ts.Hours,
-                                            ts.Hours == 1 ? string.Empty : "s",
+                                            ts.Hours == 1 ? string.Empty : "а",
                                             ts.Minutes,
-                                            ts.Minutes == 1 ? string.Empty : "s",
-                                            ts.Days);
+                                            ts.Minutes == 1 ? "а" : "и",
+                                            ts.Days,
+                                            ts.Days == 1 ? "ен" : "ни");
             }
 
             return timeAsString;

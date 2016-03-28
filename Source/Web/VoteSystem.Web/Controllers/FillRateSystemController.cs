@@ -57,7 +57,7 @@
 
                     if (isNotChecked)
                     {
-                        this.ModelState.AddModelError(question.Id.ToString(), "You have to check at least one option!");
+                        this.ModelState.AddModelError(question.Id.ToString(), "Моля изберете най-малко един отговор!");
                         return this.View(questions);
                     }
 
@@ -69,7 +69,6 @@
                             currentAnswer.ParticipantId = participant.Id.ToString();
 
                             this.participantAnswers.Add(currentAnswer);
-                            this.participantAnswers.SaveChanges();
                         }
                     }
                 }
@@ -77,7 +76,7 @@
                 {
                     if (question.RadioGroupAnswer == null)
                     {
-                        this.ModelState.AddModelError(question.Id.ToString(), "You have to select option!");
+                        this.ModelState.AddModelError(question.Id.ToString(), "Моля изберете отговор!");
                         return this.View(questions);
                     }
 
@@ -85,9 +84,10 @@
                     currentAnswer.ParticipantId = participant.Id.ToString();
 
                     this.participantAnswers.Add(currentAnswer);
-                    this.participantAnswers.SaveChanges();
                 } 
             }
+
+            this.participantAnswers.SaveChanges();
 
             return this.RedirectToAction<HomeController>(c => c.Index());
         }
