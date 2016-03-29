@@ -2,7 +2,7 @@
 
 @model IEnumerable<VoteSystem.Web.ViewModels.RateSystemViewModel>
 
-@{  
+@{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
@@ -21,18 +21,36 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Системи за гласуване</h2>
+                <h2>
+                    Системи за гласуване
+                </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
+                <div class="text-center">
+                    <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Create(), new { area = "Administration" }))">
+                        <i class="fa fa-plus"></i>
+                        Нова система
+                    </a>
+                </div>
                 <table id="admin-grid" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                         <tr>
-                            <th class="col-md-1 col-sm-1 col-xs-1">Статус</th>
-                            <th class="col-md-3 col-sm-3 col-xs-3">Система</th>
-                            <th class="col-md-3 col-sm-3 col-xs-3">Въпроси</th>
-                            <th class="col-md-2 col-sm-2 col-xs-2">Учасници</th>
-                            <th class="col-md-3 col-sm-3 col-xs-3">Промяна</th>
+                            <th class="col-md-1 col-sm-1 col-xs-1">
+                                Статус
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                Система
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                Въпроси
+                            </th>
+                            <th class="col-md-2 col-sm-2 col-xs-2">
+                                Учасници
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
+                                Промяна
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -108,7 +126,7 @@
             </div>
             <div class="modal-body">
                 <p>
-                   Сигурни ли сте, че истате да изтриете <span id="modal-content" style="color:red;"></span> система?
+                    Сигурни ли сте, че истате да изтриете <span id="modal-content" style="color:red;"></span> система?
                 </p>
             </div>
             <div class="modal-footer">

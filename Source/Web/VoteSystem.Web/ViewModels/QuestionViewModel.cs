@@ -14,9 +14,9 @@
         }
 
         public int Id { get; set; }
-
-        [Required]
+        
         [DisplayName("Име на въпроса")]
+        [Required(ErrorMessage = "Името на въпросът е задължително.")]
         [MinLength(2, ErrorMessage = "Въпросът не може да е по-малък от 2 символа.")]
         [MaxLength(200, ErrorMessage = "Въпросът не може да е по-голям от 100 символа.")]
         public string QuestionName { get; set; }

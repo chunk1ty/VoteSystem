@@ -16,6 +16,7 @@
         }
     </style>
  }
+
 @using (Html.BeginForm<RateSystemController>(c => c.Create(), FormMethod.Post, null, new { @class = "form-horizontal form-label-left" }))
 {
     @Html.AntiForgeryToken()
@@ -26,7 +27,7 @@
                     <div class="text-center">
                         <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
                             <i class="glyphicon glyphicon-arrow-left"></i>
-                            Отказ
+                            Обратно
                         </a>                   
                         <button class="btn btn-dark" type="submit">
                             <i class="fa fa-plus"></i>
@@ -36,16 +37,14 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <br />
-               
-                   
-                        @Html.EditorForModel()
-               
+                    <br />                   
+                    @Html.EditorForModel()
                 </div>
             </div>
         </div>
     </div>
 }
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")    
 }

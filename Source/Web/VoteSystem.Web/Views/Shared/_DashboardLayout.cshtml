@@ -13,12 +13,16 @@
         body {            
             background: white;
         }
+
+        #right-menu {
+            background:#2A3F54;
+        }
     </style>
 }
 
 <div class="container body">
     <div class="main_container">
-        <div class="col-md-3 left_col">
+        <div id="right-menu" class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
                     <a href="~/Introduction/Index" class="site_title">
@@ -57,15 +61,12 @@
                                 <li>
                                     <a>
                                         <i class="fa fa-edit"></i>
-                                        Администрация
+                                        Админ
                                         <span class="fa fa-chevron-down"></span>
                                     </a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li>
                                             @(Html.ActionLink<RateSystemController>("Табло", c => c.Index(), new { area = "Administration" }, htmlAttributes: new { title = "Табло" }))
-                                        </li>
-                                        <li>
-                                            @(Html.ActionLink<RateSystemController>("Create", c => c.Create(), new { area = "Administration" }, htmlAttributes: new { title = "Create" }))
                                         </li>
                                         <li>
                                             <a href="/Glimpse.axd">Glimpse</a>
@@ -137,6 +138,7 @@
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
 </div>
+
 @Html.Partial(PartialViewConstants.FooterPartial)
 
 @section scripts {
@@ -145,14 +147,39 @@
     @RenderSection("scripts", required: false)
 
     <script>
+        var $getWindowHeight = $(window).height();
+        var $element = $(".container.body");
+        var $lastHeight = $(".container.body").height();
+
         $(document).ready(function () {
-            $('.right_col').height($(window).height() - 113);
-            $('body').css('background', '#2A3F54');
+            $('.right_col').height($getWindowHeight - 113);
+            $('#right-menu').height($getWindowHeight);
         });
 
         $(window).resize(function () {
             $('.right_col').height($(window).height() - 113);
-            $('body').css('background', '#2A3F54');
+            $('#right-menu').height($(window).height());           
         });
+        
+        // TODO think better way to handle rigth menu background color issue
+        $('#menu_toggle').on('click', function () {
+            if ($lastHeight > $getWindowHeight) {
+                $('#right-menu').height($lastHeight);
+            } else {
+                $('#right-menu').height($getWindowHeight);
+            }
+        });
+
+        // TODO think better way to handle rigth menu background color issue
+        setInterval(function () {            
+            if ($element.height() !== $lastHeight) {
+                $lastHeight = $element.height();
+                if ($lastHeight > $getWindowHeight) {
+                    $('#right-menu').height($lastHeight);
+                } else {
+                    $('#right-menu').height($getWindowHeight);
+                }
+            }
+        }, 400);
     </script>
 }

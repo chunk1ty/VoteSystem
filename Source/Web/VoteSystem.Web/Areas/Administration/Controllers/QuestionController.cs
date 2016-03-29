@@ -35,7 +35,7 @@
 
             if (model.Questions.Count() == 0)
             {
-                this.ModelState.AddModelError(string.Empty, "You have to add at least one question!");
+                this.ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
                 return this.View(model);
             }
 
@@ -75,7 +75,7 @@
 
             if (model.Questions.Count() == 0)
             {
-                this.ModelState.AddModelError(string.Empty, "You have to add at least one question!");
+                this.ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
                 return this.View(model);
             }
 
