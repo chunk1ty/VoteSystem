@@ -16,7 +16,7 @@
     </style>
 }
 
-<div class="container body" style="display: none;">
+<div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
@@ -136,27 +136,23 @@
         <div class="clearfix"></div>
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
-
-    @Html.Partial(PartialViewConstants.FooterPartial)
 </div>
+@Html.Partial(PartialViewConstants.FooterPartial)
 
 @section scripts {
     @Scripts.Render("~/bundles/gentallela-js")
     @Scripts.Render("~/bundles/my-scripts")
     @RenderSection("scripts", required: false)
+
     <script>
         $(document).ready(function () {
             $('.right_col').height($(window).height() - 113);
-            $('body').css('background', '#2A3F54');           
-            $('.container.body').show();
-            $('#site-spinner').remove();
+            $('body').css('background', '#2A3F54');
         });
 
         $(window).resize(function () {
             $('.right_col').height($(window).height() - 113);
             $('body').css('background', '#2A3F54');
-            $('.container.body').show();
-            $('#site-spinner').remove();
         });
     </script>
 }

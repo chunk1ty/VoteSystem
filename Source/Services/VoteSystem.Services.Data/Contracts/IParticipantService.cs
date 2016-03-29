@@ -8,6 +8,8 @@
 
         void Remove(Participant participant);
 
+        void Update(Participant participant);
+
         Participant GetParticipantByRateSystemIdAndUserId(int rateSystemId, string userId);
 
         void SaveChanges();

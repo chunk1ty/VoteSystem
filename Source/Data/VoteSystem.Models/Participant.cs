@@ -21,6 +21,8 @@
 
         public virtual RateSystem RateSystem { get; set; }
 
+        public bool IsVoted { get; set; }
+
         public ICollection<ParticipantAnswer> ParticipantAnswers { get; set; }
     }
 }

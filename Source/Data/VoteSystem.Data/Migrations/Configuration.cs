@@ -49,7 +49,8 @@ namespace VoteSystem.Data.Migrations
                     Email = AdministratorUserName,
                     FN = 10001,
                     FirstName = "Admin",
-                    LastName = "Admin"
+                    LastName = "Admin",
+                    EmailConfirmed = true
                 };
                 userManager.Create(user, AdministratorPassword);
 
@@ -72,7 +73,8 @@ namespace VoteSystem.Data.Migrations
                     Email = "user" + i + "@abv.bg",
                     FN = 1000 + i,
                     FirstName = "FirstUserName" + i,
-                    LastName = "LastUserName" + i
+                    LastName = "LastUserName" + i,
+                    EmailConfirmed = true
                 };
 
                 userManager.Create(user, UserPassword);

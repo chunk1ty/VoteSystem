@@ -54,7 +54,8 @@
                             x.StarDateTime <= DateTime.Now && 
                             DateTime.Now <= x.EndDateTime &&
                             x.Participants.Any(y =>
-                                                y.UserId == userId));
+                                                y.UserId == userId &&
+                                                y.IsVoted == false));
         }
 
         public RateSystem GetById(int rateSystemId)

@@ -20,6 +20,11 @@
             this.participants.Add(participant);
         }
 
+        public void Update(Participant participant)
+        {
+            this.participants.Update(participant);
+        }
+
         public void Remove(Participant participant)
         {
             this.participants.Delete(participant);

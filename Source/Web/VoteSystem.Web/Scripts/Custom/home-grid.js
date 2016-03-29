@@ -22,6 +22,7 @@
                 search: "Търсене по име на система: ",
                 info: "Страница _PAGE_ от _PAGES_ страници.",
                 lengthMenu: "Покажи _MENU_ системи.",
+                emptyTable: "Няма налични системи.",
                 paginate: {
                     first: "Първа",
                     last: "Последна",

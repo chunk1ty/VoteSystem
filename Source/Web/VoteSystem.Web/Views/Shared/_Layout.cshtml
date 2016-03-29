@@ -37,10 +37,24 @@
         var target = document.getElementById('site-spinner');
         var spinner = new Spinner(opts).spin(target);
     </script>
-    
-    @RenderBody()
+
+    <div id="votesystem-content" style="display: none;">
+        @RenderBody()
+    </div>
+
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/spinerController")
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $('#votesystem-content').show();
+            $('#site-spinner').remove();
+        });
+
+        $(window).resize(function () {
+            $('#votesystem-content').show();
+            $('#site-spinner').remove();
+        });
+    </script>
 </body>
 </html>

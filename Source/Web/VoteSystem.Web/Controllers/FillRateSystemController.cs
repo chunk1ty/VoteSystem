@@ -11,17 +11,18 @@
     using VoteSystem.Data.Models;
     using VoteSystem.Services.Data.Contracts;
     using VoteSystem.Web.Infrastructure.Mapping;
-    
+    using VoteSystem.Web.Infrastructure.NotificationSystem;
+
     public class FillRateSystemController : BaseController
     {
         private IQuestionService questions;
-        private IParticipantService participants;
+        private IParticipantService participant;
         private IParticipantAnswerService participantAnswers;
         
-        public FillRateSystemController(IQuestionService questions, IParticipantService participants, IParticipantAnswerService userAnswers)
+        public FillRateSystemController(IQuestionService questions, IParticipantService participant, IParticipantAnswerService userAnswers)
         {
             this.questions = questions;
-            this.participants = participants;
+            this.participant = participant;
             this.participantAnswers = userAnswers;
         }
 
@@ -45,7 +46,7 @@
                 return this.View(questions);
             }
 
-            var participant = this.participants.GetParticipantByRateSystemIdAndUserId(questions[0].RateSystemId, User.Identity.GetUserId());
+            var participant = this.participant.GetParticipantByRateSystemIdAndUserId(questions[0].RateSystemId, User.Identity.GetUserId());
 
             foreach (var question in questions)
             {
@@ -87,7 +88,13 @@
                 } 
             }
 
+            participant.IsVoted = true;
+            this.participant.Update(participant);
+
+            this.participant.SaveChanges();
             this.participantAnswers.SaveChanges();
+
+            this.AddNotification("Благодаря Ви, че гласувахте! Вашият глас е важен за мен.", NotificationType.SUCCESS);
 
             return this.RedirectToAction<HomeController>(c => c.Index());
         }
