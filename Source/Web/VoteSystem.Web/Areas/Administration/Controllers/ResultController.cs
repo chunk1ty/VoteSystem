@@ -26,6 +26,7 @@
                .Select(x => new
                {
                    questionName = x.QuestionName,
+                   questionType = x.HasMultipleAnswers,
                    questionAnswers = x.QuestionAnswers.Select(
                        y => new
                        {

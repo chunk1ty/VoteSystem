@@ -19,7 +19,7 @@
         <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>{{questionName}}</h2>
+                    <h2>{{questionName}}</h2>                    
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
                             <a class="collapse-link">
@@ -35,6 +35,11 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                    {{#if questionType}}
+                        <span>Множествен отговор</span>
+                    {{else}}
+                        <span>Единичен отговор</span>
+                    {{/if}}
                     <div id="echart-pie-{{@@index}}" style="height: 350px"> </div>
                 </div>
             </div>
