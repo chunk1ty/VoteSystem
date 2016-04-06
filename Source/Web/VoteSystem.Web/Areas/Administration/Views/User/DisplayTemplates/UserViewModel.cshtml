@@ -1,6 +1,16 @@
 ﻿@model VoteSystem.Web.ViewModels.UserViewModel
 
 <tr>
+    <td class="col-md-1 col-sm-1 col-xs-1">
+        @*@if (Model.IsVoted)
+        {
+            <span class="label label-success">Гласувал</span>
+        }
+        else
+        {
+            <span class="label label-danger">Негласувал</span>
+        }*@
+    </td>
     <td class="col-md-2 col-sm-2 col-xs-2">
         @Model.FN
     </td>
@@ -10,7 +20,7 @@
     <td class="col-md-3 col-sm-3 col-xs-3">
        @Model.LastName
     </td>
-    <td class="col-md-3 col-sm-3 col-xs-3">
+    <td class="col-md-2 col-sm-2 col-xs-2">
         @Model.Email
     </td>
 </tr>

@@ -22,8 +22,17 @@
         }],
         pagingType: "full_numbers",
         aaSorting: [],
-        oLanguage: {
-            sSearch: "Search by all columns: "
+        language: {
+            search: "Търсене по колони: ",
+            info: "Страница _PAGE_ от _PAGES_ страници.",
+            lengthMenu: "Покажи _MENU_ потребителя.",
+            emptyTable: "Няма налични потребители.",
+            paginate: {
+                first: "Първа",
+                last: "Последна",
+                next: "Следваща",
+                previous: "Предишна"
+            },
         }
     });
 }($));

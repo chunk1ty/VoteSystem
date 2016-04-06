@@ -1,7 +1,11 @@
 ﻿namespace VoteSystem.Web.Areas.Administration.Controllers
 {
+    using Common;
+    using Infrastructure.NotificationSystem;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.Mvc.Expressions;
 
@@ -14,11 +18,13 @@
     {
         private IUserService users;
         private IParticipantService participants;
+        private IRateSystemService rateSystems;
 
-        public UserController(IUserService users, IParticipantService participants)
+        public UserController(IUserService users, IParticipantService participants, IRateSystemService rateSystems)
         {
             this.users = users;
             this.participants = participants;
+            this.rateSystems = rateSystems;
         }
         
         public ActionResult Add(int rateSystemId)
@@ -39,7 +45,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(UserSelectedViewModel model)
+        public async Task<ActionResult> Add(UserSelectedViewModel model)
         {
             var getSelectedUsers = model.GetSelectedUsers();
 
@@ -112,6 +118,22 @@
             };
 
             return this.View(userSelectedVM);
+        }
+
+        public async Task<ActionResult> SentEmails(int rateSystemId)
+        {
+            var users = this.users
+                .GetAllSelectUsers(rateSystemId)
+                .Select(x => x.Email).ToList();
+
+            var rateSystem = this.rateSystems.GetById(rateSystemId);
+
+            EmailService email = new EmailService();
+            await email.SendAddedParticipantsAsync(users, rateSystem);
+
+            this.AddNotification("Успешно изпратихте имейли на всички учасници!", NotificationType.SUCCESS);
+
+            return this.PartialView(PartialViewConstants.SuccessNotificationPartial);
         }
     }
 }
