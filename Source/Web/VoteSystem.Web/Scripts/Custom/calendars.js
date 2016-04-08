@@ -9,7 +9,7 @@
             autoUpdateInput: false,
             autoApply: true,
             calender_style: "picker_4",
-            cancelClass: "btn-primary"
+            cancelClass: "btn btn-dark"
         });
     }
 

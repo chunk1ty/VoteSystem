@@ -502,7 +502,6 @@
     <Content Include="Scripts\Custom\adminController.js" />
     <Content Include="Scripts\Custom\calendars.js" />
     <Content Include="Scripts\Custom\resultController.js" />
-    <Content Include="Scripts\Custom\spinnerController.js" />
     <Content Include="Scripts\Custom\userController.js" />
     <Content Include="Scripts\Custom\userPreviewController.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />

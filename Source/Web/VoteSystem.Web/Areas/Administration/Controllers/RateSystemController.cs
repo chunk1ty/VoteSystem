@@ -46,7 +46,7 @@
 
             if (model.StarDateTime >= model.EndDateTime)
             {
-                this.ModelState.AddModelError(string.Empty, "Start date can not be greater than end date.");
+                this.ModelState.AddModelError(string.Empty, "Началната дата не може да е по голяма от крайната дата.");
                 return this.View(model);
             }
 

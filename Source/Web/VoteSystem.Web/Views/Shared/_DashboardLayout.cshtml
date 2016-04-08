@@ -67,10 +67,7 @@
                                     <ul class="nav child_menu" style="display: none">
                                         <li>
                                             @(Html.ActionLink<RateSystemController>("Табло", c => c.Index(), new { area = "Administration" }, htmlAttributes: new { title = "Табло" }))
-                                        </li>
-                                        <li>
-                                            <a href="/Glimpse.axd">Glimpse</a>
-                                        </li>
+                                        </li>                                       
                                     </ul>
                                 </li>
                             }
@@ -128,6 +125,10 @@
         </div>
        
         <div class="right_col" role="main">
+            @Html.Partial(PartialViewConstants.ErrorNotificationPartial)
+            @Html.Partial(PartialViewConstants.InfoNotificationPartial)
+            @Html.Partial(PartialViewConstants.SuccessNotificationPartial)
+            @Html.Partial(PartialViewConstants.WarningNotificationPartial)
             @RenderBody()
         </div>
     </div>

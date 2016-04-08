@@ -10,6 +10,10 @@
             background-color: rgba(38, 185, 154, 0.59) !important;
             border-color: rgba(38, 185, 154, 0.59) !important;
         }
+
+        .validation-summary-errors li {
+            list-style-type: none;
+        }
     </style>
 }
 
@@ -31,16 +35,24 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <div class="text-center">
-                        <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
-                            <i class="glyphicon glyphicon-arrow-left"></i>
-                            Обратно
-                        </a>
-                        <button class="btn btn-dark" type="submit">
-                            <i class="fa fa-plus"></i>
-                            Добави
-                        </button>
+                    <div class="row">
+                        <div class="col-md-5 my-header-title">
+                            Добавяне на учасници
+                        </div>
+                        <div class="col-md-7">
+                            <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
+                                <i class="glyphicon glyphicon-arrow-left"></i>
+                                Обратно
+                            </a>
+                            <button class="btn btn-dark" type="submit">
+                                <i class="fa fa-plus"></i>
+                                Добави
+                            </button>
+                        </div>
                     </div>
+                    <div class="text-center">
+                            @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+                    </div>    
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">

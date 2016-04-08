@@ -20,15 +20,15 @@
     @Html.Hidden("more-question-url", Url.Action<AjaxController>(c => c.MoreQuestions()))
 
     <div class="text-center">
-        <h2>
-            Въпроси
+        <h2 class="my-header-title">
+            Добавяне на въпроси
         </h2>
 
         @Html.ValidationSummary(true, null, new { @class = "text-danger" })
 
         <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
             <i class="glyphicon glyphicon-arrow-left"></i>
-            Назад
+            Обратно
         </a>
         <span id="add-more-questions" class="btn btn-dark">
             <i class="fa fa-plus"></i>

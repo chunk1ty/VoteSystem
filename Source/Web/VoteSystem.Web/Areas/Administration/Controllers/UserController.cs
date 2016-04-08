@@ -3,7 +3,6 @@
     using Common;
     using Infrastructure.NotificationSystem;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
@@ -49,6 +48,12 @@
         {
             var getSelectedUsers = model.GetSelectedUsers();
 
+            if (getSelectedUsers.Count == 0)
+            {
+                this.ModelState.AddModelError(string.Empty, "Трябва да изберете най-малко един учасник.");
+                return this.View(model);
+            }
+
             foreach (var participant in getSelectedUsers)
             {
                 var currentParticipant = new Participant()
@@ -61,6 +66,8 @@
             }
 
             this.participants.SaveChanges();
+
+            this.AddNotification("Успешно добавихте учасници!", NotificationType.SUCCESS);
 
             return this.RedirectToAction<UserController>(c => c.Add(model.RateSystemId));
         }
@@ -86,6 +93,12 @@
         public ActionResult Remove(UserSelectedViewModel model)
         {
             var getSelectedUsers = model.GetSelectedUsers();
+
+            if (getSelectedUsers.Count == 0)
+            {
+                this.ModelState.AddModelError(string.Empty, "Трябва да изберете най-малко един учасник.");
+                return this.View(model);
+            }
 
             foreach (var participant in getSelectedUsers)
             {

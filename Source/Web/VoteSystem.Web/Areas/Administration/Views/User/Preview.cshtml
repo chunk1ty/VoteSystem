@@ -17,17 +17,21 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <div class="text-center">
-                    <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
-                        <i class="glyphicon glyphicon-arrow-left"></i>
-                        Обратно
-                    </a>                   
-                    <a id="sent-email-btn" class="btn btn-dark" href="#">
-                        <i class="glyphicon fa-envelope"></i>
-                        Изпрати имейл
-                    </a>
-                    @*@(Html.ActionLink<UserController>("Изпрати имейл", c => c.SentEmails(Model.RateSystemId), null, new { @class = "btn btn-dark" }))*@
-                </div>
+                <div class="row">
+                    <div class="col-md-5 my-header-title">
+                        Преглед на учасниците
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
+                            <i class="glyphicon glyphicon-arrow-left"></i>
+                            Обратно
+                        </a>
+                        <a id="sent-email-btn" class="btn btn-dark" href="#">
+                            <i class="glyphicon fa-envelope"></i>
+                            Изпрати имейл
+                        </a>     
+                    </div>
+                </div>                
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -64,50 +68,54 @@
 </div>
 
 @section scripts{
-    @Scripts.Render("~/bundles/userPreviewController");
+    @Scripts.Render("~/bundles/userPreviewController")
 
     <script> 
-        var isSend = false;      
-        var opts = {
-            lines: 17,
-            length: 0,
-            width: 5,
-            radius: 25,
-            corners: 1,
-            rotate: 0,
-            color: '#1ABB9C',
-            speed: 1,
-            trail: 80,
-            shadow: true,
-            hwaccel: true,
-            className: 'spinner',
-            zIndex: 2e9,
-            top: '45%',
-            left: '50%'
-        };
+        var isSend = false; 
 
         $('#sent-email-btn').on('click', function () {
             if (isSend) {
                 alert('Имейлите бяха изпратерни!');
             } else {
-                var target = document.getElementById('site-spinner-sent-emails');
+                $('body').prepend('<div id="site-spinner" />');
+
+                var opts = {
+                    lines: 17,
+                    length: 0,
+                    width: 5,
+                    radius: 25,
+                    corners: 1,
+                    rotate: 0,
+                    color: '#1ABB9C',
+                    speed: 1,
+                    trail: 80,
+                    shadow: true,
+                    hwaccel: true,
+                    className: 'spinner',
+                    zIndex: 2e9,
+                    top: '45%',
+                    left: '50%'
+                };
+
+                var target = document.getElementById('site-spinner');
                 var spinner = new Spinner(opts).spin(target);
-                $('.right_col').hide();
+                $('#votesystem-content').hide();
 
                 $.ajax({
                     type: 'GET',
                     url: '@Url.Action("SentEmails", "User")',
                     data: { rateSystemId: @Model.RateSystemId },
-                    success: function (notification) {
-                        $('.right_col').show();
-                        $('.right_col').prepend(notification);
-                        $('#site-spinner-sent-emails').remove();
+                    success: function (notification) {                        
+                        $('.right_col').prepend(notification);                        
+                        $('#sent-email-btn').addClass('disabled');
+                        $('#votesystem-content').show();
+                        $('#site-spinner').remove();
                         isSend = true;
                     },
                     error: function (ex) {
                         alert('Can not sent emails' + ex);
-                        $('.right_col').show();
-                        $('#site-spinner-sent-emails').remove();
+                        $('#votesystem-content').show();
+                        $('#site-spinner').remove();
                     }
                 });
             }

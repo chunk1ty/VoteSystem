@@ -24,15 +24,20 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <div class="text-center">
-                        <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
-                            <i class="glyphicon glyphicon-arrow-left"></i>
-                            Обратно
-                        </a>                   
-                        <button class="btn btn-dark" type="submit">
-                            <i class="fa fa-plus"></i>
-                            Създай
-                        </button>
+                    <div class="row">
+                        <div class="col-md-5 my-header-title">
+                            Създаване на нова система за гласуване
+                        </div>
+                        <div class="col-md-6">
+                            <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
+                                <i class="glyphicon glyphicon-arrow-left"></i>
+                                Обратно
+                            </a>
+                            <button class="btn btn-dark" type="submit">
+                                <i class="fa fa-plus"></i>
+                                Създай
+                            </button>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                 </div>

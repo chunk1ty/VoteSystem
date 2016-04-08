@@ -6344,3 +6344,8 @@ ul.notifications {
     float: right;
     opacity: 1;
 }
+
+.my-header-title {
+    font-size: 24px;
+    font-weight: 400;
+}

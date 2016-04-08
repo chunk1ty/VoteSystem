@@ -19,10 +19,14 @@
     @Html.HiddenFor(m => m.RateSystemId)
     @Html.Hidden("more-question-url", Url.Action<AjaxController>(c => c.MoreQuestions()))
 
-    <div class="text-center">
+    <div class="text-center" style="padding-bottom: 20px;">
+        <h2 class="my-header-title">
+            Промяна на въпросите
+        </h2>
+
         <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
             <i class="glyphicon glyphicon-arrow-left"></i>
-            Назад
+            Обратно
         </a>
         <span id="add-more-questions" class="btn btn-dark">
             <i class="fa fa-plus"></i>
