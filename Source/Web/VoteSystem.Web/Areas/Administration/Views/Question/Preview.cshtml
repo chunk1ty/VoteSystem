@@ -1,4 +1,6 @@
-﻿@model IEnumerable<VoteSystem.Web.ViewModels.QuestionViewModel>
+﻿@using System.Linq;
+
+@model IList<VoteSystem.Web.ViewModels.QuestionViewModel>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -15,6 +17,14 @@
     </a>   
 </div>
 
-<div class="row">
-    @Html.DisplayForModel()
-</div>
+@for (int i = 0; i < Model.Count; i++)
+{
+   <div class="row">
+       @Html.DisplayFor(m => Model[i])
+       @if ((i + 1) < Model.Count)
+       {
+            @Html.DisplayFor(m => Model[i + 1])
+            i += 1;
+       }
+   </div>
+}

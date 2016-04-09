@@ -70,6 +70,7 @@
                             currentAnswer.ParticipantId = participant.Id.ToString();
 
                             this.participantAnswers.Add(currentAnswer);
+                            this.participantAnswers.SaveChanges();
                         }
                     }
                 }
@@ -85,14 +86,13 @@
                     currentAnswer.ParticipantId = participant.Id.ToString();
 
                     this.participantAnswers.Add(currentAnswer);
+                    this.participantAnswers.SaveChanges();
                 } 
             }
 
             participant.IsVoted = true;
             this.participant.Update(participant);
-
-            this.participant.SaveChanges();
-            this.participantAnswers.SaveChanges();
+            this.participant.SaveChanges();            
 
             this.AddNotification("Благодаря Ви, че гласувахте! Вашият глас е важен за мен.", NotificationType.SUCCESS);
 
