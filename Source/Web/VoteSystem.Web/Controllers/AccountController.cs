@@ -209,7 +209,66 @@
             
             return this.View(model);
         }
+
+        public async Task<ActionResult> UserProfile()
+        {
+            string userId = User.Identity.GetUserId();
+
+            var user = await UserManager.FindByIdAsync(userId);
+
+            UserInfoViewModel userVM = new UserInfoViewModel()
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                FacultyNumber = user.FN
+            };           
+
+            return View(userVM);
+        }
         
+        public async Task<ActionResult> EditUserProfile()
+        {
+            string userId = User.Identity.GetUserId();
+
+            var user = await UserManager.FindByIdAsync(userId);
+
+            UserInfoViewModel userVM = new UserInfoViewModel()
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                FacultyNumber = user.FN
+            };
+
+            return View(userVM);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> EditUserProfile(UserInfoViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            string userId = User.Identity.GetUserId();
+
+            var user = await UserManager.FindByIdAsync(userId);
+            
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Email = model.Email;
+            user.FN = model.FacultyNumber;
+            user.UserName = model.FirstName + " " + model.LastName;
+
+            await UserManager.UpdateAsync(user);
+
+            this.AddNotification("Успешно променихте вашите данни.", NotificationType.SUCCESS);
+
+            return this.RedirectToAction("UserProfile");
+        }
+
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
