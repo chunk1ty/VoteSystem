@@ -183,11 +183,10 @@
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {
-                string userName = model.FirstName + " " + model.LastName;
+            {                
                 var user = new User
                 {
-                    UserName = userName,
+                    UserName = model.Email,
                     Email = model.Email,
                     FN = model.FacultyNumber,
                     FirstName = model.FirstName,
@@ -260,7 +259,6 @@
             user.LastName = model.LastName;
             user.Email = model.Email;
             user.FN = model.FacultyNumber;
-            user.UserName = model.FirstName + " " + model.LastName;
 
             await UserManager.UpdateAsync(user);
 
@@ -459,7 +457,12 @@
                     return this.View("ExternalLoginFailure");
                 }
 
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User
+                {
+                    UserName = model.Email,
+                    Email = model.Email
+                };
+
                 var result = await this.UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
