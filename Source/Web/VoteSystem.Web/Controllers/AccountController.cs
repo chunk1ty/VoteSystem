@@ -543,7 +543,7 @@
             url.Port = -1;
             callbackUrl = url.Uri.ToString();
 
-            await UserManager.SendEmailAsync(user.Id, "Промяна на парола.", "Въведете новата парола като натиснете: <a href=\"" + callbackUrl + "\">тук.</a>");
+            await UserManager.SendEmailAsync(user.Id, "Забравена парола.", "Въведете новата парола като натиснете: <a href=\"" + callbackUrl + "\">тук.</a>");
         }
 
         // TODO extract in another service ?
