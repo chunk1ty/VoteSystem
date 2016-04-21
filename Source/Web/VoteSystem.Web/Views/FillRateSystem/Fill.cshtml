@@ -70,7 +70,7 @@
                             {
                                 <div class="radio">
                                     @Html.CheckBoxFor(m => m[question].QuestionAnswers[answer].IsChecked, new { @class = "flat" })
-                                    @Html.Label(Model[question].QuestionAnswers[answer].QuestionAnswerName)
+                                    @Model[question].QuestionAnswers[answer].QuestionAnswerName
                                     @Html.HiddenFor(m => m[question].QuestionAnswers[answer].Id)
                                     @Html.HiddenFor(m => m[question].QuestionAnswers[answer].QuestionAnswerName)
                                 </div>
@@ -79,7 +79,7 @@
                             {
                                 <div class="radio">
                                     @Html.RadioButtonFor(m => m[question].RadioGroupAnswer, Model[question].QuestionAnswers[answer].Id, new { @class = "flat" })
-                                    @Html.Label(Model[question].QuestionAnswers[answer].QuestionAnswerName)
+                                    @Model[question].QuestionAnswers[answer].QuestionAnswerName
                                     @Html.HiddenFor(m => m[question].QuestionAnswers[answer].QuestionAnswerName)
                                     @Html.HiddenFor(m => m[question].QuestionAnswers[answer].Id)   
                                 </div>
