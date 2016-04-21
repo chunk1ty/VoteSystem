@@ -91,7 +91,7 @@
                 myMessage.From = new System.Net.Mail.MailAddress("andriyan.krastev@gmail.com", "Система за гласуване.");
                 myMessage.Subject = "Начало на система.";
                 myMessage.Html = "Здравейте! Вие бяхте добавен към "+ rateSystem.RateSystemName + " система, която започва на "+ rateSystem.StarDateTime + " и свършва на " + rateSystem.EndDateTime + ". Моля отделете време и гласувайте. " +
-                    "<a href =\"votesystem.apphb.com\">Вход към сайта.</a>";
+                    "<a href =\"http://votesystem.apphb.com\">Вход към сайта.</a>";
 
                 var transportWeb = new Web("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");
 
