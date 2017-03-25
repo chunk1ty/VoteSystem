@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{99FC36D3-D963-4263-BF69-8BD11F801E2B}"
 EndProject
@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web", "Web\VoteS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data", "Data\VoteSystem.Data\VoteSystem.Data.csproj", "{398E47FA-CD30-4EA7-84FF-FE27EF94343C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Models", "Data\VoteSystem.Models\VoteSystem.Models.csproj", "{82CB736C-95EF-42AB-9D42-E6210DF6D20D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Models", "Data\VoteSystem.Models\VoteSystem.Data.Models.csproj", "{82CB736C-95EF-42AB-9D42-E6210DF6D20D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Common", "Data\VoteSystem.Data.Common\VoteSystem.Data.Common.csproj", "{8E44BC26-9E2D-4796-86F0-1D9BFBA8598D}"
 EndProject
@@ -33,7 +33,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Common", "VoteSy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Data.Tests", "Tests\VoteSystem.Services.Data.Tests\VoteSystem.Services.Data.Tests.csproj", "{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web.Controllers.Tests", "Tests\VoteSystem.Web.Controllers.Tests\VoteSystem.Web.Controllers.Tests.csproj", "{7B5568CA-230D-43FB-AE15-D3D5FCC1A66B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web.Controllers.Tests", "Tests\VoteSystem.Web.Controllers.Tests\VoteSystem.Web.Controllers.Tests.csproj", "{1EE34F89-872A-4570-B669-1885DFB8FFB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,10 +85,10 @@ Global
 		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B5568CA-230D-43FB-AE15-D3D5FCC1A66B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B5568CA-230D-43FB-AE15-D3D5FCC1A66B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B5568CA-230D-43FB-AE15-D3D5FCC1A66B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B5568CA-230D-43FB-AE15-D3D5FCC1A66B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +104,6 @@ Global
 		{EBFDB942-73AF-4A97-8909-96308BF54649} = {0C12FAF3-85BC-43E1-ABB2-6799213942CB}
 		{BAADB80A-A13C-403B-AD11-8B1680415890} = {0C12FAF3-85BC-43E1-ABB2-6799213942CB}
 		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7} = {0C12FAF3-85BC-43E1-ABB2-6799213942CB}
-		{7B5568CA-230D-43FB-AE15-D3D5FCC1A66B} = {0C12FAF3-85BC-43E1-ABB2-6799213942CB}
+		{1EE34F89-872A-4570-B669-1885DFB8FFB1} = {0C12FAF3-85BC-43E1-ABB2-6799213942CB}
 	EndGlobalSection
 EndGlobal
