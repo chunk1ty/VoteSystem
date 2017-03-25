@@ -1,4 +1,6 @@
-﻿namespace VoteSystem.Web.Areas.Administration.Controllers
+﻿using System;
+
+namespace VoteSystem.Web.Areas.Administration.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -11,16 +13,25 @@
 
     public class QuestionController : AdministrationController
     {
-        private IQuestionService questions;
+        private IQuestionService questionService;
 
         public QuestionController(IQuestionService questions)
         {
-            this.questions = questions;
+            if (questions == null)
+            {
+                throw new ArgumentNullException("questionService");
+            }
+            this.questionService = questions;
         }
 
         [HttpGet]
         public ActionResult Create(int rateSystemId)
         {
+            if (rateSystemId <= 0)
+            {
+                return this.Content("rateSystemId can not be negative number or 0");
+            }
+
             return this.View(new QuestionAndAnswersViewModel() { RateSystemId = rateSystemId });
         }
 
@@ -44,10 +55,10 @@
                 var questionDbModel = this.Mapper.Map<Question>(question);               
                 questionDbModel.RateSystemId = model.RateSystemId;
 
-                this.questions.Add(questionDbModel);
+                this.questionService.Add(questionDbModel);
             }
 
-            this.questions.SaveChanges();
+            this.questionService.SaveChanges();
 
             return this.RedirectToAction<RateSystemController>(c => c.Index());
         }
@@ -55,7 +66,7 @@
         [HttpGet]
         public ActionResult Edit(int rateSystemId)
         {
-            var questions = this.questions
+            var questions = this.questionService
                 .GetAllQuestions(rateSystemId)
                 .To<QuestionViewModel>()
                 .ToList();
@@ -79,31 +90,31 @@
                 return this.View(model);
             }
 
-            var allExistingQuestions = this.questions.GetAllQuestions(model.RateSystemId);
+            var allExistingQuestions = this.questionService.GetAllQuestions(model.RateSystemId);
 
             foreach (var existingQuestion in allExistingQuestions)
             {
-                this.questions.Delete(existingQuestion);
+                this.questionService.Delete(existingQuestion);
             }
 
-            this.questions.SaveChanges();
+            this.questionService.SaveChanges();
 
             foreach (var question in model.Questions)
             {
                 var questionDbModel = this.Mapper.Map<Question>(question);
                 questionDbModel.RateSystemId = model.RateSystemId;
 
-                this.questions.Add(questionDbModel);
+                this.questionService.Add(questionDbModel);
             }
 
-            this.questions.SaveChanges();
+            this.questionService.SaveChanges();
 
             return this.RedirectToAction<RateSystemController>(c => c.Index());
         }
         
         public ActionResult Preview(int rateSystemId)
         {
-            var questionsAsVM = this.questions
+            var questionsAsVM = this.questionService
                 .GetAllQuestions(rateSystemId)
                 .To<QuestionViewModel>()
                 .ToList();

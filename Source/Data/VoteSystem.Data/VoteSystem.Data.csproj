@@ -75,9 +75,9 @@
       <Project>{8e44bc26-9e2d-4796-86f0-1d9bfba8598d}</Project>
       <Name>VoteSystem.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VoteSystem.Models\VoteSystem.Models.csproj">
+    <ProjectReference Include="..\VoteSystem.Models\VoteSystem.Data.Models.csproj">
       <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
-      <Name>VoteSystem.Models</Name>
+      <Name>VoteSystem.Data.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
