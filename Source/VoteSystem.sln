@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Data.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web.Controllers.Tests", "Tests\VoteSystem.Web.Controllers.Tests\VoteSystem.Web.Controllers.Tests.csproj", "{1EE34F89-872A-4570-B669-1885DFB8FFB1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cover", "Cover", "{FBACB1D9-4344-488F-8A61-8B9BAD00844D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoverDependency", "CoverDependency\CoverDependency.csproj", "{F2DCF880-B3B6-4CE8-9B39-986957372011}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +93,10 @@ Global
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2DCF880-B3B6-4CE8-9B39-986957372011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2DCF880-B3B6-4CE8-9B39-986957372011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2DCF880-B3B6-4CE8-9B39-986957372011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2DCF880-B3B6-4CE8-9B39-986957372011}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,5 +113,6 @@ Global
 		{BAADB80A-A13C-403B-AD11-8B1680415890} = {0C12FAF3-85BC-43E1-ABB2-6799213942CB}
 		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7} = {0C12FAF3-85BC-43E1-ABB2-6799213942CB}
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1} = {0C12FAF3-85BC-43E1-ABB2-6799213942CB}
+		{F2DCF880-B3B6-4CE8-9B39-986957372011} = {FBACB1D9-4344-488F-8A61-8B9BAD00844D}
 	EndGlobalSection
 EndGlobal
