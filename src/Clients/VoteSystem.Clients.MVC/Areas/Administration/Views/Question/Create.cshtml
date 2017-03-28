@@ -1,0 +1,54 @@
+﻿@model VoteSystem.Clients.MVC.ViewModels.QuestionAndAnswersViewModel
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    int counter = 0;
+}
+
+@section styles {
+    <style>
+        .validation-summary-errors ul {
+            list-style-type: none;
+        }
+    </style>
+}
+
+@using (Html.BeginForm<QuestionController>(c => c.Create(0), FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.RateSystemId)
+    @Html.Hidden("more-question-url", Url.Action<AjaxController>(c => c.MoreQuestions()))
+
+    <div class="text-center">
+        <h2 class="my-header-title">
+            Добавяне на въпроси
+        </h2>
+
+        @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+
+        <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+            Обратно
+        </a>
+        <span id="add-more-questions" class="btn btn-dark">
+            <i class="fa fa-plus"></i>
+            Нов въпрос
+        </span>
+        <button type="submit" class="btn btn-dark">
+            <i class="glyphicon glyphicon-floppy-disk"></i>
+            Запиши
+        </button>
+    </div>
+
+    <div id="question-list">
+        @foreach (var question in Model.Questions)
+        {
+            counter++;
+            Html.RenderPartial(PartialViewConstants.QuestionPartial, question, new ViewDataDictionary { { "counter", counter } });
+        }
+    </div>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

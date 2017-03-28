@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{99FC36D3-D963-4263-BF69-8BD11F801E2B}"
 EndProject
@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8103CD5B-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A5398FDD-2BE7-452F-9808-E5D3C5B58CC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Clients.MVC", "src\Clients\VoteSystem.Web\VoteSystem.Clients.MVC.csproj", "{67CC40FF-4933-4F83-810E-357E6BC8B973}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Clients.MVC", "src\Clients\VoteSystem.Clients.MVC\VoteSystem.Clients.MVC.csproj", "{67CC40FF-4933-4F83-810E-357E6BC8B973}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data", "src\Data\VoteSystem.Data\VoteSystem.Data.csproj", "{398E47FA-CD30-4EA7-84FF-FE27EF94343C}"
 EndProject
@@ -42,6 +42,26 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EF29E430-8421-4279-91DE-5AF5A338A75C}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{128B2E29-1B04-4D21-948B-F0125B06B352}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "jenkins-jobs", "jenkins-jobs", "{D9B4F554-9392-4605-A2D1-D8761CB6631C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "automatic-build", "automatic-build", "{6A2DE8D2-B860-4C75-A7DF-9B7FF32E7A74}"
+	ProjectSection(SolutionItems) = preProject
+		ci-dependencies\jenkins-jobs\automatic-build\config.xml = ci-dependencies\jenkins-jobs\automatic-build\config.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentation", "{9CC69D99-A4E0-4280-9162-63B59B0A03C3}"
+	ProjectSection(SolutionItems) = preProject
+		documentation\Andriyan_Krastev.pptx = documentation\Andriyan_Krastev.pptx
+		documentation\Andriyan_Krastev_153708-_v1.1.docx = documentation\Andriyan_Krastev_153708-_v1.1.docx
 	EndProjectSection
 EndProject
 Global
@@ -118,5 +138,7 @@ Global
 		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7} = {DF6EC6DD-0407-4407-AE1A-889FEA57320E}
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1} = {DF6EC6DD-0407-4407-AE1A-889FEA57320E}
 		{F2DCF880-B3B6-4CE8-9B39-986957372011} = {9CCBA71E-9C76-4F97-B862-BB9BC856F680}
+		{D9B4F554-9392-4605-A2D1-D8761CB6631C} = {9CCBA71E-9C76-4F97-B862-BB9BC856F680}
+		{6A2DE8D2-B860-4C75-A7DF-9B7FF32E7A74} = {D9B4F554-9392-4605-A2D1-D8761CB6631C}
 	EndGlobalSection
 EndGlobal

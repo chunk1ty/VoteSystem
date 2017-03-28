@@ -118,7 +118,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Clients\VoteSystem.Web\VoteSystem.Clients.MVC.csproj">
+    <ProjectReference Include="..\..\src\Clients\VoteSystem.Clients.MVC\VoteSystem.Clients.MVC.csproj">
       <Project>{67cc40ff-4933-4f83-810e-357e6bc8b973}</Project>
       <Name>VoteSystem.Clients.MVC</Name>
     </ProjectReference>
