@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8103CD5B-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A5398FDD-2BE7-452F-9808-E5D3C5B58CC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web", "src\Web\VoteSystem.Web\VoteSystem.Web.csproj", "{67CC40FF-4933-4F83-810E-357E6BC8B973}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web", "src\Clients\VoteSystem.Web\VoteSystem.Web.csproj", "{67CC40FF-4933-4F83-810E-357E6BC8B973}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data", "src\Data\VoteSystem.Data\VoteSystem.Data.csproj", "{398E47FA-CD30-4EA7-84FF-FE27EF94343C}"
 EndProject
@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Common", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Data", "src\Services\VoteSystem.Services.Data\VoteSystem.Services.Data.csproj", "{960E22E8-F9EE-4067-8CC6-F6C1950FBD18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web.Infrastructure", "src\Web\VoteSystem.Web.Infrastructure\VoteSystem.Web.Infrastructure.csproj", "{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web.Infrastructure", "src\Clients\VoteSystem.Web.Infrastructure\VoteSystem.Web.Infrastructure.csproj", "{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Web", "src\Services\VoteSystem.Services.Web\VoteSystem.Services.Web.csproj", "{987BB8B6-3320-4A56-BF9F-A2BC56F6D5DB}"
 EndProject
