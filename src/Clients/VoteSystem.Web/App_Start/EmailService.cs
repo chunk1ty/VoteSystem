@@ -1,14 +1,13 @@
-﻿namespace VoteSystem.Web
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using SendGrid;
+using VoteSystem.Clients.MVC.ViewModels.Introduction;
+using VoteSystem.Data.Models;
+
+namespace VoteSystem.Clients.MVC
 {
-    using System.Threading.Tasks;
-
-    using Microsoft.AspNet.Identity;
-    using SendGrid;
-    using System;
-    using ViewModels.Introduction;
-    using System.Collections.Generic;
-    using Data.Models;
-
     public class EmailService : IIdentityMessageService
     {
         public async Task SendAsync(IdentityMessage message)
@@ -35,7 +34,7 @@
             myMessage.Subject = message.Subject;
             myMessage.Html = message.Message;
 
-            var transportWeb = new Web("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");
+            var transportWeb = new SendGrid.Web("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");
 
             try
             {
@@ -63,7 +62,7 @@
             myMessage.Subject = message.Subject;
             myMessage.Html = message.Body;
 
-            var transportWeb = new Web("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");
+            var transportWeb = new SendGrid.Web("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");
             try
             {
                 if (transportWeb != null)
@@ -93,7 +92,7 @@
                 myMessage.Html = "Здравейте! Вие бяхте добавен към "+ rateSystem.RateSystemName + " система, която започва на "+ rateSystem.StarDateTime + " и свършва на " + rateSystem.EndDateTime + ". Моля отделете време и гласувайте. " +
                     "<a href =\"http://votesystem.apphb.com\">Вход към сайта.</a>";
 
-                var transportWeb = new Web("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");
+                var transportWeb = new SendGrid.Web("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");
 
                 try
                 {

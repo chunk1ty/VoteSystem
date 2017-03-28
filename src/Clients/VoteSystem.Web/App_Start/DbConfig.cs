@@ -1,10 +1,9 @@
-﻿namespace VoteSystem.Web
+﻿using System.Data.Entity;
+using VoteSystem.Data;
+using VoteSystem.Data.Migrations;
+
+namespace VoteSystem.Clients.MVC
 {
-    using System.Data.Entity;
-
-    using VoteSystem.Data;
-    using VoteSystem.Data.Migrations;
-
     public class DbConfig
     {
         public static void RegisterDb()

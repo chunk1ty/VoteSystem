@@ -1,10 +1,10 @@
-﻿namespace VoteSystem.Web
-{
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Optimization;
-    using System.Web.Routing;
+﻿using System.Web;
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
 
+namespace VoteSystem.Clients.MVC
+{
     public class MvcApplication : HttpApplication
     {
         protected void Application_Start()

@@ -1,8 +1,8 @@
-﻿namespace VoteSystem.Web
-{
-    using System.Web.Mvc;
-    using System.Web.Routing;
+﻿using System.Web.Mvc;
+using System.Web.Routing;
 
+namespace VoteSystem.Clients.MVC
+{
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)

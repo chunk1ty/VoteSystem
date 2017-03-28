@@ -1,7 +1,7 @@
-﻿namespace VoteSystem.Web.ViewModels.Account
-{
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
+namespace VoteSystem.Clients.MVC.ViewModels.Account
+{
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

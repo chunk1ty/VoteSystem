@@ -1,20 +1,18 @@
-﻿namespace VoteSystem.Web.Controllers
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Mvc.Expressions;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using VoteSystem.Clients.MVC.ViewModels.Account;
+using VoteSystem.Data.Models;
+using VoteSystem.Web.Infrastructure.NotificationSystem;
+
+namespace VoteSystem.Clients.MVC.Controllers
 {
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Mvc.Expressions;
-
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.Owin.Security;
-
-    using VoteSystem.Data.Models;
-    using VoteSystem.Web.ViewModels.Account;
-    using System;
-    using Infrastructure.NotificationSystem;
-
     [Authorize]
     public class AccountController : BaseController
     {

@@ -1,7 +1,7 @@
-﻿namespace VoteSystem.Web
-{
-    using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
+namespace VoteSystem.Clients.MVC
+{
     public class ViewEngineConfig
     {
         public static void RegisterViewEngine()

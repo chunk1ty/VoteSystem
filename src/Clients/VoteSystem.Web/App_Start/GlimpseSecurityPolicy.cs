@@ -1,9 +1,9 @@
-namespace VoteSystem.Web
-{
-    using Glimpse.AspNet.Extensions;
-    using Glimpse.Core.Extensibility;
-    using Infrastructure.Extensions;
+using Glimpse.AspNet.Extensions;
+using Glimpse.Core.Extensibility;
+using VoteSystem.Web.Infrastructure.Extensions;
 
+namespace VoteSystem.Clients.MVC
+{
     public class GlimpseSecurityPolicy : IRuntimePolicy
     {
         public RuntimeEvent ExecuteOn

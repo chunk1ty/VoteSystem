@@ -1,10 +1,9 @@
-﻿namespace VoteSystem.Web.ViewModels.FillRateSystem
+﻿using System.Collections.Generic;
+using VoteSystem.Data.Models;
+using VoteSystem.Web.Infrastructure.Mapping;
+
+namespace VoteSystem.Clients.MVC.ViewModels.FillRateSystem
 {
-    using System.Collections.Generic;
-
-    using VoteSystem.Data.Models;
-    using VoteSystem.Web.Infrastructure.Mapping;
-
     public class FillQuestionsViewModel : IMapFrom<Question>, IMapTo<Question>
     {
         public FillQuestionsViewModel()

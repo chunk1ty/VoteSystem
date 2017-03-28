@@ -1,15 +1,13 @@
-﻿namespace VoteSystem.Web
+﻿using System;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
+using VoteSystem.Data;
+using VoteSystem.Data.Models;
+
+namespace VoteSystem.Clients.MVC
 {
-    using System;
-
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.Owin;
-  
-    using VoteSystem.Data;
-    using VoteSystem.Data.Models;
-
     public class ApplicationUserManager : UserManager<User>
     {
         public ApplicationUserManager(IUserStore<User> store)

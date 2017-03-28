@@ -1,16 +1,14 @@
-﻿namespace VoteSystem.Web.Controllers
+﻿using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using VoteSystem.Clients.MVC.ViewModels.Manage;
+
+namespace VoteSystem.Clients.MVC.Controllers
 {
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Web;
-    using System.Web.Mvc;
-
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.Owin.Security;
-
-    using VoteSystem.Web.ViewModels.Manage;
-
     [Authorize]
     public class ManageController : BaseController
     {

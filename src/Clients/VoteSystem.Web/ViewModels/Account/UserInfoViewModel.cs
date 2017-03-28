@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace VoteSystem.Web.ViewModels.Account
+namespace VoteSystem.Clients.MVC.ViewModels.Account
 {
     public class UserInfoViewModel
     {

@@ -7,9 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web;
+using VoteSystem.Clients.MVC;
+using VoteSystem.Clients.MVC.Areas.Administration.Controllers;
+using VoteSystem.Clients.MVC.ViewModels;
 using VoteSystem.Services.Data.Contracts;
-using VoteSystem.Web.Areas.Administration.Controllers;
-using VoteSystem.Web.ViewModels;
 using VoteSystem.Data.Models;
 
 namespace VoteSystem.Web.Controllers.Tests

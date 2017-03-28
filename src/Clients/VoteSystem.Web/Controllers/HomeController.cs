@@ -1,14 +1,12 @@
-﻿namespace VoteSystem.Web.Controllers
+﻿using System.Linq;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using VoteSystem.Clients.MVC.ViewModels;
+using VoteSystem.Services.Data.Contracts;
+using VoteSystem.Web.Infrastructure.Mapping;
+
+namespace VoteSystem.Clients.MVC.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
-
-    using Microsoft.AspNet.Identity;
-
-    using VoteSystem.Services.Data.Contracts;
-    using VoteSystem.Web.Infrastructure.Mapping;
-    using VoteSystem.Web.ViewModels;
-    
     public class HomeController : BaseController
     {
         private IRateSystemService rateSystems;

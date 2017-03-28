@@ -1,9 +1,8 @@
-﻿namespace VoteSystem.Web
-{
-    using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
-    using Microsoft.AspNet.Identity;
-    
+namespace VoteSystem.Clients.MVC
+{
     public class SmsService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)

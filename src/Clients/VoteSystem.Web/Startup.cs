@@ -1,8 +1,9 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using VoteSystem.Clients.MVC;
 
-[assembly: OwinStartupAttribute(typeof(VoteSystem.Web.Startup))]
-namespace VoteSystem.Web
+[assembly: OwinStartup(typeof(Startup))]
+namespace VoteSystem.Clients.MVC
 {
     public partial class Startup
     {

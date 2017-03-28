@@ -1,8 +1,9 @@
-﻿namespace VoteSystem.Web.ViewModels
+﻿using System.Collections.Generic;
+
+namespace VoteSystem.Clients.MVC.ViewModels
 {
     // TODO seperate all view models in folders
-    using System.Collections.Generic;
-
+    
     public class QuestionAndAnswersViewModel
     {
         public QuestionAndAnswersViewModel()

@@ -104,9 +104,9 @@
       <Project>{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}</Project>
       <Name>VoteSystem.Web.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Clients\VoteSystem.Web\VoteSystem.Web.csproj">
+    <ProjectReference Include="..\..\src\Clients\VoteSystem.Web\VoteSystem.Clients.MVC.csproj">
       <Project>{67cc40ff-4933-4f83-810e-357e6bc8b973}</Project>
-      <Name>VoteSystem.Web</Name>
+      <Name>VoteSystem.Clients.MVC</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

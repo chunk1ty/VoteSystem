@@ -1,10 +1,9 @@
-﻿namespace VoteSystem.Web.ViewModels
-{
-    using System.Linq;
-    using AutoMapper;
-    using VoteSystem.Data.Models;
-    using VoteSystem.Web.Infrastructure.Mapping;  
+﻿using AutoMapper;
+using VoteSystem.Data.Models;
+using VoteSystem.Web.Infrastructure.Mapping;
 
+namespace VoteSystem.Clients.MVC.ViewModels
+{
     public class UserViewModel : IMapFrom<User>, IHaveCustomMappings
     {
         public string Id { get; set; }

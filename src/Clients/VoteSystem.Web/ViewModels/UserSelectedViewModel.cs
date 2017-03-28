@@ -1,8 +1,8 @@
-﻿namespace VoteSystem.Web.ViewModels
-{
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
+namespace VoteSystem.Clients.MVC.ViewModels
+{
     public class UserSelectedViewModel
     {
         public UserSelectedViewModel()

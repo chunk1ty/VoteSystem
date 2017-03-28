@@ -1,9 +1,9 @@
-﻿namespace VoteSystem.Web.ViewModels.Manage
-{
-    using System.Collections.Generic;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.Owin.Security;
+﻿using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
+namespace VoteSystem.Clients.MVC.ViewModels.Manage
+{
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }

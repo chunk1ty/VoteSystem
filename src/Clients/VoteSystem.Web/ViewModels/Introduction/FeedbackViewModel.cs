@@ -1,7 +1,7 @@
-﻿namespace VoteSystem.Web.ViewModels.Introduction
-{
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
+namespace VoteSystem.Clients.MVC.ViewModels.Introduction
+{
     public class FeedbackViewModel
     {
         [Required(ErrorMessage = "Името е задължително.")]

@@ -1,13 +1,11 @@
-﻿namespace VoteSystem.Web.Controllers
+﻿using System.Web.Mvc;
+using AutoMapper;
+using Ninject;
+using VoteSystem.Services.Web.Contracts;
+using VoteSystem.Web.Infrastructure.Mapping;
+
+namespace VoteSystem.Clients.MVC.Controllers
 {
-    using System.Web.Mvc;
-
-    using AutoMapper;
-    using Ninject;
-   
-    using VoteSystem.Services.Web.Contracts;
-    using VoteSystem.Web.Infrastructure.Mapping;
-
     [Authorize]
     public abstract class BaseController : Controller
     {

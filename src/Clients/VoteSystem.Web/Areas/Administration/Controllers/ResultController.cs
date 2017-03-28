@@ -1,10 +1,9 @@
-﻿namespace VoteSystem.Web.Areas.Administration.Controllers
+﻿using System.Linq;
+using System.Web.Mvc;
+using VoteSystem.Services.Data.Contracts;
+
+namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
-
-    using VoteSystem.Services.Data.Contracts;    
-
     public class ResultController : AdministrationController
     {
         private IQuestionService questions;

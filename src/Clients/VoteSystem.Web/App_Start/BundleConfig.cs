@@ -1,7 +1,7 @@
-﻿namespace VoteSystem.Web
-{
-    using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
+namespace VoteSystem.Clients.MVC
+{
     public class BundleConfig
     {
         public static void RegisterBundles(BundleCollection bundles)

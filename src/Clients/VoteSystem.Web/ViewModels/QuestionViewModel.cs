@@ -1,11 +1,11 @@
-﻿namespace VoteSystem.Web.ViewModels
-{
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    using VoteSystem.Data.Models;
-    using VoteSystem.Web.Infrastructure.Mapping;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using VoteSystem.Data.Models;
+using VoteSystem.Web.Infrastructure.Mapping;
 
+namespace VoteSystem.Clients.MVC.ViewModels
+{
     public class QuestionViewModel : IMapFrom<Question>, IMapTo<Question>
     {
         public QuestionViewModel()

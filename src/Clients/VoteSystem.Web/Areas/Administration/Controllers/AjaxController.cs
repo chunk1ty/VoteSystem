@@ -1,11 +1,10 @@
-﻿namespace VoteSystem.Web.Areas.Administration.Controllers
+﻿using System.Web.Mvc;
+using VoteSystem.Clients.MVC.ViewModels;
+using VoteSystem.Common;
+using VoteSystem.Services.Data.Contracts;
+
+namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
-    using System.Web.Mvc;
-
-    using VoteSystem.Common;
-    using VoteSystem.Services.Data.Contracts;
-    using VoteSystem.Web.ViewModels;
-
     public class AjaxController : AdministrationController
     {
         private readonly IRateSystemService rateSystems;

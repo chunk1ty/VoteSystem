@@ -1,8 +1,8 @@
-﻿namespace VoteSystem.Web.ViewModels.Account
-{
-    using System.Collections.Generic;
-    using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 
+namespace VoteSystem.Clients.MVC.ViewModels.Account
+{
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }

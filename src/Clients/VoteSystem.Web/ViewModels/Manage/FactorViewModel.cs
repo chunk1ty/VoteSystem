@@ -1,4 +1,4 @@
-﻿namespace VoteSystem.Web.ViewModels.Manage
+﻿namespace VoteSystem.Clients.MVC.ViewModels.Manage
 {
     public class FactorViewModel
     {

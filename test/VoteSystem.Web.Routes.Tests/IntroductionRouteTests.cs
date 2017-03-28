@@ -1,4 +1,6 @@
-﻿namespace VoteSystem.Web.Routes.Tests
+﻿using VoteSystem.Clients.MVC;
+
+namespace VoteSystem.Web.Routes.Tests
 {
     using System.Web.Routing;
 

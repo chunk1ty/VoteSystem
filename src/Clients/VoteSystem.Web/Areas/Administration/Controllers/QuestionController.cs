@@ -1,16 +1,14 @@
 ﻿using System;
+using System.Linq;
+using System.Web.Mvc;
+using System.Web.Mvc.Expressions;
+using VoteSystem.Clients.MVC.ViewModels;
+using VoteSystem.Data.Models;
+using VoteSystem.Services.Data.Contracts;
+using VoteSystem.Web.Infrastructure.Mapping;
 
-namespace VoteSystem.Web.Areas.Administration.Controllers
+namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
-    using System.Linq;
-    using System.Web.Mvc;
-    using System.Web.Mvc.Expressions;
-
-    using VoteSystem.Data.Models;
-    using VoteSystem.Services.Data.Contracts;
-    using VoteSystem.Web.Infrastructure.Mapping;
-    using VoteSystem.Web.ViewModels;
-
     public class QuestionController : AdministrationController
     {
         private IQuestionService questionService;
