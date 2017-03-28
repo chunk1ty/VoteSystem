@@ -3,11 +3,11 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
 using Microsoft.AspNet.Identity;
+using VoteSystem.Clients.MVC.Infrastructure.Mapping;
+using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem;
 using VoteSystem.Clients.MVC.ViewModels.FillRateSystem;
 using VoteSystem.Data.Models;
 using VoteSystem.Services.Data.Contracts;
-using VoteSystem.Web.Infrastructure.Mapping;
-using VoteSystem.Web.Infrastructure.NotificationSystem;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {

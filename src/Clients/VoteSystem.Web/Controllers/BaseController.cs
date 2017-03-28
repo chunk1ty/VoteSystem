@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using AutoMapper;
 using Ninject;
+using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Services.Web.Contracts;
-using VoteSystem.Web.Infrastructure.Mapping;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {

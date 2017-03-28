@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Data.Models;
-using VoteSystem.Web.Infrastructure.Mapping;
 
 namespace VoteSystem.Clients.MVC.ViewModels.FillRateSystem
 {

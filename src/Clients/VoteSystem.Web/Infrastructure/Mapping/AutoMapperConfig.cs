@@ -1,12 +1,11 @@
-﻿namespace VoteSystem.Web.Infrastructure.Mapping
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using AutoMapper;
+
+namespace VoteSystem.Clients.MVC.Infrastructure.Mapping
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-
-    using AutoMapper;
-
     public class AutoMapperConfig
     {
         public static MapperConfiguration Configuration { get; private set; }

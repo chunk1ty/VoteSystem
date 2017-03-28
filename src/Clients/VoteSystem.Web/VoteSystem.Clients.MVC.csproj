@@ -278,6 +278,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Extensions\CustomHtmlHelpers.cs" />
+    <Compile Include="Infrastructure\Extensions\PrincipalExtensions.cs" />
+    <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
+    <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
+    <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
+    <Compile Include="Infrastructure\Mapping\IMapTo.cs" />
+    <Compile Include="Infrastructure\Mapping\QueryableExtensions.cs" />
+    <Compile Include="Infrastructure\NotificationSystem\Notification.cs" />
+    <Compile Include="Infrastructure\NotificationSystem\NotificationType.cs" />
     <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
@@ -708,9 +717,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Infrastructure\Extensions\" />
-    <Folder Include="Infrastructure\Mapping\" />
-    <Folder Include="Infrastructure\NotificationSystem\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -741,10 +747,6 @@
     <ProjectReference Include="..\..\VoteSystem.Common\VoteSystem.Common.csproj">
       <Project>{03d917cf-26ea-4727-9eee-12635cd7bfb7}</Project>
       <Name>VoteSystem.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VoteSystem.Web.Infrastructure\VoteSystem.Web.Infrastructure.csproj">
-      <Project>{0653b67b-d6c6-4c6a-a3f3-64bdd670c958}</Project>
-      <Name>VoteSystem.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

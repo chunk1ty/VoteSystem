@@ -82,15 +82,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\CustomHtmlHelpers.cs" />
-    <Compile Include="Extensions\PrincipalExtensions.cs" />
-    <Compile Include="Mapping\AutoMapperConfig.cs" />
-    <Compile Include="Mapping\IHaveCustomMappings.cs" />
-    <Compile Include="Mapping\IMapFrom.cs" />
-    <Compile Include="Mapping\IMapTo.cs" />
-    <Compile Include="Mapping\QueryableExtensions.cs" />
-    <Compile Include="NotificationSystem\Notification.cs" />
-    <Compile Include="NotificationSystem\NotificationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +93,11 @@
       <Project>{03d917cf-26ea-4727-9eee-12635cd7bfb7}</Project>
       <Name>VoteSystem.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Mapping\" />
+    <Folder Include="NotificationSystem\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

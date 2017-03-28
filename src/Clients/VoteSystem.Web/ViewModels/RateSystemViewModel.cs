@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Data.Models;
 using VoteSystem.Services.Web;
 using VoteSystem.Services.Web.Contracts;
-using VoteSystem.Web.Infrastructure.Mapping;
 
 namespace VoteSystem.Clients.MVC.ViewModels
 {

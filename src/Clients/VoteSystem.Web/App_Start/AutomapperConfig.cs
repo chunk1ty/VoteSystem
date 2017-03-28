@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using VoteSystem.Web.Infrastructure.Mapping;
+using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 
 namespace VoteSystem.Clients.MVC
 {

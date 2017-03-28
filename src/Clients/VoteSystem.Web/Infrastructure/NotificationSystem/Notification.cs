@@ -1,9 +1,9 @@
-﻿namespace VoteSystem.Web.Infrastructure.NotificationSystem
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
+namespace VoteSystem.Clients.MVC.Infrastructure.NotificationSystem
+{
     public static class NotificationExtensions
     {
         private static IDictionary<NotificationType, String> NotificationKey = new Dictionary<NotificationType, String>

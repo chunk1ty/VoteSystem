@@ -1,6 +1,5 @@
 using Glimpse.AspNet.Extensions;
 using Glimpse.Core.Extensibility;
-using VoteSystem.Web.Infrastructure.Extensions;
 
 namespace VoteSystem.Clients.MVC
 {

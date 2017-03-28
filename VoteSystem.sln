@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{99FC36D3-D963-4263-BF69-8BD11F801E2B}"
 EndProject
@@ -18,8 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Common", "src\Data\VoteSystem.Data.Common\VoteSystem.Data.Common.csproj", "{8E44BC26-9E2D-4796-86F0-1D9BFBA8598D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Data", "src\Services\VoteSystem.Services.Data\VoteSystem.Services.Data.csproj", "{960E22E8-F9EE-4067-8CC6-F6C1950FBD18}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web.Infrastructure", "src\Clients\VoteSystem.Web.Infrastructure\VoteSystem.Web.Infrastructure.csproj", "{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Web", "src\Services\VoteSystem.Services.Web\VoteSystem.Services.Web.csproj", "{987BB8B6-3320-4A56-BF9F-A2BC56F6D5DB}"
 EndProject
@@ -40,6 +38,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DF6EC6DD-0407-4407-AE1A-889FEA57320E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ci-dependencies", "ci-dependencies", "{9CCBA71E-9C76-4F97-B862-BB9BC856F680}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EF29E430-8421-4279-91DE-5AF5A338A75C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,10 +70,6 @@ Global
 		{960E22E8-F9EE-4067-8CC6-F6C1950FBD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{960E22E8-F9EE-4067-8CC6-F6C1950FBD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{960E22E8-F9EE-4067-8CC6-F6C1950FBD18}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0653B67B-D6C6-4C6A-A3F3-64BDD670C958}.Release|Any CPU.Build.0 = Release|Any CPU
 		{987BB8B6-3320-4A56-BF9F-A2BC56F6D5DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{987BB8B6-3320-4A56-BF9F-A2BC56F6D5DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{987BB8B6-3320-4A56-BF9F-A2BC56F6D5DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -112,7 +111,6 @@ Global
 		{82CB736C-95EF-42AB-9D42-E6210DF6D20D} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 		{8E44BC26-9E2D-4796-86F0-1D9BFBA8598D} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 		{960E22E8-F9EE-4067-8CC6-F6C1950FBD18} = {A5398FDD-2BE7-452F-9808-E5D3C5B58CC3}
-		{0653B67B-D6C6-4C6A-A3F3-64BDD670C958} = {99FC36D3-D963-4263-BF69-8BD11F801E2B}
 		{987BB8B6-3320-4A56-BF9F-A2BC56F6D5DB} = {A5398FDD-2BE7-452F-9808-E5D3C5B58CC3}
 		{EBFDB942-73AF-4A97-8909-96308BF54649} = {DF6EC6DD-0407-4407-AE1A-889FEA57320E}
 		{BAADB80A-A13C-403B-AD11-8B1680415890} = {DF6EC6DD-0407-4407-AE1A-889FEA57320E}

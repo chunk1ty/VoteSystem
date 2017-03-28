@@ -1,10 +1,8 @@
-﻿namespace VoteSystem.Web.Infrastructure.Extensions
+﻿using System;
+using System.Web.Mvc;
+
+namespace VoteSystem.Clients.MVC.Infrastructure.Extensions
 {
-    using System;
-    using System.Web.Mvc;
-
-    using HtmlTags;
-
     public static class CustomHtmlHelpers
     {
         public static string TimeDisplay(this HtmlHelper helper, DateTime endDate)

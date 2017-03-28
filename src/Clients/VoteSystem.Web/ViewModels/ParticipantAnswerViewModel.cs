@@ -1,5 +1,5 @@
-﻿using VoteSystem.Data.Models;
-using VoteSystem.Web.Infrastructure.Mapping;
+﻿using VoteSystem.Clients.MVC.Infrastructure.Mapping;
+using VoteSystem.Data.Models;
 
 namespace VoteSystem.Clients.MVC.ViewModels
 {
