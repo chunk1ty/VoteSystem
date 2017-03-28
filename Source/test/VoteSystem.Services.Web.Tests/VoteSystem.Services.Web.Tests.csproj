@@ -66,7 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\VoteSystem.Services.Web\VoteSystem.Services.Web.csproj">
+    <ProjectReference Include="..\..\src\Services\VoteSystem.Services.Web\VoteSystem.Services.Web.csproj">
       <Project>{987bb8b6-3320-4a56-bf9f-a2bc56f6d5db}</Project>
       <Name>VoteSystem.Services.Web</Name>
     </ProjectReference>
