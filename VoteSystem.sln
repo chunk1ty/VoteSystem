@@ -31,18 +31,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Data.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web.Controllers.Tests", "test\VoteSystem.Web.Controllers.Tests\VoteSystem.Web.Controllers.Tests.csproj", "{1EE34F89-872A-4570-B669-1885DFB8FFB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIDependencies", "ci-dependencies\CIDependencies.csproj", "{F2DCF880-B3B6-4CE8-9B39-986957372011}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{60BD349B-1F06-46FD-B2A1-7F0367126AF4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DF6EC6DD-0407-4407-AE1A-889FEA57320E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ci-dependencies", "ci-dependencies", "{9CCBA71E-9C76-4F97-B862-BB9BC856F680}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EF29E430-8421-4279-91DE-5AF5A338A75C}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{128B2E29-1B04-4D21-948B-F0125B06B352}"
 	ProjectSection(SolutionItems) = preProject
@@ -63,6 +56,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentat
 		documentation\Andriyan_Krastev.pptx = documentation\Andriyan_Krastev.pptx
 		documentation\Andriyan_Krastev_153708-_v1.1.docx = documentation\Andriyan_Krastev_153708-_v1.1.docx
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIDependencies", "ci-dependencies\CIDependencies\CIDependencies.csproj", "{7230C0D4-D13F-45E4-B667-63D7C0E6AB29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -114,10 +109,10 @@ Global
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2DCF880-B3B6-4CE8-9B39-986957372011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2DCF880-B3B6-4CE8-9B39-986957372011}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2DCF880-B3B6-4CE8-9B39-986957372011}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2DCF880-B3B6-4CE8-9B39-986957372011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7230C0D4-D13F-45E4-B667-63D7C0E6AB29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7230C0D4-D13F-45E4-B667-63D7C0E6AB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7230C0D4-D13F-45E4-B667-63D7C0E6AB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7230C0D4-D13F-45E4-B667-63D7C0E6AB29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,8 +132,8 @@ Global
 		{03D917CF-26EA-4727-9EEE-12635CD7BFB7} = {60BD349B-1F06-46FD-B2A1-7F0367126AF4}
 		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7} = {DF6EC6DD-0407-4407-AE1A-889FEA57320E}
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1} = {DF6EC6DD-0407-4407-AE1A-889FEA57320E}
-		{F2DCF880-B3B6-4CE8-9B39-986957372011} = {9CCBA71E-9C76-4F97-B862-BB9BC856F680}
 		{D9B4F554-9392-4605-A2D1-D8761CB6631C} = {9CCBA71E-9C76-4F97-B862-BB9BC856F680}
 		{6A2DE8D2-B860-4C75-A7DF-9B7FF32E7A74} = {D9B4F554-9392-4605-A2D1-D8761CB6631C}
+		{7230C0D4-D13F-45E4-B667-63D7C0E6AB29} = {9CCBA71E-9C76-4F97-B862-BB9BC856F680}
 	EndGlobalSection
 EndGlobal

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F2DCF880-B3B6-4CE8-9B39-986957372011}</ProjectGuid>
+    <ProjectGuid>{7230C0D4-D13F-45E4-B667-63D7C0E6AB29}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoverDependency</RootNamespace>
-    <AssemblyName>CoverDependency</AssemblyName>
+    <RootNamespace>CIDependencies</RootNamespace>
+    <AssemblyName>CIDependencies</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
