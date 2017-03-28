@@ -1,7 +1,7 @@
-﻿namespace VoteSystem.Web.Areas.Administration
-{
-    using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
+namespace VoteSystem.Clients.MVC.Areas.Administration
+{
     public class AdministrationAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
