@@ -1,7 +1,8 @@
 ﻿using System.Web.Mvc;
+
 using VoteSystem.Clients.MVC.ViewModels;
-using VoteSystem.Common;
-using VoteSystem.Services.Data.Contracts;
+using VoteSystem.Common.Constants;
+using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {

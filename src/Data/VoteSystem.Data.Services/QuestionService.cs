@@ -1,20 +1,19 @@
-﻿namespace VoteSystem.Services.Data
+﻿using System.Data.Entity;
+using System.Linq;
+using VoteSystem.Data.Contracts;
+using VoteSystem.Data.Models;
+using VoteSystem.Data.Repositories;
+using VoteSystem.Data.Services.Contracts;
+using VoteSystem.Services.Web.Contracts;
+
+namespace VoteSystem.Data.Services
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-
-    using VoteSystem.Data.Common;
-    using VoteSystem.Data.Models;
-    using VoteSystem.Services.Data.Contracts;
-    using VoteSystem.Services.Web.Contracts;
-
     public class QuestionService : IQuestionService
     {
-        private readonly IDbGenericRepository<Question> questions;
+        private readonly IEntityFrameworkRepository<Question> questions;
         private readonly IIdentifierProvider identifierProvider;
 
-        public QuestionService(IDbGenericRepository<Question> questions, IIdentifierProvider identifierProvider)
+        public QuestionService(IEntityFrameworkRepository<Question> questions, IIdentifierProvider identifierProvider)
         {
             this.questions = questions;
             this.identifierProvider = identifierProvider;

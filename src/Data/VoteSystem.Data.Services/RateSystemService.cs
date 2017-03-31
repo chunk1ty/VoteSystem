@@ -1,22 +1,22 @@
-﻿namespace VoteSystem.Services.Data
+﻿using System;
+using System.Linq;
+using VoteSystem.Data.Contracts;
+using VoteSystem.Data.Models;
+using VoteSystem.Data.Repositories;
+using VoteSystem.Data.Services.Contracts;
+
+namespace VoteSystem.Data.Services
 {
-    using System;
-    using System.Linq;
-
-    using VoteSystem.Data.Common;
-    using VoteSystem.Data.Models;
-    using VoteSystem.Services.Data.Contracts;
-
     public class RateSystemService : IRateSystemService
     {
-        private readonly IDeletableEntityRepository<RateSystem> rateSystems;
+        private readonly IDeletableEntityRepository<Models.Survey> rateSystems;
 
-        public RateSystemService(IDeletableEntityRepository<RateSystem> rateSystems)
+        public RateSystemService(IDeletableEntityRepository<Models.Survey> rateSystems)
         {
             this.rateSystems = rateSystems;
         }
 
-        public void Add(RateSystem system)
+        public void Add(Survey system)
         {
             this.rateSystems.Add(system);
             this.SaveChanges();
@@ -30,7 +30,7 @@
             this.SaveChanges();
         }
 
-        public void Update(RateSystem system)
+        public void Update(Survey system)
         {
             this.rateSystems.Update(system);
             this.SaveChanges();
@@ -41,12 +41,12 @@
             this.rateSystems.SaveChanges();
         }
 
-        public IQueryable<RateSystem> GetAll()
+        public IQueryable<Survey> GetAll()
         {
             return this.rateSystems.All();
         }
 
-        public IQueryable<RateSystem> AllActive(string userId)
+        public IQueryable<Models.Survey> AllActive(string userId)
         {
             return this.rateSystems
                     .All()
@@ -58,7 +58,7 @@
                                                 y.IsVoted == false));
         }
 
-        public RateSystem GetById(int rateSystemId)
+        public Survey GetById(int rateSystemId)
         {
             return this.rateSystems.GetById(rateSystemId);
         }

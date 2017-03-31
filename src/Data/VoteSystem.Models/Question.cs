@@ -1,12 +1,12 @@
-﻿namespace VoteSystem.Data.Models
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+using VoteSystem.Models.Common;
+
+namespace VoteSystem.Data.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    using VoteSystem.Data.Common.Models;
-
-    public class Question : DeletableEntity, IAuditInfo
+    public class Question : IAuditInfo, IDeletableEntity
     {
         public Question()
         {
@@ -20,14 +20,16 @@
 
         public bool HasMultipleAnswers { get; set; }
 
-        public int RateSystemId { get; set; }
-
-        public virtual RateSystem RateSystem { get; set; }
-
-        public ICollection<QuestionAnswer> QuestionAnswers { get; set; }
-
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
+
+        public bool IsDeleted { get; set; }
+        public DateTime? DeletedOn { get; set; }
+
+        public int RateSystemId { get; set; }
+        public virtual Survey RateSystem { get; set; }
+
+        public ICollection<QuestionAnswer> QuestionAnswers { get; set; }
     }
 }

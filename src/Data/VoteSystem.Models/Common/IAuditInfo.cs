@@ -1,7 +1,7 @@
-﻿namespace VoteSystem.Data.Common.Models
-{
-    using System;
+﻿using System;
 
+namespace VoteSystem.Models.Common
+{
     public interface IAuditInfo
     {
         DateTime CreatedOn { get; set; }

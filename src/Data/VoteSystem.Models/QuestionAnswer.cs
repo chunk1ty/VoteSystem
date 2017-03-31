@@ -1,11 +1,12 @@
-﻿namespace VoteSystem.Data.Models
-{
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-    using VoteSystem.Data.Common.Models;
-    
-    public class QuestionAnswer : AuditInfo
+using VoteSystem.Models.Common;
+
+namespace VoteSystem.Data.Models
+{
+    public class QuestionAnswer : IAuditInfo
     {
         public QuestionAnswer()
         {
@@ -17,8 +18,10 @@
 
         public string QuestionAnswerName { get; set; }
 
-        public int QuestionId { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }
 
+        public int QuestionId { get; set; }
         public virtual Question Question { get; set; }
 
         public ICollection<ParticipantAnswer> ParticipantAnswers { get; set; }

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using VoteSystem.Clients.MVC.ViewModels.Introduction;
-using VoteSystem.Services.Data.Contracts;
+using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {

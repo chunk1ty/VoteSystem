@@ -1,7 +1,7 @@
-﻿namespace VoteSystem.Services.Data.Contracts
-{
-    using VoteSystem.Data.Models;
+﻿using VoteSystem.Data.Models;
 
+namespace VoteSystem.Data.Services.Contracts
+{
     public interface IParticipantAnswerService
     {
         void Add(ParticipantAnswer userAnswers);

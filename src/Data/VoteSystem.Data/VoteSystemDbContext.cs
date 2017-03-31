@@ -1,14 +1,15 @@
-﻿namespace VoteSystem.Data
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
+
+using Microsoft.AspNet.Identity.EntityFramework;
+using VoteSystem.Data.Models;
+
+using VoteSystem.Data.Contracts;
+using VoteSystem.Models.Common;
+
+namespace VoteSystem.Data
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-
-    using Microsoft.AspNet.Identity.EntityFramework;
-  
-    using VoteSystem.Data.Common.Models;
-    using VoteSystem.Data.Models;
-
     public class VoteSystemDbContext : IdentityDbContext<User>, IVoteSystemDbContext
     {
         public VoteSystemDbContext()
@@ -22,14 +23,14 @@
 
         public virtual IDbSet<ParticipantAnswer> ParticipantAnswers { get; set; }
 
-        public virtual IDbSet<RateSystem> RateSystems { get; set; }
+        public virtual IDbSet<Survey> RateSystems { get; set; }
 
         public virtual IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
 
-        public static VoteSystemDbContext Create()
-        {
-            return new VoteSystemDbContext();
-        }
+        //public static VoteSystemDbContext Create()
+        //{
+        //    return new VoteSystemDbContext();
+        //}
 
         public override int SaveChanges()
         {

@@ -1,30 +1,30 @@
-﻿namespace VoteSystem.Data.Common
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
+using VoteSystem.Data.Contracts;
+using VoteSystem.Models.Common;
+
+namespace VoteSystem.Data.Repositories
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-
-    using VoteSystem.Data.Common.Models;
-
-    public class DeletableEntityRepository<T> :
-        DbGenericRepository<T>, IDeletableEntityRepository<T> where T : class, IDeletableEntity
+    public class DeletableEntityRepository<TEntity> :
+        EntityFrameworkRepository<TEntity>, IDeletableEntityRepository<TEntity> where TEntity : class, IDeletableEntity
     {
         public DeletableEntityRepository(DbContext context)
             : base(context)
         {
         }
      
-        public override IQueryable<T> All()
+        public override IQueryable<TEntity> All()
         {
             return base.All().Where(x => !x.IsDeleted);
         }
 
-        public IQueryable<T> AllWithDeleted()
+        public IQueryable<TEntity> AllWithDeleted()
         {
             return base.All();
         }
 
-        public override void Delete(T entity)
+        public override void Delete(TEntity entity)
         {
             entity.IsDeleted = true;
             entity.DeletedOn = DateTime.Now;
@@ -39,7 +39,7 @@
             entry.State = EntityState.Modified;
         }
 
-        public void HardDelete(T entity)
+        public void HardDelete(TEntity entity)
         {
             base.Delete(entity);
         }

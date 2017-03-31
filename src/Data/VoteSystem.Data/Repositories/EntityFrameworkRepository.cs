@@ -1,37 +1,40 @@
-﻿namespace VoteSystem.Data.Common
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
+
+using VoteSystem.Data.Contracts;
+
+namespace VoteSystem.Data.Repositories
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-    
-    public class DbGenericRepository<T> : IDbGenericRepository<T> where T : class
+    public class EntityFrameworkRepository<TEntity> : IEntityFrameworkRepository<TEntity> 
+        where TEntity : class
     {
-        public DbGenericRepository(DbContext context)
+        public EntityFrameworkRepository(DbContext context)
         {
             if (context == null)
             {
-                throw new ArgumentException("An instance of DbContext is required to use this repository.", "context");
+                throw new ArgumentNullException(nameof(context));
             }
 
             this.Context = context;
-            this.DbSet = this.Context.Set<T>();
+            this.DbSet = this.Context.Set<TEntity>();
         }
 
-        protected IDbSet<T> DbSet { get; set; }
+        protected IDbSet<TEntity> DbSet { get; set; }
 
         protected DbContext Context { get; set; }
 
-        public virtual IQueryable<T> All()
+        public virtual IQueryable<TEntity> All()
         {
             return this.DbSet.AsQueryable();
         }
 
-        public virtual T GetById(object id)
+        public virtual TEntity GetById(object id)
         {
             return this.DbSet.Find(id);
         }
-       
-        public virtual void Add(T entity)
+
+        public virtual void Add(TEntity entity)
         {
             var entry = this.Context.Entry(entity);
 
@@ -44,8 +47,8 @@
                 this.DbSet.Add(entity);
             }
         }
-       
-        public virtual void Delete(T entity)
+
+        public virtual void Delete(TEntity entity)
         {
             var entry = this.Context.Entry(entity);
 
@@ -60,7 +63,7 @@
             }
         }
 
-        public virtual void Update(T entity)
+        public virtual void Update(TEntity entity)
         {
             var entry = this.Context.Entry(entity);
 
@@ -72,12 +75,12 @@
             entry.State = EntityState.Modified;
         }
 
-        public virtual T Attach(T entity)
+        public virtual TEntity Attach(TEntity entity)
         {
-            return this.Context.Set<T>().Attach(entity);
+            return this.Context.Set<TEntity>().Attach(entity);
         }
 
-        public virtual void Detach(T entity)
+        public virtual void Detach(TEntity entity)
         {
             var entry = this.Context.Entry(entity);
             entry.State = EntityState.Detached;

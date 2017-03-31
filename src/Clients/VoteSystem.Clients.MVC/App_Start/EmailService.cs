@@ -20,7 +20,7 @@ namespace VoteSystem.Clients.MVC
             await FeedbackEmailAsync(message);
         }
 
-        public async Task SendAddedParticipantsAsync(List<string> participants, RateSystem rateSystem)
+        public async Task SendAddedParticipantsAsync(List<string> participants, Data.Models.Survey rateSystem)
         {
             await AddedParticipantsAsync(participants, rateSystem);
         }
@@ -80,7 +80,7 @@ namespace VoteSystem.Clients.MVC
             }
         }
 
-        private async Task AddedParticipantsAsync(List<string> participants, RateSystem rateSystem)
+        private async Task AddedParticipantsAsync(List<string> participants, Data.Models.Survey rateSystem)
         {
             var myMessage = new SendGridMessage();
 

@@ -57,25 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IParticipantAnswerService.cs" />
-    <Compile Include="Contracts\IQuestionAnswerService.cs" />
-    <Compile Include="Contracts\IQuestionService.cs" />
-    <Compile Include="Contracts\IRateSystemService.cs" />
-    <Compile Include="Contracts\IParticipantService.cs" />
-    <Compile Include="Contracts\IUserService.cs" />
-    <Compile Include="ParticipantAnswerService.cs" />
-    <Compile Include="QuestionAnswerService.cs" />
-    <Compile Include="QuestionService.cs" />
-    <Compile Include="RateSystemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ParticipantService.cs" />
-    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\VoteSystem.Data.Common\VoteSystem.Data.Common.csproj">
-      <Project>{8e44bc26-9e2d-4796-86f0-1d9bfba8598d}</Project>
-      <Name>VoteSystem.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\VoteSystem.Data\VoteSystem.Data.csproj">
       <Project>{398E47FA-CD30-4EA7-84FF-FE27EF94343C}</Project>
       <Name>VoteSystem.Data</Name>
@@ -92,6 +76,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

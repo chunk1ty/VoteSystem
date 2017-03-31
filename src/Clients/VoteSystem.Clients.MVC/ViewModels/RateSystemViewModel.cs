@@ -9,7 +9,7 @@ using VoteSystem.Services.Web.Contracts;
 
 namespace VoteSystem.Clients.MVC.ViewModels
 {
-    public class RateSystemViewModel : IMapFrom<RateSystem>, IMapTo<RateSystem>
+    public class RateSystemViewModel : IMapFrom<Data.Models.Survey>, IMapTo<Data.Models.Survey>
     {
         public int Id { get; set; }
 

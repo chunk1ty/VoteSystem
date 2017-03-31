@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Clients.MVC.ViewModels;
-using VoteSystem.Services.Data.Contracts;
+using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {

@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
+
 using VoteSystem.Clients.MVC.Controllers;
-using VoteSystem.Common;
+using VoteSystem.Common.Constants;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {

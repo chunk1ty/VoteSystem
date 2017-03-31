@@ -1,18 +1,17 @@
-﻿namespace VoteSystem.Services.Data
-{
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using System.Linq;
+using VoteSystem.Data.Contracts;
+using VoteSystem.Data.Models;
+using VoteSystem.Data.Repositories;
+using VoteSystem.Data.Services.Contracts;
 
-    using VoteSystem.Data.Common;
-    using VoteSystem.Data.Models;
-    using VoteSystem.Services.Data.Contracts;
-   
+namespace VoteSystem.Data.Services
+{
     public class UserService : IUserService
     {
-        private IDbGenericRepository<User> users;
+        private IEntityFrameworkRepository<User> users;
         private IParticipantService participants;
 
-        public UserService(IDbGenericRepository<User> users, IParticipantService participants)
+        public UserService(IEntityFrameworkRepository<User> users, IParticipantService participants)
         {
             this.users = users;
             this.participants = participants;

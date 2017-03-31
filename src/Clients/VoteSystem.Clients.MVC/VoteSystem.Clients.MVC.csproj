@@ -728,9 +728,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\VoteSystem.Data.Common\VoteSystem.Data.Common.csproj">
-      <Project>{8e44bc26-9e2d-4796-86f0-1d9bfba8598d}</Project>
-      <Name>VoteSystem.Data.Common</Name>
+    <ProjectReference Include="..\..\Common\VoteSystem.Common.Constants\VoteSystem.Common.Constants.csproj">
+      <Project>{ECFC4270-CADE-42BC-B9C0-8DF660397141}</Project>
+      <Name>VoteSystem.Common.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\VoteSystem.Data.Services\VoteSystem.Data.Services.csproj">
+      <Project>{B189968E-4F1D-4301-A27E-1A3C3D652B98}</Project>
+      <Name>VoteSystem.Data.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\VoteSystem.Data\VoteSystem.Data.csproj">
       <Project>{398E47FA-CD30-4EA7-84FF-FE27EF94343C}</Project>
@@ -740,17 +744,9 @@
       <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
       <Name>VoteSystem.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\VoteSystem.Services.Data\VoteSystem.Services.Data.csproj">
-      <Project>{960e22e8-f9ee-4067-8cc6-f6c1950fbd18}</Project>
-      <Name>VoteSystem.Services.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\VoteSystem.Services.Web\VoteSystem.Services.Web.csproj">
       <Project>{987bb8b6-3320-4a56-bf9f-a2bc56f6d5db}</Project>
       <Name>VoteSystem.Services.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\VoteSystem.Common\VoteSystem.Common.csproj">
-      <Project>{03d917cf-26ea-4727-9eee-12635cd7bfb7}</Project>
-      <Name>VoteSystem.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

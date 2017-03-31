@@ -84,9 +84,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Data\VoteSystem.Data.Common\VoteSystem.Data.Common.csproj">
-      <Project>{8E44BC26-9E2D-4796-86F0-1D9BFBA8598D}</Project>
-      <Name>VoteSystem.Data.Common</Name>
+    <ProjectReference Include="..\..\src\Data\VoteSystem.Data.Services\VoteSystem.Data.Services.csproj">
+      <Project>{B189968E-4F1D-4301-A27E-1A3C3D652B98}</Project>
+      <Name>VoteSystem.Data.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Data\VoteSystem.Data\VoteSystem.Data.csproj">
       <Project>{398e47fa-cd30-4ea7-84ff-fe27ef94343c}</Project>
@@ -95,10 +95,6 @@
     <ProjectReference Include="..\..\src\Data\VoteSystem.Models\VoteSystem.Data.Models.csproj">
       <Project>{82cb736c-95ef-42ab-9d42-e6210df6d20d}</Project>
       <Name>VoteSystem.Data.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Services\VoteSystem.Services.Data\VoteSystem.Services.Data.csproj">
-      <Project>{960e22e8-f9ee-4067-8cc6-f6c1950fbd18}</Project>
-      <Name>VoteSystem.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Clients\VoteSystem.Clients.MVC\VoteSystem.Clients.MVC.csproj">
       <Project>{67cc40ff-4933-4f83-810e-357e6bc8b973}</Project>

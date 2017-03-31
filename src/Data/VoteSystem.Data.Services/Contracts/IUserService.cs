@@ -1,9 +1,9 @@
-﻿namespace VoteSystem.Services.Data.Contracts
+﻿using System.Linq;
+
+using VoteSystem.Data.Models;
+
+namespace VoteSystem.Data.Services.Contracts
 {
-    using System.Linq;
-
-    using VoteSystem.Data.Models;
-
     public interface IUserService
     {
         IQueryable<User> GetAllUnselectUsers(int rateSystemId);

@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using VoteSystem.Models.Common;
+
+namespace VoteSystem.Data.Models
+{
+    public class Survey : IDeletableEntity, IAuditInfo
+    {
+        public Survey()
+        {
+            this.Questions = new HashSet<Question>();
+            this.Participants = new HashSet<Participant>();
+        }
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string RateSystemName { get; set; }
+       
+        public DateTime StarDateTime { get; set; }
+
+        public DateTime EndDateTime { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
+
+        public ICollection<Question> Questions { get; set; }
+
+        public ICollection<Participant> Participants { get; set; }
+    }
+}

@@ -1,10 +1,9 @@
-﻿namespace VoteSystem.Data
+﻿using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using VoteSystem.Data.Models;
+
+namespace VoteSystem.Data.Contracts
 {
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-
-    using VoteSystem.Data.Models;
-
     public interface IVoteSystemDbContext
     {
         IDbSet<User> Users { get; set; }
@@ -15,7 +14,7 @@
 
         IDbSet<Question> Questions { get; set; }
 
-        IDbSet<RateSystem> RateSystems { get; set; }
+        IDbSet<Survey> RateSystems { get; set; }
 
         IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
 

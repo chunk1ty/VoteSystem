@@ -7,8 +7,11 @@ using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
 using VoteSystem.Clients.MVC;
 using VoteSystem.Common;
+using VoteSystem.Common.Constants;
 using VoteSystem.Data;
-using VoteSystem.Data.Common;
+using VoteSystem.Data.Contracts;
+using VoteSystem.Data.Repositories;
+using VoteSystem.Models.Common;
 using VoteSystem.Services.Web;
 using VoteSystem.Services.Web.Contracts;
 
@@ -67,8 +70,8 @@ namespace VoteSystem.Clients.MVC
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(typeof(IDbGenericRepository<>))
-                .To(typeof(DbGenericRepository<>));
+            kernel.Bind(typeof(IEntityFrameworkRepository<>))
+                .To(typeof(EntityFrameworkRepository<>));
             kernel.Bind(typeof(IDeletableEntityRepository<>))
                .To(typeof(DeletableEntityRepository<>));
 

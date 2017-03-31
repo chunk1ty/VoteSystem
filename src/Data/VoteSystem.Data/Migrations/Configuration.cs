@@ -1,15 +1,15 @@
+using System;
+using System.Data.Entity.Migrations;
+using System.Linq;
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
+using VoteSystem.Data.Models;
+using VoteSystem.Common.Constants;
+
 namespace VoteSystem.Data.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    
-    using VoteSystem.Common;
-    using VoteSystem.Data.Models;
-
     public sealed class Configuration : DbMigrationsConfiguration<VoteSystemDbContext>
     {
         public Configuration()
@@ -85,9 +85,9 @@ namespace VoteSystem.Data.Migrations
         {
             if (context.RateSystems.Count() == 0)
             {
-               RateSystem ankk = new RateSystem() { Id = 1, RateSystemName = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
-                RateSystem ankk1 = new RateSystem() { Id = 2, RateSystemName = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
-                RateSystem ank2 = new RateSystem() { Id = 3, RateSystemName = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Models.Survey ankk = new Models.Survey() { Id = 1, RateSystemName = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Models.Survey ankk1 = new Models.Survey() { Id = 2, RateSystemName = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Models.Survey ank2 = new Models.Survey() { Id = 3, RateSystemName = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
 
                 context.SaveChanges();
                 context.RateSystems.AddOrUpdate(ankk);

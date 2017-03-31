@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using VoteSystem.Services.Data.Contracts;
+using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
