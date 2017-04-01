@@ -6,18 +6,16 @@ namespace VoteSystem.Data.Services.Contracts
 {
     public interface IRateSystemService
     {
-        void Add(Models.Survey system);
+        void Add(Survey system);
 
         void Delete(int rateSystemId);
 
-        void Update(Models.Survey system);
+        void Update(Survey system);
 
-        IQueryable<Models.Survey> GetAll();
+        IQueryable<Survey> GetAll();
 
-        IQueryable<Models.Survey> AllActive(string userId);
+        IQueryable<Survey> AllActive(string userId);
 
-       Models.Survey GetById(int rateSystemId);
-
-        void SaveChanges();
+       Survey GetById(int rateSystemId);
     }
 }

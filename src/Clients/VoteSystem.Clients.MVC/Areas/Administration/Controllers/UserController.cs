@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
+using VoteSystem.Authentication;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem;
 using VoteSystem.Clients.MVC.ViewModels;
@@ -59,13 +60,15 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                 var currentParticipant = new Participant()
                 {
                     RateSystemId = model.RateSystemId,
-                    UserId = participant.Id
+                    // TODO fix it later
+                    //UserId = participant.Id
                 };
 
                 this.participants.Add(currentParticipant);
             }
 
-            this.participants.SaveChanges();
+            // TODO use dbContext.savechanges
+            //this.participants.SaveChanges();
 
             this.AddNotification("Успешно добавихте учасници!", NotificationType.SUCCESS);
 
@@ -112,7 +115,8 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                 this.participants.Remove(currentParticipant);
             }
 
-            this.participants.SaveChanges();
+            // TODO use dbContext.savechanges
+            //this.participants.SaveChanges();
 
             return this.RedirectToAction<UserController>(c => c.Remove(model.RateSystemId));
         }

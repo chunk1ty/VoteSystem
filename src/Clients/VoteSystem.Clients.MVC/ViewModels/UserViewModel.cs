@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using VoteSystem.Authentication.Models;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Data.Models;
 
 namespace VoteSystem.Clients.MVC.ViewModels
 {
-    public class UserViewModel : IMapFrom<User>, IHaveCustomMappings
+    public class UserViewModel : IMapFrom<AspNetUser>, IHaveCustomMappings
     {
         public string Id { get; set; }
 
@@ -22,7 +23,7 @@ namespace VoteSystem.Clients.MVC.ViewModels
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
-            //configuration.CreateMap<User, UserViewModel>()
+            //configuration.CreateMap<AspNetUser, UserViewModel>()
             //    .ForMember(
             //        x => x.IsVoted,
             //        y => y.MapFrom(

@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using VoteSystem.Data.Models;
+using VoteSystem.Authentication.Contracts;
+using VoteSystem.Authentication.Models;
 
-namespace VoteSystem.Clients.MVC
+namespace VoteSystem.Authentication
 {
-    public class ApplicationSignInManager : SignInManager<User, string>
+    public class ApplicationSignInManager : SignInManager<AspNetUser, string>, ISignInService
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
            : base(userManager, authenticationManager)
@@ -19,9 +20,9 @@ namespace VoteSystem.Clients.MVC
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
 
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
+        public override Task<ClaimsIdentity> CreateUserIdentityAsync(AspNetUser aspNetUser)
         {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
+            return aspNetUser.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
         }
     }
 }

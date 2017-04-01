@@ -253,10 +253,6 @@
   <ItemGroup>
     <Compile Include="App_Start\AutomapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\ApplicationSignInManager.cs" />
-    <Compile Include="App_Start\ApplicationUserManager.cs" />
-    <Compile Include="App_Start\SmsService.cs" />
-    <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\DbConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectConfig.cs" />
@@ -728,6 +724,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Authentication\VoteSystem.Authentication\VoteSystem.Authentication.csproj">
+      <Project>{E33BD301-E2C3-4941-920C-4CC057CAE125}</Project>
+      <Name>VoteSystem.Authentication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\VoteSystem.Common.Constants\VoteSystem.Common.Constants.csproj">
       <Project>{ECFC4270-CADE-42BC-B9C0-8DF660397141}</Project>
       <Name>VoteSystem.Common.Constants</Name>

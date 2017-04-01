@@ -56,7 +56,8 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                 this.questionService.Add(questionDbModel);
             }
 
-            this.questionService.SaveChanges();
+            // TODO use dbContext.savechanges
+            //this.questionService.SaveChanges();
 
             return this.RedirectToAction<RateSystemController>(c => c.Index());
         }
@@ -95,7 +96,8 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                 this.questionService.Delete(existingQuestion);
             }
 
-            this.questionService.SaveChanges();
+            // TODO use dbContext.savechanges
+            //this.questionService.SaveChanges();
 
             foreach (var question in model.Questions)
             {
@@ -105,7 +107,8 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                 this.questionService.Add(questionDbModel);
             }
 
-            this.questionService.SaveChanges();
+            // TODO use dbContext.savechanges
+            //this.questionService.SaveChanges();
 
             return this.RedirectToAction<RateSystemController>(c => c.Index());
         }

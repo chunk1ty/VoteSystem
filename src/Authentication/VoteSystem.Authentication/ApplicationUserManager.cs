@@ -1,27 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using VoteSystem.Data;
+using VoteSystem.Authentication.Contracts;
+using VoteSystem.Authentication.Models;
 using VoteSystem.Data.Models;
 
-namespace VoteSystem.Clients.MVC
+namespace VoteSystem.Authentication
 {
-    public class ApplicationUserManager : UserManager<User>
+    public class ApplicationUserManager : UserManager<AspNetUser>, IUserManagerService
     {
-        public ApplicationUserManager(IUserStore<User> store)
+        public ApplicationUserManager(IUserStore<AspNetUser> store)
             : base(store)
         {
         }
 
-
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<User>(context.Get<VoteSystemDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<AspNetUser>(context.Get<AuthenticationDbContext>()));
 
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<User>(manager)
+            manager.UserValidator = new UserValidator<AspNetUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -46,29 +50,34 @@ namespace VoteSystem.Clients.MVC
             // You can write your own provider and plug it in here.
             manager.RegisterTwoFactorProvider(
                 "Phone Code",
-                new PhoneNumberTokenProvider<User>
+                new PhoneNumberTokenProvider<AspNetUser>
                 {
                     MessageFormat = "Your security code is {0}"
                 });
 
             manager.RegisterTwoFactorProvider(
                 "Email Code",
-                new EmailTokenProvider<User>
+                new EmailTokenProvider<AspNetUser>
                 {
                     Subject = "Security Code",
                     BodyFormat = "Your security code is {0}"
                 });
 
-            manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
+            //manager.EmailService = new EmailService();
+            //manager.SmsService = new SmsService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider =
-                    new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"));
+                    new DataProtectorTokenProvider<AspNetUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
 
             return manager;
+        }
+
+        public AspNetUser FindById(string userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -14,7 +14,5 @@ namespace VoteSystem.Data.Services.Contracts
         IQueryable<Question> GetAllQuestions(int rateSystemId);
 
         IQueryable<Question> GetUsersAnswers(int rateSystemId);
-
-        void SaveChanges();
     }
 }

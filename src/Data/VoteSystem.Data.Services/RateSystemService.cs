@@ -19,26 +19,17 @@ namespace VoteSystem.Data.Services
         public void Add(Survey system)
         {
             this.rateSystems.Add(system);
-            this.SaveChanges();
         }
 
         public void Delete(int rateSystemId)
         {
             var rateSystem = this.rateSystems.GetById(rateSystemId);
             this.rateSystems.Delete(rateSystem);
-
-            this.SaveChanges();
         }
 
         public void Update(Survey system)
         {
             this.rateSystems.Update(system);
-            this.SaveChanges();
-        }
-
-        public void SaveChanges()
-        {
-            this.rateSystems.SaveChanges();
         }
 
         public IQueryable<Survey> GetAll()
@@ -46,16 +37,19 @@ namespace VoteSystem.Data.Services
             return this.rateSystems.All();
         }
 
-        public IQueryable<Models.Survey> AllActive(string userId)
+        public IQueryable<Survey> AllActive(string userId)
         {
-            return this.rateSystems
-                    .All()
-                    .Where(x => 
-                            x.StarDateTime <= DateTime.Now && 
-                            DateTime.Now <= x.EndDateTime &&
-                            x.Participants.Any(y =>
-                                                y.UserId == userId &&
-                                                y.IsVoted == false));
+            // TODO fix it later
+            //return this.rateSystems
+            //        .All()
+            //        .Where(x => 
+            //                x.StarDateTime <= DateTime.Now && 
+            //                DateTime.Now <= x.EndDateTime &&
+            //                x.Participants.Any(y =>
+            //                                    y.UserId == userId &&
+            //                                    y.IsVoted == false));
+
+            return null;
         }
 
         public Survey GetById(int rateSystemId)

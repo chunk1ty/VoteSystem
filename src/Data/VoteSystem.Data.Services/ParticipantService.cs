@@ -32,15 +32,13 @@ namespace VoteSystem.Data.Services
 
         public Participant GetParticipantByRateSystemIdAndUserId(int rateSystemId, string userId)
         {
-            return this.participants
-                .All()
-                .Where(x => x.RateSystemId == rateSystemId && x.UserId == userId)
-                .FirstOrDefault();
-        }
+            // TODO fix it later
+            //return this.participants
+            //    .All()
+            //    .Where(x => x.RateSystemId == rateSystemId && x.UserId == userId)
+            //    .FirstOrDefault();
 
-        public void SaveChanges()
-        {
-            this.participants.SaveChanges();
+            return null;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 
-namespace VoteSystem.Clients.MVC
+namespace VoteSystem.Authentication
 {
     public class SmsService : IIdentityMessageService
     {

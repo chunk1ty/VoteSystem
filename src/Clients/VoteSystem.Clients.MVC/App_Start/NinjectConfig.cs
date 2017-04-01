@@ -1,17 +1,20 @@
 using System;
 using System.Data.Entity;
 using System.Web;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
+using VoteSystem.Authentication;
+using VoteSystem.Authentication.Contracts;
 using VoteSystem.Clients.MVC;
 using VoteSystem.Common;
 using VoteSystem.Common.Constants;
 using VoteSystem.Data;
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Repositories;
-using VoteSystem.Models.Common;
+using VoteSystem.Data.Services.Contracts;
 using VoteSystem.Services.Web;
 using VoteSystem.Services.Web.Contracts;
 
@@ -83,6 +86,9 @@ namespace VoteSystem.Clients.MVC
             kernel.Bind(b => b.From(GlobalConstants.DataServicesAssembly)
                                     .SelectAllClasses()
                                     .BindDefaultInterface());
+
+            kernel.Bind<ISignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
+            kernel.Bind<IUserManagerService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
 
             // TODO bind the entire assembly
             kernel.Bind(typeof(ICacheService)).To(typeof(CacheService));

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VoteSystem.Models.Common
+namespace VoteSystem.Data.Models.Common
 {
     public interface IDeletableEntity
     {

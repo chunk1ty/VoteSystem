@@ -64,6 +64,10 @@
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Authentication\VoteSystem.Authentication\VoteSystem.Authentication.csproj">
+      <Project>{E33BD301-E2C3-4941-920C-4CC057CAE125}</Project>
+      <Name>VoteSystem.Authentication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\VoteSystem.Services.Web\VoteSystem.Services.Web.csproj">
       <Project>{987BB8B6-3320-4A56-BF9F-A2BC56F6D5DB}</Project>
       <Name>VoteSystem.Services.Web</Name>

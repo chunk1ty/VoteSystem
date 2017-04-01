@@ -1,15 +1,15 @@
-﻿namespace VoteSystem.Data.Models
+﻿using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using VoteSystem.Data.Models;
+
+namespace VoteSystem.Authentication.Models
 {
-    using System.Collections.Generic;
-    using System.Security.Claims;
-    using System.Threading.Tasks;
-
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-
-    public class User : IdentityUser
+    public class AspNetUser : IdentityUser
     {
-        public User()
+        public AspNetUser()
         {
             this.Participants = new HashSet<Participant>();
         }
@@ -22,7 +22,7 @@
 
         public ICollection<Participant> Participants { get; set; }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AspNetUser> manager)
         {
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
           

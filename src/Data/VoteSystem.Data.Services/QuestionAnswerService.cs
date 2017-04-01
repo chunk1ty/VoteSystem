@@ -18,10 +18,5 @@ namespace VoteSystem.Data.Services
         {
             this.questionAndAnswers.Add(questionAndAnswers);
         }
-
-        public void SaveChanges()
-        {
-            this.questionAndAnswers.SaveChanges();
-        }
     }
 }

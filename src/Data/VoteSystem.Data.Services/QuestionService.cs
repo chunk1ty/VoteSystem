@@ -55,10 +55,5 @@ namespace VoteSystem.Data.Services
                 .Include(x => x.QuestionAnswers
                                 .Select(y => y.ParticipantAnswers.Count));
         }
-
-        public void SaveChanges()
-        {
-            this.questions.SaveChanges();
-        }
     }
 }

@@ -9,20 +9,19 @@ namespace VoteSystem.Data.Repositories
     public class EntityFrameworkRepository<TEntity> : IEntityFrameworkRepository<TEntity> 
         where TEntity : class
     {
-        public EntityFrameworkRepository(DbContext context)
+        public EntityFrameworkRepository(IVoteSystemDbContext voteSystemDbContext)
         {
-            if (context == null)
+            if (voteSystemDbContext == null)
             {
-                throw new ArgumentNullException(nameof(context));
+                throw new ArgumentNullException(nameof(voteSystemDbContext));
             }
 
-            this.Context = context;
-            this.DbSet = this.Context.Set<TEntity>();
+            this.VoteSystemDbContext = voteSystemDbContext;
+            this.DbSet = this.VoteSystemDbContext.Set<TEntity>();
         }
 
         protected IDbSet<TEntity> DbSet { get; set; }
-
-        protected DbContext Context { get; set; }
+        protected IVoteSystemDbContext VoteSystemDbContext { get; set; }
 
         public virtual IQueryable<TEntity> All()
         {
@@ -36,7 +35,7 @@ namespace VoteSystem.Data.Repositories
 
         public virtual void Add(TEntity entity)
         {
-            var entry = this.Context.Entry(entity);
+            var entry = this.VoteSystemDbContext.Entry(entity);
 
             if (entry.State != EntityState.Detached)
             {
@@ -50,7 +49,7 @@ namespace VoteSystem.Data.Repositories
 
         public virtual void Delete(TEntity entity)
         {
-            var entry = this.Context.Entry(entity);
+            var entry = this.VoteSystemDbContext.Entry(entity);
 
             if (entry.State != EntityState.Deleted)
             {
@@ -65,7 +64,7 @@ namespace VoteSystem.Data.Repositories
 
         public virtual void Update(TEntity entity)
         {
-            var entry = this.Context.Entry(entity);
+            var entry = this.VoteSystemDbContext.Entry(entity);
 
             if (entry.State == EntityState.Detached)
             {
@@ -73,27 +72,6 @@ namespace VoteSystem.Data.Repositories
             }
 
             entry.State = EntityState.Modified;
-        }
-
-        public virtual TEntity Attach(TEntity entity)
-        {
-            return this.Context.Set<TEntity>().Attach(entity);
-        }
-
-        public virtual void Detach(TEntity entity)
-        {
-            var entry = this.Context.Entry(entity);
-            entry.State = EntityState.Detached;
-        }
-
-        public void SaveChanges()
-        {
-            this.Context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            this.Context.Dispose();
         }
     }
 }

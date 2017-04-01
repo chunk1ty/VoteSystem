@@ -11,7 +11,5 @@ namespace VoteSystem.Data.Services.Contracts
         void Update(Participant participant);
 
         Participant GetParticipantByRateSystemIdAndUserId(int rateSystemId, string userId);
-
-        void SaveChanges();
     }
 }

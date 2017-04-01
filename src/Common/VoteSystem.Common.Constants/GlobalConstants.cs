@@ -4,6 +4,6 @@
     {
         public const string AdministratorRoleName = "Administrator";
 
-        public const string DataServicesAssembly = "VoteSystem.Services.Data";
+        public const string DataServicesAssembly = "VoteSystem.Data.Services";
     }
 }

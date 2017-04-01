@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using VoteSystem.Authentication.Models;
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Models;
 using VoteSystem.Data.Repositories;
@@ -8,16 +9,16 @@ namespace VoteSystem.Data.Services
 {
     public class UserService : IUserService
     {
-        private IEntityFrameworkRepository<User> users;
+        private IEntityFrameworkRepository<AspNetUser> users;
         private IParticipantService participants;
 
-        public UserService(IEntityFrameworkRepository<User> users, IParticipantService participants)
+        public UserService(IEntityFrameworkRepository<AspNetUser> users, IParticipantService participants)
         {
             this.users = users;
             this.participants = participants;
         }
        
-        public IQueryable<User> GetAllUnselectUsers(int rateSystemId)
+        public IQueryable<AspNetUser> GetAllUnselectUsers(int rateSystemId)
         {
             var allUsers = this.users
                 .All();
@@ -26,7 +27,7 @@ namespace VoteSystem.Data.Services
                     .Except(this.GetAllSelectUsers(rateSystemId));
         }
 
-        public IQueryable<User> GetAllSelectUsers(int rateSystemId)
+        public IQueryable<AspNetUser> GetAllSelectUsers(int rateSystemId)
         {
             return this.users
                 .All()

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace VoteSystem.Data.Contracts
 {
-    public interface IEntityFrameworkRepository<TEntity> : IDisposable where TEntity : class
+    public interface IEntityFrameworkRepository<TEntity>
+        where TEntity : class
     {
         IQueryable<TEntity> All();
 
@@ -14,7 +14,5 @@ namespace VoteSystem.Data.Contracts
         void Update(TEntity entity);
 
         void Delete(TEntity entity);
-
-        void SaveChanges();
     }
 }

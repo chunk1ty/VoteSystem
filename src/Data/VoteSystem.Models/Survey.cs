@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using VoteSystem.Models.Common;
+using VoteSystem.Data.Models.Common;
 
 namespace VoteSystem.Data.Models
 {

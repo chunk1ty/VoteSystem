@@ -6,7 +6,7 @@ namespace VoteSystem.Data.Contracts
 {
     public interface IVoteSystemDbContext
     {
-        IDbSet<User> Users { get; set; }
+        //IDbSet<AspNetUser> Users { get; set; }
 
         IDbSet<Participant> Participants { get; set; }
 

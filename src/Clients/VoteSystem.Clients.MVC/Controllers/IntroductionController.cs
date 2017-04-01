@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
+using VoteSystem.Authentication;
 using VoteSystem.Clients.MVC.ViewModels.Introduction;
 using VoteSystem.Data.Services.Contracts;
+using FeedbackViewModel = VoteSystem.Authentication.FeedbackViewModel;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {

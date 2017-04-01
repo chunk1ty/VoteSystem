@@ -17,8 +17,8 @@ namespace VoteSystem.Data.Models
 
         public ICollection<ParticipantAnswer> ParticipantAnswers { get; set; }
 
-        public string UserId { get; set; }
-        public virtual User User { get; set; }
+        //public string UserId { get; set; }
+        //public virtual User User { get; set; }
 
         public int RateSystemId { get; set; }
         public virtual Survey RateSystem { get; set; }

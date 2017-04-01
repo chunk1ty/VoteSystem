@@ -68,7 +68,8 @@ namespace VoteSystem.Clients.MVC.Controllers
                             currentAnswer.ParticipantId = participant.Id.ToString();
 
                             this.participantAnswers.Add(currentAnswer);
-                            this.participantAnswers.SaveChanges();
+                            // TODO use dbContext.savechanges
+                            //this.participantAnswers.SaveChanges();
                         }
                     }
                 }
@@ -84,13 +85,15 @@ namespace VoteSystem.Clients.MVC.Controllers
                     currentAnswer.ParticipantId = participant.Id.ToString();
 
                     this.participantAnswers.Add(currentAnswer);
-                    this.participantAnswers.SaveChanges();
-                } 
+                    // TODO use dbContext.savechanges
+                    //this.participantAnswers.SaveChanges();
+                }
             }
 
             participant.IsVoted = true;
             this.participant.Update(participant);
-            this.participant.SaveChanges();            
+            // TODO use dbContext.savechanges
+            //this.participant.SaveChanges();            
 
             this.AddNotification("Благодаря Ви, че гласувахте! Вашият глас е важен за мен.", NotificationType.SUCCESS);
 
