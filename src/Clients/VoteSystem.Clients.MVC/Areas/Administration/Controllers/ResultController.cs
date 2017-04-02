@@ -20,22 +20,23 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         public ActionResult GetAllQuestions(int rateSystemId)
         {
-            var result = this.questions
-               .GetUsersAnswers(rateSystemId)
-               .Select(x => new
-               {
-                   questionName = x.QuestionName,
-                   questionType = x.HasMultipleAnswers,
-                   questionAnswers = x.QuestionAnswers.Select(
-                       y => new
-                       {
-                           questionAnswerName = y.QuestionAnswerName,
-                           userAnswerCount = y.ParticipantAnswers.Count
-                       })
-               })
-               .ToList();
+            //var result = this.questions
+            //   .GetUsersAnswers(rateSystemId)
+            //   .Select(x => new
+            //   {
+            //       questionName = x.QuestionName,
+            //       questionType = x.HasMultipleAnswers,
+            //       questionAnswers = x.QuestionAnswers.Select(
+            //           y => new
+            //           {
+            //               questionAnswerName = y.QuestionAnswerName,
+            //               userAnswerCount = y.ParticipantAnswers.Count
+            //           })
+            //   })
+            //   .ToList();
 
-            return this.Json(result, JsonRequestBehavior.AllowGet);
+            //return this.Json(result, JsonRequestBehavior.AllowGet);
+            return this.View();
         }
     }
 }

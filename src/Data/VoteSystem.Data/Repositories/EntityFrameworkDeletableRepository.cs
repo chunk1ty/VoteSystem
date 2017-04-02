@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+
 using VoteSystem.Data.Contracts;
-using VoteSystem.Data.Models.Common;
+using VoteSystem.Data.Models.Contracts;
 
 namespace VoteSystem.Data.Repositories
 {
-    public class DeletableEntityRepository<TEntity> :
-        EntityFrameworkRepository<TEntity>, IDeletableEntityRepository<TEntity> where TEntity : class, IDeletableEntity
+    public class EntityFrameworkDeletableRepository<TEntity> : EntityFrameworkRepository<TEntity>, IEntityFrameworkDeletableEntityRepository<TEntity> 
+        where TEntity : class, IDeletableEntity
     {
-        public DeletableEntityRepository(IVoteSystemDbContext voteSystemDbContext)
+        public EntityFrameworkDeletableRepository(IVoteSystemDbContext voteSystemDbContext)
             : base(voteSystemDbContext)
         {
         }
@@ -27,9 +28,9 @@ namespace VoteSystem.Data.Repositories
         public override void Delete(TEntity entity)
         {
             entity.IsDeleted = true;
-            entity.DeletedOn = DateTime.Now;
+            entity.DeletedOn = DateTime.UtcNow;
 
-            var entry = this.VoteSystemDbContext.Entry(entity);
+            var entry = base.VoteSystemDbContext.Entry(entity);
 
             if (entry.State == EntityState.Detached)
             {

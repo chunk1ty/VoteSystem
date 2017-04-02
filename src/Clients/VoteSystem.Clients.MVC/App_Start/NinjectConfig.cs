@@ -75,13 +75,16 @@ namespace VoteSystem.Clients.MVC
         {
             kernel.Bind(typeof(IEntityFrameworkRepository<>))
                 .To(typeof(EntityFrameworkRepository<>));
-            kernel.Bind(typeof(IDeletableEntityRepository<>))
-               .To(typeof(DeletableEntityRepository<>));
+            kernel.Bind(typeof(IEntityFrameworkDeletableEntityRepository<>))
+               .To(typeof(EntityFrameworkDeletableRepository<>));
 
             // TODO check this binding IVoteSystemDbContext
             // InRequestScope for using one db context
-            kernel.Bind(typeof(DbContext)).To(typeof(VoteSystemDbContext))
-                                    .InRequestScope();
+            //kernel.Bind(typeof(DbContext)).To(typeof(VoteSystemDbContext))
+            //                        .InRequestScope();
+
+            kernel.Bind<IVoteSystemDbContext>().To<VoteSystemDbContext>().InRequestScope();
+            //Rebind(typeof(DbContext), typeof(IVoteSystemDbContext)).To<VoteSystemDbContext>().InRequestScope();
 
             kernel.Bind(b => b.From(GlobalConstants.DataServicesAssembly)
                                     .SelectAllClasses()

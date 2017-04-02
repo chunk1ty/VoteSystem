@@ -47,20 +47,13 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\EntityFrameworkRepository.cs" />
-    <Compile Include="Repositories\DeletableEntityRepository.cs" />
+    <Compile Include="Repositories\EntityFrameworkDeletableRepository.cs" />
     <Compile Include="Contracts\IEntityFrameworkRepository.cs" />
-    <Compile Include="Contracts\IDeletableEntityRepository.cs" />
+    <Compile Include="Contracts\IEntityFrameworkDeletableEntityRepository.cs" />
     <Compile Include="Contracts\IVoteSystemDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="VoteSystemDbContext.cs" />

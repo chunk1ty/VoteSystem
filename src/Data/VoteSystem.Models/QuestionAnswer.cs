@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using VoteSystem.Data.Models.Common;
+using VoteSystem.Data.Models.Contracts;
 
 namespace VoteSystem.Data.Models
 {

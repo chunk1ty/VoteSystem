@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using VoteSystem.Data.Models.Common;
+using VoteSystem.Data.Models.Contracts;
 
 namespace VoteSystem.Data.Models
 {
@@ -20,7 +20,7 @@ namespace VoteSystem.Data.Models
 
         [Required]
         [MaxLength(100)]
-        public string RateSystemName { get; set; }
+        public string Name { get; set; }
        
         public DateTime StarDateTime { get; set; }
 

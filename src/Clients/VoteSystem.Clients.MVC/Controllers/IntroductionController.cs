@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using VoteSystem.Authentication;
 using VoteSystem.Clients.MVC.ViewModels.Introduction;
 using VoteSystem.Data.Services.Contracts;
-using FeedbackViewModel = VoteSystem.Authentication.FeedbackViewModel;
+using FeedbackViewModel = VoteSystem.Clients.MVC.ViewModels.Introduction.FeedbackViewModel;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {
@@ -39,7 +39,7 @@ namespace VoteSystem.Clients.MVC.Controllers
 
             EmailService email = new EmailService();
 
-            await email.SendFeedbackEmailAsync(model);
+            await email.SendFeedbackEmailAsync(null);
 
             return this.RedirectToAction("Index");
         }

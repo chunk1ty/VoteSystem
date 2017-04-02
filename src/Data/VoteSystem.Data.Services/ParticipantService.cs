@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using VoteSystem.Data.Contracts;
+using VoteSystem.Data.DtoModels;
 using VoteSystem.Data.Models;
 using VoteSystem.Data.Repositories;
 using VoteSystem.Data.Services.Contracts;
@@ -15,23 +16,27 @@ namespace VoteSystem.Data.Services
             this.participants = participants;
         }
 
-        public void Add(Participant participant)
+        public void Add(ParticipantDto participant)
         {
-            this.participants.Add(participant);
+            // TODO add mapping logic
+            //this.participants.Add(participant);
         }
 
-        public void Update(Participant participant)
+        public void Update(ParticipantDto participant)
         {
-            this.participants.Update(participant);
+            // TODO add mapping logic
+            //this.participants.Update(participant);
         }
 
-        public void Remove(Participant participant)
+        public void Remove(ParticipantDto participant)
         {
-            this.participants.Delete(participant);
+            // TODO add mapping logic
+            //this.participants.Delete(participant);
         }
 
-        public Participant GetParticipantByRateSystemIdAndUserId(int rateSystemId, string userId)
+        public ParticipantDto GetParticipantByRateSystemIdAndUserId(int rateSystemId, string userId)
         {
+            // TODO add mapping logic
             // TODO fix it later
             //return this.participants
             //    .All()

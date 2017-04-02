@@ -1,12 +1,12 @@
 ﻿using System.Linq;
-using VoteSystem.Authentication.Models;
+using VoteSystem.Data.DtoModels;
 
 namespace VoteSystem.Data.Services.Contracts
 {
     public interface IUserService
     {
-        IQueryable<AspNetUser> GetAllUnselectUsers(int rateSystemId);
+        IQueryable<VoteSystemUserDto> GetAllUnselectUsers(int rateSystemId);
 
-        IQueryable<AspNetUser> GetAllSelectUsers(int rateSystemId);
+        IQueryable<VoteSystemUserDto> GetAllSelectUsers(int rateSystemId);
     }
 }

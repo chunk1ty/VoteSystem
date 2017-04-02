@@ -1,9 +1,9 @@
-﻿using VoteSystem.Data.Models;
+﻿using VoteSystem.Data.DtoModels;
 
 namespace VoteSystem.Data.Services.Contracts
 {
     public interface IParticipantAnswerService
     {
-        void Add(ParticipantAnswer userAnswers);
+        void Add(ParticipantAnswerDto userAnswers);
     }
 }

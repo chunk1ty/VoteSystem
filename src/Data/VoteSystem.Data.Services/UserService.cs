@@ -1,40 +1,42 @@
 ﻿using System.Linq;
-using VoteSystem.Authentication.Models;
 using VoteSystem.Data.Contracts;
+using VoteSystem.Data.DtoModels;
 using VoteSystem.Data.Models;
-using VoteSystem.Data.Repositories;
 using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Data.Services
 {
     public class UserService : IUserService
     {
-        private IEntityFrameworkRepository<AspNetUser> users;
+        private IEntityFrameworkRepository<VoteSystemUser> users;
         private IParticipantService participants;
 
-        public UserService(IEntityFrameworkRepository<AspNetUser> users, IParticipantService participants)
+        public UserService(IEntityFrameworkRepository<VoteSystemUser> users, IParticipantService participants)
         {
             this.users = users;
             this.participants = participants;
         }
        
-        public IQueryable<AspNetUser> GetAllUnselectUsers(int rateSystemId)
+        public IQueryable<VoteSystemUserDto> GetAllUnselectUsers(int rateSystemId)
         {
-            var allUsers = this.users
-                .All();
+            //var allUsers = this.users
+            //    .All();
 
-            return allUsers
-                    .Except(this.GetAllSelectUsers(rateSystemId));
+            //return allUsers
+            //        .Except(this.GetAllSelectUsers(rateSystemId));
+            return null;
         }
 
-        public IQueryable<AspNetUser> GetAllSelectUsers(int rateSystemId)
+        public IQueryable<VoteSystemUserDto> GetAllSelectUsers(int rateSystemId)
         {
-            return this.users
-                .All()
-                .Where(
-                     x => x.Participants
-                            .Any(
-                                y => y.RateSystemId == rateSystemId));
+            //return this.users
+            //    .All()
+            //    .Where(
+            //         x => x.Participants
+            //                .Any(
+            //                    y => y.RateSystemId == rateSystemId));
+
+            return null;
         }
     }
 }

@@ -1,21 +1,21 @@
 ﻿using System.Linq;
-
+using VoteSystem.Data.DtoModels;
 using VoteSystem.Data.Models;
 
 namespace VoteSystem.Data.Services.Contracts
 {
     public interface IRateSystemService
     {
-        void Add(Survey system);
+        void Add(SurveyDto system);
 
         void Delete(int rateSystemId);
 
-        void Update(Survey system);
+        void Update(SurveyDto system);
 
-        IQueryable<Survey> GetAll();
+        IQueryable<SurveyDto> GetAll();
 
-        IQueryable<Survey> AllActive(string userId);
+        IQueryable<SurveyDto> AllActive(string userId);
 
-       Survey GetById(int rateSystemId);
+        SurveyDto GetById(int rateSystemId);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using VoteSystem.Data.Models.Common;
+using VoteSystem.Data.Models.Contracts;
 
 namespace VoteSystem.Data.Models
 {

@@ -6,7 +6,7 @@ namespace VoteSystem.Data.Contracts
 {
     public interface IVoteSystemDbContext
     {
-        //IDbSet<AspNetUser> Users { get; set; }
+        IDbSet<VoteSystemUser> VoteSystemUsers { get; set; }
 
         IDbSet<Participant> Participants { get; set; }
 
@@ -14,11 +14,11 @@ namespace VoteSystem.Data.Contracts
 
         IDbSet<Question> Questions { get; set; }
 
-        IDbSet<Survey> RateSystems { get; set; }
+        IDbSet<Survey> Surveys { get; set; }
 
         IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
 
-        DbSet<TEntity> Set<TEntity>() where TEntity : class;
+        IDbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
 

@@ -37,24 +37,24 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(QuestionAndAnswersViewModel model)
         {
-            if (!ModelState.IsValid || model == null)
-            {
-                return this.View(model);
-            }
+            //if (!ModelState.IsValid || model == null)
+            //{
+            //    return this.View(model);
+            //}
 
-            if (model.Questions.Count() == 0)
-            {
-                this.ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
-                return this.View(model);
-            }
+            //if (model.Questions.Count() == 0)
+            //{
+            //    this.ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
+            //    return this.View(model);
+            //}
 
-            foreach (var question in model.Questions)
-            {
-                var questionDbModel = this.Mapper.Map<Question>(question);               
-                questionDbModel.RateSystemId = model.RateSystemId;
+            //foreach (var question in model.Questions)
+            //{
+            //    var questionDbModel = this.Mapper.Map<Question>(question);               
+            //    questionDbModel.RateSystemId = model.RateSystemId;
 
-                this.questionService.Add(questionDbModel);
-            }
+            //    this.questionService.Add(questionDbModel);
+            //}
 
             // TODO use dbContext.savechanges
             //this.questionService.SaveChanges();
@@ -65,12 +65,13 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Edit(int rateSystemId)
         {
-            var questions = this.questionService
-                .GetAllQuestions(rateSystemId)
-                .To<QuestionViewModel>()
-                .ToList();
+            //var questions = this.questionService
+            //    .GetAllQuestions(rateSystemId)
+            //    .To<QuestionViewModel>()
+            //    .ToList();
 
-            return this.View(new QuestionAndAnswersViewModel() { Questions = questions, RateSystemId = rateSystemId });
+            //return this.View(new QuestionAndAnswersViewModel() { Questions = questions, RateSystemId = rateSystemId });
+            return this.View();
         }
 
         // TODO optimize method
@@ -78,49 +79,50 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(QuestionAndAnswersViewModel model)
         {
-            if (!ModelState.IsValid || model == null)
-            {
-                return this.View(model);
-            }
+            //    if (!ModelState.IsValid || model == null)
+            //    {
+            //        return this.View(model);
+            //    }
 
-            if (model.Questions.Count() == 0)
-            {
-                this.ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
-                return this.View(model);
-            }
+            //    if (model.Questions.Count() == 0)
+            //    {
+            //        this.ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
+            //        return this.View(model);
+            //    }
 
-            var allExistingQuestions = this.questionService.GetAllQuestions(model.RateSystemId);
+            //    var allExistingQuestions = this.questionService.GetAllQuestions(model.RateSystemId);
 
-            foreach (var existingQuestion in allExistingQuestions)
-            {
-                this.questionService.Delete(existingQuestion);
-            }
+            //    foreach (var existingQuestion in allExistingQuestions)
+            //    {
+            //        this.questionService.Delete(existingQuestion);
+            //    }
 
-            // TODO use dbContext.savechanges
-            //this.questionService.SaveChanges();
+            //    // TODO use dbContext.savechanges
+            //    //this.questionService.SaveChanges();
 
-            foreach (var question in model.Questions)
-            {
-                var questionDbModel = this.Mapper.Map<Question>(question);
-                questionDbModel.RateSystemId = model.RateSystemId;
+            //    foreach (var question in model.Questions)
+            //    {
+            //        var questionDbModel = this.Mapper.Map<Question>(question);
+            //        questionDbModel.RateSystemId = model.RateSystemId;
 
-                this.questionService.Add(questionDbModel);
-            }
+            //        this.questionService.Add(questionDbModel);
+            //    }
 
-            // TODO use dbContext.savechanges
-            //this.questionService.SaveChanges();
+            //    // TODO use dbContext.savechanges
+            //    //this.questionService.SaveChanges();
 
-            return this.RedirectToAction<RateSystemController>(c => c.Index());
-        }
-        
-        public ActionResult Preview(int rateSystemId)
-        {
-            var questionsAsVM = this.questionService
-                .GetAllQuestions(rateSystemId)
-                .To<QuestionViewModel>()
-                .ToList();
+            //    return this.RedirectToAction<RateSystemController>(c => c.Index());
+            //}
 
-            return this.View(questionsAsVM);
+            //public ActionResult Preview(int rateSystemId)
+            //{
+            //    var questionsAsVM = this.questionService
+            //        .GetAllQuestions(rateSystemId)
+            //        .To<QuestionViewModel>()
+            //        .ToList();
+
+            //    return this.View(questionsAsVM);
+            return this.View();
         }
     }
 }

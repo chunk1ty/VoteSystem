@@ -26,12 +26,13 @@ namespace VoteSystem.Clients.MVC.Controllers
 
         public ActionResult Fill(string rateSystemID)
         {
-            var questions = this.questions
-                                .GetAllQuestions(rateSystemID)
-                                .To<FillQuestionsViewModel>()
-                                .ToList();
+            //var questions = this.questions
+            //                    .GetAllQuestions(rateSystemID)
+            //                    .To<FillQuestionsViewModel>()
+            //                    .ToList();
 
-            return this.View(questions);
+            //return this.View(questions);
+            return this.View();
         }
         
         // TODO this method looks so ugly make it beautiful ...
@@ -44,58 +45,58 @@ namespace VoteSystem.Clients.MVC.Controllers
                 return this.View(questions);
             }
 
-            var participant = this.participant.GetParticipantByRateSystemIdAndUserId(questions[0].RateSystemId, User.Identity.GetUserId());
+            //var participant = this.participant.GetParticipantByRateSystemIdAndUserId(questions[0].RateSystemId, User.Identity.GetUserId());
 
-            foreach (var question in questions)
-            {
-                var currentAnswer = new ParticipantAnswer();
+            //foreach (var question in questions)
+            //{
+            //    var currentAnswer = new ParticipantAnswer();
 
-                if (question.HasMultipleAnswers)
-                {
-                    bool isNotChecked = question.QuestionAnswers.All(x => x.IsChecked == false);
+            //    if (question.HasMultipleAnswers)
+            //    {
+            //        bool isNotChecked = question.QuestionAnswers.All(x => x.IsChecked == false);
 
-                    if (isNotChecked)
-                    {
-                        this.ModelState.AddModelError(question.Id.ToString(), "Моля изберете най-малко един отговор!");
-                        return this.View(questions);
-                    }
+            //        if (isNotChecked)
+            //        {
+            //            this.ModelState.AddModelError(question.Id.ToString(), "Моля изберете най-малко един отговор!");
+            //            return this.View(questions);
+            //        }
 
-                    foreach (var answer in question.QuestionAnswers)
-                    {
-                        if (answer.IsChecked)
-                        {
-                            currentAnswer.QuestionAnswerId = answer.Id;
-                            currentAnswer.ParticipantId = participant.Id.ToString();
+            //        foreach (var answer in question.QuestionAnswers)
+            //        {
+            //            if (answer.IsChecked)
+            //            {
+            //                currentAnswer.QuestionAnswerId = answer.Id;
+            //                currentAnswer.ParticipantId = participant.Id.ToString();
 
-                            this.participantAnswers.Add(currentAnswer);
-                            // TODO use dbContext.savechanges
-                            //this.participantAnswers.SaveChanges();
-                        }
-                    }
-                }
-                else
-                {
-                    if (question.RadioGroupAnswer == null)
-                    {
-                        this.ModelState.AddModelError(question.Id.ToString(), "Моля изберете отговор!");
-                        return this.View(questions);
-                    }
+            //                this.participantAnswers.Add(currentAnswer);
+            //                // TODO use dbContext.savechanges
+            //                //this.participantAnswers.SaveChanges();
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (question.RadioGroupAnswer == null)
+            //        {
+            //            this.ModelState.AddModelError(question.Id.ToString(), "Моля изберете отговор!");
+            //            return this.View(questions);
+            //        }
 
-                    currentAnswer.QuestionAnswerId = int.Parse(question.RadioGroupAnswer);
-                    currentAnswer.ParticipantId = participant.Id.ToString();
+            //        currentAnswer.QuestionAnswerId = int.Parse(question.RadioGroupAnswer);
+            //        currentAnswer.ParticipantId = participant.Id.ToString();
 
-                    this.participantAnswers.Add(currentAnswer);
-                    // TODO use dbContext.savechanges
-                    //this.participantAnswers.SaveChanges();
-                }
-            }
+            //        this.participantAnswers.Add(currentAnswer);
+            //        // TODO use dbContext.savechanges
+            //        //this.participantAnswers.SaveChanges();
+            //    }
+            //}
 
-            participant.IsVoted = true;
-            this.participant.Update(participant);
-            // TODO use dbContext.savechanges
-            //this.participant.SaveChanges();            
+            //participant.IsVoted = true;
+            //this.participant.Update(participant);
+            //// TODO use dbContext.savechanges
+            ////this.participant.SaveChanges();            
 
-            this.AddNotification("Благодаря Ви, че гласувахте! Вашият глас е важен за мен.", NotificationType.SUCCESS);
+            //this.AddNotification("Благодаря Ви, че гласувахте! Вашият глас е важен за мен.", NotificationType.SUCCESS);
 
             return this.RedirectToAction<HomeController>(c => c.Index());
         }

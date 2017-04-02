@@ -35,8 +35,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\IAuditInfo.cs" />
-    <Compile Include="Common\IDeletableEntity.cs" />
+    <Compile Include="Contracts\IAuditInfo.cs" />
+    <Compile Include="Contracts\IDeletableEntity.cs" />
     <Compile Include="Participant.cs" />
     <Compile Include="QuestionAnswer.cs" />
     <Compile Include="Question.cs" />
@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

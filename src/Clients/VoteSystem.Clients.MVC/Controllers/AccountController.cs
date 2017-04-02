@@ -171,10 +171,13 @@ namespace VoteSystem.Clients.MVC.Controllers
                     LastName = model.LastName
                 };
 
+                user.VoteSystemUser = new VoteSystemUser();
+                user.VoteSystemUser.Email = model.Email;
+
                 var result = await this.userManagerService.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await this.SendEmalForNewUser(user);
+                    //await this.SendEmalForNewUser(user);
 
                     this.AddNotification("Проверете имейлът си за да активирате акаунта.", NotificationType.WARNING);
 

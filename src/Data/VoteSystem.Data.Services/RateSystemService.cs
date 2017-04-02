@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using VoteSystem.Data.Contracts;
+using VoteSystem.Data.DtoModels;
 using VoteSystem.Data.Models;
 using VoteSystem.Data.Repositories;
 using VoteSystem.Data.Services.Contracts;
@@ -9,16 +10,16 @@ namespace VoteSystem.Data.Services
 {
     public class RateSystemService : IRateSystemService
     {
-        private readonly IDeletableEntityRepository<Models.Survey> rateSystems;
+        private readonly IEntityFrameworkDeletableEntityRepository<Survey> rateSystems;
 
-        public RateSystemService(IDeletableEntityRepository<Models.Survey> rateSystems)
+        public RateSystemService(IEntityFrameworkDeletableEntityRepository<Survey> rateSystems)
         {
             this.rateSystems = rateSystems;
         }
 
-        public void Add(Survey system)
+        public void Add(SurveyDto system)
         {
-            this.rateSystems.Add(system);
+            //this.rateSystems.Add(system);
         }
 
         public void Delete(int rateSystemId)
@@ -27,17 +28,18 @@ namespace VoteSystem.Data.Services
             this.rateSystems.Delete(rateSystem);
         }
 
-        public void Update(Survey system)
+        public void Update(SurveyDto system)
         {
-            this.rateSystems.Update(system);
+            //this.rateSystems.Update(system);
         }
 
-        public IQueryable<Survey> GetAll()
+        public IQueryable<SurveyDto> GetAll()
         {
-            return this.rateSystems.All();
+           // return this.rateSystems.All();
+            return null;
         }
 
-        public IQueryable<Survey> AllActive(string userId)
+        public IQueryable<SurveyDto> AllActive(string userId)
         {
             // TODO fix it later
             //return this.rateSystems
@@ -52,9 +54,10 @@ namespace VoteSystem.Data.Services
             return null;
         }
 
-        public Survey GetById(int rateSystemId)
+        public SurveyDto GetById(int rateSystemId)
         {
-            return this.rateSystems.GetById(rateSystemId);
+            //return this.rateSystems.GetById(rateSystemId);
+            return null;
         }
     }
 }

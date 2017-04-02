@@ -63,6 +63,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Authentication", "src\Authentication\VoteSystem.Authentication\VoteSystem.Authentication.csproj", "{E33BD301-E2C3-4941-920C-4CC057CAE125}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.DtoModels", "Data\VoteSystem.Data.DtoModels\VoteSystem.Data.DtoModels.csproj", "{97076CD3-857B-475D-93C1-46A496DD8C09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{E33BD301-E2C3-4941-920C-4CC057CAE125}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E33BD301-E2C3-4941-920C-4CC057CAE125}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E33BD301-E2C3-4941-920C-4CC057CAE125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97076CD3-857B-475D-93C1-46A496DD8C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97076CD3-857B-475D-93C1-46A496DD8C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97076CD3-857B-475D-93C1-46A496DD8C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97076CD3-857B-475D-93C1-46A496DD8C09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,5 +147,6 @@ Global
 		{B189968E-4F1D-4301-A27E-1A3C3D652B98} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 		{EE018710-07C2-4E1B-B6CA-5F73DB6C5684} = {60BD349B-1F06-46FD-B2A1-7F0367126AF4}
 		{E33BD301-E2C3-4941-920C-4CC057CAE125} = {EE018710-07C2-4E1B-B6CA-5F73DB6C5684}
+		{97076CD3-857B-475D-93C1-46A496DD8C09} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 	EndGlobalSection
 EndGlobal

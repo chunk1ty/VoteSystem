@@ -2,18 +2,17 @@
 using System.Data.Entity;
 using System.Linq;
 
-using Microsoft.AspNet.Identity.EntityFramework;
+using VoteSystem.Common.Constants;
 using VoteSystem.Data.Models;
-
 using VoteSystem.Data.Contracts;
-using VoteSystem.Data.Models.Common;
+using VoteSystem.Data.Models.Contracts;
 
 namespace VoteSystem.Data
 {
     public class VoteSystemDbContext : DbContext, IVoteSystemDbContext
     {
         public VoteSystemDbContext()
-            : base("DefaultConnection")
+            : base(ConnectionStings.VoteSystemDbConnection)
         {
         }
 
@@ -23,14 +22,22 @@ namespace VoteSystem.Data
 
         public virtual IDbSet<ParticipantAnswer> ParticipantAnswers { get; set; }
 
-        public virtual IDbSet<Survey> RateSystems { get; set; }
+        public virtual IDbSet<Survey> Surveys { get; set; }
 
         public virtual IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
 
-        public static VoteSystemDbContext Create()
+        public virtual IDbSet<VoteSystemUser> VoteSystemUsers { get; set; }
+
+        public new IDbSet<TEntity> Set<TEntity>() 
+            where TEntity : class
         {
-            return new VoteSystemDbContext();
+            return base.Set<TEntity>();
         }
+
+        //public static VoteSystemDbContext Create()
+        //{
+        //    return new VoteSystemDbContext();
+        //}
 
         public override int SaveChanges()
         {

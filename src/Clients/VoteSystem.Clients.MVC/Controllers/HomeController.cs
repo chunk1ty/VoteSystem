@@ -18,12 +18,13 @@ namespace VoteSystem.Clients.MVC.Controllers
 
         public ActionResult Index()
         {
-            var systems = this.rateSystems
-                            .AllActive(User.Identity.GetUserId())
-                            .To<RateSystemViewModel>()
-                            .ToList();
+            //var systems = this.rateSystems
+            //                .AllActive(User.Identity.GetUserId())
+            //                .To<RateSystemViewModel>()
+            //                .ToList();
 
-            return this.View(systems);
+            //return this.View(systems);
+            return this.View();
         }
     }
 }

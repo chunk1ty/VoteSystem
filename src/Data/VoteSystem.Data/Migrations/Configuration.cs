@@ -84,14 +84,14 @@ namespace VoteSystem.Data.Migrations
 
         private void SimpleData(VoteSystemDbContext context)
         {
-            if (context.RateSystems.Count() == 0)
+            if (context.Surveys.Count() == 0)
             {
-                Models.Survey ankk = new Models.Survey() { Id = 1, RateSystemName = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
-                Models.Survey ankk1 = new Models.Survey() { Id = 2, RateSystemName = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
-                Models.Survey ank2 = new Models.Survey() { Id = 3, RateSystemName = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Models.Survey ankk = new Models.Survey() { Id = 1, Name = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Models.Survey ankk1 = new Models.Survey() { Id = 2, Name = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Models.Survey ank2 = new Models.Survey() { Id = 3, Name = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
 
                 context.SaveChanges();
-                context.RateSystems.AddOrUpdate(ankk);
+                context.Surveys.AddOrUpdate(ankk);
 
                 for (int i = 0; i < 20; i++)
                 {

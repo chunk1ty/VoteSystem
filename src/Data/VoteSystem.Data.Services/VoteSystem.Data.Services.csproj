@@ -39,14 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IParticipantAnswerService.cs" />
@@ -64,9 +57,9 @@
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Authentication\VoteSystem.Authentication\VoteSystem.Authentication.csproj">
-      <Project>{E33BD301-E2C3-4941-920C-4CC057CAE125}</Project>
-      <Name>VoteSystem.Authentication</Name>
+    <ProjectReference Include="..\..\..\Data\VoteSystem.Data.DtoModels\VoteSystem.Data.DtoModels.csproj">
+      <Project>{97076CD3-857B-475D-93C1-46A496DD8C09}</Project>
+      <Name>VoteSystem.Data.DtoModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\VoteSystem.Services.Web\VoteSystem.Services.Web.csproj">
       <Project>{987BB8B6-3320-4A56-BF9F-A2BC56F6D5DB}</Project>
