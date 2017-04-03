@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{99FC36D3-D963-4263-BF69-8BD11F801E2B}"
 EndProject
@@ -49,6 +49,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentat
 	ProjectSection(SolutionItems) = preProject
 		documentation\Andriyan_Krastev.pptx = documentation\Andriyan_Krastev.pptx
 		documentation\Andriyan_Krastev_153708-_v1.1.docx = documentation\Andriyan_Krastev_153708-_v1.1.docx
+		documentation\Architecture.vsdx = documentation\Architecture.vsdx
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIDependencies", "ci-dependencies\CIDependencies\CIDependencies.csproj", "{7230C0D4-D13F-45E4-B667-63D7C0E6AB29}"

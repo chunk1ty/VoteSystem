@@ -67,10 +67,6 @@
       <Project>{269CC85F-7209-4ED3-BC65-C90804B00B37}</Project>
       <Name>VoteSystem.Data.Services.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VoteSystem.Data\VoteSystem.Data.csproj">
-      <Project>{398E47FA-CD30-4EA7-84FF-FE27EF94343C}</Project>
-      <Name>VoteSystem.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
       <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
       <Name>VoteSystem.Data.Entities</Name>

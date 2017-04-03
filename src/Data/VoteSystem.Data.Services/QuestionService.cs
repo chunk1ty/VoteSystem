@@ -1,9 +1,7 @@
-﻿using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.DTO;
 using VoteSystem.Data.Entities;
-using VoteSystem.Data.Repositories;
 using VoteSystem.Data.Services.Contracts;
 using VoteSystem.Services.Web.Contracts;
 
@@ -57,6 +55,7 @@ namespace VoteSystem.Data.Services
         public IQueryable<QuestionDto> GetUsersAnswers(int rateSystemId)
         {
             // TODO add mapping logic
+            // remove Ef dependency (move Include!!)
             //return this.questions
             //    .All()
             //    .Where(x => x.RateSystemId == rateSystemId)
