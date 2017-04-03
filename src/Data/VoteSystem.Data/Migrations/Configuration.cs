@@ -5,8 +5,8 @@ using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using VoteSystem.Authentication.Models;
-using VoteSystem.Data.Models;
 using VoteSystem.Common.Constants;
+using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Data.Migrations
 {
@@ -86,9 +86,9 @@ namespace VoteSystem.Data.Migrations
         {
             if (context.Surveys.Count() == 0)
             {
-                Models.Survey ankk = new Models.Survey() { Id = 1, Name = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
-                Models.Survey ankk1 = new Models.Survey() { Id = 2, Name = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
-                Models.Survey ank2 = new Models.Survey() { Id = 3, Name = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Survey ankk = new Survey() { Id = 1, Name = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Survey ankk1 = new Survey() { Id = 2, Name = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Survey ank2 = new Survey() { Id = 3, Name = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
 
                 context.SaveChanges();
                 context.Surveys.AddOrUpdate(ankk);

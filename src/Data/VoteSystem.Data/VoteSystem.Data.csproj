@@ -50,10 +50,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\EntityFrameworkRepository.cs" />
-    <Compile Include="Repositories\EntityFrameworkDeletableRepository.cs" />
-    <Compile Include="Contracts\IEntityFrameworkRepository.cs" />
-    <Compile Include="Contracts\IEntityFrameworkDeletableEntityRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\DeletableRepository.cs" />
     <Compile Include="Contracts\IVoteSystemDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="VoteSystemDbContext.cs" />
@@ -72,9 +70,13 @@
       <Project>{ECFC4270-CADE-42BC-B9C0-8DF660397141}</Project>
       <Name>VoteSystem.Common.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VoteSystem.Models\VoteSystem.Data.Models.csproj">
+    <ProjectReference Include="..\VoteSystem.Data.Contracts\VoteSystem.Data.Contracts.csproj">
+      <Project>{B744653C-A435-4CD2-A648-3467180CF400}</Project>
+      <Name>VoteSystem.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
       <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
-      <Name>VoteSystem.Data.Models</Name>
+      <Name>VoteSystem.Data.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

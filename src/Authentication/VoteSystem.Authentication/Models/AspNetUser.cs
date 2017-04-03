@@ -4,8 +4,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-
-using VoteSystem.Data.Models;
+using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Authentication.Models
 {

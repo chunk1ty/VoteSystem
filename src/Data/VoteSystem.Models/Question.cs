@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using VoteSystem.Data.Models.Contracts;
+using VoteSystem.Data.Entities.Contracts;
 
-namespace VoteSystem.Data.Models
+namespace VoteSystem.Data.Entities
 {
     public class Question : IAuditInfo, IDeletableEntity
     {

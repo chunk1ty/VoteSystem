@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using VoteSystem.Data.Contracts;
-using VoteSystem.Data.DtoModels;
-using VoteSystem.Data.Models;
+using VoteSystem.Data.DTO;
+using VoteSystem.Data.Entities;
 using VoteSystem.Data.Repositories;
 using VoteSystem.Data.Services.Contracts;
 
@@ -9,9 +9,9 @@ namespace VoteSystem.Data.Services
 {
     public class ParticipantService : IParticipantService
     {
-        private IEntityFrameworkRepository<Participant> participants;
+        private IRepository<Participant> participants;
 
-        public ParticipantService(IEntityFrameworkRepository<Participant> participants)
+        public ParticipantService(IRepository<Participant> participants)
         {
             this.participants = participants;
         }

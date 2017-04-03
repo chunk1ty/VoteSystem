@@ -3,9 +3,9 @@ using System.Data.Entity;
 using System.Linq;
 
 using VoteSystem.Common.Constants;
-using VoteSystem.Data.Models;
 using VoteSystem.Data.Contracts;
-using VoteSystem.Data.Models.Contracts;
+using VoteSystem.Data.Entities;
+using VoteSystem.Data.Entities.Contracts;
 
 namespace VoteSystem.Data
 {

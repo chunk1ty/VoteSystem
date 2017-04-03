@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Clients.MVC.ViewModels;
-using VoteSystem.Data.Models;
 using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers

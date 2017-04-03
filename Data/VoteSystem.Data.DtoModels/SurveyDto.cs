@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VoteSystem.Data.DtoModels
+namespace VoteSystem.Data.DTO
 {
     public class SurveyDto
     {

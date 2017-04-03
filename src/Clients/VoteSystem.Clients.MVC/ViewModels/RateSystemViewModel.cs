@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
-using VoteSystem.Data.Models;
+using VoteSystem.Data.Entities;
 using VoteSystem.Services.Web;
 using VoteSystem.Services.Web.Contracts;
 
 namespace VoteSystem.Clients.MVC.ViewModels
 {
-    public class RateSystemViewModel : IMapFrom<Data.Models.Survey>, IMapTo<Data.Models.Survey>
+    public class RateSystemViewModel : IMapFrom<Survey>, IMapTo<Survey>
     {
         public int Id { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using VoteSystem.Data.Models;
+using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Authentication
 {

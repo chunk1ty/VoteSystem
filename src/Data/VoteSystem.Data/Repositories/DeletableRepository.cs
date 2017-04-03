@@ -3,14 +3,14 @@ using System.Data.Entity;
 using System.Linq;
 
 using VoteSystem.Data.Contracts;
-using VoteSystem.Data.Models.Contracts;
+using VoteSystem.Data.Entities.Contracts;
 
 namespace VoteSystem.Data.Repositories
 {
-    public class EntityFrameworkDeletableRepository<TEntity> : EntityFrameworkRepository<TEntity>, IEntityFrameworkDeletableEntityRepository<TEntity> 
+    public class DeletableRepository<TEntity> : Repository<TEntity>, IDeletableRepository<TEntity> 
         where TEntity : class, IDeletableEntity
     {
-        public EntityFrameworkDeletableRepository(IVoteSystemDbContext voteSystemDbContext)
+        public DeletableRepository(IVoteSystemDbContext voteSystemDbContext)
             : base(voteSystemDbContext)
         {
         }

@@ -2,7 +2,7 @@
 
 namespace VoteSystem.Data.Contracts
 {
-    public interface IEntityFrameworkRepository<TEntity>
+    public interface IRepository<TEntity>
         where TEntity : class
     {
         IQueryable<TEntity> All();

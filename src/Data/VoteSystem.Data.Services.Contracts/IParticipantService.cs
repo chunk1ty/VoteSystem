@@ -1,5 +1,4 @@
-﻿using VoteSystem.Data.DtoModels;
-using VoteSystem.Data.Models;
+﻿using VoteSystem.Data.DTO;
 
 namespace VoteSystem.Data.Services.Contracts
 {

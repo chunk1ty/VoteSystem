@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using VoteSystem.Authentication.Models;
 using VoteSystem.Common.Constants;
-using VoteSystem.Data.Models;
 
 namespace VoteSystem.Authentication
 {

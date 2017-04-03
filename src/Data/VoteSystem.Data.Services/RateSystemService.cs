@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using VoteSystem.Data.Contracts;
-using VoteSystem.Data.DtoModels;
-using VoteSystem.Data.Models;
+using VoteSystem.Data.DTO;
+using VoteSystem.Data.Entities;
 using VoteSystem.Data.Repositories;
 using VoteSystem.Data.Services.Contracts;
 
@@ -10,9 +10,9 @@ namespace VoteSystem.Data.Services
 {
     public class RateSystemService : IRateSystemService
     {
-        private readonly IEntityFrameworkDeletableEntityRepository<Survey> rateSystems;
+        private readonly IDeletableRepository<Survey> rateSystems;
 
-        public RateSystemService(IEntityFrameworkDeletableEntityRepository<Survey> rateSystems)
+        public RateSystemService(IDeletableRepository<Survey> rateSystems)
         {
             this.rateSystems = rateSystems;
         }

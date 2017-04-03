@@ -12,8 +12,7 @@ using VoteSystem.Authentication.Contracts;
 using VoteSystem.Authentication.Models;
 using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem;
 using VoteSystem.Clients.MVC.ViewModels.Account;
-using VoteSystem.Data.Models;
-using VoteSystem.Data.Services.Contracts;
+using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {

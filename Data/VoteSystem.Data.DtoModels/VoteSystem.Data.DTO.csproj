@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</ProjectGuid>
+    <ProjectGuid>{97076CD3-857B-475D-93C1-46A496DD8C09}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VoteSystem.Data.Models</RootNamespace>
-    <AssemblyName>VoteSystem.Data.Models</AssemblyName>
+    <RootNamespace>VoteSystem.Data.DTO</RootNamespace>
+    <AssemblyName>VoteSystem.Data.DTO</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,22 +31,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IAuditInfo.cs" />
-    <Compile Include="Contracts\IDeletableEntity.cs" />
-    <Compile Include="Participant.cs" />
-    <Compile Include="QuestionAnswer.cs" />
-    <Compile Include="Question.cs" />
-    <Compile Include="Survey.cs" />
+    <Compile Include="ParticipantAnswerDto.cs" />
+    <Compile Include="ParticipantDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ParticipantAnswer.cs" />
-    <Compile Include="VoteSystemUser.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="QuestionAnswerDto.cs" />
+    <Compile Include="QuestionDto.cs" />
+    <Compile Include="SurveyDto.cs" />
+    <Compile Include="VoteSystemUserDto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

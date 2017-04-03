@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace VoteSystem.Data.Models
+namespace VoteSystem.Data.Entities
 {
     public class Participant
     {

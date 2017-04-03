@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using VoteSystem.Data.Models;
+using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Data.Contracts
 {

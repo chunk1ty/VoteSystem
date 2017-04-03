@@ -14,7 +14,6 @@ using VoteSystem.Common.Constants;
 using VoteSystem.Data;
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Repositories;
-using VoteSystem.Data.Services.Contracts;
 using VoteSystem.Services.Web;
 using VoteSystem.Services.Web.Contracts;
 
@@ -73,10 +72,10 @@ namespace VoteSystem.Clients.MVC
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(typeof(IEntityFrameworkRepository<>))
-                .To(typeof(EntityFrameworkRepository<>));
-            kernel.Bind(typeof(IEntityFrameworkDeletableEntityRepository<>))
-               .To(typeof(EntityFrameworkDeletableRepository<>));
+            kernel.Bind(typeof(IRepository<>))
+                .To(typeof(Repository<>));
+            kernel.Bind(typeof(IDeletableRepository<>))
+               .To(typeof(DeletableRepository<>));
 
             // TODO check this binding IVoteSystemDbContext
             // InRequestScope for using one db context

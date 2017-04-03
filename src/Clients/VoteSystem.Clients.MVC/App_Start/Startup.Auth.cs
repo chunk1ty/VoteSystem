@@ -7,7 +7,6 @@ using Owin;
 using VoteSystem.Authentication;
 using VoteSystem.Authentication.Models;
 using VoteSystem.Data;
-using VoteSystem.Data.Models;
 
 namespace VoteSystem.Clients.MVC
 {

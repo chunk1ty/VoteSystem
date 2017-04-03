@@ -9,7 +9,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using VoteSystem.Authentication.Contracts;
 using VoteSystem.Authentication.Models;
-using VoteSystem.Data.Models;
 
 namespace VoteSystem.Authentication
 {

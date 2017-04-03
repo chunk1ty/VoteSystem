@@ -1,10 +1,9 @@
 ﻿using System;
-using VoteSystem.Data.Models.Contracts;
+using System.ComponentModel.DataAnnotations;
+using VoteSystem.Data.Entities.Contracts;
 
-namespace VoteSystem.Data.Models
+namespace VoteSystem.Data.Entities
 {
-    using System.ComponentModel.DataAnnotations;
-
     public class ParticipantAnswer : IAuditInfo
     {
         [Key]

@@ -6,10 +6,10 @@ using VoteSystem.Data.Contracts;
 
 namespace VoteSystem.Data.Repositories
 {
-    public class EntityFrameworkRepository<TEntity> : IEntityFrameworkRepository<TEntity> 
+    public class Repository<TEntity> : IRepository<TEntity> 
         where TEntity : class
     {
-        public EntityFrameworkRepository(IVoteSystemDbContext voteSystemDbContext)
+        public Repository(IVoteSystemDbContext voteSystemDbContext)
         {
             if (voteSystemDbContext == null)
             {

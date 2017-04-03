@@ -10,7 +10,6 @@ using System.Web;
 using VoteSystem.Clients.MVC;
 using VoteSystem.Clients.MVC.Areas.Administration.Controllers;
 using VoteSystem.Clients.MVC.ViewModels;
-using VoteSystem.Data.Models;
 using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Web.Controllers.Tests

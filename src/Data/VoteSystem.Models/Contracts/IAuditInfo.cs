@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VoteSystem.Data.Models.Contracts
+namespace VoteSystem.Data.Entities.Contracts
 {
     public interface IAuditInfo
     {

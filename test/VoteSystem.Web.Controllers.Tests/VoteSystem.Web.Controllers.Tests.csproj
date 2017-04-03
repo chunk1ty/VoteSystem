@@ -84,6 +84,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Data\VoteSystem.Data.Services.Contracts\VoteSystem.Data.Services.Contracts.csproj">
+      <Project>{269CC85F-7209-4ED3-BC65-C90804B00B37}</Project>
+      <Name>VoteSystem.Data.Services.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Data\VoteSystem.Data.Services\VoteSystem.Data.Services.csproj">
       <Project>{B189968E-4F1D-4301-A27E-1A3C3D652B98}</Project>
       <Name>VoteSystem.Data.Services</Name>
@@ -92,9 +96,9 @@
       <Project>{398e47fa-cd30-4ea7-84ff-fe27ef94343c}</Project>
       <Name>VoteSystem.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Data\VoteSystem.Models\VoteSystem.Data.Models.csproj">
+    <ProjectReference Include="..\..\src\Data\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
       <Project>{82cb736c-95ef-42ab-9d42-e6210df6d20d}</Project>
-      <Name>VoteSystem.Data.Models</Name>
+      <Name>VoteSystem.Data.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Clients\VoteSystem.Clients.MVC\VoteSystem.Clients.MVC.csproj">
       <Project>{67cc40ff-4933-4f83-810e-357e6bc8b973}</Project>

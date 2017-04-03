@@ -2,7 +2,7 @@
 
 namespace VoteSystem.Data.Contracts
 {
-    public interface IEntityFrameworkDeletableEntityRepository<TEntity> : IEntityFrameworkRepository<TEntity> 
+    public interface IDeletableRepository<TEntity> : IRepository<TEntity> 
         where TEntity : class
     {
         IQueryable<TEntity> AllWithDeleted();

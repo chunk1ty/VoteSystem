@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using VoteSystem.Data.Contracts;
-using VoteSystem.Data.DtoModels;
-using VoteSystem.Data.Models;
+using VoteSystem.Data.DTO;
+using VoteSystem.Data.Entities;
 using VoteSystem.Data.Repositories;
 using VoteSystem.Data.Services.Contracts;
 using VoteSystem.Services.Web.Contracts;
@@ -11,10 +11,10 @@ namespace VoteSystem.Data.Services
 {
     public class QuestionService : IQuestionService
     {
-        private readonly IEntityFrameworkRepository<Question> questions;
+        private readonly IRepository<Question> questions;
         private readonly IIdentifierProvider identifierProvider;
 
-        public QuestionService(IEntityFrameworkRepository<Question> questions, IIdentifierProvider identifierProvider)
+        public QuestionService(IRepository<Question> questions, IIdentifierProvider identifierProvider)
         {
             this.questions = questions;
             this.identifierProvider = identifierProvider;

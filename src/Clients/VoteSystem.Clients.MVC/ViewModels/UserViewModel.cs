@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using VoteSystem.Authentication.Models;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
-using VoteSystem.Data.Models;
 
 namespace VoteSystem.Clients.MVC.ViewModels
 {
