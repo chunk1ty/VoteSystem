@@ -14,7 +14,7 @@ namespace VoteSystem.Data.Contracts
 
         IDbSet<Question> Questions { get; set; }
 
-        IDbSet<Survey> Surveys { get; set; }
+        IDbSet<Entities.VoteSystem> Surveys { get; set; }
 
         IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
 

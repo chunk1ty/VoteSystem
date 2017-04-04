@@ -22,7 +22,7 @@ namespace VoteSystem.Data
 
         public virtual IDbSet<ParticipantAnswer> ParticipantAnswers { get; set; }
 
-        public virtual IDbSet<Survey> Surveys { get; set; }
+        public virtual IDbSet<Entities.VoteSystem> Surveys { get; set; }
 
         public virtual IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
 
@@ -43,6 +43,12 @@ namespace VoteSystem.Data
         {
             this.ApplyAuditInfoRules();
             return base.SaveChanges();
+        }
+
+        // TODO create DB relations here
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
         }
 
         private void ApplyAuditInfoRules()

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.DTO;
 using VoteSystem.Data.Entities;
@@ -6,20 +7,20 @@ using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Data.Services
 {
-    public class UserService : IUserService
+    public class VoteSystemUserService : IVoteSystemUserService
     {
-        private IRepository<VoteSystemUser> users;
+        private IVoteSystemUserRepository voteSystemUserRepository;
         private IParticipantService participants;
 
-        public UserService(IRepository<VoteSystemUser> users, IParticipantService participants)
+        public VoteSystemUserService(IVoteSystemUserRepository voteSystemUserRepository, IParticipantService participants)
         {
-            this.users = users;
+            this.voteSystemUserRepository = voteSystemUserRepository;
             this.participants = participants;
         }
        
-        public IQueryable<VoteSystemUserDto> GetAllUnselectUsers(int rateSystemId)
+        public IEnumerable<VoteSystemUserDto> GetAllUnselectUsers(int rateSystemId)
         {
-            //var allUsers = this.users
+            //var allUsers = this.voteSystemUserRepository
             //    .All();
 
             //return allUsers
@@ -27,9 +28,9 @@ namespace VoteSystem.Data.Services
             return null;
         }
 
-        public IQueryable<VoteSystemUserDto> GetAllSelectUsers(int rateSystemId)
+        public IEnumerable<VoteSystemUserDto> GetAllSelectUsers(int rateSystemId)
         {
-            //return this.users
+            //return this.voteSystemUserRepository
             //    .All()
             //    .Where(
             //         x => x.Participants

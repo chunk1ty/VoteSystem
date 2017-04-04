@@ -1,9 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using VoteSystem.Data.DTO;
 
 namespace VoteSystem.Data.Services.Contracts
 {
-    public interface IRateSystemService
+    public interface IVoteSystemService
     {
         void Add(SurveyDto system);
 
@@ -11,9 +12,9 @@ namespace VoteSystem.Data.Services.Contracts
 
         void Update(SurveyDto system);
 
-        IQueryable<SurveyDto> GetAll();
+        IEnumerable<SurveyDto> GetAll();
 
-        IQueryable<SurveyDto> AllActive(string userId);
+        IEnumerable<SurveyDto> AllActive(string userId);
 
         SurveyDto GetById(int rateSystemId);
     }

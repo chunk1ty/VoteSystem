@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Clients.MVC", "src\Clients\VoteSystem.Clients.MVC\VoteSystem.Clients.MVC.csproj", "{67CC40FF-4933-4F83-810E-357E6BC8B973}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data", "src\Data\VoteSystem.Data\VoteSystem.Data.csproj", "{398E47FA-CD30-4EA7-84FF-FE27EF94343C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Ef", "src\Data\VoteSystem.Data\VoteSystem.Data.Ef.csproj", "{398E47FA-CD30-4EA7-84FF-FE27EF94343C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Entities", "src\Data\VoteSystem.Models\VoteSystem.Data.Entities.csproj", "{82CB736C-95EF-42AB-9D42-E6210DF6D20D}"
 EndProject

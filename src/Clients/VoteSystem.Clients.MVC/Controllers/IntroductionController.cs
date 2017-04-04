@@ -9,19 +9,19 @@ namespace VoteSystem.Clients.MVC.Controllers
 {
     public class IntroductionController : BaseController
     {
-        private IRateSystemService rateSystems;       
+        private IVoteSystemService voteSystems;       
 
-        public IntroductionController(IRateSystemService rateSystems)
+        public IntroductionController(IVoteSystemService voteSystems)
         {
-            this.rateSystems = rateSystems;            
+            this.voteSystems = voteSystems;            
         }
 
         [AllowAnonymous]
         public ActionResult Index()
         {
             //var system = this.Cache.Get(
-            //    "rateSystems",
-            //    () => this.rateSystems.GetAll().To<RateSystemViewModel>().ToList(),
+            //    "voteSystems",
+            //    () => this.voteSystems.GetAll().To<RateSystemViewModel>().ToList(),
             //    1 * 60);
 
             return this.View(new FeedbackViewModel());

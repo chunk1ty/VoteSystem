@@ -9,25 +9,25 @@ namespace VoteSystem.Data.Services
 {
     public class QuestionService : IQuestionService
     {
-        private readonly IRepository<Question> questions;
+        private readonly IQuestionRepository questionRepository;
         private readonly IIdentifierProvider identifierProvider;
 
-        public QuestionService(IRepository<Question> questions, IIdentifierProvider identifierProvider)
+        public QuestionService(IQuestionRepository questionRepository, IIdentifierProvider identifierProvider)
         {
-            this.questions = questions;
+            this.questionRepository = questionRepository;
             this.identifierProvider = identifierProvider;
         }
 
         public void Add(QuestionDto question)
         {
             // TODO add mapping logic
-            //this.questions.Add(question);
+            //this.questionRepository.Add(question);
         }
 
         public void Delete(QuestionDto question)
         {
             // TODO add mapping logic
-            //this.questions.Delete(question);
+            //this.questionRepository.Delete(question);
         }
 
         public IQueryable<QuestionDto> GetAllQuestions(string rateSystemId)
@@ -36,7 +36,7 @@ namespace VoteSystem.Data.Services
             var rateSystemIntId = this.identifierProvider.DecodeId(rateSystemId);
 
             // TODO x.IsDeleted ? if i use deletable entity
-            //return this.questions
+            //return this.questionRepository
             //                .All()
             //                .Where(x => x.RateSystemId == rateSystemIntId);
             return null;
@@ -46,7 +46,7 @@ namespace VoteSystem.Data.Services
         public IQueryable<QuestionDto> GetAllQuestions(int rateSystemId)
         {
             // TODO add mapping logic
-            //return this.questions
+            //return this.questionRepository
             //                .All()
             //                .Where(x => x.RateSystemId == rateSystemId);
             return null;
@@ -56,7 +56,7 @@ namespace VoteSystem.Data.Services
         {
             // TODO add mapping logic
             // remove Ef dependency (move Include!!)
-            //return this.questions
+            //return this.questionRepository
             //    .All()
             //    .Where(x => x.RateSystemId == rateSystemId)
             //    .Include(x => x.QuestionAnswers

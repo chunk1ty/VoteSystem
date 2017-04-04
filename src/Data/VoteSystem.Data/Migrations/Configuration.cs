@@ -86,9 +86,9 @@ namespace VoteSystem.Data.Migrations
         {
             if (context.Surveys.Count() == 0)
             {
-                Survey ankk = new Survey() { Id = 1, Name = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
-                Survey ankk1 = new Survey() { Id = 2, Name = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
-                Survey ank2 = new Survey() { Id = 3, Name = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Entities.VoteSystem ankk = new Entities.VoteSystem() { Id = 1, Name = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Entities.VoteSystem ankk1 = new Entities.VoteSystem() { Id = 2, Name = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
+                Entities.VoteSystem ank2 = new Entities.VoteSystem() { Id = 3, Name = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
 
                 context.SaveChanges();
                 context.Surveys.AddOrUpdate(ankk);

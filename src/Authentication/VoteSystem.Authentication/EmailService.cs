@@ -13,7 +13,7 @@ namespace VoteSystem.Authentication
             return Task.FromResult(0);
         }
 
-        public Task SendAddedParticipantsAsync(List<string> users, Survey rateSystem)
+        public Task SendAddedParticipantsAsync(List<string> users, Data.Entities.VoteSystem rateSystem)
         {
             throw new System.NotImplementedException();
         }

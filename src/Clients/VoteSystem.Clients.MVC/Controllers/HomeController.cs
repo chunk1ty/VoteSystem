@@ -9,16 +9,16 @@ namespace VoteSystem.Clients.MVC.Controllers
 {
     public class HomeController : BaseController
     {
-        private IRateSystemService rateSystems;
+        private IVoteSystemService voteSystems;
 
-        public HomeController(IRateSystemService rateSystems)
+        public HomeController(IVoteSystemService voteSystems)
         {
-            this.rateSystems = rateSystems;
+            this.voteSystems = voteSystems;
         }
 
         public ActionResult Index()
         {
-            //var systems = this.rateSystems
+            //var systems = this.voteSystems
             //                .AllActive(User.Identity.GetUserId())
             //                .To<RateSystemViewModel>()
             //                .ToList();

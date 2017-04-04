@@ -9,17 +9,17 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
     public class RateSystemController : AdministrationController
     {
-        private IRateSystemService rateSystems;
+        private IVoteSystemService voteSystems;
 
-        public RateSystemController(IRateSystemService rateSystems)
+        public RateSystemController(IVoteSystemService voteSystems)
         {
-            this.rateSystems = rateSystems;
+            this.voteSystems = voteSystems;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            //var allVoteSystems = this.rateSystems
+            //var allVoteSystems = this.voteSystems
             //                            .GetAll()
             //                            .To<RateSystemViewModel>()
             //                            .ToList();
@@ -51,7 +51,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             }
 
             //var modelDb = this.Mapper.Map<Survey>(model);
-            //this.rateSystems.Add(modelDb);
+            //this.voteSystems.Add(modelDb);
 
             return this.RedirectToAction<RateSystemController>(c => c.Index());
         }
@@ -59,7 +59,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Edit(int rateSystemId)
         {
-            //var rateSystem = this.rateSystems.GetById(rateSystemId);
+            //var rateSystem = this.voteSystems.GetById(rateSystemId);
             //var rateSystemVM = this.Mapper.Map<RateSystemViewModel>(rateSystem);
 
             //return this.View(rateSystemVM);
@@ -82,7 +82,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //    return this.View(model);
             //}
 
-            //var rateSystemDb = this.rateSystems.GetById(model.Id);
+            //var rateSystemDb = this.voteSystems.GetById(model.Id);
 
             //if (rateSystemDb == null)
             //{
@@ -94,7 +94,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //rateSystemDb.StarDateTime = model.StarDateTime;
             //rateSystemDb.EndDateTime = model.EndDateTime;
 
-            //this.rateSystems.Update(rateSystemDb);
+            //this.voteSystems.Update(rateSystemDb);
 
             return this.RedirectToAction<RateSystemController>(c => c.Index());
         }

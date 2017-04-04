@@ -40,7 +40,7 @@
     <Compile Include="Participant.cs" />
     <Compile Include="QuestionAnswer.cs" />
     <Compile Include="Question.cs" />
-    <Compile Include="Survey.cs" />
+    <Compile Include="VoteSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ParticipantAnswer.cs" />
     <Compile Include="VoteSystemUser.cs" />

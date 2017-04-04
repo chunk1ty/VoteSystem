@@ -7,12 +7,6 @@ namespace VoteSystem.Data.Entities
 {
     public class Question : IAuditInfo, IDeletableEntity
     {
-        public Question()
-        {
-            this.QuestionAnswers = new HashSet<QuestionAnswer>();
-        }
-        
-        [Key]
         public int Id { get; set; }
 
         public string QuestionName { get; set; }
@@ -27,8 +21,5 @@ namespace VoteSystem.Data.Entities
         public DateTime? DeletedOn { get; set; }
 
         public int RateSystemId { get; set; }
-        public virtual Survey RateSystem { get; set; }
-
-        public ICollection<QuestionAnswer> QuestionAnswers { get; set; }
     }
 }

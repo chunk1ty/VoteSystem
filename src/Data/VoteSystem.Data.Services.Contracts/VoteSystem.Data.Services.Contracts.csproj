@@ -38,8 +38,8 @@
     <Compile Include="IParticipantService.cs" />
     <Compile Include="IQuestionAnswerService.cs" />
     <Compile Include="IQuestionService.cs" />
-    <Compile Include="IRateSystemService.cs" />
-    <Compile Include="IUserService.cs" />
+    <Compile Include="IVoteSystemService.cs" />
+    <Compile Include="IVoteSystemUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

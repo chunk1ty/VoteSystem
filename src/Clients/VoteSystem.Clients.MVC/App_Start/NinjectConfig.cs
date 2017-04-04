@@ -72,10 +72,10 @@ namespace VoteSystem.Clients.MVC
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(typeof(IRepository<>))
-                .To(typeof(Repository<>));
-            kernel.Bind(typeof(IDeletableRepository<>))
-               .To(typeof(DeletableRepository<>));
+            //kernel.Bind(typeof(IRepository<>))
+            //    .To(typeof(Repository<>));
+            //kernel.Bind(typeof(IDeletableRepository<>))
+            //   .To(typeof(DeletableRepository<>));
 
             // TODO check this binding IVoteSystemDbContext
             // InRequestScope for using one db context

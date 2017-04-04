@@ -126,8 +126,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Net.Http.4.3.1\lib\net46\System.Net.Http.dll</HintPath>
       <Private>True</Private>
@@ -152,12 +150,8 @@
       <HintPath>..\..\..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net46\System.Security.Cryptography.X509Certificates.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Mvc.Expressions, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Web.Mvc.Expressions.1.0.6\lib\System.Web.Mvc.Expressions.dll</HintPath>
       <Private>True</Private>
@@ -178,20 +172,13 @@
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest">
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -732,10 +719,6 @@
       <Project>{ECFC4270-CADE-42BC-B9C0-8DF660397141}</Project>
       <Name>VoteSystem.Common.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\VoteSystem.Data.Contracts\VoteSystem.Data.Contracts.csproj">
-      <Project>{B744653C-A435-4CD2-A648-3467180CF400}</Project>
-      <Name>VoteSystem.Data.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\VoteSystem.Data.Services.Contracts\VoteSystem.Data.Services.Contracts.csproj">
       <Project>{269CC85F-7209-4ED3-BC65-C90804B00B37}</Project>
       <Name>VoteSystem.Data.Services.Contracts</Name>
@@ -744,9 +727,9 @@
       <Project>{B189968E-4F1D-4301-A27E-1A3C3D652B98}</Project>
       <Name>VoteSystem.Data.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\VoteSystem.Data\VoteSystem.Data.csproj">
+    <ProjectReference Include="..\..\Data\VoteSystem.Data\VoteSystem.Data.Ef.csproj">
       <Project>{398E47FA-CD30-4EA7-84FF-FE27EF94343C}</Project>
-      <Name>VoteSystem.Data</Name>
+      <Name>VoteSystem.Data.Ef</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
       <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>

@@ -9,33 +9,34 @@ using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem;
 using VoteSystem.Clients.MVC.ViewModels;
 using VoteSystem.Common;
 using VoteSystem.Common.Constants;
+using VoteSystem.Data.Services;
 using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
     public class UserController : AdministrationController
     {
-        private IUserService users;
+        private VoteSystemUserService voteSystemUsers;
         private IParticipantService participants;
-        private IRateSystemService rateSystems;
+        private IVoteSystemService voteSystems;
 
-        public UserController(IUserService users, IParticipantService participants, IRateSystemService rateSystems)
+        public UserController(VoteSystemUserService voteSystemUsers, IParticipantService participants, IVoteSystemService voteSystems)
         {
-            this.users = users;
+            this.voteSystemUsers = voteSystemUsers;
             this.participants = participants;
-            this.rateSystems = rateSystems;
+            this.voteSystems = voteSystems;
         }
         
         public ActionResult Add(int rateSystemId)
         {
-            //var users = this.users
+            //var voteSystemUsers = this.voteSystemUsers
             //    .GetAllUnselectUsers(rateSystemId)
             //    .To<UserViewModel>()
             //    .ToList();
 
             //var userSelectedVM = new UserSelectedViewModel()
             //{
-            //    Users = users,
+            //    Users = voteSystemUsers,
             //    RateSystemId = rateSystemId
             //};           
 
@@ -77,14 +78,14 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         public ActionResult Remove(int rateSystemId)
         {
-            //var users = this.users
+            //var voteSystemUsers = this.voteSystemUsers
             //    .GetAllSelectUsers(rateSystemId)
             //    .To<UserViewModel>()
             //    .ToList();
 
             //var userSelectedVM = new UserSelectedViewModel()
             //{
-            //    Users = users,
+            //    Users = voteSystemUsers,
             //    RateSystemId = rateSystemId
             //};
 
@@ -106,7 +107,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
             //foreach (var participant in getSelectedUsers)
             //{
-            //    var currentParticipant = this.participants.GetParticipantByRateSystemIdAndUserId(model.RateSystemId, participant.Id);
+            //    var currentParticipant = this.participants.GetParticipantBySurveyIdAndUserId(model.RateSystemId, participant.Id);
 
             //    if (currentParticipant == null)
             //    {
@@ -124,14 +125,14 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         public ActionResult Preview(int rateSystemId)
         {
-            //var users = this.users
+            //var voteSystemUsers = this.voteSystemUsers
             //    .GetAllSelectUsers(rateSystemId)
             //    .To<UserViewModel>()
             //    .ToList();
 
             //var userSelectedVM = new UserSelectedViewModel()
             //{
-            //    Users = users,
+            //    Users = voteSystemUsers,
             //    RateSystemId = rateSystemId
             //};
 
@@ -141,14 +142,14 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         public async Task<ActionResult> SentEmails(int rateSystemId)
         {
-            //var users = this.users
+            //var voteSystemUsers = this.voteSystemUsers
             //    .GetAllSelectUsers(rateSystemId)
             //    .Select(x => x.Email).ToList();
 
-            //var rateSystem = this.rateSystems.GetById(rateSystemId);
+            //var rateSystem = this.voteSystems.GetById(rateSystemId);
 
             //EmailService email = new EmailService();
-            //await email.SendAddedParticipantsAsync(users, rateSystem);
+            //await email.SendAddedParticipantsAsync(voteSystemUsers, rateSystem);
 
             //this.AddNotification("Успешно изпратихте имейли на всички учасници!", NotificationType.SUCCESS);
 

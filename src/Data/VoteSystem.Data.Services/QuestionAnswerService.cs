@@ -7,18 +7,18 @@ namespace VoteSystem.Data.Services
 {
     public class QuestionAnswerService : IQuestionAnswerService
     {
-        private readonly IRepository<QuestionAnswer> questionAndAnswers;
+        private readonly IQuestionAnswerRepository questionAnswerRepository;
 
-        public QuestionAnswerService(IRepository<QuestionAnswer> questionAndAnswers)
+        public QuestionAnswerService(IQuestionAnswerRepository questionAndAnswers)
         {
             // TODO add mapping logic
-//            /this.questionAndAnswers = questionAndAnswers;
+            //this.questionAnswerRepository = questionAnswerRepository;
         }
 
         public void Add(QuestionAnswerDto questionAndAnswers)
         {
             // TODO add mapping logic
-            //this.questionAndAnswers.Add(questionAndAnswers);
+            //this.questionAnswerRepository.Add(questionAndAnswers);
         }
     }
 }

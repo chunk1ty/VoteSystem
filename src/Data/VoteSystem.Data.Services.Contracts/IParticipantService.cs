@@ -10,6 +10,6 @@ namespace VoteSystem.Data.Services.Contracts
 
         void Update(ParticipantDto participant);
 
-        ParticipantDto GetParticipantByRateSystemIdAndUserId(int rateSystemId, string userId);
+        ParticipantDto GetParticipantBySurveyIdAndUserId(int rateSystemId, string userId);
     }
 }

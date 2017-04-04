@@ -44,7 +44,7 @@ namespace VoteSystem.Clients.MVC.Controllers
                 return this.View(questions);
             }
 
-            //var participant = this.participant.GetParticipantByRateSystemIdAndUserId(questions[0].RateSystemId, User.Identity.GetUserId());
+            //var participant = this.participant.GetParticipantBySurveyIdAndUserId(questions[0].RateSystemId, User.Identity.GetUserId());
 
             //foreach (var question in questions)
             //{

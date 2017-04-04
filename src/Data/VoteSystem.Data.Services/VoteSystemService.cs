@@ -1,47 +1,46 @@
-﻿using System;
-using System.Linq;
+﻿using System.Collections.Generic;
+
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.DTO;
-using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Data.Services
 {
-    public class RateSystemService : IRateSystemService
+    public class VoteSystemService : IVoteSystemService
     {
-        private readonly IDeletableRepository<Survey> rateSystems;
+        private readonly IVoteSystemRepository voteSystemRepository;
 
-        public RateSystemService(IDeletableRepository<Survey> rateSystems)
+        public VoteSystemService(IVoteSystemRepository voteSystemRepository)
         {
-            this.rateSystems = rateSystems;
+            this.voteSystemRepository = voteSystemRepository;
         }
 
         public void Add(SurveyDto system)
         {
-            //this.rateSystems.Add(system);
+            //this.voteSystemRepository.Add(system);
         }
 
         public void Delete(int rateSystemId)
         {
-            var rateSystem = this.rateSystems.GetById(rateSystemId);
-            this.rateSystems.Delete(rateSystem);
+            var rateSystem = this.voteSystemRepository.GetById(rateSystemId);
+            this.voteSystemRepository.Delete(rateSystem);
         }
 
         public void Update(SurveyDto system)
         {
-            //this.rateSystems.Update(system);
+            //this.voteSystemRepository.Update(system);
         }
 
-        public IQueryable<SurveyDto> GetAll()
+        public IEnumerable<SurveyDto> GetAll()
         {
-           // return this.rateSystems.All();
+            //return this.voteSystemRepository.All();
             return null;
         }
 
-        public IQueryable<SurveyDto> AllActive(string userId)
+        public IEnumerable<SurveyDto> AllActive(string userId)
         {
             // TODO fix it later
-            //return this.rateSystems
+            //return this.voteSystemRepository
             //        .All()
             //        .Where(x => 
             //                x.StarDateTime <= DateTime.Now && 
@@ -55,7 +54,7 @@ namespace VoteSystem.Data.Services
 
         public SurveyDto GetById(int rateSystemId)
         {
-            //return this.rateSystems.GetById(rateSystemId);
+            //return this.voteSystemRepository.GetById(rateSystemId);
             return null;
         }
     }

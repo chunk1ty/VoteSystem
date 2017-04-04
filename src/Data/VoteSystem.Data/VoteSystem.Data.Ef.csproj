@@ -7,8 +7,8 @@
     <ProjectGuid>{398E47FA-CD30-4EA7-84FF-FE27EF94343C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VoteSystem.Data</RootNamespace>
-    <AssemblyName>VoteSystem.Data</AssemblyName>
+    <RootNamespace>VoteSystem.Data.Ef</RootNamespace>
+    <AssemblyName>VoteSystem.Data.Ef</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -50,8 +50,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\Repository.cs" />
-    <Compile Include="Repositories\DeletableRepository.cs" />
+    <Compile Include="Repositories\EfParticipantAnswerRepository.cs" />
+    <Compile Include="Repositories\EfParticipantRepository.cs" />
+    <Compile Include="Repositories\EfQuestionAnswerRepository.cs" />
+    <Compile Include="Repositories\EfQuestionRepository.cs" />
+    <Compile Include="Repositories\EfVoteSystemRepository.cs" />
+    <Compile Include="Repositories\EfVoteSystemUserRepository.cs" />
+    <Compile Include="DELETE-ME\Repository.cs" />
+    <Compile Include="DELETE-ME\DeletableRepository.cs" />
     <Compile Include="Contracts\IVoteSystemDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="VoteSystemDbContext.cs" />

@@ -34,9 +34,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDeletableRepository.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="IVoteSystemUserRepository.cs" />
+    <Compile Include="IVoteSystemRepository.cs" />
+    <Compile Include="IQuestionRepository.cs" />
+    <Compile Include="IQuestionAnswerRepository.cs" />
+    <Compile Include="IParticipantRepository.cs" />
+    <Compile Include="IParticipantAnswerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
+      <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
+      <Name>VoteSystem.Data.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

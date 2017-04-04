@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-
 using VoteSystem.Data.Contracts;
 
-namespace VoteSystem.Data.Repositories
+namespace VoteSystem.Data
 {
-    public class Repository<TEntity> : IRepository<TEntity> 
+    public class Repository<TEntity>
         where TEntity : class
     {
         public Repository(IVoteSystemDbContext voteSystemDbContext)

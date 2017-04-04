@@ -7,18 +7,18 @@ namespace VoteSystem.Data.Services
 {
     public class ParticipantAnswerService : IParticipantAnswerService
     {
-        private readonly IRepository<ParticipantAnswer> userAnswers;
+        private readonly IParticipantAnswerRepository participantAnswerRepository;
 
-        public ParticipantAnswerService(IRepository<ParticipantAnswer> userAnswers)
+        public ParticipantAnswerService(IParticipantAnswerRepository participantAnswerRepository)
         {
-            this.userAnswers = userAnswers;
+            this.participantAnswerRepository = participantAnswerRepository;
         }
 
         public void Add(ParticipantAnswerDto userAnswers)
         {
             // TODO add mapping logic
             ParticipantAnswer p = new ParticipantAnswer();
-            this.userAnswers.Add(p);
+            this.participantAnswerRepository.Add(p);
         }
     }
 }

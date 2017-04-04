@@ -92,9 +92,9 @@
       <Project>{B189968E-4F1D-4301-A27E-1A3C3D652B98}</Project>
       <Name>VoteSystem.Data.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Data\VoteSystem.Data\VoteSystem.Data.csproj">
+    <ProjectReference Include="..\..\src\Data\VoteSystem.Data\VoteSystem.Data.Ef.csproj">
       <Project>{398e47fa-cd30-4ea7-84ff-fe27ef94343c}</Project>
-      <Name>VoteSystem.Data</Name>
+      <Name>VoteSystem.Data.Ef</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Data\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
       <Project>{82cb736c-95ef-42ab-9d42-e6210df6d20d}</Project>

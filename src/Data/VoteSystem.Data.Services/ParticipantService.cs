@@ -7,37 +7,37 @@ namespace VoteSystem.Data.Services
 {
     public class ParticipantService : IParticipantService
     {
-        private IRepository<Participant> participants;
+        private IParticipantRepository participantRepository;
 
-        public ParticipantService(IRepository<Participant> participants)
+        public ParticipantService(IParticipantRepository participantRepository)
         {
-            this.participants = participants;
+            this.participantRepository = participantRepository;
         }
 
         public void Add(ParticipantDto participant)
         {
             // TODO add mapping logic
-            //this.participants.Add(participant);
+            //this.participantRepository.Add(participant);
         }
 
         public void Update(ParticipantDto participant)
         {
             // TODO add mapping logic
-            //this.participants.Update(participant);
+            //this.participantRepository.Update(participant);
         }
 
         public void Remove(ParticipantDto participant)
         {
             // TODO add mapping logic
-            //this.participants.Delete(participant);
+            //this.participantRepository.Delete(participant);
         }
 
-        public ParticipantDto GetParticipantByRateSystemIdAndUserId(int rateSystemId, string userId)
+        public ParticipantDto GetParticipantBySurveyIdAndUserId(int rateSystemId, string userId)
         {
             // TODO add mapping logic
             // TODO fix it later
-            //return this.participants
-            //    .All()
+            //return this.participantRepository
+             //   .All()
             //    .Where(x => x.RateSystemId == rateSystemId && x.UserId == userId)
             //    .FirstOrDefault();
 

@@ -8,11 +8,11 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
     public class AjaxController : AdministrationController
     {
-        private readonly IRateSystemService rateSystems;
+        private readonly IVoteSystemService voteSystems;
 
-        public AjaxController(IRateSystemService rateSystems)
+        public AjaxController(IVoteSystemService voteSystems)
         {
-            this.rateSystems = rateSystems;
+            this.voteSystems = voteSystems;
         }
 
         [HttpGet]
@@ -33,7 +33,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [HttpPost]
         public ActionResult DeleteRateSystem(int rateSystemId)
         {
-            this.rateSystems.Delete(rateSystemId);
+            this.voteSystems.Delete(rateSystemId);
 
             return this.Content("DELETED");
         }
