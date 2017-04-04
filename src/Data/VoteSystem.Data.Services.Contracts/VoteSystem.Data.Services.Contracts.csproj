@@ -43,9 +43,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Data\VoteSystem.Data.DtoModels\VoteSystem.Data.DTO.csproj">
-      <Project>{97076CD3-857B-475D-93C1-46A496DD8C09}</Project>
-      <Name>VoteSystem.Data.DTO</Name>
+    <ProjectReference Include="..\VotySystem.Data.DTO\VotySystem.Data.DTO.csproj">
+      <Project>{E73CB871-87EB-4F75-81BE-121A95F50736}</Project>
+      <Name>VotySystem.Data.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

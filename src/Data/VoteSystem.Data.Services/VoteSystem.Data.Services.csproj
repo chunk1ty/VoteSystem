@@ -51,10 +51,6 @@
     <Compile Include="VoteSystemUserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Data\VoteSystem.Data.DtoModels\VoteSystem.Data.DTO.csproj">
-      <Project>{97076CD3-857B-475D-93C1-46A496DD8C09}</Project>
-      <Name>VoteSystem.Data.DTO</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services\VoteSystem.Services.Web\VoteSystem.Services.Web.csproj">
       <Project>{987BB8B6-3320-4A56-BF9F-A2BC56F6D5DB}</Project>
       <Name>VoteSystem.Services.Web</Name>
@@ -70,6 +66,10 @@
     <ProjectReference Include="..\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
       <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
       <Name>VoteSystem.Data.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VotySystem.Data.DTO\VotySystem.Data.DTO.csproj">
+      <Project>{E73CB871-87EB-4F75-81BE-121A95F50736}</Project>
+      <Name>VotySystem.Data.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

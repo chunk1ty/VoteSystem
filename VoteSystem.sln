@@ -64,11 +64,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Authentication", "src\Authentication\VoteSystem.Authentication\VoteSystem.Authentication.csproj", "{E33BD301-E2C3-4941-920C-4CC057CAE125}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.DTO", "Data\VoteSystem.Data.DtoModels\VoteSystem.Data.DTO.csproj", "{97076CD3-857B-475D-93C1-46A496DD8C09}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Services.Contracts", "src\Data\VoteSystem.Data.Services.Contracts\VoteSystem.Data.Services.Contracts.csproj", "{269CC85F-7209-4ED3-BC65-C90804B00B37}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Contracts", "src\Data\VoteSystem.Data.Contracts\VoteSystem.Data.Contracts.csproj", "{B744653C-A435-4CD2-A648-3467180CF400}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotySystem.Data.DTO", "src\Data\VotySystem.Data.DTO\VotySystem.Data.DTO.csproj", "{E73CB871-87EB-4F75-81BE-121A95F50736}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -124,10 +124,6 @@ Global
 		{E33BD301-E2C3-4941-920C-4CC057CAE125}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E33BD301-E2C3-4941-920C-4CC057CAE125}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E33BD301-E2C3-4941-920C-4CC057CAE125}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97076CD3-857B-475D-93C1-46A496DD8C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97076CD3-857B-475D-93C1-46A496DD8C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97076CD3-857B-475D-93C1-46A496DD8C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97076CD3-857B-475D-93C1-46A496DD8C09}.Release|Any CPU.Build.0 = Release|Any CPU
 		{269CC85F-7209-4ED3-BC65-C90804B00B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{269CC85F-7209-4ED3-BC65-C90804B00B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{269CC85F-7209-4ED3-BC65-C90804B00B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -136,6 +132,10 @@ Global
 		{B744653C-A435-4CD2-A648-3467180CF400}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B744653C-A435-4CD2-A648-3467180CF400}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B744653C-A435-4CD2-A648-3467180CF400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E73CB871-87EB-4F75-81BE-121A95F50736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E73CB871-87EB-4F75-81BE-121A95F50736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E73CB871-87EB-4F75-81BE-121A95F50736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E73CB871-87EB-4F75-81BE-121A95F50736}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -160,8 +160,8 @@ Global
 		{B189968E-4F1D-4301-A27E-1A3C3D652B98} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 		{EE018710-07C2-4E1B-B6CA-5F73DB6C5684} = {60BD349B-1F06-46FD-B2A1-7F0367126AF4}
 		{E33BD301-E2C3-4941-920C-4CC057CAE125} = {EE018710-07C2-4E1B-B6CA-5F73DB6C5684}
-		{97076CD3-857B-475D-93C1-46A496DD8C09} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 		{269CC85F-7209-4ED3-BC65-C90804B00B37} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 		{B744653C-A435-4CD2-A648-3467180CF400} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
+		{E73CB871-87EB-4F75-81BE-121A95F50736} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 	EndGlobalSection
 EndGlobal
