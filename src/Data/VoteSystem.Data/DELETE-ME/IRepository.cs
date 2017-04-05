@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq;
 
-namespace VoteSystem.Data.Ef.DELETE_ME
+namespace VoteSystem.Data.Ef
 {
     public interface IRepository<T> where T : class
     {

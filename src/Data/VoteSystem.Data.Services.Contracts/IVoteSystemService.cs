@@ -6,13 +6,13 @@ namespace VoteSystem.Data.Services.Contracts
     {
         void Add(Entities.VoteSystem system);
 
-        void Delete(int rateSystemId);
+        void Delete(int voteSystemId);
 
         void Update(Entities.VoteSystem system);
 
         IEnumerable<Entities.VoteSystem> GetAll();
 
-        IEnumerable<Entities.VoteSystem> AllActive(string userId);
+        IEnumerable<Entities.VoteSystem> GetAllActive(string userId);
 
         Entities.VoteSystem GetById(int rateSystemId);
     }

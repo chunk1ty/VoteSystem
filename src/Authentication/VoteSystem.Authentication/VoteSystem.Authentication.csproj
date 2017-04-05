@@ -76,7 +76,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticationDbContext.cs" />
@@ -90,10 +89,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\VoteSystem.Common.Constants\VoteSystem.Common.Constants.csproj">
-      <Project>{ECFC4270-CADE-42BC-B9C0-8DF660397141}</Project>
-      <Name>VoteSystem.Common.Constants</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
       <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
       <Name>VoteSystem.Data.Entities</Name>

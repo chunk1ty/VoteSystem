@@ -1,5 +1,5 @@
-﻿using VoteSystem.Data.Contracts;
-using VoteSystem.Data.DTO;
+﻿using System.Linq;
+using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
 
@@ -7,41 +7,43 @@ namespace VoteSystem.Data.Services
 {
     public class ParticipantService : IParticipantService
     {
-        private IParticipantRepository participantRepository;
+        private readonly IParticipantRepository _participantRepository;
+        private readonly IVoteSystemEfDbContextSaveChanges _dbContextSaveChanges;
 
-        public ParticipantService(IParticipantRepository participantRepository)
+        public ParticipantService(IParticipantRepository participantRepository, IVoteSystemEfDbContextSaveChanges dbContextSaveChanges)
         {
-            this.participantRepository = participantRepository;
+            _participantRepository = participantRepository;
+            _dbContextSaveChanges = dbContextSaveChanges;
         }
 
-        public void Add(ParticipantDto participant)
+        public void Add(Participant participant)
         {
-            // TODO add mapping logic
-            //this.participantRepository.Add(participant);
+            _participantRepository.Add(participant);
+
+            _dbContextSaveChanges.SaveChanges();
         }
 
-        public void Update(ParticipantDto participant)
+        public void Update(Participant participant)
         {
-            // TODO add mapping logic
-            //this.participantRepository.Update(participant);
+            _participantRepository.Update(participant);
+
+            _dbContextSaveChanges.SaveChanges();
         }
 
-        public void Remove(ParticipantDto participant)
+        public void Remove(Participant participant)
         {
-            // TODO add mapping logic
-            //this.participantRepository.Delete(participant);
+            _participantRepository.Delete(participant);
+
+            _dbContextSaveChanges.SaveChanges();
         }
 
-        public ParticipantDto GetParticipantBySurveyIdAndUserId(int rateSystemId, string userId)
+        public Participant GetParticipantBySurveyIdAndUserId(int voteSystemId, string userId)
         {
-            // TODO add mapping logic
-            // TODO fix it later
-            //return this.participantRepository
-             //   .All()
-            //    .Where(x => x.RateSystemId == rateSystemId && x.UserId == userId)
-            //    .FirstOrDefault();
+            var participant = _participantRepository
+                                                .All()
+                                                .FirstOrDefault(x => x.VoteSystemId == voteSystemId && x.VoteSystemUserId == userId);
 
-            return null;
+            return participant;
         }
     }
 }

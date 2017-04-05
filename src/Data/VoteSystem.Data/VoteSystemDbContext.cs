@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using Microsoft.AspNet.Identity.EntityFramework;
 using VoteSystem.Common.Constants;
+using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Ef.Models;
 using VoteSystem.Data.Entities;
@@ -10,7 +11,7 @@ using VoteSystem.Data.Entities.Contracts;
 
 namespace VoteSystem.Data.Ef
 {
-    public class VoteSystemDbContext : IdentityDbContext<AspNetUser>, IVoteSystemDbContext
+    public class VoteSystemDbContext : IdentityDbContext<AspNetUser>, IVoteSystemDbContext, IVoteSystemEfDbContextSaveChanges
     {
         public VoteSystemDbContext()
             : base(ConnectionStings.VoteSystemDbConnection, throwIfV1Schema: false)
@@ -46,7 +47,7 @@ namespace VoteSystem.Data.Ef
             return base.SaveChanges();
         }
 
-        // TODO create DB relations here
+        // create DB relations and constrains here
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    base.OnModelCreating(modelBuilder);

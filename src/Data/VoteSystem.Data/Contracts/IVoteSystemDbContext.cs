@@ -22,7 +22,7 @@ namespace VoteSystem.Data.Ef.Contracts
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
 
-        int SaveChanges();
+        //int SaveChanges();
 
         void Dispose();
     }

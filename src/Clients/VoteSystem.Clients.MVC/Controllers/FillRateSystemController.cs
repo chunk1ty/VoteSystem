@@ -44,7 +44,7 @@ namespace VoteSystem.Clients.MVC.Controllers
                 return this.View(questions);
             }
 
-            //var participant = this.participant.GetParticipantBySurveyIdAndUserId(questions[0].RateSystemId, User.Identity.GetUserId());
+            //var participant = this.participant.GetParticipantByVoteSystemIdAndUserId(questions[0].RateSystemId, User.Identity.GetUserId());
 
             //foreach (var question in questions)
             //{
@@ -52,7 +52,7 @@ namespace VoteSystem.Clients.MVC.Controllers
 
             //    if (question.HasMultipleAnswers)
             //    {
-            //        bool isNotChecked = question.QuestionAnswers.All(x => x.IsChecked == false);
+            //        bool isNotChecked = question.QuestionAnswers.GetAll(x => x.IsChecked == false);
 
             //        if (isNotChecked)
             //        {

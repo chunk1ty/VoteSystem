@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using VoteSystem.Data.DTO;
+using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Data.Services.Contracts
 {
     public interface IVoteSystemUserService
     {
-        IEnumerable<VoteSystemUserDto> GetAllUnselectUsers(int rateSystemId);
+        IEnumerable<VoteSystemUser> GetAllUnselectUsers(int rateSystemId);
 
-        IEnumerable<VoteSystemUserDto> GetAllSelectUsers(int rateSystemId);
+        IEnumerable<VoteSystemUser> GetAllSelectUsers(int voteSystemId);
     }
 }

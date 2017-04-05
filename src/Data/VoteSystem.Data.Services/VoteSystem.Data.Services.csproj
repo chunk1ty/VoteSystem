@@ -30,14 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -66,10 +58,6 @@
     <ProjectReference Include="..\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
       <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
       <Name>VoteSystem.Data.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VotySystem.Data.DTO\VotySystem.Data.DTO.csproj">
-      <Project>{E73CB871-87EB-4F75-81BE-121A95F50736}</Project>
-      <Name>VotySystem.Data.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

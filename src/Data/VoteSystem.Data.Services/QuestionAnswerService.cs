@@ -1,5 +1,4 @@
 ﻿using VoteSystem.Data.Contracts;
-using VoteSystem.Data.DTO;
 using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
 
@@ -7,18 +6,21 @@ namespace VoteSystem.Data.Services
 {
     public class QuestionAnswerService : IQuestionAnswerService
     {
-        private readonly IQuestionAnswerRepository questionAnswerRepository;
+        private readonly IQuestionAnswerRepository _questionAnswerRepository;
+        private readonly IVoteSystemEfDbContextSaveChanges _dbContextSaveChanges;
 
-        public QuestionAnswerService(IQuestionAnswerRepository questionAndAnswers)
+        public QuestionAnswerService(IQuestionAnswerRepository questionAnswerRepository, IVoteSystemEfDbContextSaveChanges dbContextSaveChanges)
         {
-            // TODO add mapping logic
-            //this.questionAnswerRepository = questionAnswerRepository;
+            _questionAnswerRepository = questionAnswerRepository;
+            _dbContextSaveChanges = dbContextSaveChanges;
         }
 
-        public void Add(QuestionAnswerDto questionAndAnswers)
+        public void Add(QuestionAnswer questionAndAnswers)
         {
             // TODO add mapping logic
-            //this.questionAnswerRepository.Add(questionAndAnswers);
+            _questionAnswerRepository.Add(questionAndAnswers);
+
+            _dbContextSaveChanges.SaveChanges();
         }
     }
 }

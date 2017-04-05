@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Linq;
 using VoteSystem.Data.Ef.Contracts;
-using VoteSystem.Data.Ef.DELETE_ME;
 
 namespace VoteSystem.Data.Ef
 {

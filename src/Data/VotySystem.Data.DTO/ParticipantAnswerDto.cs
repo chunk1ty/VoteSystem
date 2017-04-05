@@ -1,4 +1,4 @@
-﻿namespace VoteSystem.Data.DTO
+﻿namespace VotySystem.Data.DTO
 {
     public class ParticipantAnswerDto
     {

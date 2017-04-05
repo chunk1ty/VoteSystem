@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
 using System.Data.Entity;
 using VoteSystem.Data.Contracts;
@@ -48,6 +48,14 @@ namespace VoteSystem.Data.Ef.Repositories
         public IEnumerable<Question> All()
         {
             return _voteSystemDbContext.Questions;
+        }
+
+        public IEnumerable<Question> GetUsersAnswersByVoteSystemId(int voteSystemId)
+        {
+            return _voteSystemDbContext.Questions
+                                    .Where(x => x.VoteSystemId == voteSystemId)
+                                    .Include(x => x.QuestionAnswers
+                                                    .Select(y => y.ParticipantAnswers.Count));
         }
     }
 }

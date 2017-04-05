@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using VoteSystem.Data.Contracts;
-using VoteSystem.Data.DTO;
 using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
 using VoteSystem.Services.Web.Contracts;
@@ -9,59 +9,49 @@ namespace VoteSystem.Data.Services
 {
     public class QuestionService : IQuestionService
     {
-        private readonly IQuestionRepository questionRepository;
-        private readonly IIdentifierProvider identifierProvider;
+        private readonly IQuestionRepository _questionRepository;
+        private readonly IIdentifierProvider _identifierProvider;
+        private readonly IVoteSystemEfDbContextSaveChanges _dbContextSaveChanges;
 
-        public QuestionService(IQuestionRepository questionRepository, IIdentifierProvider identifierProvider)
+        public QuestionService(IQuestionRepository questionRepository, IIdentifierProvider identifierProvider, IVoteSystemEfDbContextSaveChanges dbContextSaveChanges)
         {
-            this.questionRepository = questionRepository;
-            this.identifierProvider = identifierProvider;
+            _questionRepository = questionRepository;
+            _identifierProvider = identifierProvider;
+            _dbContextSaveChanges = dbContextSaveChanges;
         }
 
-        public void Add(QuestionDto question)
+        public void Add(Question question)
         {
             // TODO add mapping logic
-            //this.questionRepository.Add(question);
+            _questionRepository.Add(question);
+
+            _dbContextSaveChanges.SaveChanges();
         }
 
-        public void Delete(QuestionDto question)
+        public void Delete(Question question)
         {
             // TODO add mapping logic
-            //this.questionRepository.Delete(question);
+            _questionRepository.Delete(question);
+
+            _dbContextSaveChanges.SaveChanges();
         }
 
-        public IQueryable<QuestionDto> GetAllQuestions(string rateSystemId)
+        public IEnumerable<Question> GetAllQuestions(string voteSystemId)
         {
             // TODO add mapping logic
-            var rateSystemIntId = this.identifierProvider.DecodeId(rateSystemId);
+            var decodedVoteSystemId = this._identifierProvider.DecodeId(voteSystemId);
 
             // TODO x.IsDeleted ? if i use deletable entity
-            //return this.questionRepository
-            //                .All()
-            //                .Where(x => x.RateSystemId == rateSystemIntId);
-            return null;
+            return _questionRepository
+                            .All()
+                            .Where(x => x.VoteSystemId == decodedVoteSystemId);
         }
 
-        // TODO this method is use only for administration because rateSystemId is not encode/decode. Encode/decode it in the future.
-        public IQueryable<QuestionDto> GetAllQuestions(int rateSystemId)
+        public IEnumerable<Question> GetUsersAnswers(int voteSystemId)
         {
             // TODO add mapping logic
-            //return this.questionRepository
-            //                .All()
-            //                .Where(x => x.RateSystemId == rateSystemId);
-            return null;
-        }
 
-        public IQueryable<QuestionDto> GetUsersAnswers(int rateSystemId)
-        {
-            // TODO add mapping logic
-            // remove Ef dependency (move Include!!)
-            //return this.questionRepository
-            //    .All()
-            //    .Where(x => x.RateSystemId == rateSystemId)
-            //    .Include(x => x.QuestionAnswers
-            //                    .Select(y => y.ParticipantAnswers.Count));
-            return null;
+            return _questionRepository.GetUsersAnswersByVoteSystemId(voteSystemId);
         }
     }
 }

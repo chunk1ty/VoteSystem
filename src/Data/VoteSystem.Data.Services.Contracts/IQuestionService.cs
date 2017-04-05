@@ -1,18 +1,16 @@
-﻿using System.Linq;
-using VoteSystem.Data.DTO;
+﻿using System.Collections.Generic;
+using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Data.Services.Contracts
 {
     public interface IQuestionService
     {
-        void Add(QuestionDto question);
+        void Add(Question question);
 
-        void Delete(QuestionDto question);
+        void Delete(Question question);
 
-        IQueryable<QuestionDto> GetAllQuestions(string rateSystemId);
+        IEnumerable<Question> GetAllQuestions(string voteSystemId);
 
-        IQueryable<QuestionDto> GetAllQuestions(int rateSystemId);
-
-        IQueryable<QuestionDto> GetUsersAnswers(int rateSystemId);
+        IEnumerable<Question> GetUsersAnswers(int rateSystemId);
     }
 }

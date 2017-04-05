@@ -1,15 +1,15 @@
-﻿using VoteSystem.Data.DTO;
+﻿using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Data.Services.Contracts
 {
     public interface IParticipantService
     {
-        void Add(ParticipantDto participant);
+        void Add(Participant participant);
 
-        void Remove(ParticipantDto participant);
+        void Remove(Participant participant);
 
-        void Update(ParticipantDto participant);
+        void Update(Participant participant);
 
-        ParticipantDto GetParticipantBySurveyIdAndUserId(int rateSystemId, string userId);
+        Participant GetParticipantBySurveyIdAndUserId(int rateSystemId, string userId);
     }
 }

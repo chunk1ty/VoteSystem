@@ -1,61 +1,67 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using VoteSystem.Data.Contracts;
-using VoteSystem.Data.DTO;
 using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Data.Services
 {
     public class VoteSystemService : IVoteSystemService
     {
-        private readonly IVoteSystemRepository voteSystemRepository;
+        private readonly IVoteSystemRepository _voteSystemRepository;
+        private readonly IVoteSystemEfDbContextSaveChanges _dbContextSaveChanges;
 
-        public VoteSystemService(IVoteSystemRepository voteSystemRepository)
+        public VoteSystemService(IVoteSystemRepository voteSystemRepository, IVoteSystemEfDbContextSaveChanges dbContextSaveChanges)
         {
-            this.voteSystemRepository = voteSystemRepository;
+            _voteSystemRepository = voteSystemRepository;
+            _dbContextSaveChanges = dbContextSaveChanges;
         }
 
         public void Add(Entities.VoteSystem system)
         {
-            //this.voteSystemRepository.Add(system);
+            _voteSystemRepository.Add(system);
+
+            _dbContextSaveChanges.SaveChanges();
         }
 
-        public void Delete(int rateSystemId)
+        public void Delete(int voteSystemId)
         {
-            var rateSystem = this.voteSystemRepository.GetById(rateSystemId);
-            this.voteSystemRepository.Delete(rateSystem);
+            var voteSystem = this._voteSystemRepository.GetById(voteSystemId);
+
+           _voteSystemRepository.Delete(voteSystem);
+
+            _dbContextSaveChanges.SaveChanges();
         }
 
         public void Update(Entities.VoteSystem system)
         {
-            //this.voteSystemRepository.Update(system);
+            _voteSystemRepository.Update(system);
+
+            _dbContextSaveChanges.SaveChanges();
         }
 
         public IEnumerable<Entities.VoteSystem> GetAll()
         {
-            return this.voteSystemRepository.All();
-            //return null;
+            return _voteSystemRepository.GetAll();
         }
 
-        public IEnumerable<Entities.VoteSystem> AllActive(string userId)
+        public IEnumerable<Entities.VoteSystem> GetAllActive(string userId)
         {
-            // TODO fix it later
-            //return this.voteSystemRepository
-            //        .All()
-            //        .Where(x => 
-            //                x.StarDateTime <= DateTime.Now && 
-            //                DateTime.Now <= x.EndDateTime &&
-            //                x.Participants.Any(y =>
-            //                                    y.UserId == userId &&
-            //                                    y.IsVoted == false));
-
-            return null;
+            // TODO fix it later ?? fix what ??
+            return _voteSystemRepository
+                                    .GetAll()
+                                    .Where(x =>
+                                            x.StarDateTime <= DateTime.Now &&
+                                            DateTime.Now <= x.EndDateTime &&
+                                            x.Participants.Any(y =>
+                                                                y.VoteSystemUserId == userId &&
+                                                                y.IsVoted == false));
         }
 
-        public Entities.VoteSystem GetById(int rateSystemId)
+        public Entities.VoteSystem GetById(int voteSystemId)
         {
-            //return this.voteSystemRepository.GetById(rateSystemId);
-            return null;
+            return _voteSystemRepository.GetById(voteSystemId);
         }
     }
 }

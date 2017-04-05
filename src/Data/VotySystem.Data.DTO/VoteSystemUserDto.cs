@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VoteSystem.Data.DTO
+namespace VotySystem.Data.DTO
 {
     public class VoteSystemUserDto
     {

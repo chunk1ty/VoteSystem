@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+
 using VoteSystem.Data.Entities.Contracts;
 
 namespace VoteSystem.Data.Entities

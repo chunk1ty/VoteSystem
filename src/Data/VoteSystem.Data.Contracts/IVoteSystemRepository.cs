@@ -8,8 +8,10 @@ namespace VoteSystem.Data.Contracts
 
         void Delete(Entities.VoteSystem voteSystem);
 
+        void Update(Entities.VoteSystem voteSystem);
+
         Entities.VoteSystem GetById(int voteSystemId);
 
-        IEnumerable<Entities.VoteSystem> All();
+        IEnumerable<Entities.VoteSystem> GetAll();
     }
 }

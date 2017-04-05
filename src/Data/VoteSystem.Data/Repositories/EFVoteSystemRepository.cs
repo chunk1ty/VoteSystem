@@ -45,12 +45,24 @@ namespace VoteSystem.Data.Ef.Repositories
             }
         }
 
+        public void Update(Entities.VoteSystem voteSystem)
+        {
+            var entry = _voteSystemDbContext.Entry(voteSystem);
+
+            if (entry.State == EntityState.Detached)
+            {
+                _voteSystemDbContext.Set<Entities.VoteSystem>().Attach(voteSystem);
+            }
+
+            entry.State = EntityState.Modified;
+        }
+
         public Entities.VoteSystem GetById(int voteSystemId)
         {
             return _voteSystemDbContext.VoteSystems.Find(voteSystemId);
         }
 
-        public IEnumerable<Entities.VoteSystem> All()
+        public IEnumerable<Entities.VoteSystem> GetAll()
         {
             return  _voteSystemDbContext.VoteSystems;
         }

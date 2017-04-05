@@ -19,7 +19,7 @@ namespace VoteSystem.Clients.MVC.Controllers
         public ActionResult Index()
         {
             //var systems = this.voteSystems
-            //                .AllActive(User.Identity.GetUserId())
+            //                .GetAllActive(User.Identity.GetUserId())
             //                .To<RateSystemViewModel>()
             //                .ToList();
 
