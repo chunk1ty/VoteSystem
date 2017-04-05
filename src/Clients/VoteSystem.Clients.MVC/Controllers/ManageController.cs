@@ -6,8 +6,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using VoteSystem.Authentication;
-using VoteSystem.Authentication.Contracts;
 using VoteSystem.Clients.MVC.ViewModels.Manage;
+using VoteSystem.Data.Ef.Contracts;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {

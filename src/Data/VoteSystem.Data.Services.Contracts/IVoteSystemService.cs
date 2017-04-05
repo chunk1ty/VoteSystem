@@ -1,21 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using VoteSystem.Data.DTO;
 
 namespace VoteSystem.Data.Services.Contracts
 {
     public interface IVoteSystemService
     {
-        void Add(SurveyDto system);
+        void Add(Entities.VoteSystem system);
 
         void Delete(int rateSystemId);
 
-        void Update(SurveyDto system);
+        void Update(Entities.VoteSystem system);
 
-        IEnumerable<SurveyDto> GetAll();
+        IEnumerable<Entities.VoteSystem> GetAll();
 
-        IEnumerable<SurveyDto> AllActive(string userId);
+        IEnumerable<Entities.VoteSystem> AllActive(string userId);
 
-        SurveyDto GetById(int rateSystemId);
+        Entities.VoteSystem GetById(int rateSystemId);
     }
 }

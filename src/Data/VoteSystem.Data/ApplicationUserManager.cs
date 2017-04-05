@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using VoteSystem.Authentication.Contracts;
-using VoteSystem.Authentication.Models;
+using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Data.Ef.Models;
 
-namespace VoteSystem.Authentication
+namespace VoteSystem.Data.Ef
 {
     public class ApplicationUserManager : UserManager<AspNetUser>, IUserManagerService
     {
@@ -21,7 +17,7 @@ namespace VoteSystem.Authentication
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<AspNetUser>(context.Get<AuthenticationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<AspNetUser>(context.Get<VoteSystemDbContext>()));
 
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<AspNetUser>(manager)

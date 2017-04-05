@@ -8,10 +8,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using VoteSystem.Authentication;
-using VoteSystem.Authentication.Contracts;
-using VoteSystem.Authentication.Models;
 using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem;
 using VoteSystem.Clients.MVC.ViewModels.Account;
+using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Data.Ef.Models;
 using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Clients.MVC.Controllers

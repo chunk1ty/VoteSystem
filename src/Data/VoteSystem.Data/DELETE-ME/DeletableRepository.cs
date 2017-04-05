@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using VoteSystem.Data.Contracts;
+using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Entities.Contracts;
 
-namespace VoteSystem.Data
+namespace VoteSystem.Data.Ef
 {
     public class DeletableRepository<TEntity> : Repository<TEntity>
         where TEntity : class, IDeletableEntity

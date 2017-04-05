@@ -7,13 +7,14 @@ using Ninject;
 using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
 using VoteSystem.Authentication;
-using VoteSystem.Authentication.Contracts;
 using VoteSystem.Clients.MVC;
 using VoteSystem.Common;
 using VoteSystem.Common.Constants;
 using VoteSystem.Data;
 using VoteSystem.Data.Contracts;
-using VoteSystem.Data.Repositories;
+using VoteSystem.Data.Ef;
+using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Data.Ef.Repositories;
 using VoteSystem.Services.Web;
 using VoteSystem.Services.Web.Contracts;
 
@@ -95,6 +96,7 @@ namespace VoteSystem.Clients.MVC
             // TODO bind the entire assembly
             kernel.Bind(typeof(ICacheService)).To(typeof(CacheService));
             kernel.Bind(typeof(IIdentifierProvider)).To(typeof(IdentifierProvider));
+            kernel.Bind<IVoteSystemRepository>().To<EfVoteSystemRepository>();
         }        
     }
 }

@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using VoteSystem.Authentication.Contracts;
-using VoteSystem.Authentication.Models;
+using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Data.Ef.Models;
 
-namespace VoteSystem.Authentication
+namespace VoteSystem.Data.Ef
 {
     public class ApplicationSignInManager : SignInManager<AspNetUser, string>, ISignInService
     {

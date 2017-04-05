@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using VoteSystem.Authentication.Models;
+using VoteSystem.Data.Ef.Models;
 
-namespace VoteSystem.Authentication.Contracts
+namespace VoteSystem.Data.Ef.Contracts
 {
     public interface IUserManagerService : IDisposable
     {

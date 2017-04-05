@@ -2,7 +2,7 @@
 using System.Data.Entity.Infrastructure;
 using VoteSystem.Data.Entities;
 
-namespace VoteSystem.Data.Contracts
+namespace VoteSystem.Data.Ef.Contracts
 {
     public interface IVoteSystemDbContext
     {
@@ -14,7 +14,7 @@ namespace VoteSystem.Data.Contracts
 
         IDbSet<Question> Questions { get; set; }
 
-        IDbSet<Entities.VoteSystem> Surveys { get; set; }
+        IDbSet<Entities.VoteSystem> VoteSystems { get; set; }
 
         IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
 

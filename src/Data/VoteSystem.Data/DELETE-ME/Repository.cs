@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using VoteSystem.Data.Contracts;
+using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Data.Ef.DELETE_ME;
 
-namespace VoteSystem.Data
+namespace VoteSystem.Data.Ef
 {
-    public class Repository<TEntity>
+    public class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
         public Repository(IVoteSystemDbContext voteSystemDbContext)

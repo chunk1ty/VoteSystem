@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VoteSystem.Data.Contracts;
+﻿using VoteSystem.Data.Contracts;
 
-namespace VoteSystem.Data.Repositories
+namespace VoteSystem.Data.Ef.Repositories
 {
-    class EfVoteSystemUserRepository : IVoteSystemUserRepository
+    public class EfVoteSystemUserRepository : IVoteSystemUserRepository
     {
     }
 }

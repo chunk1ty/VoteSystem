@@ -1,14 +1,12 @@
 using System;
 using System.Data.Entity.Migrations;
 using System.Linq;
-
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using VoteSystem.Authentication.Models;
-using VoteSystem.Common.Constants;
+using VoteSystem.Data.Ef.Models;
 using VoteSystem.Data.Entities;
 
-namespace VoteSystem.Data.Migrations
+namespace VoteSystem.Data.Ef.Migrations
 {
     public sealed class Configuration : DbMigrationsConfiguration<VoteSystemDbContext>
     {
@@ -84,19 +82,19 @@ namespace VoteSystem.Data.Migrations
 
         private void SimpleData(VoteSystemDbContext context)
         {
-            if (context.Surveys.Count() == 0)
+            if (context.VoteSystems.Count() == 0)
             {
                 Entities.VoteSystem ankk = new Entities.VoteSystem() { Id = 1, Name = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
                 Entities.VoteSystem ankk1 = new Entities.VoteSystem() { Id = 2, Name = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
                 Entities.VoteSystem ank2 = new Entities.VoteSystem() { Id = 3, Name = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
 
                 context.SaveChanges();
-                context.Surveys.AddOrUpdate(ankk);
+                context.VoteSystems.AddOrUpdate(ankk);
 
                 for (int i = 0; i < 20; i++)
                 {
                     Random rd = new Random();
-                    Question q = new Question() { Id = i + 1, QuestionName = "Question" + i, RateSystemId = rd.Next(1, 4) };
+                    Question q = new Question() { Id = i + 1, QuestionName = "Question" + i, VoteSystemId = rd.Next(1, 4) };
                     context.Questions.AddOrUpdate(q);
                     context.SaveChanges();
                 }

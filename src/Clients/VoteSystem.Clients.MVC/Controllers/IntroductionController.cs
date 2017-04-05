@@ -1,28 +1,30 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
+
 using VoteSystem.Authentication;
-using VoteSystem.Clients.MVC.ViewModels.Introduction;
 using VoteSystem.Data.Services.Contracts;
+
 using FeedbackViewModel = VoteSystem.Clients.MVC.ViewModels.Introduction.FeedbackViewModel;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {
     public class IntroductionController : BaseController
     {
-        private IVoteSystemService voteSystems;       
+        private IVoteSystemService voteSystemService;       
 
-        public IntroductionController(IVoteSystemService voteSystems)
+        public IntroductionController(IVoteSystemService voteSystemService)
         {
-            this.voteSystems = voteSystems;            
+            this.voteSystemService = voteSystemService;            
         }
 
         [AllowAnonymous]
         public ActionResult Index()
         {
             //var system = this.Cache.Get(
-            //    "voteSystems",
-            //    () => this.voteSystems.GetAll().To<RateSystemViewModel>().ToList(),
+            //    "voteSystemService",
+            //    () => this.voteSystemService.GetAll().To<RateSystemViewModel>().ToList(),
             //    1 * 60);
+            voteSystemService.GetAll();
 
             return this.View(new FeedbackViewModel());
         }

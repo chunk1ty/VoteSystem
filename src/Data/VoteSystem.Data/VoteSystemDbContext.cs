@@ -1,28 +1,29 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-
+using Microsoft.AspNet.Identity.EntityFramework;
 using VoteSystem.Common.Constants;
-using VoteSystem.Data.Contracts;
+using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Data.Ef.Models;
 using VoteSystem.Data.Entities;
 using VoteSystem.Data.Entities.Contracts;
 
-namespace VoteSystem.Data
+namespace VoteSystem.Data.Ef
 {
-    public class VoteSystemDbContext : DbContext, IVoteSystemDbContext
+    public class VoteSystemDbContext : IdentityDbContext<AspNetUser>, IVoteSystemDbContext
     {
         public VoteSystemDbContext()
-            : base(ConnectionStings.VoteSystemDbConnection)
+            : base(ConnectionStings.VoteSystemDbConnection, throwIfV1Schema: false)
         {
         }
 
-        public virtual IDbSet<Question> Questions { get; set; }
+        public virtual IDbSet<Entities.VoteSystem> VoteSystems { get; set; }
 
         public virtual IDbSet<Participant> Participants { get; set; }
 
         public virtual IDbSet<ParticipantAnswer> ParticipantAnswers { get; set; }
 
-        public virtual IDbSet<Entities.VoteSystem> Surveys { get; set; }
+        public virtual IDbSet<Question> Questions { get; set; }
 
         public virtual IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
 
@@ -34,10 +35,10 @@ namespace VoteSystem.Data
             return base.Set<TEntity>();
         }
 
-        //public static VoteSystemDbContext Create()
-        //{
-        //    return new VoteSystemDbContext();
-        //}
+        public static VoteSystemDbContext Create()
+        {
+            return new VoteSystemDbContext();
+        }
 
         public override int SaveChanges()
         {
@@ -46,10 +47,13 @@ namespace VoteSystem.Data
         }
 
         // TODO create DB relations here
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+
+        //    modelBuilder.Entity<Entities.VoteSystem>()
+        //        .has
+        //}
 
         private void ApplyAuditInfoRules()
         {

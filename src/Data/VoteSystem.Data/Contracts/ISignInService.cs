@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
-using VoteSystem.Authentication.Models;
+using VoteSystem.Data.Ef.Models;
 
-namespace VoteSystem.Authentication.Contracts
+namespace VoteSystem.Data.Ef.Contracts
 {
     public interface ISignInService : IDisposable
     {

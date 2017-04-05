@@ -5,8 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using VoteSystem.Authentication;
-using VoteSystem.Authentication.Models;
 using VoteSystem.Data;
+using VoteSystem.Data.Ef;
+using VoteSystem.Data.Ef.Models;
 
 namespace VoteSystem.Clients.MVC
 {
@@ -16,7 +17,7 @@ namespace VoteSystem.Clients.MVC
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(AuthenticationDbContext.Create);
+            app.CreatePerOwinContext(VoteSystemDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

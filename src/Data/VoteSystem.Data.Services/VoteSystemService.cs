@@ -15,7 +15,7 @@ namespace VoteSystem.Data.Services
             this.voteSystemRepository = voteSystemRepository;
         }
 
-        public void Add(SurveyDto system)
+        public void Add(Entities.VoteSystem system)
         {
             //this.voteSystemRepository.Add(system);
         }
@@ -26,18 +26,18 @@ namespace VoteSystem.Data.Services
             this.voteSystemRepository.Delete(rateSystem);
         }
 
-        public void Update(SurveyDto system)
+        public void Update(Entities.VoteSystem system)
         {
             //this.voteSystemRepository.Update(system);
         }
 
-        public IEnumerable<SurveyDto> GetAll()
+        public IEnumerable<Entities.VoteSystem> GetAll()
         {
-            //return this.voteSystemRepository.All();
-            return null;
+            return this.voteSystemRepository.All();
+            //return null;
         }
 
-        public IEnumerable<SurveyDto> AllActive(string userId)
+        public IEnumerable<Entities.VoteSystem> AllActive(string userId)
         {
             // TODO fix it later
             //return this.voteSystemRepository
@@ -52,7 +52,7 @@ namespace VoteSystem.Data.Services
             return null;
         }
 
-        public SurveyDto GetById(int rateSystemId)
+        public Entities.VoteSystem GetById(int rateSystemId)
         {
             //return this.voteSystemRepository.GetById(rateSystemId);
             return null;

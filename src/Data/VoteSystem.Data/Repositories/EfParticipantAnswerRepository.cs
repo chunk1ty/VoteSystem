@@ -1,18 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 using VoteSystem.Data.Contracts;
+using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Entities;
 
-namespace VoteSystem.Data.Repositories
+namespace VoteSystem.Data.Ef.Repositories
 {
     public class EfParticipantAnswerRepository : IParticipantAnswerRepository
     {
+        private readonly IVoteSystemDbContext _voteSystemDbContext;
+
+        public EfParticipantAnswerRepository(IVoteSystemDbContext voteSystemDbContext)
+        {
+            _voteSystemDbContext = voteSystemDbContext;
+        }
+
+        // TODO think better approach to implement CRUD operations, because right now I am repeating the logic in each repository 
         public void Add(ParticipantAnswer participantAnswer)
         {
-            throw new NotImplementedException();
+            var entry = _voteSystemDbContext.Entry(participantAnswer);
+
+            if (entry.State != EntityState.Detached)
+            {
+                entry.State = EntityState.Added;
+            }
+            else
+            {
+                _voteSystemDbContext.ParticipantAnswers.Add(participantAnswer);
+            }
         }
     }
 }

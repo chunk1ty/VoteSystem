@@ -719,6 +719,10 @@
       <Project>{ECFC4270-CADE-42BC-B9C0-8DF660397141}</Project>
       <Name>VoteSystem.Common.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\VoteSystem.Data.Contracts\VoteSystem.Data.Contracts.csproj">
+      <Project>{B744653C-A435-4CD2-A648-3467180CF400}</Project>
+      <Name>VoteSystem.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\VoteSystem.Data.Services.Contracts\VoteSystem.Data.Services.Contracts.csproj">
       <Project>{269CC85F-7209-4ED3-BC65-C90804B00B37}</Project>
       <Name>VoteSystem.Data.Services.Contracts</Name>
