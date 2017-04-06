@@ -8,7 +8,7 @@ using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
-    public class QuestionController : AdministrationController
+    public class QuestionController : AdminController
     {
         private IQuestionService questionService;
 
@@ -58,7 +58,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             // TODO use dbContext.savechanges
             //this.questionService.SaveChanges();
 
-            return this.RedirectToAction<RateSystemController>(c => c.Index());
+            return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }
 
         [HttpGet]
@@ -78,49 +78,49 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(QuestionAndAnswersViewModel model)
         {
-            //    if (!ModelState.IsValid || model == null)
-            //    {
-            //        return this.View(model);
-            //    }
-
-            //    if (model.Questions.Count() == 0)
-            //    {
-            //        this.ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
-            //        return this.View(model);
-            //    }
-
-            //    var allExistingQuestions = this.questionService.GetAllQuestions(model.RateSystemId);
-
-            //    foreach (var existingQuestion in allExistingQuestions)
-            //    {
-            //        this.questionService.Delete(existingQuestion);
-            //    }
-
-            //    // TODO use dbContext.savechanges
-            //    //this.questionService.SaveChanges();
-
-            //    foreach (var question in model.Questions)
-            //    {
-            //        var questionDbModel = this.Mapper.Map<Question>(question);
-            //        questionDbModel.RateSystemId = model.RateSystemId;
-
-            //        this.questionService.Add(questionDbModel);
-            //    }
-
-            //    // TODO use dbContext.savechanges
-            //    //this.questionService.SaveChanges();
-
-            //    return this.RedirectToAction<RateSystemController>(c => c.Index());
+            //if (!ModelState.IsValid || model == null)
+            //{
+            //    return this.View(model);
             //}
 
-            //public ActionResult Preview(int rateSystemId)
+            //if (model.Questions.Count() == 0)
             //{
-            //    var questionsAsVM = this.questionService
-            //        .GetAllQuestions(rateSystemId)
-            //        .To<QuestionViewModel>()
-            //        .ToList();
+            //    this.ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
+            //    return this.View(model);
+            //}
 
-            //    return this.View(questionsAsVM);
+            //var allExistingQuestions = this.questionService.GetAllQuestions(model.RateSystemId);
+
+            //foreach (var existingQuestion in allExistingQuestions)
+            //{
+            //    this.questionService.Delete(existingQuestion);
+            //}
+
+            //// TODO use dbContext.savechanges
+            ////this.questionService.SaveChanges();
+
+            //foreach (var question in model.Questions)
+            //{
+            //    var questionDbModel = this.Mapper.Map<Question>(question);
+            //    questionDbModel.RateSystemId = model.RateSystemId;
+
+            //    this.questionService.Add(questionDbModel);
+            //}
+
+            // TODO use dbContext.savechanges
+            //this.questionService.SaveChanges();
+
+            return this.RedirectToAction<VoteSystemController>(c => c.Index());
+        }
+
+        public ActionResult Preview(int voteSystemId)
+        {
+            //var questionsAsVM = this.questionService
+            //    .GetAllQuestions(rateSystemId)
+            //    .To<QuestionViewModel>()
+            //    .ToList();
+
+            //return this.View(questionsAsVM);
             return this.View();
         }
     }

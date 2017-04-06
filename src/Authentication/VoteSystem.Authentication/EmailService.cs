@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+
 using Microsoft.AspNet.Identity;
-using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Authentication
 {
+    // TODO do i really need IIdentityMessageService ? try with my custom interface IEmailService
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
@@ -13,19 +13,15 @@ namespace VoteSystem.Authentication
             return Task.FromResult(0);
         }
 
-        public Task SendAddedParticipantsAsync(List<string> users, Data.Entities.VoteSystem rateSystem)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public Task SendAddedParticipantsAsync(List<string> users, Data.Entities.VoteSystem rateSystem)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
 
-        public Task SendFeedbackEmailAsync(FeedbackViewModel model)
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
-    public class FeedbackViewModel
-    {
+        //public Task SendFeedbackEmailAsync(FeedbackViewModel model)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
     }
 
     // TODO refactor email service

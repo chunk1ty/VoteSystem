@@ -6,7 +6,7 @@ using VoteSystem.Common.Constants;
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    public abstract class AdministrationController : BaseController
+    public abstract class AdminController : BaseController
     {       
     }
 }

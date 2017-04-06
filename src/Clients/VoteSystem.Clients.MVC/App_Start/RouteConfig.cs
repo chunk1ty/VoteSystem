@@ -9,6 +9,8 @@ namespace VoteSystem.Clients.MVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.LowercaseUrls = true;
+
             //routes.MapRoute(
             //    "SpecificRoute", 
             //    "{action}", 

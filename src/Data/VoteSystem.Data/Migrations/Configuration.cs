@@ -3,6 +3,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using VoteSystem.Common.Constants;
 using VoteSystem.Data.Ef.Models;
 using VoteSystem.Data.Entities;
 
@@ -31,31 +32,31 @@ namespace VoteSystem.Data.Ef.Migrations
             const string AdministratorPassword = "123456";
 
             // TODO move migration in Authentication project
-            //if (!context.Roles.Any())
-            //{
-            //    // Create admin role
-            //    var roleStore = new RoleStore<IdentityRole>(context);
-            //    var roleManager = new RoleManager<IdentityRole>(roleStore);
-            //    var role = new IdentityRole { Name = GlobalConstants.AdministratorRoleName };
-            //    roleManager.Create(role);
+            if (!context.Roles.Any())
+            {
+                // Create admin role
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+                var role = new IdentityRole { Name = GlobalConstants.AdministratorRoleName };
+                roleManager.Create(role);
 
-            //    // Create admin user
-            //    var userStore = new UserStore<AspNetUser>(context);
-            //    var userManager = new UserManager<AspNetUser>(userStore);
-            //    var user = new AspNetUser
-            //    {
-            //        UserName = AdministratorUserName,
-            //        Email = AdministratorUserName,
-            //        FN = 10001,
-            //        FirstName = "Admin",
-            //        LastName = "Admin",
-            //        EmailConfirmed = true
-            //    };
-            //    userManager.Create(user, AdministratorPassword);
+                // Create admin user
+                var userStore = new UserStore<AspNetUser>(context);
+                var userManager = new UserManager<AspNetUser>(userStore);
+                var user = new AspNetUser
+                {
+                    UserName = AdministratorUserName,
+                    Email = AdministratorUserName,
+                    FN = 10001,
+                    FirstName = "Admin",
+                    LastName = "Admin",
+                    EmailConfirmed = true
+                };
+                userManager.Create(user, AdministratorPassword);
 
-            //    // Assign user to admin role
-            //    userManager.AddToRole(user.Id, GlobalConstants.AdministratorRoleName);
-            //}
+                // Assign user to admin role
+                userManager.AddToRole(user.Id, GlobalConstants.AdministratorRoleName);
+            }
         }
 
         private void CreateUsers(VoteSystemDbContext context, int numberOfUsers)

@@ -21,9 +21,5 @@ namespace VoteSystem.Data.Ef.Contracts
         IDbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
-
-        //int SaveChanges();
-
-        void Dispose();
     }
 }

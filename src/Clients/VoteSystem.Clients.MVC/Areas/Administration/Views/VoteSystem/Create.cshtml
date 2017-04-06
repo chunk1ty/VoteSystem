@@ -1,4 +1,4 @@
-﻿@model VoteSystem.Clients.MVC.ViewModels.RateSystemViewModel
+﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystemCreateViewModel
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -17,7 +17,7 @@
     </style>
  }
 
-@using (Html.BeginForm<RateSystemController>(c => c.Create(), FormMethod.Post, null, new { @class = "form-horizontal form-label-left" }))
+@using (Html.BeginForm<VoteSystemController>(c => c.Create(), FormMethod.Post, null, new { @class = "form-horizontal form-label-left" }))
 {
     @Html.AntiForgeryToken()
     <div class="row">
@@ -29,7 +29,7 @@
                             Създаване на нова система за гласуване
                         </div>
                         <div class="col-md-6">
-                            <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Index()))">
+                            <a class="btn btn-dark" href="@(Url.Action<VoteSystemController>(c => c.Index()))">
                                 <i class="glyphicon glyphicon-arrow-left"></i>
                                 Обратно
                             </a>

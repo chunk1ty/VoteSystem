@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VoteSystem.Clients.MVC.ViewModels.RateSystemViewModel>
+﻿@model IEnumerable<VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystemViewModel>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -50,7 +50,7 @@
                                     </span>
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
-                                    @system.RateSystemName
+                                    @system.Name
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
                                     <a href="@(Url.Action<FillRateSystemController>( c => c.Fill(system.EncodedId)))" class="btn btn-dark btn-xs">

@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+
 using Microsoft.AspNet.Identity;
+using VoteSystem.Clients.MVC.Areas.Administration.Models;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Clients.MVC.ViewModels;
 using VoteSystem.Data.Services.Contracts;
@@ -9,22 +11,22 @@ namespace VoteSystem.Clients.MVC.Controllers
 {
     public class HomeController : BaseController
     {
-        private IVoteSystemService voteSystems;
+        private readonly IVoteSystemService _voteSystemService;
 
-        public HomeController(IVoteSystemService voteSystems)
+        public HomeController(IVoteSystemService voteSystemService)
         {
-            this.voteSystems = voteSystems;
+            this._voteSystemService = voteSystemService;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
-            //var systems = this.voteSystems
-            //                .GetAllActive(User.Identity.GetUserId())
-            //                .To<RateSystemViewModel>()
-            //                .ToList();
+            var voteSystems = _voteSystemService
+                            .GetAllAvailableVoteSystemsForUser(User.Identity.GetUserId())
+                            .To<VoteSystemViewModel>()
+                            .ToList();
 
-            //return this.View(systems);
-            return this.View();
+            return this.View(voteSystems);
         }
     }
 }

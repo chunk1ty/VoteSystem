@@ -1,47 +1,44 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 
-using VoteSystem.Authentication;
-using VoteSystem.Data.Services.Contracts;
-
-using FeedbackViewModel = VoteSystem.Clients.MVC.ViewModels.Introduction.FeedbackViewModel;
+using Microsoft.AspNet.Identity;
+using VoteSystem.Clients.MVC.ViewModels.Introduction;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {
+    [AllowAnonymous]
     public class IntroductionController : BaseController
     {
-        private IVoteSystemService voteSystemService;       
+        private readonly IIdentityMessageService _identityMessageService;       
 
-        public IntroductionController(IVoteSystemService voteSystemService)
+        public IntroductionController(IIdentityMessageService identityMessageService)
         {
-            this.voteSystemService = voteSystemService;            
+            _identityMessageService = identityMessageService;            
         }
 
-        [AllowAnonymous]
+        [HttpGet]
         public ActionResult Index()
-        {
-            //var system = this.Cache.Get(
-            //    "voteSystemService",
-            //    () => this.voteSystemService.GetAll().To<RateSystemViewModel>().ToList(),
-            //    1 * 60);
-            voteSystemService.GetAll();
-
-            return this.View(new FeedbackViewModel());
+        {   
+            return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(FeedbackViewModel model)
         {
             if (model == null || !ModelState.IsValid)
             {
-                return this.View(model);
+                return View(model);
             }
 
-            EmailService email = new EmailService();
+            var message = new IdentityMessage()
+            {
+                Body = model.Body,
+                Destination = model.Destination,
+                Subject = model.Subject
+            };
 
-            await email.SendFeedbackEmailAsync(null);
+            await _identityMessageService.SendAsync(message);
 
             return this.RedirectToAction("Index");
         }

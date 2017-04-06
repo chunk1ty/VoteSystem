@@ -12,7 +12,7 @@ namespace VoteSystem.Data.Services.Contracts
 
         IEnumerable<Entities.VoteSystem> GetAll();
 
-        IEnumerable<Entities.VoteSystem> GetAllActive(string userId);
+        IEnumerable<Entities.VoteSystem> GetAllAvailableVoteSystemsForUser(string userId);
 
         Entities.VoteSystem GetById(int rateSystemId);
     }

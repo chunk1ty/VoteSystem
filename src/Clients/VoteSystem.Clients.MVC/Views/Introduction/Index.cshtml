@@ -174,10 +174,10 @@
                                         </div>
                                         <div>
                                             <div>
-                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Имейл" })
+                                                @Html.TextBoxFor(m => m.Destination, new { @class = "form-control", placeholder = "Имейл" })
                                             </div>
                                             <div class="error-message">
-                                                @Html.ValidationMessageFor(m => m.Email)
+                                                @Html.ValidationMessageFor(m => m.Destination)
                                             </div>
                                         </div>
                                         <div>
@@ -191,10 +191,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div>
-                                            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Съобщение", rows = 5 })
+                                            @Html.TextAreaFor(m => m.Body, new { @class = "form-control", placeholder = "Съобщение", rows = 5 })
                                         </div>
                                         <div class="error-message">
-                                            @Html.ValidationMessageFor(m => m.Message)
+                                            @Html.ValidationMessageFor(m => m.Body)
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-center" style="width: 100%">

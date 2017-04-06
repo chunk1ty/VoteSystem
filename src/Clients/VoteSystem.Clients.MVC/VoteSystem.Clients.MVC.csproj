@@ -247,12 +247,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
-    <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
     <Compile Include="Areas\Administration\Controllers\AjaxController.cs" />
     <Compile Include="Areas\Administration\Controllers\QuestionController.cs" />
-    <Compile Include="Areas\Administration\Controllers\RateSystemController.cs" />
+    <Compile Include="Areas\Administration\Controllers\VoteSystemController.cs" />
     <Compile Include="Areas\Administration\Controllers\ResultController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserController.cs" />
+    <Compile Include="Areas\Administration\Models\VoteSystemViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -271,7 +272,7 @@
     <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
     <Compile Include="Infrastructure\Mapping\IMapTo.cs" />
-    <Compile Include="Infrastructure\Mapping\QueryableExtensions.cs" />
+    <Compile Include="Infrastructure\Mapping\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\NotificationSystem\Notification.cs" />
     <Compile Include="Infrastructure\NotificationSystem\NotificationType.cs" />
     <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
@@ -298,7 +299,6 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\QuestionAndAnswersViewModel.cs" />
     <Compile Include="ViewModels\QuestionAnswerViewModel.cs" />
-    <Compile Include="ViewModels\RateSystemViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\ParticipantAnswerViewModel.cs" />
     <Compile Include="ViewModels\UserSelectedViewModel.cs" />
@@ -521,14 +521,14 @@
     <Content Include="Content\bootstrap-theme\fonts\scss\_spinning.scss" />
     <Content Include="Content\bootstrap-theme\fonts\scss\_stacked.scss" />
     <Content Include="Content\bootstrap-theme\fonts\scss\_variables.scss" />
-    <Content Include="Areas\Administration\Views\RateSystem\Create.cshtml" />
-    <Content Include="Areas\Administration\Views\RateSystem\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\VoteSystem\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\VoteSystem\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Create.cshtml" />
     <Content Include="Areas\Administration\Views\Ajax\_QuestionPartial.cshtml" />
     <Content Include="Areas\Administration\Views\Ajax\_QuestionAnswerPartial.cshtml" />
     <Content Include="Areas\Administration\Views\Result\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\RateSystem\EditorTemplates\RateSystemViewModel.cshtml" />
-    <Content Include="Areas\Administration\Views\RateSystem\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\VoteSystem\EditorTemplates\VoteSystemCreateViewModel.cshtml" />
+    <Content Include="Areas\Administration\Views\VoteSystem\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Preview.cshtml" />
     <Content Include="Areas\Administration\Views\Question\DisplayTemplates\QuestionViewModel.cshtml" />
@@ -702,7 +702,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

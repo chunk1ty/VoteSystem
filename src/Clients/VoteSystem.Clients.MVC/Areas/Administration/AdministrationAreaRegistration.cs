@@ -21,7 +21,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration
 
             context.MapRoute(
                 name: "Administration_default",
-                url: "Administration/{controller}/{action}/{id}",
+                url: "admin/{controller}/{action}/{id}",
                 defaults: new
                 {
                     controller = "VoteSystem",

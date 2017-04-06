@@ -6,7 +6,7 @@ using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
-    public class AjaxController : AdministrationController
+    public class AjaxController : AdminController
     {
         private readonly IVoteSystemService voteSystems;
 

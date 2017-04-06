@@ -4,7 +4,7 @@ using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
-    public class ResultController : AdministrationController
+    public class ResultController : AdminController
     {
         private IQuestionService questions;
 

@@ -12,9 +12,9 @@ namespace VoteSystem.Clients.MVC.ViewModels.Introduction
 
         [Required(ErrorMessage = "Имeйла е задължителен.")]
         [EmailAddress(ErrorMessage = "Невалиден имейл формат.")]
-        public string Email { get; set; }
+        public string Destination { get; set; }
 
         [Required(ErrorMessage = "Съобщението е задължително.")]
-        public string Message { get; set; }
+        public string Body { get; set; }
     }
 }

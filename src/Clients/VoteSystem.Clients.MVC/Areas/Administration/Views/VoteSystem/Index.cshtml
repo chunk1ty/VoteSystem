@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VoteSystem.Clients.MVC.ViewModels.RateSystemViewModel>
+﻿@model IEnumerable<VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystemViewModel>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -23,7 +23,7 @@
                     Системи за гласуване
                 </div>
                 <div class="col-md-6">
-                    <a class="btn btn-dark" href="@(Url.Action<RateSystemController>(c => c.Create(), new { area = "Administration" }))">
+                    <a class="btn btn-dark" href="@(Url.Action<VoteSystemController>(c => c.Create(), new { area = "Administration" }))">
                         <i class="fa fa-plus"></i>
                         Нова система
                     </a>
@@ -52,46 +52,46 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var rateSystem in Model)
+                        @foreach (var voteSystem in Model)
                         {
                             <tr>
-                                @Html.Hidden("rate-system-" + rateSystem.Id, rateSystem.Id)
+                                @Html.Hidden("rate-system-" + voteSystem.Id, voteSystem.Id)
                                 <td class="col-md-1 col-sm-1 col-xs-1">
-                                    @Html.RateSystemStatus(rateSystem.StarDateTime, rateSystem.EndDateTime)
+                                    @Html.RateSystemStatus(voteSystem.StarDateTime, voteSystem.EndDateTime)
                                 </td>
                                 <td class="col-md-2 col-sm-2 col-xs-2">
-                                    @rateSystem.RateSystemName
+                                    @voteSystem.Name
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
-                                    <a href="@(Url.Action<QuestionController>(c => c.Create(rateSystem.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<QuestionController>(c => c.Create(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-plus"></i>
                                         Добави
                                     </a>                                   
-                                    <a href="@(Url.Action<QuestionController>(c => c.Edit(rateSystem.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<QuestionController>(c => c.Edit(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-pencil"></i>
                                         Промени
                                     </a>
-                                    <a href="@(Url.Action<QuestionController>(c => c.Preview(rateSystem.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<QuestionController>(c => c.Preview(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-folder"></i>
                                         Преглед
                                     </a>
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
-                                    <a href="@(Url.Action<UserController>(c => c.Add(rateSystem.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<UserController>(c => c.Add(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-plus"></i>
                                         Добави
                                     </a>                                   
-                                    <a href="@(Url.Action<UserController>(c => c.Remove(rateSystem.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<UserController>(c => c.Remove(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-trash-o"></i>
                                         Премахни
                                     </a>
-                                    <a href="@(Url.Action<UserController>(c => c.Preview(rateSystem.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<UserController>(c => c.Preview(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-folder"></i>
                                         Преглед
                                     </a>
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">                                    
-                                    <a href="@(Url.Action<RateSystemController>(c => c.Edit(rateSystem.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<VoteSystemController>(c => c.Edit(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-pencil"></i>
                                         Промяна
                                     </a>
@@ -99,7 +99,7 @@
                                         <i class="fa fa-trash-o"></i>
                                         Изтрий
                                     </button>
-                                    <a href="@(Url.Action<ResultController>(c => c.Index(rateSystem.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<ResultController>(c => c.Index(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-pie-chart"></i>
                                         Резултати
                                     </a>

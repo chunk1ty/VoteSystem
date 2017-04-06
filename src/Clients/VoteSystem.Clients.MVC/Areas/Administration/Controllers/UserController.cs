@@ -14,7 +14,7 @@ using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
-    public class UserController : AdministrationController
+    public class UserController : AdminController
     {
         private VoteSystemUserService voteSystemUsers;
         private IParticipantService participants;

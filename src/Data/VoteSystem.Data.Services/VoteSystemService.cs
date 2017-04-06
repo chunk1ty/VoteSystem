@@ -46,7 +46,7 @@ namespace VoteSystem.Data.Services
             return _voteSystemRepository.GetAll();
         }
 
-        public IEnumerable<Entities.VoteSystem> GetAllActive(string userId)
+        public IEnumerable<Entities.VoteSystem> GetAllAvailableVoteSystemsForUser(string userId)
         {
             // TODO fix it later ?? fix what ??
             return _voteSystemRepository
