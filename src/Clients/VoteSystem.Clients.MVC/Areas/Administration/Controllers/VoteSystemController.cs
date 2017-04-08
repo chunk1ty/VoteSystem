@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
+
 using VoteSystem.Clients.MVC.Areas.Administration.Models;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
-using VoteSystem.Clients.MVC.ViewModels;
 using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
@@ -36,17 +36,11 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(VoteSystemCreateViewModel model)
+        public ActionResult Create(VoteSystemPostViewModel model)
         {
-            if (!ModelState.IsValid || model == null)
+            if (!ValidatePostRequest(model))
             {
-                return this.View(model);
-            }
-
-            if (model.StarDateTime >= model.EndDateTime)
-            {
-                this.ModelState.AddModelError(string.Empty, "Началната дата не може да е по голяма от крайната дата.");
-                return this.View(model);
+                return View(model);
             }
 
             var voteSystemAsDbObject = Mapper.Map<Data.Entities.VoteSystem>(model);
@@ -56,46 +50,55 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int rateSystemId)
+        public ActionResult Edit(int voteSystemId)
         {
-            //var rateSystem = this.voteSystemService.GetById(rateSystemId);
-            //var rateSystemVM = this.Mapper.Map<VoteSystemViewModel>(rateSystem);
+            var voteSystem = _voteSystemService.GetById(voteSystemId);
 
-            //return this.View(rateSystemVM);
+            var voteSystemAsViewModel = Mapper.Map<VoteSystemPostViewModel>(voteSystem);
 
-            return this.View();
+            return View(voteSystemAsViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(VoteSystemViewModel model)
+        public ActionResult Edit(VoteSystemPostViewModel model)
         {
-            //if (!ModelState.IsValid || model == null)
-            //{
-            //    return this.View(model);
-            //}
+            if (!ValidatePostRequest(model))
+            {
+                return View(model);
+            }
 
-            //if (model.StarDateTime >= model.EndDateTime)
-            //{
-            //    this.ModelState.AddModelError(string.Empty, "Start date can not be greater than end date.");
-            //    return this.View(model);
-            //}
+            var voteSystemAsDbObject = Mapper.Map<Data.Entities.VoteSystem>(model);
 
-            //var rateSystemDb = this.voteSystemService.GetById(model.Id);
-
-            //if (rateSystemDb == null)
-            //{
-            //    this.ModelState.AddModelError(string.Empty, "The rate system is not found");
-            //    return this.View(model);
-            //}
-
-            //rateSystemDb.Name = model.Name;
-            //rateSystemDb.StarDateTime = model.StarDateTime;
-            //rateSystemDb.EndDateTime = model.EndDateTime;
-
-            //this.voteSystemService.Update(rateSystemDb);
+            _voteSystemService.Update(voteSystemAsDbObject);
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int voteSystemId)
+        {
+            _voteSystemService.Delete(voteSystemId);
+
+            return Content("DELETED");
+        }
+
+        private bool ValidatePostRequest(VoteSystemPostViewModel model)
+        {
+            var isValid = true;
+
+            if (!ModelState.IsValid || model == null)
+            {
+                isValid =  false;
+            }
+
+            if (model.StarDateTime >= model.EndDateTime)
+            {
+                ModelState.AddModelError(string.Empty, "Началната дата не може да е по голяма от крайната дата.");
+                isValid = false;
+            }
+
+            return isValid;
         }
     }
 }

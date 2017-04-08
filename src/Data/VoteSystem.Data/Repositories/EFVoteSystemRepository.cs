@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
+
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
 
@@ -55,6 +54,7 @@ namespace VoteSystem.Data.Ef.Repositories
             }
 
             entry.State = EntityState.Modified;
+            entry.Property(x => x.CreatedOn).IsModified = false;
         }
 
         public Entities.VoteSystem GetById(int voteSystemId)

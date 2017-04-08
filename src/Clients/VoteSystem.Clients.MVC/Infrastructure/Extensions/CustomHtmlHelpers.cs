@@ -44,7 +44,7 @@ namespace VoteSystem.Clients.MVC.Infrastructure.Extensions
             return timeAsString;
         }
 
-        public static HtmlTag RateSystemStatus(this HtmlHelper helper, DateTime startDate, DateTime endDate)
+        public static HtmlTag VoteSystemStatus(this HtmlHelper helper, DateTime startDate, DateTime endDate)
         {
             if (startDate == null)
             {

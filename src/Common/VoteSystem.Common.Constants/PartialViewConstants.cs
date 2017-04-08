@@ -17,5 +17,7 @@
         public const string SuccessNotificationPartial = "~/Views/Shared/Notifications/_SuccessNotificationPartial.cshtml";
 
         public const string WarningNotificationPartial = "~/Views/Shared/Notifications/_WarningNotificationPartial.cshtml";
+
+        public const string DeleteModalPartial = "~/Areas/Administration/Views/Shared/_DeleteModalPartial.cshtml";
     }
 }

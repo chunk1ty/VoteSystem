@@ -41,7 +41,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Models
         public ICollection<QuestionViewModel> Questions { get; set; }
     }
 
-    public class VoteSystemCreateViewModel : IMapFrom<Data.Entities.VoteSystem>, IMapTo<Data.Entities.VoteSystem>
+    public class VoteSystemPostViewModel : IMapFrom<Data.Entities.VoteSystem>, IMapTo<Data.Entities.VoteSystem>
     {
         public int Id { get; set; }
 
@@ -69,7 +69,5 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Models
         [DisplayName("Крайна дата")]
         [DataType(DataType.DateTime)]
         public DateTime EndDateTime { get; set; }
-
-        public ICollection<QuestionViewModel> Questions { get; set; }
     }
 }

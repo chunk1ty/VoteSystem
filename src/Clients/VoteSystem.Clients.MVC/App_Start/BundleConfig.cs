@@ -24,7 +24,6 @@ namespace VoteSystem.Clients.MVC
             // TODO Uncaught TypeError: Cannot read property 'innerHTML' of null resultController is needed only when i display the results
             bundles.Add(new ScriptBundle("~/bundles/my-scripts").Include(
                "~/Scripts/Custom/questionController.js",
-               "~/Scripts/Custom/adminController.js",
                "~/Scripts/Custom/home-grid.js",
                "~/Scripts/Custom/calendars.js"));
 
@@ -54,6 +53,9 @@ namespace VoteSystem.Clients.MVC
 
             bundles.Add(new StyleBundle("~/bundles/spinerController").Include(
                   "~/Scripts/Custom/spinnerController.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/voteSystemController").Include(
+                  "~/Scripts/Custom/voteSystemController.js"));
         }
 
         private static void RegisterStyles(BundleCollection bundles)

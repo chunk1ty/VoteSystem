@@ -13,8 +13,6 @@
     </style>
 }
 
-@Html.Hidden("delete-rate-system-url", Url.Action<AjaxController>(c => c.DeleteRateSystem(0)))
-
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -27,7 +25,7 @@
                         <i class="fa fa-plus"></i>
                         Нова система
                     </a>
-                </div>              
+                </div>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -41,13 +39,13 @@
                                 Система
                             </th>
                             <th class="col-md-3 col-sm-3 col-xs-3">
+                                Промяна
+                            </th>
+                            <th class="col-md-3 col-sm-3 col-xs-3">
                                 Въпроси
                             </th>
                             <th class="col-md-2 col-sm-2 col-xs-2">
                                 Учасници
-                            </th>
-                            <th class="col-md-3 col-sm-3 col-xs-3">
-                                Промяна
                             </th>
                         </tr>
                     </thead>
@@ -55,18 +53,40 @@
                         @foreach (var voteSystem in Model)
                         {
                             <tr>
-                                @Html.Hidden("rate-system-" + voteSystem.Id, voteSystem.Id)
+                                @Html.Hidden("vote-system-" + voteSystem.Id, voteSystem.Id)
+
+                                @*Status*@
                                 <td class="col-md-1 col-sm-1 col-xs-1">
-                                    @Html.RateSystemStatus(voteSystem.StarDateTime, voteSystem.EndDateTime)
+                                    @Html.VoteSystemStatus(voteSystem.StarDateTime, voteSystem.EndDateTime)
                                 </td>
+
+                                @*Name*@
                                 <td class="col-md-2 col-sm-2 col-xs-2">
                                     @voteSystem.Name
                                 </td>
+                                
+                                @*Vote system actions*@
+                                <td class="col-md-3 col-sm-3 col-xs-3">
+                                    <a class="btn btn-dark btn-xs" href="@(Url.Action<VoteSystemController>(c => c.Edit(voteSystem.Id)))">
+                                        <i class="fa fa-pencil"></i>
+                                        Промяна
+                                    </a>
+                                    <button class="delete-btn btn btn-dark btn-xs" type="button" data-toggle="modal" data-target=".bs-example-modal-sm">
+                                        <i class="fa fa-trash-o"></i>
+                                        Изтрий
+                                    </button>
+                                    <a class="btn btn-dark btn-xs" href="@(Url.Action<ResultController>(c => c.Index(voteSystem.Id)))">
+                                        <i class="fa fa-pie-chart"></i>
+                                        Резултати
+                                    </a>
+                                </td>
+
+                                @*Questions*@
                                 <td class="col-md-3 col-sm-3 col-xs-3">
                                     <a href="@(Url.Action<QuestionController>(c => c.Create(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-plus"></i>
                                         Добави
-                                    </a>                                   
+                                    </a>
                                     <a href="@(Url.Action<QuestionController>(c => c.Edit(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-pencil"></i>
                                         Промени
@@ -76,11 +96,13 @@
                                         Преглед
                                     </a>
                                 </td>
+
+                                @*Participants*@
                                 <td class="col-md-3 col-sm-3 col-xs-3">
                                     <a href="@(Url.Action<UserController>(c => c.Add(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-plus"></i>
                                         Добави
-                                    </a>                                   
+                                    </a>
                                     <a href="@(Url.Action<UserController>(c => c.Remove(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-trash-o"></i>
                                         Премахни
@@ -88,20 +110,6 @@
                                     <a href="@(Url.Action<UserController>(c => c.Preview(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-folder"></i>
                                         Преглед
-                                    </a>
-                                </td>
-                                <td class="col-md-3 col-sm-3 col-xs-3">                                    
-                                    <a href="@(Url.Action<VoteSystemController>(c => c.Edit(voteSystem.Id)))" class="btn btn-dark btn-xs">
-                                        <i class="fa fa-pencil"></i>
-                                        Промяна
-                                    </a>
-                                    <button type="button" class="delete-btn btn btn-dark btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm">
-                                        <i class="fa fa-trash-o"></i>
-                                        Изтрий
-                                    </button>
-                                    <a href="@(Url.Action<ResultController>(c => c.Index(voteSystem.Id)))" class="btn btn-dark btn-xs">
-                                        <i class="fa fa-pie-chart"></i>
-                                        Резултати
                                     </a>
                                 </td>
                             </tr>
@@ -113,28 +121,8 @@
     </div>
 </div>
 
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm" style="width: 500px">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <h4 class="modal-title">Изтриване на система за гласуване</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    Сигурни ли сте, че истате да изтриете <span id="modal-content" style="color:red;"></span> система?
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="cancel-btn" class="btn btn-dark" data-dismiss="modal" style="margin: 0;">
-                    Не
-                </button>
-                <button type="button" id="delete-rate-system-btn" class="btn btn-danger">
-                    Да
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Partial(PartialViewConstants.DeleteModalPartial)
+
+@section scripts {
+    <script src="~/Scripts/Custom/voteSystemController.js"></script>
+}

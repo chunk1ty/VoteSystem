@@ -527,7 +527,7 @@
     <Content Include="Areas\Administration\Views\Ajax\_QuestionPartial.cshtml" />
     <Content Include="Areas\Administration\Views\Ajax\_QuestionAnswerPartial.cshtml" />
     <Content Include="Areas\Administration\Views\Result\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\VoteSystem\EditorTemplates\VoteSystemCreateViewModel.cshtml" />
+    <Content Include="Areas\Administration\Views\VoteSystem\EditorTemplates\VoteSystemPostViewModel.cshtml" />
     <Content Include="Areas\Administration\Views\VoteSystem\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Preview.cshtml" />
@@ -549,13 +549,14 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Areas\Administration\Views\Shared\_DeleteModalPartial.cshtml" />
     <None Include="Properties\PublishProfiles\local-deploy.pubxml" />
     <None Include="Properties\PublishProfiles\VoteSystem.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\introduction-page.js" />
     <Content Include="Scripts\Custom\questionController.js" />
-    <Content Include="Scripts\Custom\adminController.js" />
+    <Content Include="Scripts\Custom\voteSystemController.js" />
     <Content Include="Scripts\Custom\calendars.js" />
     <Content Include="Scripts\Custom\resultController.js" />
     <Content Include="Scripts\Custom\userController.js" />
@@ -702,7 +703,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

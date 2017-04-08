@@ -29,13 +29,5 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
             return this.PartialView(PartialViewConstants.QuestionAnswerPartial, new QuestionAnswerViewModel());
         }
-
-        [HttpPost]
-        public ActionResult DeleteRateSystem(int rateSystemId)
-        {
-            this.voteSystems.Delete(rateSystemId);
-
-            return this.Content("DELETED");
-        }
     }
 }

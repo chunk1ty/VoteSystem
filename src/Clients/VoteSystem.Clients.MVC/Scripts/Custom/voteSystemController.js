@@ -1,8 +1,7 @@
 ﻿$(function ($) {
     "use strict";
 
-    var selectedRateSystem,
-        deleteRateSystemUrl = $('#delete-rate-system-url').val();
+    var selectedVoteSystemId;
 
     //grid settings
     $('#admin-grid').dataTable({
@@ -34,12 +33,12 @@
                 last: "Последна",
                 next: "Следваща",
                 previous: "Предишна"
-            },
+            }
         }
     });
 
     $('tbody').on('click', '.delete-btn', function () {
-        selectedRateSystem = $(this)
+        selectedVoteSystemId = $(this)
                 .closest('tr')
                 .children()
                 .first();
@@ -54,19 +53,18 @@
                 .text());
     });
 
-    $('#delete-rate-system-btn').on('click', function () {
+    $('#delete-vote-system-btn').on('click', function () {
         $.ajax({
             type: 'POST',
-            url: deleteRateSystemUrl,
-            data: { rateSystemId: selectedRateSystem.val() },
-            success: function (questions) {
+            url: '/admin/votesystem/delete',
+            data: { voteSystemId: selectedVoteSystemId.val() },
+            success: function () {
                 $('#cancel-btn').trigger('click');
-                $(selectedRateSystem)
-                    .parent()
-                    .remove();
+
+                $(selectedVoteSystemId).parent().remove();
             },
             error: function (ex) {
-                alert('Can not delete rate system!');
+                alert('Can not delete vote system!' + ex);
             }
         });
     });

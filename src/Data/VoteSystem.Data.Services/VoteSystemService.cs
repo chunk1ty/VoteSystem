@@ -27,6 +27,7 @@ namespace VoteSystem.Data.Services
 
         public void Delete(int voteSystemId)
         {
+            // TODO how to do it with one query
             var voteSystem = this._voteSystemRepository.GetById(voteSystemId);
 
            _voteSystemRepository.Delete(voteSystem);
