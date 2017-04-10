@@ -1,4 +1,4 @@
-﻿@model VoteSystem.Clients.MVC.ViewModels.QuestionViewModel
+﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.Question.QuestionViewModel
 
 @{ 
     var currentBtnId = Guid.NewGuid();
@@ -10,7 +10,6 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                @*TODO question number*@
                 <h2>Въпрос</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
@@ -34,10 +33,10 @@
                         @Html.HiddenFor(m => m.Id)
 
                         <div class="form-group">
-                            @Html.LabelFor(m => m.QuestionName, new{ @class="control-label col-md-3 col-sm-3 col-xs-12" })
+                            @Html.LabelFor(m => m.Name, new{ @class="control-label col-md-3 col-sm-3 col-xs-12" })
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                @Html.TextBoxFor(m => m.QuestionName, new { @class = "current-question form-control col-md-7 col-xs-12 " + currentQuestionClass, placeholder = "Име на въпроса." })
-                                @Html.ValidationMessageFor(m => m.QuestionName, null, new { @class= "text-danger" })
+                                @Html.TextBoxFor(m => m.Name, new { @class = "current-question form-control col-md-7 col-xs-12 " + currentQuestionClass, placeholder = "Име на въпроса." })
+                                @Html.ValidationMessageFor(m => m.Name, null, new { @class= "text-danger" })
                             </div>
 
                             <div id="@currentBtnId" class="btn btn-dark">Добави нов отговор</div>
@@ -48,6 +47,7 @@
                                 @Html.LabelFor(m => m.HasMultipleAnswers)
                             </div>
                         </div>
+
                         <div class="@currentQuestionList">
                             @foreach (var item in Model.QuestionAnswers)
                             {
@@ -70,7 +70,7 @@
                                                         .substring(0, 47);
         $.ajax({
             type: 'GET',
-            url: '@Url.Action("NewAnswer", "QuestionAnswer")',
+            url: '@Url.Action("Answer", "Answer")',
             data: { containerPrefix: currentQuestionName },
             success: function (html) {
                 $('.@currentQuestionList').append(html);

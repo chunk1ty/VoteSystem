@@ -42,7 +42,7 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
-        public IEnumerable<Entities.VoteSystem> GetAll()
+        public IEnumerable<Entities.VoteSystem> All()
         {
             return _voteSystemRepository.GetAll();
         }

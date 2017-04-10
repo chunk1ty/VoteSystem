@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
+
 using VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Data.Services.Contracts;
@@ -20,7 +21,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         public ActionResult Index()
         {
             var allVoteSystems = _voteSystemService
-                                                .GetAll()
+                                                .All()
                                                 .To<VoteSystemViewModel>()
                                                 .ToList();
 
@@ -35,7 +36,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(VoteSystemPostViewModel model)
+        public ActionResult Create(VoteSystemViewModel model)
         {
             if (!ValidatePostRequest(model))
             {
@@ -53,14 +54,14 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         {
             var voteSystem = _voteSystemService.GetById(voteSystemId);
 
-            var voteSystemAsViewModel = Mapper.Map<VoteSystemPostViewModel>(voteSystem);
+            var voteSystemAsViewModel = Mapper.Map<VoteSystemViewModel>(voteSystem);
 
             return View(voteSystemAsViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(VoteSystemPostViewModel model)
+        public ActionResult Edit(VoteSystemViewModel model)
         {
             if (!ValidatePostRequest(model))
             {
@@ -88,7 +89,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             return View(voteSystemId);
         }
 
-        private bool ValidatePostRequest(VoteSystemPostViewModel model)
+        private bool ValidatePostRequest(VoteSystemViewModel model)
         {
             var isValid = true;
 

@@ -10,7 +10,7 @@ namespace VoteSystem.Data.Services.Contracts
 
         void Update(Entities.VoteSystem system);
 
-        IEnumerable<Entities.VoteSystem> GetAll();
+        IEnumerable<Entities.VoteSystem> All();
 
         IEnumerable<Entities.VoteSystem> GetAllAvailableVoteSystemsForUser(string userId);
 

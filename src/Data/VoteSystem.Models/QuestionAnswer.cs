@@ -13,7 +13,7 @@ namespace VoteSystem.Data.Entities
 
         public int Id { get; set; }
 
-        public string QuestionAnswerName { get; set; }
+        public string Name { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

@@ -1,4 +1,4 @@
-﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.Question.QuestionAndAnswersViewModel
+﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.Question.VoteSystemWithQuestionsViewModel
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -13,11 +13,11 @@
     </style>
 }
 
-@using (Html.BeginForm<QuestionController>(c => c.Create(Model), FormMethod.Post))
+@using (Html.BeginForm<QuestionController>(c => c.Create(0), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.VoteSystemId)
-    @Html.Hidden("more-question-url", Url.Action<QuestionAnswerController>(c => c.NewQuestion()))
+    @Html.Hidden("more-question-url", Url.Action<QuestionController>(c => c.Question()))
 
     <div class="text-center">
         <h2 class="my-header-title">
@@ -30,10 +30,12 @@
             <i class="glyphicon glyphicon-arrow-left"></i>
             Обратно
         </a>
+
         <span id="add-more-questions" class="btn btn-dark">
             <i class="fa fa-plus"></i>
             Нов въпрос
         </span>
+
         <button type="submit" class="btn btn-dark">
             <i class="glyphicon glyphicon-floppy-disk"></i>
             Запиши

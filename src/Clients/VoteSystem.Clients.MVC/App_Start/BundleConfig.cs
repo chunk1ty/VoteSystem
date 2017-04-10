@@ -23,14 +23,14 @@ namespace VoteSystem.Clients.MVC
 
             // TODO Uncaught TypeError: Cannot read property 'innerHTML' of null resultController is needed only when i display the results
             bundles.Add(new ScriptBundle("~/bundles/my-scripts").Include(
-               "~/Scripts/VoteSystem/home-grid.js",
-               "~/Scripts/VoteSystem/calendars.js"));
+               "~/Scripts/Custom/home-grid.js",
+               "~/Scripts/Custom/calendars.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/resultController").Include("~/Scripts/VoteSystem/resultController.js"));
+            bundles.Add(new ScriptBundle("~/bundles/resultController").Include("~/Scripts/Custom/resultController.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/userController").Include("~/Scripts/VoteSystem/userController.js"));
+            bundles.Add(new ScriptBundle("~/bundles/userController").Include("~/Scripts/Custom/userController.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/userPreviewController").Include("~/Scripts/VoteSystem/userPreviewController.js"));
+            bundles.Add(new ScriptBundle("~/bundles/userPreviewController").Include("~/Scripts/Custom/userPreviewController.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/gentallela-js").Include(
                 "~/Content/bootstrap-theme/js/nicescroll/jquery.nicescroll.min.js",
@@ -42,22 +42,22 @@ namespace VoteSystem.Clients.MVC
                 "~/Scripts/handlebars.min.js",                
                 "~/Scripts/DataTables/jquery.dataTables.js",
                 "~/Scripts/spin.min.js",
-                "~/Content/bootstrap-theme/js/VoteSystem.js"));
+                "~/Content/bootstrap-theme/js/Custom.js"));
 
             bundles.Add(new StyleBundle("~/bundles/introduction-page-js").Include(
-                  "~/Scripts/VoteSystem/introduction-page.js"));
+                  "~/Scripts/Custom/introduction-page.js"));
 
             bundles.Add(new StyleBundle("~/bundles/spiner").Include(
                  "~/Scripts/spin.min.js"));
 
             bundles.Add(new StyleBundle("~/bundles/spinerController").Include(
-                  "~/Scripts/VoteSystem/spinnerController.js"));
+                  "~/Scripts/Custom/spinnerController.js"));
 
-            bundles.Add(new StyleBundle("~/bundles/voteSystemController").Include(
-                  "~/Scripts/VoteSystem/voteSystemController.js"));
+            bundles.Add(new StyleBundle("~/bundles/CustomController").Include(
+                  "~/Scripts/Custom/CustomController.js"));
 
             bundles.Add(new StyleBundle("~/bundles/questionController").Include(
-                "~/Scripts/VoteSystem/questionController.js"));
+                "~/Scripts/Custom/questionController.js"));
         }
 
         private static void RegisterStyles(BundleCollection bundles)
@@ -67,17 +67,17 @@ namespace VoteSystem.Clients.MVC
                 "~/Content/bootstrap-social.css"));
 
             bundles.Add(new StyleBundle("~/Content/forms-css").Include(
-                "~/Content/VoteSystem/forms.css"));
+                "~/Content/Custom/forms.css"));
 
             bundles.Add(new StyleBundle("~/Content/gentelella-css").Include(
                  "~/Content/bootstrap-theme/fonts/css/font-awesome.min.css",                
-                "~/Content/bootstrap-theme/css/VoteSystem.css",
+                "~/Content/bootstrap-theme/css/Custom.css",
                 "~/Content/bootstrap-theme/css/daterangepicker/daterangepicker.css",
                 "~/Content/bootstrap-theme/css/animate.min.css",
                 "~/Content/bootstrap-theme/css/icheck/green.css"));
 
             bundles.Add(new StyleBundle("~/bundles/introduction-page-css").Include(
-                  "~/Content/VoteSystem/introduction-page.css"));
+                  "~/Content/Custom/introduction-page.css"));
         }
     }
 }

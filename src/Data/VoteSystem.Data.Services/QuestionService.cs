@@ -22,7 +22,6 @@ namespace VoteSystem.Data.Services
 
         public void Add(Question question)
         {
-            // TODO add mapping logic
             _questionRepository.Add(question);
 
             _dbContextSaveChanges.SaveChanges();

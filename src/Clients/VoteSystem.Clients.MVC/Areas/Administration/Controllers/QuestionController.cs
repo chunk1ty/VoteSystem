@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
+
 using VoteSystem.Clients.MVC.Areas.Administration.Models.Question;
 using VoteSystem.Clients.MVC.ViewModels;
 using VoteSystem.Common.Constants;
+using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
@@ -30,34 +33,32 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                 return Content("voteSystemId can not be negative number or 0");
             }
 
-            return View(new QuestionAndAnswersViewModel() { VoteSystemId = voteSystemId });
+            return View(new VoteSystemWithQuestionsViewModel() { VoteSystemId = voteSystemId });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(QuestionAndAnswersViewModel model)
+        public ActionResult Create(VoteSystemWithQuestionsViewModel model)
         {
-            //if (!ModelState.IsValid || model == null)
-            //{
-            //    return this.View(model);
-            //}
+            if (!ModelState.IsValid || model == null)
+            {
+                return View(model);
+            }
 
-            //if (model.Questions.Count() == 0)
-            //{
-            //    this.ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
-            //    return this.View(model);
-            //}
+            if (!model.Questions.Any())
+            {
+                ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
+                return View(model);
+            }
 
-            //foreach (var question in model.Questions)
-            //{
-            //    var questionDbModel = this.Mapper.Map<Question>(question);               
-            //    questionDbModel.VoteSystemId = model.VoteSystemId;
+            foreach (var question in model.Questions)
+            {
+                // TODO Bulk insert
+                var questionAsDbModel = Mapper.Map<Question>(question);
+                questionAsDbModel.VoteSystemId = model.VoteSystemId;
 
-            //    this._questionService.Add(questionDbModel);
-            //}
-
-            // TODO use dbContext.savechanges
-            //this._questionService.SaveChanges();
+                _questionService.Add(questionAsDbModel);
+            }
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }
@@ -70,14 +71,14 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //    .To<QuestionViewModel>()
             //    .ToList();
 
-            //return this.View(new QuestionAndAnswersViewModel() { Questions = questions, VoteSystemId = voteSystemId });
+            //return this.View(new VoteSystemWithQuestionsViewModel() { Questions = questions, VoteSystemId = voteSystemId });
             return this.View();
         }
 
         // TODO optimize method
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(QuestionAndAnswersViewModel model)
+        public ActionResult Edit(VoteSystemWithQuestionsViewModel model)
         {
             //if (!ModelState.IsValid || model == null)
             //{
@@ -126,18 +127,25 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        public ActionResult Question()
+        {
+            return PartialView(PartialViewConstants.QuestionPartial, new QuestionViewModel());
+        }
+
+
+        [HttpGet]
         public ActionResult GetQuestionsByVoteSystemId(int voteSystemId)
         {
             //var result = this.questions
             //   .GetUsersAnswers(voteSystemId)
             //   .Select(x => new
             //   {
-            //       questionName = x.QuestionName,
+            //       questionName = x.Name,
             //       questionType = x.HasMultipleAnswers,
             //       questionAnswers = x.QuestionAnswers.Select(
             //           y => new
             //           {
-            //               questionAnswerName = y.QuestionAnswerName,
+            //               questionAnswerName = y.Name,
             //               userAnswerCount = y.ParticipantAnswers.Count
             //           })
             //   })

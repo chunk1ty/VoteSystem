@@ -9,12 +9,12 @@ namespace VoteSystem.Data.Entities
     {
         public Question()
         {
-            this.QuestionAnswers = new HashSet<QuestionAnswer>();
+            QuestionAnswers = new HashSet<QuestionAnswer>();
         }
 
         public int Id { get; set; }
 
-        public string QuestionName { get; set; }
+        public string Name { get; set; }
 
         public bool HasMultipleAnswers { get; set; }
 

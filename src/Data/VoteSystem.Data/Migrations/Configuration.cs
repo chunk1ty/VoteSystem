@@ -95,7 +95,7 @@ namespace VoteSystem.Data.Ef.Migrations
                 for (int i = 0; i < 20; i++)
                 {
                     Random rd = new Random();
-                    Question q = new Question() { Id = i + 1, QuestionName = "Question" + i, VoteSystemId = rd.Next(1, 4) };
+                    Question q = new Question() { Id = i + 1, Name = "Question" + i, VoteSystemId = rd.Next(1, 4) };
                     context.Questions.AddOrUpdate(q);
                     context.SaveChanges();
                 }

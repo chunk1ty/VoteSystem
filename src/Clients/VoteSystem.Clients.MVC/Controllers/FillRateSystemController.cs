@@ -52,7 +52,7 @@ namespace VoteSystem.Clients.MVC.Controllers
 
             //    if (question.HasMultipleAnswers)
             //    {
-            //        bool isNotChecked = question.QuestionAnswers.GetAll(x => x.IsChecked == false);
+            //        bool isNotChecked = question.QuestionAnswers.All(x => x.IsChecked == false);
 
             //        if (isNotChecked)
             //        {

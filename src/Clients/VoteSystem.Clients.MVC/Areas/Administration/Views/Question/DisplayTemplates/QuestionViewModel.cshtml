@@ -1,9 +1,9 @@
-﻿@model VoteSystem.Clients.MVC.ViewModels.QuestionViewModel
+﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.Question.QuestionViewModel
 
 <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>@Model.QuestionName</h2>
+            <h2>@Model.Name</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <a class="collapse-link">
@@ -34,7 +34,7 @@
                                 @(i + 1)
                             </td>
                             <td>
-                                @Model.QuestionAnswers[i].QuestionAnswerName
+                                @Model.QuestionAnswers[i].Name
                             </td>
                         </tr>
                     }

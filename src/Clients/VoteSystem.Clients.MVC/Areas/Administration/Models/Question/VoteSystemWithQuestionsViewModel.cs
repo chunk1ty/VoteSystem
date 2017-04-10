@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
-
-using VoteSystem.Clients.MVC.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Models.Question
 {
-    public class QuestionAndAnswersViewModel
+    public class VoteSystemWithQuestionsViewModel
     {
-        public QuestionAndAnswersViewModel()
+        public VoteSystemWithQuestionsViewModel()
         {
             Questions = new List<QuestionViewModel>();
         }
 
+        [Required]
         public int VoteSystemId { get; set; }
 
         public IList<QuestionViewModel> Questions { get; set; }
