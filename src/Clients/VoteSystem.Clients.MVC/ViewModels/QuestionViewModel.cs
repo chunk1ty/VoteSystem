@@ -10,7 +10,7 @@ namespace VoteSystem.Clients.MVC.ViewModels
     {
         public QuestionViewModel()
         {
-            this.QuestionAnswers = new List<QuestionAnswerViewModel>();
+            this.QuestionAnswers = new List<AnswerViewModel>();
         }
 
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace VoteSystem.Clients.MVC.ViewModels
 
         public int RateSystemId { get; set; }
 
-        public IList<QuestionAnswerViewModel> QuestionAnswers { get; set; }
+        public IList<AnswerViewModel> QuestionAnswers { get; set; }
     }
 }

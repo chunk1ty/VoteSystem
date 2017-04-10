@@ -17,6 +17,8 @@ using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef;
 using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Ef.Repositories;
+using VoteSystem.Data.Services;
+using VoteSystem.Data.Services.Contracts;
 using VoteSystem.Services.Web;
 using VoteSystem.Services.Web.Contracts;
 
@@ -110,8 +112,8 @@ namespace VoteSystem.Clients.MVC
             kernel.Bind<ICacheService>().To<CacheService>();
             kernel.Bind<IIdentifierProvider>().To<IdentifierProvider>();
             kernel.Bind<IVoteSystemRepository>().To<EfVoteSystemRepository>();
-            //kernel.Bind<IVoteSystemEfDbContextSaveChanges>().To<VoteSystemDbContext>();
             kernel.Bind<IIdentityMessageService>().To<EmailService>().InSingletonScope();
+            kernel.Bind<IQuestionRepository>().To<EfQuestionRepository>();
         }        
     }
 }

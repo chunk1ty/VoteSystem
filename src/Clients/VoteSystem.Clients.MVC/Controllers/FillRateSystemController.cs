@@ -26,7 +26,7 @@ namespace VoteSystem.Clients.MVC.Controllers
         public ActionResult Fill(string rateSystemID)
         {
             //var questions = this.questions
-            //                    .GetAllQuestions(rateSystemID)
+            //                    .GetQuestionsByVoteSystemId(rateSystemID)
             //                    .To<FillQuestionsViewModel>()
             //                    .ToList();
 
@@ -44,7 +44,7 @@ namespace VoteSystem.Clients.MVC.Controllers
                 return this.View(questions);
             }
 
-            //var participant = this.participant.GetParticipantByVoteSystemIdAndUserId(questions[0].RateSystemId, User.Identity.GetUserId());
+            //var participant = this.participant.GetParticipantByVoteSystemIdAndUserId(questions[0].VoteSystemId, User.Identity.GetUserId());
 
             //foreach (var question in questions)
             //{

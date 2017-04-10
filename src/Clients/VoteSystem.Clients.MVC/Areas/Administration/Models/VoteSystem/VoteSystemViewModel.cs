@@ -7,7 +7,7 @@ using VoteSystem.Clients.MVC.ViewModels;
 using VoteSystem.Services.Web;
 using VoteSystem.Services.Web.Contracts;
 
-namespace VoteSystem.Clients.MVC.Areas.Administration.Models
+namespace VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem
 {
     public class VoteSystemViewModel : IMapFrom<Data.Entities.VoteSystem>, IMapTo<Data.Entities.VoteSystem>
     {

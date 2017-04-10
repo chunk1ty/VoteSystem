@@ -4,7 +4,6 @@
     var currentBtnId = Guid.NewGuid();
     var currentQuestionList = currentBtnId + "-list";
     var currentQuestionClass = Guid.NewGuid();
-    int counter = Convert.ToInt32(ViewData["counter"]);
 }
 
 <div class="row">
@@ -52,7 +51,7 @@
                         <div class="@currentQuestionList">
                             @foreach (var item in Model.QuestionAnswers)
                             {
-                                Html.RenderPartial(PartialViewConstants.QuestionAnswerPartial, item);
+                                Html.RenderPartial(PartialViewConstants.AnswerPartial, item);
                             }
                         </div>
                     }
@@ -71,7 +70,7 @@
                                                         .substring(0, 47);
         $.ajax({
             type: 'GET',
-            url: '@Url.Action("MoreAnswers", "Ajax")',
+            url: '@Url.Action("NewAnswer", "QuestionAnswer")',
             data: { containerPrefix: currentQuestionName },
             success: function (html) {
                 $('.@currentQuestionList').append(html);

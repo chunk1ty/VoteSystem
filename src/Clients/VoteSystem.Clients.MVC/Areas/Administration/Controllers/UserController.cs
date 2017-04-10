@@ -37,7 +37,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //var userSelectedVM = new UserSelectedViewModel()
             //{
             //    Users = voteSystemUsers,
-            //    RateSystemId = rateSystemId
+            //    VoteSystemId = rateSystemId
             //};           
 
             //return this.View(userSelectedVM);
@@ -60,7 +60,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //{
             //    var currentParticipant = new Participant()
             //    {
-            //        RateSystemId = model.RateSystemId,
+            //        VoteSystemId = model.VoteSystemId,
             //        // TODO fix it later
             //        //UserId = participant.Id
             //    };
@@ -86,7 +86,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //var userSelectedVM = new UserSelectedViewModel()
             //{
             //    Users = voteSystemUsers,
-            //    RateSystemId = rateSystemId
+            //    VoteSystemId = rateSystemId
             //};
 
             //return this.View(userSelectedVM);
@@ -107,7 +107,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
             //foreach (var participant in getSelectedUsers)
             //{
-            //    var currentParticipant = this.participants.GetParticipantBySurveyIdAndUserId(model.RateSystemId, participant.Id);
+            //    var currentParticipant = this.participants.GetParticipantBySurveyIdAndUserId(model.VoteSystemId, participant.Id);
 
             //    if (currentParticipant == null)
             //    {
@@ -133,7 +133,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //var userSelectedVM = new UserSelectedViewModel()
             //{
             //    Users = voteSystemUsers,
-            //    RateSystemId = rateSystemId
+            //    VoteSystemId = rateSystemId
             //};
 
             //return this.View(userSelectedVM);

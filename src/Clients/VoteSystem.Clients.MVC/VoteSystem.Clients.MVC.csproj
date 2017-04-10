@@ -248,12 +248,11 @@
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Administration\Controllers\AjaxController.cs" />
+    <Compile Include="Areas\Administration\Controllers\QuestionAnswerController.cs" />
     <Compile Include="Areas\Administration\Controllers\QuestionController.cs" />
     <Compile Include="Areas\Administration\Controllers\VoteSystemController.cs" />
-    <Compile Include="Areas\Administration\Controllers\ResultController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserController.cs" />
-    <Compile Include="Areas\Administration\Models\VoteSystemViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\VoteSystem\VoteSystemViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -297,8 +296,8 @@
     <Compile Include="ViewModels\Manage\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\QuestionAndAnswersViewModel.cs" />
-    <Compile Include="ViewModels\QuestionAnswerViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\Question\QuestionAndAnswersViewModel.cs" />
+    <Compile Include="ViewModels\AnswerViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\ParticipantAnswerViewModel.cs" />
     <Compile Include="ViewModels\UserSelectedViewModel.cs" />
@@ -524,9 +523,9 @@
     <Content Include="Areas\Administration\Views\VoteSystem\Create.cshtml" />
     <Content Include="Areas\Administration\Views\VoteSystem\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Create.cshtml" />
-    <Content Include="Areas\Administration\Views\Ajax\_QuestionPartial.cshtml" />
-    <Content Include="Areas\Administration\Views\Ajax\_QuestionAnswerPartial.cshtml" />
-    <Content Include="Areas\Administration\Views\Result\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\QuestionAnswer\_QuestionPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\QuestionAnswer\_AnswerPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\VoteSystem\Result.cshtml" />
     <Content Include="Areas\Administration\Views\VoteSystem\EditorTemplates\VoteSystemPostViewModel.cshtml" />
     <Content Include="Areas\Administration\Views\VoteSystem\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Edit.cshtml" />
@@ -554,14 +553,14 @@
     <None Include="Properties\PublishProfiles\VoteSystem.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Custom\introduction-page.js" />
-    <Content Include="Scripts\Custom\questionController.js" />
-    <Content Include="Scripts\Custom\voteSystemController.js" />
-    <Content Include="Scripts\Custom\calendars.js" />
-    <Content Include="Scripts\Custom\resultController.js" />
-    <Content Include="Scripts\Custom\userController.js" />
-    <Content Include="Scripts\Custom\userPreviewController.js" />
-    <Content Include="Scripts\Custom\home-grid.js" />
+    <Content Include="Scripts\VoteSystem\introduction-page.js" />
+    <Content Include="Scripts\VoteSystem\questionController.js" />
+    <Content Include="Scripts\VoteSystem\voteSystemController.js" />
+    <Content Include="Scripts\VoteSystem\calendars.js" />
+    <Content Include="Scripts\VoteSystem\resultController.js" />
+    <Content Include="Scripts\VoteSystem\userController.js" />
+    <Content Include="Scripts\VoteSystem\userPreviewController.js" />
+    <Content Include="Scripts\VoteSystem\home-grid.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -703,6 +702,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administration\Views\Ajax\" />
+    <Folder Include="Areas\Administration\Views\Result\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

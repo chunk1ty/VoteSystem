@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystemViewModel>
+﻿@model IEnumerable<VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem.VoteSystemViewModel>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -75,7 +75,7 @@
                                         <i class="fa fa-trash-o"></i>
                                         Изтрий
                                     </button>
-                                    <a class="btn btn-dark btn-xs" href="@(Url.Action<ResultController>(c => c.Index(voteSystem.Id)))">
+                                    <a class="btn btn-dark btn-xs" href="@(Url.Action<VoteSystemController>(c => c.Result(voteSystem.Id)))">
                                         <i class="fa fa-pie-chart"></i>
                                         Резултати
                                     </a>
@@ -124,5 +124,5 @@
 @Html.Partial(PartialViewConstants.DeleteModalPartial)
 
 @section scripts {
-    <script src="~/Scripts/Custom/voteSystemController.js"></script>
+    @Scripts.Render("~/bundles/voteSystemController")
 }

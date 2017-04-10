@@ -1,8 +1,8 @@
-﻿@model VoteSystem.Clients.MVC.ViewModels.QuestionAndAnswersViewModel
+﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.Question.QuestionAndAnswersViewModel
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
-    int counter = 0;
+    var counter = 0;
 }
 
 @section styles {
@@ -13,11 +13,11 @@
     </style>
 }
 
-@using (Html.BeginForm<QuestionController>(c => c.Create(0), FormMethod.Post))
+@using (Html.BeginForm<QuestionController>(c => c.Create(Model), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.RateSystemId)
-    @Html.Hidden("more-question-url", Url.Action<AjaxController>(c => c.MoreQuestions()))
+    @Html.HiddenFor(m => m.VoteSystemId)
+    @Html.Hidden("more-question-url", Url.Action<QuestionAnswerController>(c => c.NewQuestion()))
 
     <div class="text-center">
         <h2 class="my-header-title">
@@ -49,6 +49,6 @@
     </div>
 }
 
-@section scripts{
-    @Scripts.Render("~/bundles/jqueryval")
+@section scripts {
+    @Scripts.Render("~/bundles/questionController")
 }

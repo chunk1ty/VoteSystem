@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
-using VoteSystem.Clients.MVC.Infrastructure.Mapping;
+using VoteSystem.Clients.MVC.Areas.Administration.Models.Question;
 using VoteSystem.Clients.MVC.ViewModels;
+using VoteSystem.Common.Constants;
 using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
     public class QuestionController : AdminController
     {
-        private IQuestionService questionService;
+        private IQuestionService _questionService;
 
         public QuestionController(IQuestionService questions)
         {
@@ -18,18 +18,19 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             {
                 throw new ArgumentNullException("questionService");
             }
-            this.questionService = questions;
+
+            _questionService = questions;
         }
 
         [HttpGet]
-        public ActionResult Create(int rateSystemId)
+        public ActionResult Create(int voteSystemId)
         {
-            if (rateSystemId <= 0)
+            if (voteSystemId <= 0)
             {
-                return this.Content("rateSystemId can not be negative number or 0");
+                return Content("voteSystemId can not be negative number or 0");
             }
 
-            return this.View(new QuestionAndAnswersViewModel() { RateSystemId = rateSystemId });
+            return View(new QuestionAndAnswersViewModel() { VoteSystemId = voteSystemId });
         }
 
         [HttpPost]
@@ -50,13 +51,13 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //foreach (var question in model.Questions)
             //{
             //    var questionDbModel = this.Mapper.Map<Question>(question);               
-            //    questionDbModel.RateSystemId = model.RateSystemId;
+            //    questionDbModel.VoteSystemId = model.VoteSystemId;
 
-            //    this.questionService.Add(questionDbModel);
+            //    this._questionService.Add(questionDbModel);
             //}
 
             // TODO use dbContext.savechanges
-            //this.questionService.SaveChanges();
+            //this._questionService.SaveChanges();
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }
@@ -64,12 +65,12 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Edit(int rateSystemId)
         {
-            //var questions = this.questionService
-            //    .GetAllQuestions(rateSystemId)
+            //var questions = this._questionService
+            //    .GetQuestionsByVoteSystemId(voteSystemId)
             //    .To<QuestionViewModel>()
             //    .ToList();
 
-            //return this.View(new QuestionAndAnswersViewModel() { Questions = questions, RateSystemId = rateSystemId });
+            //return this.View(new QuestionAndAnswersViewModel() { Questions = questions, VoteSystemId = voteSystemId });
             return this.View();
         }
 
@@ -89,38 +90,60 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //    return this.View(model);
             //}
 
-            //var allExistingQuestions = this.questionService.GetAllQuestions(model.RateSystemId);
+            //var allExistingQuestions = this._questionService.GetQuestionsByVoteSystemId(model.VoteSystemId);
 
             //foreach (var existingQuestion in allExistingQuestions)
             //{
-            //    this.questionService.Delete(existingQuestion);
+            //    this._questionService.Delete(existingQuestion);
             //}
 
             //// TODO use dbContext.savechanges
-            ////this.questionService.SaveChanges();
+            ////this._questionService.SaveChanges();
 
             //foreach (var question in model.Questions)
             //{
             //    var questionDbModel = this.Mapper.Map<Question>(question);
-            //    questionDbModel.RateSystemId = model.RateSystemId;
+            //    questionDbModel.VoteSystemId = model.VoteSystemId;
 
-            //    this.questionService.Add(questionDbModel);
+            //    this._questionService.Add(questionDbModel);
             //}
 
             // TODO use dbContext.savechanges
-            //this.questionService.SaveChanges();
+            //this._questionService.SaveChanges();
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }
 
         public ActionResult Preview(int voteSystemId)
         {
-            //var questionsAsVM = this.questionService
-            //    .GetAllQuestions(rateSystemId)
+            //var questionsAsVM = this._questionService
+            //    .GetQuestionsByVoteSystemId(voteSystemId)
             //    .To<QuestionViewModel>()
             //    .ToList();
 
             //return this.View(questionsAsVM);
+            return this.View();
+        }
+
+        [HttpGet]
+        public ActionResult GetQuestionsByVoteSystemId(int voteSystemId)
+        {
+            //var result = this.questions
+            //   .GetUsersAnswers(voteSystemId)
+            //   .Select(x => new
+            //   {
+            //       questionName = x.QuestionName,
+            //       questionType = x.HasMultipleAnswers,
+            //       questionAnswers = x.QuestionAnswers.Select(
+            //           y => new
+            //           {
+            //               questionAnswerName = y.QuestionAnswerName,
+            //               userAnswerCount = y.ParticipantAnswers.Count
+            //           })
+            //   })
+            //   .ToList();
+
+            //return this.Json(result, JsonRequestBehavior.AllowGet);
             return this.View();
         }
     }

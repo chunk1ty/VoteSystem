@@ -6,7 +6,7 @@ using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Clients.MVC.ViewModels
 {
-    public class QuestionAnswerViewModel : IMapFrom<QuestionAnswer>, IMapTo<QuestionAnswer>
+    public class AnswerViewModel : IMapFrom<QuestionAnswer>, IMapTo<QuestionAnswer>
     {
         public int Id { get; set; }
 

@@ -8,9 +8,9 @@
         url: getAllQuestionsUrl,
         contentType: 'application/json',
         success: function (questions) {
-            if (questions != {}) {
-                var postTemplateHTML = document.getElementById('question-template').innerHTML;
-                var postTemplate = Handlebars.compile(postTemplateHTML);
+            if (questions !== {}) {
+                var postTemplateHtml = document.getElementById('question-template').innerHTML;
+                var postTemplate = Handlebars.compile(postTemplateHtml);
                 document.getElementById('root').innerHTML = postTemplate({ questions: questions });
 
                 for (var i = 0; i < questions.length; i++) {

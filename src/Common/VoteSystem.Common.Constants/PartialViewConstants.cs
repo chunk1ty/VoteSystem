@@ -6,9 +6,9 @@
 
         public const string FooterPartial = "_FooterPartial";
 
-        public const string QuestionAnswerPartial = "~/Areas/Administration/Views/Ajax/_QuestionAnswerPartial.cshtml";
+        public const string AnswerPartial = "~/Areas/Administration/Views/QuestionAnswer/_AnswerPartial.cshtml";
 
-        public const string QuestionPartial = "~/Areas/Administration/Views/Ajax/_QuestionPartial.cshtml";
+        public const string QuestionPartial = "~/Areas/Administration/Views/QuestionAnswer/_QuestionPartial.cshtml";
 
         public const string ErrorNotificationPartial = "~/Views/Shared/Notifications/_ErrorNotificationPartial.cshtml";
 

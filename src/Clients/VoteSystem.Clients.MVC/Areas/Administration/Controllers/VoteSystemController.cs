@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
-
-using VoteSystem.Clients.MVC.Areas.Administration.Models;
+using VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Data.Services.Contracts;
 
@@ -81,6 +80,12 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             _voteSystemService.Delete(voteSystemId);
 
             return Content("DELETED");
+        }
+
+        [HttpGet]
+        public ActionResult Result(int voteSystemId)
+        {
+            return View(voteSystemId);
         }
 
         private bool ValidatePostRequest(VoteSystemPostViewModel model)

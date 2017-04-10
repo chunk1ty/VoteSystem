@@ -1,4 +1,4 @@
-﻿@model VoteSystem.Clients.MVC.ViewModels.QuestionAndAnswersViewModel
+﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.Question.QuestionAndAnswersViewModel
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -16,8 +16,8 @@
 @using (Html.BeginForm<QuestionController>(c => c.Edit(0), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.RateSystemId)
-    @Html.Hidden("more-question-url", Url.Action<AjaxController>(c => c.MoreQuestions()))
+    @Html.HiddenFor(m => m.VoteSystemId)
+    @Html.Hidden("more-question-url", Url.Action<AjaxController>(c => c.NewQuestion()))
 
     <div class="text-center" style="padding-bottom: 20px;">
         <h2 class="my-header-title">
