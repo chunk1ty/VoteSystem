@@ -300,8 +300,8 @@
     <Compile Include="Areas\Administration\Models\Answer\AnswerViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Question\QuestionViewModel.cs" />
     <Compile Include="ViewModels\ParticipantAnswerViewModel.cs" />
-    <Compile Include="ViewModels\UserSelectedViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\User\UserSelectedViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\User\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-social.css" />
@@ -548,7 +548,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
-    <Content Include="Areas\Administration\Views\Shared\_DeleteModalPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\VoteSystem\_DeleteModalPartial.cshtml" />
     <None Include="Properties\PublishProfiles\local-deploy.pubxml" />
     <None Include="Properties\PublishProfiles\VoteSystem.pubxml" />
     <Content Include="Scripts\bootstrap.js" />

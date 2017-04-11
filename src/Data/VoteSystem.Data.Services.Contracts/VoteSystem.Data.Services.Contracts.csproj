@@ -36,7 +36,7 @@
   <ItemGroup>
     <Compile Include="IParticipantAnswerService.cs" />
     <Compile Include="IParticipantService.cs" />
-    <Compile Include="IQuestionAnswerService.cs" />
+    <Compile Include="IAnswerService.cs" />
     <Compile Include="IQuestionService.cs" />
     <Compile Include="IVoteSystemService.cs" />
     <Compile Include="IVoteSystemUserService.cs" />

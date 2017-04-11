@@ -6,7 +6,7 @@ namespace VoteSystem.Data.Entities
     {
         public Participant()
         {
-            this.ParticipantAnswers = new HashSet<ParticipantAnswer>();
+            ParticipantAnswers = new HashSet<ParticipantAnswer>();
         }
        
         public int Id { get; set; }

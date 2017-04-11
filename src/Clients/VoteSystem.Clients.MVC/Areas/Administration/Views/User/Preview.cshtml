@@ -101,7 +101,7 @@
                 $.ajax({
                     type: 'GET',
                     url: '@Url.Action("SentEmails", "User")',
-                    data: { rateSystemId: @Model.RateSystemId },
+                    data: { rateSystemId: @Model.VoteSystemId },
                     success: function (notification) {                        
                         $('.right_col').prepend(notification);                        
                         $('#sent-email-btn').addClass('disabled');

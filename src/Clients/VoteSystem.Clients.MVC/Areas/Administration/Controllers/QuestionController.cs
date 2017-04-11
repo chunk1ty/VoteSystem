@@ -43,7 +43,9 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                 return View(voteSystem);
             }
 
-            _questionService.AddQuestions(Mapper.Map<VoteSystemWithQuestionsDto>(voteSystem));
+            var voteSystemWithQuestionsAsDto = Mapper.Map<VoteSystemWithQuestionsDto>(voteSystem);
+
+            _questionService.AddQuestions(voteSystemWithQuestionsAsDto);
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }
@@ -75,9 +77,9 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                 return View(voteSystem);
             }
 
-            var voteSystemAsDto = Mapper.Map<VoteSystemWithQuestionsDto>(voteSystem);
+            var voteSystemWithQuestionsAsDto = Mapper.Map<VoteSystemWithQuestionsDto>(voteSystem);
 
-            _questionService.UpdateQuestions(voteSystemAsDto);
+            _questionService.UpdateQuestions(voteSystemWithQuestionsAsDto);
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }
@@ -94,7 +96,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult Question(int voteSystemId)
+        public PartialViewResult AddNewQuestion(int voteSystemId)
         {
             var questionViewModel = new QuestionViewModel
             {

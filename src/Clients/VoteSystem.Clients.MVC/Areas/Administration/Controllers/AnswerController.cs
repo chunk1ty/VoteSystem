@@ -7,7 +7,6 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
     public class AnswerController : AdminController
     {
-        
         [HttpGet]
         public ActionResult Answer(string containerPrefix)
         {

@@ -1,4 +1,4 @@
-﻿@model VoteSystem.Clients.MVC.ViewModels.UserSelectedViewModel
+﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.User.UserSelectedViewModel
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -20,16 +20,7 @@
 @using (Html.BeginForm<UserController>(c => c.Add(0), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.RateSystemId)
-
-    // TODO use BeginCollection instead this bullshit
-    for (int i = 0; i < Model.Users.Count; i++)
-    {
-        @Html.HiddenFor(m => m.Users[i].Id)
-        @Html.HiddenFor(m => m.Users[i].FN)
-        @Html.HiddenFor(m => m.Users[i].FirstName)
-        @Html.HiddenFor(m => m.Users[i].LastName)
-    }
+    @Html.HiddenFor(m => m.VoteSystemId)
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">

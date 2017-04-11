@@ -22,8 +22,6 @@ namespace VoteSystem.Data.Ef.Migrations
         {
             this.CreateAdministrator(context);
             this.CreateUsers(context, 20);
-
-            // this.SimpleData(context);
         }
 
         private void CreateAdministrator(VoteSystemDbContext context)
@@ -77,31 +75,21 @@ namespace VoteSystem.Data.Ef.Migrations
                     EmailConfirmed = true
                 };
 
-                userManager.Create(user, UserPassword);
-            }
-        }
-
-        private void SimpleData(VoteSystemDbContext context)
-        {
-            if (context.VoteSystems.Count() == 0)
-            {
-                Entities.VoteSystem ankk = new Entities.VoteSystem() { Id = 1, Name = "Anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
-                Entities.VoteSystem ankk1 = new Entities.VoteSystem() { Id = 2, Name = "Neshto kato anketa", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
-                Entities.VoteSystem ank2 = new Entities.VoteSystem() { Id = 3, Name = "loren", EndDateTime = DateTime.Now, StarDateTime = DateTime.Now };
-
-                context.SaveChanges();
-                context.VoteSystems.AddOrUpdate(ankk);
-
-                for (int i = 0; i < 20; i++)
+                var voteSystemUser = new VoteSystemUser()
                 {
-                    Random rd = new Random();
-                    Question q = new Question() { Id = i + 1, Name = "Question" + i, VoteSystemId = rd.Next(1, 4) };
-                    context.Questions.AddOrUpdate(q);
-                    context.SaveChanges();
-                }
+                    Id = Guid.NewGuid(),
+                    Email = "user" + i + "@abv.bg",
+                    FN = 1000 + i,
+                    FirstName = "FirstUserName" + i,
+                    LastName = "LastUserName" + i,
+                };
 
-                context.SaveChanges();
+                userManager.Create(user, UserPassword);
+
+                context.VoteSystemUsers.Add(voteSystemUser);
             }
+
+            context.SaveChanges();
         }
     }
 }

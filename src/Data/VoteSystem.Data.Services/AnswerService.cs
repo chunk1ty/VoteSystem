@@ -4,21 +4,21 @@ using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Data.Services
 {
-    public class QuestionAnswerService : IQuestionAnswerService
+    public class AnswerService : IAnswerService
     {
-        private readonly IQuestionAnswerRepository _questionAnswerRepository;
+        private readonly IAnswerRepository _answerRepository;
         private readonly IVoteSystemEfDbContextSaveChanges _dbContextSaveChanges;
 
-        public QuestionAnswerService(IQuestionAnswerRepository questionAnswerRepository, IVoteSystemEfDbContextSaveChanges dbContextSaveChanges)
+        public AnswerService(IAnswerRepository answerRepository, IVoteSystemEfDbContextSaveChanges dbContextSaveChanges)
         {
-            _questionAnswerRepository = questionAnswerRepository;
+            _answerRepository = answerRepository;
             _dbContextSaveChanges = dbContextSaveChanges;
         }
 
         public void Add(Answer questionAndAnswers)
         {
             // TODO add mapping logic
-            _questionAnswerRepository.Add(questionAndAnswers);
+            _answerRepository.Add(questionAndAnswers);
 
             _dbContextSaveChanges.SaveChanges();
         }

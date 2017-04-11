@@ -1,52 +1,51 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
-using VoteSystem.Authentication;
+
+using VoteSystem.Clients.MVC.Areas.Administration.Models.User;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
-using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem;
-using VoteSystem.Clients.MVC.ViewModels;
-using VoteSystem.Common;
 using VoteSystem.Common.Constants;
-using VoteSystem.Data.Services;
 using VoteSystem.Data.Services.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
     public class UserController : AdminController
     {
-        private VoteSystemUserService voteSystemUsers;
-        private IParticipantService participants;
-        private IVoteSystemService voteSystems;
+        private readonly IVoteSystemUserService _voteSystemUserService;
+        private IParticipantService _participantService;
+        private IVoteSystemService _voteSystemService;
 
-        public UserController(VoteSystemUserService voteSystemUsers, IParticipantService participants, IVoteSystemService voteSystems)
+        public UserController(
+            IVoteSystemUserService voteSystemUserService, 
+            IParticipantService participantService, 
+            IVoteSystemService voteSystemService)
         {
-            this.voteSystemUsers = voteSystemUsers;
-            this.participants = participants;
-            this.voteSystems = voteSystems;
+            _voteSystemUserService = voteSystemUserService;
+            _participantService = participantService;
+            _voteSystemService = voteSystemService;
         }
         
-        public ActionResult Add(int rateSystemId)
+        [HttpGet]
+        public ActionResult Add(int voteSystemId)
         {
-            //var voteSystemUsers = this.voteSystemUsers
-            //    .GetAllUnselectUsers(rateSystemId)
-            //    .To<UserViewModel>()
-            //    .ToList();
+            var voteSystemUserService = _voteSystemUserService
+                                                        .GetAllUnselectUsers(voteSystemId)
+                                                        .To<UserViewModel>()
+                                                        .ToList();
 
-            //var userSelectedVM = new UserSelectedViewModel()
-            //{
-            //    Users = voteSystemUsers,
-            //    VoteSystemId = rateSystemId
-            //};           
+            var userSelectedVM = new UserSelectedViewModel()
+            {
+                Users = voteSystemUserService,
+                VoteSystemId = voteSystemId
+            };
 
-            //return this.View(userSelectedVM);
-            return this.View();
+            return View(userSelectedVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Add(UserSelectedViewModel model)
+        public ActionResult Add(UserSelectedViewModel model)
         {
             //var getSelectedUsers = model.GetSelectedUsers();
 
@@ -65,28 +64,28 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //        //UserId = participant.Id
             //    };
 
-            //    this.participants.Add(currentParticipant);
+            //    this._participantService.Add(currentParticipant);
             //}
 
             //// TODO use dbContext.savechanges
-            ////this.participants.SaveChanges();
+            ////this._participantService.SaveChanges();
 
             //this.AddNotification("Успешно добавихте учасници!", NotificationType.SUCCESS);
 
-            return this.RedirectToAction<UserController>(c => c.Add(model.RateSystemId));
+            return this.RedirectToAction<UserController>(c => c.Add(model.VoteSystemId));
         }
 
         public ActionResult Remove(int rateSystemId)
         {
-            //var voteSystemUsers = this.voteSystemUsers
-            //    .GetAllSelectUsers(rateSystemId)
+            //var _voteSystemUserService = this._voteSystemUserService
+            //    .GetAllSelectUsers(voteSystemId)
             //    .To<UserViewModel>()
             //    .ToList();
 
             //var userSelectedVM = new UserSelectedViewModel()
             //{
-            //    Users = voteSystemUsers,
-            //    VoteSystemId = rateSystemId
+            //    Users = _voteSystemUserService,
+            //    VoteSystemId = voteSystemId
             //};
 
             //return this.View(userSelectedVM);
@@ -107,33 +106,33 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
             //foreach (var participant in getSelectedUsers)
             //{
-            //    var currentParticipant = this.participants.GetParticipantBySurveyIdAndUserId(model.VoteSystemId, participant.Id);
+            //    var currentParticipant = this._participantService.GetParticipantBySurveyIdAndUserId(model.VoteSystemId, participant.Id);
 
             //    if (currentParticipant == null)
             //    {
             //        throw new ArgumentNullException("Participant can not be found!");
             //    }
 
-            //    this.participants.Remove(currentParticipant);
+            //    this._participantService.Remove(currentParticipant);
             //}
 
             // TODO use dbContext.savechanges
-            //this.participants.SaveChanges();
+            //this._participantService.SaveChanges();
 
-            return this.RedirectToAction<UserController>(c => c.Remove(model.RateSystemId));
+            return this.RedirectToAction<UserController>(c => c.Remove(model.VoteSystemId));
         }
 
         public ActionResult Preview(int rateSystemId)
         {
-            //var voteSystemUsers = this.voteSystemUsers
-            //    .GetAllSelectUsers(rateSystemId)
+            //var _voteSystemUserService = this._voteSystemUserService
+            //    .GetAllSelectUsers(voteSystemId)
             //    .To<UserViewModel>()
             //    .ToList();
 
             //var userSelectedVM = new UserSelectedViewModel()
             //{
-            //    Users = voteSystemUsers,
-            //    VoteSystemId = rateSystemId
+            //    Users = _voteSystemUserService,
+            //    VoteSystemId = voteSystemId
             //};
 
             //return this.View(userSelectedVM);
@@ -142,14 +141,14 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         public async Task<ActionResult> SentEmails(int rateSystemId)
         {
-            //var voteSystemUsers = this.voteSystemUsers
-            //    .GetAllSelectUsers(rateSystemId)
+            //var _voteSystemUserService = this._voteSystemUserService
+            //    .GetAllSelectUsers(voteSystemId)
             //    .Select(x => x.Email).ToList();
 
-            //var rateSystem = this.voteSystems.GetById(rateSystemId);
+            //var rateSystem = this._voteSystemService.GetById(voteSystemId);
 
             //EmailService email = new EmailService();
-            //await email.SendAddedParticipantsAsync(voteSystemUsers, rateSystem);
+            //await email.SendAddedParticipantsAsync(_voteSystemUserService, rateSystem);
 
             //this.AddNotification("Успешно изпратихте имейли на всички учасници!", NotificationType.SUCCESS);
 

@@ -111,9 +111,14 @@ namespace VoteSystem.Clients.MVC
             // TODO bind the entire assembly
             kernel.Bind<ICacheService>().To<CacheService>();
             kernel.Bind<IIdentifierProvider>().To<IdentifierProvider>();
-            kernel.Bind<IVoteSystemRepository>().To<EfVoteSystemRepository>();
             kernel.Bind<IIdentityMessageService>().To<EmailService>().InSingletonScope();
+
+            kernel.Bind<IVoteSystemRepository>().To<EfVoteSystemRepository>();
             kernel.Bind<IQuestionRepository>().To<EfQuestionRepository>();
+            kernel.Bind<IVoteSystemUserRepository>().To<EfVoteSystemUserRepository>();
+            kernel.Bind<IAnswerRepository>().To<EfAnswerRepository>();
+            kernel.Bind<IParticipantAnswerRepository>().To<EfParticipantAnswerRepository>();
+            kernel.Bind<IParticipantRepository>().To<EfParticipantRepository>();
         }        
     }
 }

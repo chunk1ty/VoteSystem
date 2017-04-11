@@ -65,7 +65,7 @@
 //            var actualResult = actionResult.Model as QuestionAndAnswersViewModel;
 
 //            Assert.IsNotNull(actualResult);
-//            Assert.AreEqual(actualResult.RateSystemId, voteSystemId);
+//            Assert.AreEqual(actualResult.VoteSystemId, voteSystemId);
 //        }
 
 //        [Test]
@@ -77,7 +77,7 @@
 
 //            var vm = new QuestionAndAnswersViewModel()
 //            {
-//                RateSystemId = expectedRateSystemId,
+//                VoteSystemId = expectedRateSystemId,
 //                Questions = new List<QuestionViewModel>()
 //                {
 //                    new QuestionViewModel()
@@ -95,7 +95,7 @@
 //            var actualResult = actionResult.Model as QuestionAndAnswersViewModel;
 
 //            Assert.IsNotNull(actualResult);
-//            Assert.AreEqual(actualResult.RateSystemId, expectedRateSystemId);
+//            Assert.AreEqual(actualResult.VoteSystemId, expectedRateSystemId);
 //            Assert.AreEqual(actualResult.Questions.Count(), 1);
 //            Assert.AreEqual(actualResult.Questions[0].Id, expectedQuestionId);
 //            Assert.AreEqual(actualResult.Questions[0].QuestionName, expectedQuestionName);
@@ -120,7 +120,7 @@
 
 //            var vm = new QuestionAndAnswersViewModel()
 //            {
-//                RateSystemId = expectedRateSystemId,
+//                VoteSystemId = expectedRateSystemId,
 //                Questions = new List<QuestionViewModel>()
 //                {
 //                }
@@ -132,7 +132,7 @@
 //            var actualResult = actionResult.Model as QuestionAndAnswersViewModel;
 
 //            Assert.IsNotNull(actualResult);
-//            Assert.AreEqual(actualResult.RateSystemId, expectedRateSystemId);
+//            Assert.AreEqual(actualResult.VoteSystemId, expectedRateSystemId);
 //        }
 
 //        [Test]
@@ -143,7 +143,7 @@
 
 //            var vm = new QuestionAndAnswersViewModel()
 //            {
-//                RateSystemId = expectedRateSystemId,
+//                VoteSystemId = expectedRateSystemId,
 //                Questions = new List<QuestionViewModel>()
 //                {
 //                    new QuestionViewModel()
@@ -157,7 +157,7 @@
 //            controller.Create(vm);
            
 //            //_mockedQuestionService.Verify(
-//            //    x => x.Add(It.Is<Question>(
+//            //    x => x.Add(It.Is<AddNewQuestion>(
 //            //        q => q.QuestionName == expectedQuestionName)), 
 //            //        Times.Once);
 //        }
@@ -170,7 +170,7 @@
 
 //            var vm = new QuestionAndAnswersViewModel()
 //            {
-//                RateSystemId = expectedRateSystemId,
+//                VoteSystemId = expectedRateSystemId,
 //                Questions = new List<QuestionViewModel>()
 //                {
 //                    new QuestionViewModel()

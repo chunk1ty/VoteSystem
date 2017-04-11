@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace VoteSystem.Clients.MVC.ViewModels
+namespace VoteSystem.Clients.MVC.Areas.Administration.Models.User
 {
     public class UserSelectedViewModel
     {
@@ -10,7 +10,7 @@ namespace VoteSystem.Clients.MVC.ViewModels
             this.Users = new List<UserViewModel>();
         }
 
-        public int RateSystemId { get; set; }
+        public int VoteSystemId { get; set; }
 
         public IList<UserViewModel> Users { get; set; }
 

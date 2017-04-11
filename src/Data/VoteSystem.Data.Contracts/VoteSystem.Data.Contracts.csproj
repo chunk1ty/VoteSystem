@@ -38,7 +38,7 @@
     <Compile Include="IVoteSystemUserRepository.cs" />
     <Compile Include="IVoteSystemRepository.cs" />
     <Compile Include="IQuestionRepository.cs" />
-    <Compile Include="IQuestionAnswerRepository.cs" />
+    <Compile Include="IAnswerRepository.cs" />
     <Compile Include="IParticipantRepository.cs" />
     <Compile Include="IParticipantAnswerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

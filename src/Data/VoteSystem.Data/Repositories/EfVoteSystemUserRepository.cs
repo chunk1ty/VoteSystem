@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Entities;

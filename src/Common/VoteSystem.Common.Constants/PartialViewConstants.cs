@@ -18,6 +18,6 @@
 
         public const string WarningNotificationPartial = "~/Views/Shared/Notifications/_WarningNotificationPartial.cshtml";
 
-        public const string DeleteModalPartial = "~/Areas/Administration/Views/Shared/_DeleteModalPartial.cshtml";
+        public const string DeleteModalPartial = "~/Areas/Administration/Views/VoteSystem/_DeleteModalPartial.cshtml";
     }
 }

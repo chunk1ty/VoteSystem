@@ -6,7 +6,7 @@ using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Data.Ef.Repositories
 {
-    public class EfAnswerRepository : IQuestionAnswerRepository
+    public class EfAnswerRepository : IAnswerRepository
     {
         private readonly IVoteSystemDbContext _voteSystemDbContext;
 

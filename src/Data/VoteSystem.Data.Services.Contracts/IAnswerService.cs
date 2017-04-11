@@ -1,8 +1,8 @@
 ﻿using VoteSystem.Data.Entities;
 
-namespace VoteSystem.Data.Contracts
+namespace VoteSystem.Data.Services.Contracts
 {
-    public interface IQuestionAnswerRepository
+    public interface IAnswerService
     {
         void Add(Answer questionAndAnswers);
     }
