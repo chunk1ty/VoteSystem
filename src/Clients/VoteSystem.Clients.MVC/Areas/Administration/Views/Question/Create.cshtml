@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VoteSystem.Clients.MVC.Areas.Administration.Models.Question.QuestionViewModel>
+﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem.VoteSystemWithQuestionsViewModel
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -45,7 +45,7 @@
 @section scripts {
     @Scripts.Render("~/bundles/questionController")
 
-    @*TODO move back in questionCOntroller when i understand how to pass @Model.VoteSystemId*@ 
+    @*TODO move it back in questionCOntroller when i understand how to pass ViewBag.VoteSystemId*@ 
     <script>
         var newQuestionUrl = "/admin/question/question";
 

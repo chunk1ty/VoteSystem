@@ -1,29 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
 
 using VoteSystem.Clients.MVC.Areas.Administration.Models.Question;
+using VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Common.Constants;
-using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
+using VotySystem.Data.DTO;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
     public class QuestionController : AdminController
     {
-        private IQuestionService _questionService;
+        private readonly IQuestionService _questionService;
 
-        public QuestionController(IQuestionService questions)
+        public QuestionController(IQuestionService questionService)
         {
-            if (questions == null)
-            {
-                throw new ArgumentNullException("questionService");
-            }
-
-            _questionService = questions;
+            _questionService = questionService ?? throw new ArgumentNullException(nameof(questionService));
         }
 
         [HttpGet]
@@ -31,7 +26,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         {
             if (voteSystemId <= 0)
             {
-                return Content("voteSystemId can not be negative number or 0");
+                return Content("voteSystemId cannot be negative number or 0");
             }
 
             ViewBag.VoteSystemId = voteSystemId;
@@ -41,21 +36,14 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IEnumerable<QuestionViewModel> model)
+        public ActionResult Create(VoteSystemWithQuestionsViewModel voteSystem)
         {
-            //if (!ValidatePostRequest(model))
-            //{
-            //    return View(model);
-            //}
+            if (!ValidatePostRequest(voteSystem))
+            {
+                return View(voteSystem);
+            }
 
-            //foreach (var question in model.Questions)
-            //{
-            //    // TODO Bulk insert
-            //    var questionAsDbModel = Mapper.Map<Question>(question);
-            //    questionAsDbModel.VoteSystemId = model.VoteSystemId;
-
-            //    _questionService.Add(questionAsDbModel);
-            //}
+            _questionService.AddQuestions(Mapper.Map<VoteSystemWithQuestionsDto>(voteSystem));
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }
@@ -68,62 +56,45 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                                     .To<QuestionViewModel>()
                                     .ToList();
 
+            ViewBag.VoteSystemId = voteSystemId;
+
             var voteSystem = new VoteSystemWithQuestionsViewModel()
             {
-                Questions = questions,
-                VoteSystemId = voteSystemId
+                Questions = questions
             };
 
             return View(voteSystem);
         }
-
-        // TODO optimize method
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(VoteSystemWithQuestionsViewModel model)
+        public ActionResult Edit(VoteSystemWithQuestionsViewModel voteSystem)
         {
-            if (!ValidatePostRequest(model))
+            if (!ValidatePostRequest(voteSystem))
             {
-                return View(model);
+                return View(voteSystem);
             }
 
-            //var allExistingQuestions = _questionService.GetQuestionsWithAnswersByVoteSystemId(model.VoteSystemId);
+            var voteSystemAsDto = Mapper.Map<VoteSystemWithQuestionsDto>(voteSystem);
 
-            //foreach (var existingQuestion in allExistingQuestions)
-            //{
-            //    _questionService.Delete(existingQuestion);
-            //}
-
-            //// TODO use dbContext.savechanges
-            ////this._questionService.SaveChanges();
-
-            //foreach (var question in model.Questions)
-            //{
-            //    var questionDbModel = this.Mapper.Map<Question>(question);
-            //    questionDbModel.VoteSystemId = model.VoteSystemId;
-
-            //    this._questionService.Add(questionDbModel);
-            //}
-
-            ////TODO use dbContext.savechanges
-            //this._questionService.SaveChanges();
+            _questionService.UpdateQuestions(voteSystemAsDto);
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }
 
+        [HttpGet]
         public ActionResult Preview(int voteSystemId)
         {
-            //var questionsAsVM = this._questionService
-            //    .GetQuestionsWithAnswersByVoteSystemId(voteSystemId)
-            //    .To<QuestionViewModel>()
-            //    .ToList();
+            var questionsAsViewModel = _questionService
+                                                    .GetQuestionsWithAnswersByVoteSystemId(voteSystemId)
+                                                    .To<QuestionViewModel>()
+                                                    .ToList();
 
-            //return this.View(questionsAsVM);
-            return this.View();
+            return View(questionsAsViewModel);
         }
 
         [HttpGet]
-        public ActionResult Question(int voteSystemId)
+        public PartialViewResult Question(int voteSystemId)
         {
             var questionViewModel = new QuestionViewModel
             {
@@ -131,29 +102,6 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             };
 
             return PartialView(PartialViewConstants.QuestionPartial, questionViewModel);
-        }
-
-
-        [HttpGet]
-        public ActionResult GetQuestionsByVoteSystemId(int voteSystemId)
-        {
-            //var result = this.questions
-            //   .GetUsersAnswers(voteSystemId)
-            //   .Select(x => new
-            //   {
-            //       questionName = x.Name,
-            //       questionType = x.HasMultipleAnswers,
-            //       questionAnswers = x.Answers.Select(
-            //           y => new
-            //           {
-            //               questionAnswerName = y.Name,
-            //               userAnswerCount = y.ParticipantAnswers.Count
-            //           })
-            //   })
-            //   .ToList();
-
-            //return this.Json(result, JsonRequestBehavior.AllowGet);
-            return this.View();
         }
 
         private bool ValidatePostRequest(VoteSystemWithQuestionsViewModel model)

@@ -50,10 +50,11 @@
                         </div>
 
                         <div class="@currentQuestionList">
-                            @*@foreach (var item in Model.Answers)
+                            @*use when edit questions*@
+                            @foreach (var item in Model.Answers)
                             {
                                 Html.RenderPartial(PartialViewConstants.AnswerPartial, item);
-                            }*@
+                            }
                         </div>
                     }
                 </div>

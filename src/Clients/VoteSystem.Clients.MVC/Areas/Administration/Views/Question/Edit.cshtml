@@ -1,8 +1,7 @@
-﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.Question.VoteSystemWithQuestionsViewModel
+﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem.VoteSystemWithQuestionsViewModel
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
-    int counter = 0;
 }
 
 @section styles {
@@ -16,9 +15,6 @@
 @using (Html.BeginForm<QuestionController>(c => c.Edit(0), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.VoteSystemId)
-    //TODO rename more-question-url
-    @Html.Hidden("more-question-url", Url.Action<QuestionController>(c => c.Question()))
 
     <div class="text-center" style="padding-bottom: 20px;">
         <h2 class="my-header-title">
@@ -42,7 +38,6 @@
     <div id="question-list">
         @foreach (var question in Model.Questions)
         {
-            counter++;
             Html.RenderPartial(PartialViewConstants.QuestionPartial, question);
         }
     </div>
@@ -50,4 +45,45 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/questionController")
+
+    @*TODO move it back in questionCOntroller when i understand how to pass ViewBag.VoteSystemId*@
+    <script>
+        var newQuestionUrl = "/admin/question/question";
+
+        $('#add-more-questions').on('click', function () {
+
+            $.ajax({
+                type: 'GET',
+                url: newQuestionUrl,
+                data: { voteSystemId: '@ViewBag.VoteSystemId' },
+                success: function (html) {
+                    $('#question-list').append(html);
+
+                    $('.close-link').on('click', function () {
+                        $(this)
+                            .closest('div.row')
+                            .remove();
+                    });
+
+                    $('.collapse-link').off().on('click', function () {
+                        var x_panel = $(this).closest('div.x_panel');
+                        var button = $(this).find('i');
+                        var content = x_panel.find('div.x_content');
+
+                        content.slideToggle(200);
+                        (x_panel.hasClass('fixed_height_390') ? x_panel.toggleClass('').toggleClass('fixed_height_390') : '');
+                        (x_panel.hasClass('fixed_height_320') ? x_panel.toggleClass('').toggleClass('fixed_height_320') : '');
+                        button.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+                        setTimeout(function () {
+                            x_panel.resize();
+                        }, 50);
+                    });
+                },
+                error: function (ex) {
+                    alert('Can not add new question ' + ex);
+                }
+            });
+        });
+    </script>
 }

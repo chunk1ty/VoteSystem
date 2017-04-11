@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
 
@@ -11,10 +12,12 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
     public class VoteSystemController : AdminController
     {
         private readonly IVoteSystemService _voteSystemService;
+        private readonly IQuestionService _questionService;
 
-        public VoteSystemController(IVoteSystemService voteSystemService)
+        public VoteSystemController(IVoteSystemService voteSystemService, IQuestionService questionService)
         {
-            _voteSystemService = voteSystemService;
+            _voteSystemService = voteSystemService ?? throw new ArgumentNullException(nameof(voteSystemService));
+            _questionService = questionService ?? throw new ArgumentNullException(nameof(questionService));
         }
 
         [HttpGet]
@@ -25,13 +28,13 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                                                 .To<VoteSystemViewModel>()
                                                 .ToList();
 
-            return this.View(allVoteSystems);
+            return View(allVoteSystems);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            return this.View();
+            return View();
         }
 
         [HttpPost]
@@ -76,7 +79,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int voteSystemId)
+        public ContentResult Delete(int voteSystemId)
         {
             _voteSystemService.Delete(voteSystemId);
 
@@ -87,6 +90,21 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         public ActionResult Result(int voteSystemId)
         {
             return View(voteSystemId);
+        }
+
+        [HttpGet]
+        public JsonResult GetVoteSystemResultsById(int voteSystemId)
+        {
+            if (voteSystemId <= 0)
+            {
+                return Json("voteSystemId can not be negative number or 0", JsonRequestBehavior.AllowGet);
+            }
+
+            var result = _questionService
+                                .GetQuestionResultByVoteSystemId(voteSystemId)
+                                .ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         private bool ValidatePostRequest(VoteSystemViewModel model)

@@ -8,6 +8,8 @@ namespace VoteSystem.Data.Contracts
     {
         void Add(Question question);
 
+        void Update(Question question);
+
         void Delete(Question question);
 
         IEnumerable<Question> GetAllQuestionsWithAnswers();

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Data.Ef.Repositories
 {
-    public class EfQuestionAnswerRepository : IQuestionAnswerRepository
+    public class EfAnswerRepository : IQuestionAnswerRepository
     {
         private readonly IVoteSystemDbContext _voteSystemDbContext;
 
-        public EfQuestionAnswerRepository(IVoteSystemDbContext voteSystemDbContext)
+        public EfAnswerRepository(IVoteSystemDbContext voteSystemDbContext)
         {
             _voteSystemDbContext = voteSystemDbContext;
         }

@@ -86,7 +86,7 @@
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Repositories\EfParticipantAnswerRepository.cs" />
     <Compile Include="Repositories\EfParticipantRepository.cs" />
-    <Compile Include="Repositories\EfQuestionAnswerRepository.cs" />
+    <Compile Include="Repositories\EfAnswerRepository.cs" />
     <Compile Include="Repositories\EfQuestionRepository.cs" />
     <Compile Include="Repositories\EfVoteSystemRepository.cs" />
     <Compile Include="Repositories\EfVoteSystemUserRepository.cs" />

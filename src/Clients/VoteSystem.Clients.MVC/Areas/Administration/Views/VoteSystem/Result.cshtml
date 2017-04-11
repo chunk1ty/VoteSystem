@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-@Html.Hidden("get-all-questionRepository-url", Url.Action<QuestionController>(c => c.GetQuestionsByVoteSystemId(Model)))
+@Html.Hidden("get-all-questionRepository-url", Url.Action<QuestionController>(c => c.GetVoteSystemResultsById(Model)))
 
 <div class="row">
     <div class="text-center" style="padding-bottom: 20px;">

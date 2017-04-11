@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
 using VoteSystem.Services.Web.Contracts;
+using VotySystem.Data.DTO;
 
 namespace VoteSystem.Data.Services
 {
@@ -13,7 +15,10 @@ namespace VoteSystem.Data.Services
         private readonly IIdentifierProvider _identifierProvider;
         private readonly IVoteSystemEfDbContextSaveChanges _dbContextSaveChanges;
 
-        public QuestionService(IQuestionRepository questionRepository, IIdentifierProvider identifierProvider, IVoteSystemEfDbContextSaveChanges dbContextSaveChanges)
+        public QuestionService(
+            IQuestionRepository questionRepository, 
+            IIdentifierProvider identifierProvider, 
+            IVoteSystemEfDbContextSaveChanges dbContextSaveChanges)
         {
             _questionRepository = questionRepository;
             _identifierProvider = identifierProvider;
@@ -27,9 +32,37 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
+        // TODO bulk insert
+        public void AddQuestions(VoteSystemWithQuestionsDto voteSystem)
+        {
+            foreach (var question in voteSystem.Questions)
+            {
+                _questionRepository.Add(question);
+            }
+
+            _dbContextSaveChanges.SaveChanges();
+        }
+
+        public void UpdateQuestions(VoteSystemWithQuestionsDto voteSystem)
+        {
+            var voteSystemId = voteSystem.Questions.FirstOrDefault().VoteSystemId;
+            var allExistingQuestions = GetQuestionsWithAnswersByVoteSystemId(voteSystemId);
+
+            foreach (var question in allExistingQuestions)
+            {
+                _questionRepository.Delete(question);
+            }
+
+            foreach (var question in voteSystem.Questions)
+            {
+                _questionRepository.Add(question);
+            }
+
+            _dbContextSaveChanges.SaveChanges();
+        }
+
         public void Delete(Question question)
         {
-            // TODO add mapping logic
             _questionRepository.Delete(question);
 
             _dbContextSaveChanges.SaveChanges();
@@ -37,7 +70,6 @@ namespace VoteSystem.Data.Services
 
         public IEnumerable<Question> GetAllQuestions(string voteSystemId)
         {
-            // TODO add mapping logic
             var decodedVoteSystemId = this._identifierProvider.DecodeId(voteSystemId);
            
             return _questionRepository
@@ -53,11 +85,23 @@ namespace VoteSystem.Data.Services
                                     .Where(x => x.VoteSystemId == voteSystemId && !x.IsDeleted);
         }
 
-        public IEnumerable<Question> GetUsersAnswers(int voteSystemId)
+        public IEnumerable<QuestionResultDto> GetQuestionResultByVoteSystemId(int voteSystemId)
         {
-            // TODO add mapping logic
+            var result = _questionRepository
+                                    .GetUsersAnswersByVoteSystemId(voteSystemId)
+                                    .Select(x => new QuestionResultDto()
+                                    {
+                                        Name = x.Name,
+                                        HasMultipleAnswers = x.HasMultipleAnswers,
+                                        Answers = x.Answers.Select(
+                                               y => new AnswerResultDto()
+                                               {
+                                                   Name = y.Name,
+                                                   Count = y.ParticipantAnswers.Count
+                                               })
+                                    });
 
-            return _questionRepository.GetUsersAnswersByVoteSystemId(voteSystemId);
+            return result;
         }
     }
 }

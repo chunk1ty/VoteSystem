@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using VoteSystem.Data.Entities;
+using VotySystem.Data.DTO;
 
 namespace VoteSystem.Data.Services.Contracts
 {
@@ -8,12 +9,16 @@ namespace VoteSystem.Data.Services.Contracts
     {
         void Add(Question question);
 
+        void AddQuestions(VoteSystemWithQuestionsDto voteSystem);
+
+        void UpdateQuestions(VoteSystemWithQuestionsDto voteSystem);
+
         void Delete(Question question);
 
         IEnumerable<Question> GetAllQuestions(string voteSystemId);
 
         IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(int voteSystemId);
 
-        IEnumerable<Question> GetUsersAnswers(int rateSystemId);
+        IEnumerable<QuestionResultDto> GetQuestionResultByVoteSystemId(int rateSystemId);
     }
 }
