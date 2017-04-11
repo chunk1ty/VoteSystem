@@ -4,7 +4,7 @@
     var currentQuestionClass = Guid.NewGuid();
 }
 
-@using (Html.BeginCollectionItem((string)ViewBag.ContainerPrefix + ".QuestionAnswers"))
+@using (Html.BeginCollectionItem((string)ViewBag.ContainerPrefix + ".Answers"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Name, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
@@ -31,7 +31,7 @@
         $('.@currentQuestionClass')
             .closest('.form-group')
             .prev()
-            .attr('name', currentQuestionNameAttr + '.QuestionAnswers.index');
+            .attr('name', currentQuestionNameAttr + '.Answers.index');
 
         $('.@currentQuestionClass')
             .attr('name', currentQuestionNameAttr + '.' + currentQuestionAnswerNameAttr);

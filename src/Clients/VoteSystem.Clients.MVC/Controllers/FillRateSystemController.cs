@@ -26,7 +26,7 @@ namespace VoteSystem.Clients.MVC.Controllers
         public ActionResult Fill(string rateSystemID)
         {
             //var questions = this.questions
-            //                    .GetQuestionsByVoteSystemId(rateSystemID)
+            //                    .GetQuestionsWithAnswersByVoteSystemId(rateSystemID)
             //                    .To<FillQuestionsViewModel>()
             //                    .ToList();
 
@@ -52,7 +52,7 @@ namespace VoteSystem.Clients.MVC.Controllers
 
             //    if (question.HasMultipleAnswers)
             //    {
-            //        bool isNotChecked = question.QuestionAnswers.All(x => x.IsChecked == false);
+            //        bool isNotChecked = question.Answers.All(x => x.IsChecked == false);
 
             //        if (isNotChecked)
             //        {
@@ -60,7 +60,7 @@ namespace VoteSystem.Clients.MVC.Controllers
             //            return this.View(questions);
             //        }
 
-            //        foreach (var answer in question.QuestionAnswers)
+            //        foreach (var answer in question.Answers)
             //        {
             //            if (answer.IsChecked)
             //            {

@@ -11,11 +11,13 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Models.Question
     {
         public QuestionViewModel()
         {
-            QuestionAnswers = new List<AnswerViewModel>();
+            Answers = new List<AnswerViewModel>();
         }
-
+       
         public int Id { get; set; }
-        
+
+        public int VoteSystemId { get; set; }
+
         [DisplayName("Име на въпроса")]
         [Required(ErrorMessage = "Името на въпросът е задължително.")]
         [MinLength(2, ErrorMessage = "Въпросът не може да е по-малък от 2 символа.")]
@@ -26,6 +28,6 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Models.Question
         [DisplayName("Бихте ли желали да има повече от един отговор?")]
         public bool HasMultipleAnswers { get; set; }
 
-        public IList<AnswerViewModel> QuestionAnswers { get; set; }
+        public IList<AnswerViewModel> Answers { get; set; }
     }
 }

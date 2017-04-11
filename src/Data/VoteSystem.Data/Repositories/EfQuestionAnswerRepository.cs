@@ -15,7 +15,7 @@ namespace VoteSystem.Data.Ef.Repositories
             _voteSystemDbContext = voteSystemDbContext;
         }
 
-        public void Add(QuestionAnswer questionAndAnswers)
+        public void Add(Answer questionAndAnswers)
         {
             var entry = _voteSystemDbContext.Entry(questionAndAnswers);
 

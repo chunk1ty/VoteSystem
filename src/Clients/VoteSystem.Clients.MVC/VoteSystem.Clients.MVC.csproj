@@ -526,7 +526,7 @@
     <Content Include="Areas\Administration\Views\Question\_QuestionPartial.cshtml" />
     <Content Include="Areas\Administration\Views\Answer\_AnswerPartial.cshtml" />
     <Content Include="Areas\Administration\Views\VoteSystem\Result.cshtml" />
-    <Content Include="Areas\Administration\Views\VoteSystem\EditorTemplates\VoteSystemPostViewModel.cshtml" />
+    <Content Include="Areas\Administration\Views\VoteSystem\EditorTemplates\VoteSystemViewModel.cshtml" />
     <Content Include="Areas\Administration\Views\VoteSystem\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Preview.cshtml" />
@@ -702,7 +702,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Views\Result\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

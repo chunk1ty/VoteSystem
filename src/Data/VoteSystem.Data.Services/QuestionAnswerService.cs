@@ -15,7 +15,7 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges = dbContextSaveChanges;
         }
 
-        public void Add(QuestionAnswer questionAndAnswers)
+        public void Add(Answer questionAndAnswers)
         {
             // TODO add mapping logic
             _questionAnswerRepository.Add(questionAndAnswers);

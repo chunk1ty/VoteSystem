@@ -9,7 +9,7 @@ namespace VoteSystem.Data.Entities
     {
         public Question()
         {
-            QuestionAnswers = new HashSet<QuestionAnswer>();
+            Answers = new HashSet<Answer>();
         }
 
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace VoteSystem.Data.Entities
         public int VoteSystemId { get; set; }
         public virtual VoteSystem VoteSystem { get; set; }
 
-        public ICollection<QuestionAnswer> QuestionAnswers { get; set; }
+        public ICollection<Answer> Answers { get; set; }
     }
 }

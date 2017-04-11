@@ -37,7 +37,7 @@
     <Compile Include="Contracts\IAuditInfo.cs" />
     <Compile Include="Contracts\IDeletableEntity.cs" />
     <Compile Include="Participant.cs" />
-    <Compile Include="QuestionAnswer.cs" />
+    <Compile Include="Answer.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="VoteSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

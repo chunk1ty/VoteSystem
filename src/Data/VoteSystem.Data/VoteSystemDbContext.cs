@@ -26,7 +26,7 @@ namespace VoteSystem.Data.Ef
 
         public virtual IDbSet<Question> Questions { get; set; }
 
-        public virtual IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
+        public virtual IDbSet<Answer> QuestionAnswers { get; set; }
 
         public virtual IDbSet<VoteSystemUser> VoteSystemUsers { get; set; }
 

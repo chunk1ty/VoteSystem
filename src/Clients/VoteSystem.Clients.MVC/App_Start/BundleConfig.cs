@@ -58,6 +58,9 @@ namespace VoteSystem.Clients.MVC
 
             bundles.Add(new StyleBundle("~/bundles/questionController").Include(
                 "~/Scripts/Custom/questionController.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/voteSystemController").Include(
+                "~/Scripts/Custom/voteSystemController.js"));
         }
 
         private static void RegisterStyles(BundleCollection bundles)

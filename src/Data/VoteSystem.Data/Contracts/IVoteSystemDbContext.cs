@@ -16,7 +16,7 @@ namespace VoteSystem.Data.Ef.Contracts
 
         IDbSet<Entities.VoteSystem> VoteSystems { get; set; }
 
-        IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
+        IDbSet<Answer> QuestionAnswers { get; set; }
 
         IDbSet<TEntity> Set<TEntity>() where TEntity : class;
 

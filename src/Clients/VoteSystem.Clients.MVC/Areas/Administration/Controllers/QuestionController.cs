@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
 
 using VoteSystem.Clients.MVC.Areas.Administration.Models.Question;
-using VoteSystem.Clients.MVC.ViewModels;
+using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Common.Constants;
 using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
@@ -33,46 +34,47 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                 return Content("voteSystemId can not be negative number or 0");
             }
 
-            return View(new VoteSystemWithQuestionsViewModel() { VoteSystemId = voteSystemId });
+            ViewBag.VoteSystemId = voteSystemId;
+
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(VoteSystemWithQuestionsViewModel model)
+        public ActionResult Create(IEnumerable<QuestionViewModel> model)
         {
-            if (!ModelState.IsValid || model == null)
-            {
-                return View(model);
-            }
+            //if (!ValidatePostRequest(model))
+            //{
+            //    return View(model);
+            //}
 
-            if (!model.Questions.Any())
-            {
-                ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
-                return View(model);
-            }
+            //foreach (var question in model.Questions)
+            //{
+            //    // TODO Bulk insert
+            //    var questionAsDbModel = Mapper.Map<Question>(question);
+            //    questionAsDbModel.VoteSystemId = model.VoteSystemId;
 
-            foreach (var question in model.Questions)
-            {
-                // TODO Bulk insert
-                var questionAsDbModel = Mapper.Map<Question>(question);
-                questionAsDbModel.VoteSystemId = model.VoteSystemId;
-
-                _questionService.Add(questionAsDbModel);
-            }
+            //    _questionService.Add(questionAsDbModel);
+            //}
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }
 
         [HttpGet]
-        public ActionResult Edit(int rateSystemId)
+        public ActionResult Edit(int voteSystemId)
         {
-            //var questions = this._questionService
-            //    .GetQuestionsByVoteSystemId(voteSystemId)
-            //    .To<QuestionViewModel>()
-            //    .ToList();
+            var questions = _questionService
+                                    .GetQuestionsWithAnswersByVoteSystemId(voteSystemId)
+                                    .To<QuestionViewModel>()
+                                    .ToList();
 
-            //return this.View(new VoteSystemWithQuestionsViewModel() { Questions = questions, VoteSystemId = voteSystemId });
-            return this.View();
+            var voteSystem = new VoteSystemWithQuestionsViewModel()
+            {
+                Questions = questions,
+                VoteSystemId = voteSystemId
+            };
+
+            return View(voteSystem);
         }
 
         // TODO optimize method
@@ -80,22 +82,16 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(VoteSystemWithQuestionsViewModel model)
         {
-            //if (!ModelState.IsValid || model == null)
-            //{
-            //    return this.View(model);
-            //}
+            if (!ValidatePostRequest(model))
+            {
+                return View(model);
+            }
 
-            //if (model.Questions.Count() == 0)
-            //{
-            //    this.ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
-            //    return this.View(model);
-            //}
-
-            //var allExistingQuestions = this._questionService.GetQuestionsByVoteSystemId(model.VoteSystemId);
+            //var allExistingQuestions = _questionService.GetQuestionsWithAnswersByVoteSystemId(model.VoteSystemId);
 
             //foreach (var existingQuestion in allExistingQuestions)
             //{
-            //    this._questionService.Delete(existingQuestion);
+            //    _questionService.Delete(existingQuestion);
             //}
 
             //// TODO use dbContext.savechanges
@@ -109,7 +105,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //    this._questionService.Add(questionDbModel);
             //}
 
-            // TODO use dbContext.savechanges
+            ////TODO use dbContext.savechanges
             //this._questionService.SaveChanges();
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
@@ -118,7 +114,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         public ActionResult Preview(int voteSystemId)
         {
             //var questionsAsVM = this._questionService
-            //    .GetQuestionsByVoteSystemId(voteSystemId)
+            //    .GetQuestionsWithAnswersByVoteSystemId(voteSystemId)
             //    .To<QuestionViewModel>()
             //    .ToList();
 
@@ -127,9 +123,14 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         }
 
         [HttpGet]
-        public ActionResult Question()
+        public ActionResult Question(int voteSystemId)
         {
-            return PartialView(PartialViewConstants.QuestionPartial, new QuestionViewModel());
+            var questionViewModel = new QuestionViewModel
+            {
+                VoteSystemId = voteSystemId
+            };
+
+            return PartialView(PartialViewConstants.QuestionPartial, questionViewModel);
         }
 
 
@@ -142,7 +143,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //   {
             //       questionName = x.Name,
             //       questionType = x.HasMultipleAnswers,
-            //       questionAnswers = x.QuestionAnswers.Select(
+            //       questionAnswers = x.Answers.Select(
             //           y => new
             //           {
             //               questionAnswerName = y.Name,
@@ -153,6 +154,24 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
             //return this.Json(result, JsonRequestBehavior.AllowGet);
             return this.View();
+        }
+
+        private bool ValidatePostRequest(VoteSystemWithQuestionsViewModel model)
+        {
+            bool isValid = true;
+
+            if (!ModelState.IsValid || model == null)
+            {
+                isValid = false;
+            }
+
+            if (!model.Questions.Any())
+            {
+                ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
+                isValid = false;
+            }
+
+            return isValid;
         }
     }
 }

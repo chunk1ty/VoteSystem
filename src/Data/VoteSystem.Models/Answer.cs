@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using VoteSystem.Data.Entities.Contracts;
 
 namespace VoteSystem.Data.Entities
 {
-    public class QuestionAnswer : IAuditInfo
+    public class Answer : IAuditInfo
     {
-        public QuestionAnswer()
+        public Answer()
         {
-            this.ParticipantAnswers = new HashSet<ParticipantAnswer>();
+            ParticipantAnswers = new HashSet<ParticipantAnswer>();
         }
 
         public int Id { get; set; }

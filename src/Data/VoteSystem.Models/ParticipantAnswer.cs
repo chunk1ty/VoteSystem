@@ -16,6 +16,6 @@ namespace VoteSystem.Data.Entities
         public virtual Participant Participant { get; set; }
 
         public int QuestionAnswerId { get; set; }
-        public virtual QuestionAnswer QuestionAnswer { get; set; }
+        public virtual Answer Answer { get; set; }
     }
 }

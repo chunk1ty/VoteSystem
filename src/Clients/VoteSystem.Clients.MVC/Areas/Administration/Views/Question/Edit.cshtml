@@ -17,7 +17,8 @@
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.VoteSystemId)
-    @Html.Hidden("more-question-url", Url.Action<AjaxController>(c => c.Question()))
+    //TODO rename more-question-url
+    @Html.Hidden("more-question-url", Url.Action<QuestionController>(c => c.Question()))
 
     <div class="text-center" style="padding-bottom: 20px;">
         <h2 class="my-header-title">
@@ -42,7 +43,7 @@
         @foreach (var question in Model.Questions)
         {
             counter++;
-            Html.RenderPartial(PartialViewConstants.QuestionPartial, question, new ViewDataDictionary{ { "counter", counter } });
+            Html.RenderPartial(PartialViewConstants.QuestionPartial, question);
         }
     </div>
 }

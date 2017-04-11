@@ -45,17 +45,19 @@ namespace VoteSystem.Data.Ef.Repositories
             }
         }
 
-        public IEnumerable<Question> All()
+        public IEnumerable<Question> GetAllQuestionsWithAnswers()
         {
-            return _voteSystemDbContext.Questions;
+            return _voteSystemDbContext
+                                    .Questions
+                                    .Include(x => x.Answers);
         }
 
         public IEnumerable<Question> GetUsersAnswersByVoteSystemId(int voteSystemId)
         {
             return _voteSystemDbContext.Questions
-                                    .Where(x => x.VoteSystemId == voteSystemId)
-                                    .Include(x => x.QuestionAnswers
-                                                    .Select(y => y.ParticipantAnswers.Count));
+                                            .Where(x => x.VoteSystemId == voteSystemId)
+                                            .Include(x => x.Answers
+                                                            .Select(y => y.ParticipantAnswers.Count));
         }
     }
 }

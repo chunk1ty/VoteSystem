@@ -39,11 +39,18 @@ namespace VoteSystem.Data.Services
         {
             // TODO add mapping logic
             var decodedVoteSystemId = this._identifierProvider.DecodeId(voteSystemId);
-
-            // TODO x.IsDeleted ? if i use deletable entity
+           
             return _questionRepository
-                            .All()
-                            .Where(x => x.VoteSystemId == decodedVoteSystemId);
+                            .GetAllQuestionsWithAnswers()
+                            .Where(x => x.VoteSystemId == decodedVoteSystemId && !x.IsDeleted);
+        }
+
+        public IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(int voteSystemId)
+        {
+            // TODO: ASK in memory ?? isn't it to slow instead of sql query ??
+            return _questionRepository
+                                    .GetAllQuestionsWithAnswers()
+                                    .Where(x => x.VoteSystemId == voteSystemId && !x.IsDeleted);
         }
 
         public IEnumerable<Question> GetUsersAnswers(int voteSystemId)

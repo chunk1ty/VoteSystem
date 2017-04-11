@@ -4,6 +4,6 @@ namespace VoteSystem.Data.Contracts
 {
     public interface IQuestionAnswerRepository
     {
-        void Add(QuestionAnswer questionAndAnswers);
+        void Add(Answer questionAndAnswers);
     }
 }

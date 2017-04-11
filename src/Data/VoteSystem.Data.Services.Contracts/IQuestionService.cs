@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Data.Services.Contracts
@@ -10,6 +11,8 @@ namespace VoteSystem.Data.Services.Contracts
         void Delete(Question question);
 
         IEnumerable<Question> GetAllQuestions(string voteSystemId);
+
+        IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(int voteSystemId);
 
         IEnumerable<Question> GetUsersAnswers(int rateSystemId);
     }

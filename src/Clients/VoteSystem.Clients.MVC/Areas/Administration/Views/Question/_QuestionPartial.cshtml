@@ -31,6 +31,7 @@
                     @using (Html.BeginCollectionItem("Questions"))
                     {
                         @Html.HiddenFor(m => m.Id)
+                        @Html.HiddenFor(m => m.VoteSystemId)
 
                         <div class="form-group">
                             @Html.LabelFor(m => m.Name, new{ @class="control-label col-md-3 col-sm-3 col-xs-12" })
@@ -49,10 +50,10 @@
                         </div>
 
                         <div class="@currentQuestionList">
-                            @foreach (var item in Model.QuestionAnswers)
+                            @*@foreach (var item in Model.Answers)
                             {
                                 Html.RenderPartial(PartialViewConstants.AnswerPartial, item);
-                            }
+                            }*@
                         </div>
                     }
                 </div>
