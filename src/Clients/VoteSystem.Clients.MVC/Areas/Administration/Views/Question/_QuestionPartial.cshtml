@@ -1,4 +1,4 @@
-﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.Question.QuestionViewModel
+﻿@model VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Question.QuestionViewModel
 
 @{ 
     var currentBtnId = Guid.NewGuid();
@@ -72,7 +72,7 @@
                                                         .substring(0, 47);
         $.ajax({
             type: 'GET',
-            url: '@Url.Action("Answer", "Answer")',
+            url: '@Url.Action("AddNewAnswer", "Answer")',
             data: { containerPrefix: currentQuestionName },
             success: function (html) {
                 $('.@currentQuestionList').append(html);

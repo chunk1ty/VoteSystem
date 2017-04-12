@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Answer;
+using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
 
-using VoteSystem.Clients.MVC.Areas.Administration.Models.Answer;
-using VoteSystem.Clients.MVC.Infrastructure.Mapping;
-
-namespace VoteSystem.Clients.MVC.Areas.Administration.Models.Question
+namespace VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Question
 {
     public class QuestionViewModel : IMapFrom<Data.Entities.Question>, IMapTo<Data.Entities.Question>
     {

@@ -95,7 +95,7 @@ namespace VoteSystem.Clients.MVC.Controllers
             //// TODO use dbContext.savechanges
             ////this.participant.SaveChanges();            
 
-            //this.AddNotification("Благодаря Ви, че гласувахте! Вашият глас е важен за мен.", NotificationType.SUCCESS);
+            //this.AddNotification("Благодаря Ви, че гласувахте! Вашият глас е важен за мен.", NotificationType.Success);
 
             return this.RedirectToAction<HomeController>(c => c.Index());
         }

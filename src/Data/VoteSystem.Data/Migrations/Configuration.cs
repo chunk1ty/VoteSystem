@@ -3,6 +3,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+
 using VoteSystem.Common.Constants;
 using VoteSystem.Data.Ef.Models;
 using VoteSystem.Data.Entities;
@@ -59,37 +60,40 @@ namespace VoteSystem.Data.Ef.Migrations
 
         private void CreateUsers(VoteSystemDbContext context, int numberOfUsers)
         {
-            const string UserPassword = "123456";
-
-            for (int i = 0; i < numberOfUsers; i++)
+            if (!context.VoteSystemUsers.Any())
             {
-                var userStore = new UserStore<AspNetUser>(context);
-                var userManager = new UserManager<AspNetUser>(userStore);
-                var user = new AspNetUser
+                const string UserPassword = "123456";
+
+                for (int i = 0; i < numberOfUsers; i++)
                 {
-                    UserName = "user" + i + "@abv.bg",
-                    Email = "user" + i + "@abv.bg",
-                    FN = 1000 + i,
-                    FirstName = "FirstUserName" + i,
-                    LastName = "LastUserName" + i,
-                    EmailConfirmed = true
-                };
+                    var userStore = new UserStore<AspNetUser>(context);
+                    var userManager = new UserManager<AspNetUser>(userStore);
+                    var user = new AspNetUser
+                    {
+                        UserName = "user" + i + "@abv.bg",
+                        Email = "user" + i + "@abv.bg",
+                        FN = 1000 + i,
+                        FirstName = "FirstUserName" + i,
+                        LastName = "LastUserName" + i,
+                        EmailConfirmed = true
+                    };
 
-                var voteSystemUser = new VoteSystemUser()
-                {
-                    Id = Guid.NewGuid(),
-                    Email = "user" + i + "@abv.bg",
-                    FN = 1000 + i,
-                    FirstName = "FirstUserName" + i,
-                    LastName = "LastUserName" + i,
-                };
+                    var voteSystemUser = new VoteSystemUser()
+                    {
+                        Id = Guid.NewGuid(),
+                        Email = "user" + i + "@abv.bg",
+                        FacultyNumber = 1000 + i,
+                        FirstName = "FirstUserName" + i,
+                        LastName = "LastUserName" + i,
+                    };
 
-                userManager.Create(user, UserPassword);
+                    userManager.Create(user, UserPassword);
 
-                context.VoteSystemUsers.Add(voteSystemUser);
+                    context.VoteSystemUsers.Add(voteSystemUser);
+                }
+
+                context.SaveChanges();
             }
-
-            context.SaveChanges();
         }
     }
 }

@@ -1,10 +1,8 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
 
-using VoteSystem.Clients.MVC.Infrastructure.Mapping;
-using VoteSystem.Data.Entities;
-
-namespace VoteSystem.Clients.MVC.Areas.Administration.Models.Answer
+namespace VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Answer
 {
     public class AnswerViewModel : IMapFrom<Data.Entities.Answer>, IMapTo<Data.Entities.Answer>
     {

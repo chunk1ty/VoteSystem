@@ -41,7 +41,7 @@
         }
     });
     
-    $('#example-select-all').on('click', function () {      
+    $('#select-all-checkbox').on('click', function () {      
         var rows = table
             .rows({ 'search': 'applied' })
             .nodes();
@@ -52,7 +52,7 @@
     // Handle click on checkbox to set state of "Select all" control
     $('#user-grid tbody').on('change', 'input[type="checkbox"]', function () {          
         if (!this.checked) {
-            var el = $('#example-select-all').get(0);   
+            var el = $('#select-all-checkbox').get(0);   
             if (el && el.checked && ('indeterminate' in el)) {
                 el.indeterminate = true;
             }

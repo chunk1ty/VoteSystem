@@ -1,4 +1,4 @@
-﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.User.UserSelectedViewModel
+﻿@model VoteSystem.Clients.MVC.ViewModels.UserSelectedViewModel
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -6,7 +6,7 @@
 
 @section styles {
     <style>
-         a.paginate_button.current {
+        a.paginate_button.current {
             background-color: rgba(38, 185, 154, 0.59) !important;
             border-color: rgba(38, 185, 154, 0.59) !important;
         }
@@ -17,33 +17,42 @@
     </style>
 }
 
-@using (Html.BeginForm<UserController>(c => c.Add(0), FormMethod.Post))
+@using (Html.BeginForm<ParticipantController>(c => c.Remove(0), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.VoteSystemId)
+
+    // TODO use BeginCollection instead this bullshit
+    for (int i = 0; i < Model.VoteSystemUsers.Count; i++)
+    {
+        @Html.HiddenFor(m => m.VoteSystemUsers[i].Id)
+        @Html.HiddenFor(m => m.VoteSystemUsers[i].FacultyNumber)
+        @Html.HiddenFor(m => m.VoteSystemUsers[i].FirstName)
+        @Html.HiddenFor(m => m.VoteSystemUsers[i].LastName)
+    }
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
+                    <div class="col-md-5 my-header-title">
+                        Премахване на учасници
+                    </div>
                     <div class="row">
-                        <div class="col-md-5 my-header-title">
-                            Добавяне на учасници
-                        </div>
-                        <div class="col-md-7">
+                        <div class="col-md-6">
                             <a class="btn btn-dark" href="@(Url.Action<VoteSystemController>(c => c.Index()))">
                                 <i class="glyphicon glyphicon-arrow-left"></i>
                                 Обратно
                             </a>
                             <button class="btn btn-dark" type="submit">
-                                <i class="fa fa-plus"></i>
-                                Добави
+                                <i class="fa fa-trash-o"></i>
+                                Премахни
                             </button>
                         </div>
                     </div>
                     <div class="text-center">
-                            @Html.ValidationSummary(true, null, new { @class = "text-danger" })
-                    </div>    
+                        @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -68,10 +77,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (int i = 0; i < Model.Users.Count; i++)
-                            {                               
-                                @Html.EditorFor(m => m.Users[i], "UserViewModel")
-                            }                           
+                            @for (int i = 0; i < Model.VoteSystemUsers.Count; i++)
+                            {
+                                @Html.EditorFor(m => m.VoteSystemUsers[i], "UserViewModel")
+                            }
                         </tbody>
                     </table>
                 </div>

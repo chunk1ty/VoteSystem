@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
 using AutoMapper;
+
+using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
 
 namespace VoteSystem.Clients.MVC.Infrastructure.Mapping
 {

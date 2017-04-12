@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using VoteSystem.Clients.MVC.Areas.Administration.Models.Answer;
+using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Answer;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
+using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
 using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Clients.MVC.ViewModels.FillRateSystem

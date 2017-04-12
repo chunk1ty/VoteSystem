@@ -42,6 +42,7 @@
     <Compile Include="QuestionDto.cs" />
     <Compile Include="QuestionResultDto.cs" />
     <Compile Include="SurveyDto.cs" />
+    <Compile Include="VoteSystemParticipantsDto.cs" />
     <Compile Include="VoteSystemUserDto.cs" />
     <Compile Include="VoteSystemWithQuestionsDto.cs" />
   </ItemGroup>

@@ -6,8 +6,8 @@ namespace VoteSystem.Data.Services.Contracts
 {
     public interface IVoteSystemUserService
     {
-        IEnumerable<VoteSystemUser> GetAllUnselectUsers(int voteSystemId);
+        IEnumerable<VoteSystemUser> GetUnselectedUsers(int voteSystemId);
 
-        IEnumerable<VoteSystemUser> GetAllSelectUsers(int voteSystemId);
+        IEnumerable<VoteSystemUser> GetSelectedUsers(int voteSystemId);
     }
 }

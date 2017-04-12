@@ -251,8 +251,8 @@
     <Compile Include="Areas\Administration\Controllers\AnswerController.cs" />
     <Compile Include="Areas\Administration\Controllers\QuestionController.cs" />
     <Compile Include="Areas\Administration\Controllers\VoteSystemController.cs" />
-    <Compile Include="Areas\Administration\Controllers\UserController.cs" />
-    <Compile Include="Areas\Administration\Models\VoteSystem\VoteSystemViewModel.cs" />
+    <Compile Include="Areas\Administration\Controllers\ParticipantController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\VoteSystem\VoteSystemViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -265,12 +265,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Attributes\AjaxOnlyAttribute.cs" />
     <Compile Include="Infrastructure\Extensions\CustomHtmlHelpers.cs" />
     <Compile Include="Infrastructure\Extensions\PrincipalExtensions.cs" />
     <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
-    <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
-    <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
-    <Compile Include="Infrastructure\Mapping\IMapTo.cs" />
+    <Compile Include="Infrastructure\Mapping\Contracts\IHaveCustomMappings.cs" />
+    <Compile Include="Infrastructure\Mapping\Contracts\IMapFrom.cs" />
+    <Compile Include="Infrastructure\Mapping\Contracts\IMapTo.cs" />
     <Compile Include="Infrastructure\Mapping\EnumerableExtensions.cs" />
     <Compile Include="Infrastructure\NotificationSystem\Notification.cs" />
     <Compile Include="Infrastructure\NotificationSystem\NotificationType.cs" />
@@ -296,12 +297,12 @@
     <Compile Include="ViewModels\Manage\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Areas\Administration\Models\VoteSystem\VoteSystemWithQuestionsViewModel.cs" />
-    <Compile Include="Areas\Administration\Models\Answer\AnswerViewModel.cs" />
-    <Compile Include="Areas\Administration\Models\Question\QuestionViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\VoteSystem\VoteSystemWithQuestionsViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Answer\AnswerViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Question\QuestionViewModel.cs" />
     <Compile Include="ViewModels\ParticipantAnswerViewModel.cs" />
-    <Compile Include="Areas\Administration\Models\User\UserSelectedViewModel.cs" />
-    <Compile Include="Areas\Administration\Models\User\UserViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\VoteSystem\VoteSystemParticipantsViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\VoteSystemUser\VoteSystemUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-social.css" />
@@ -531,11 +532,11 @@
     <Content Include="Areas\Administration\Views\Question\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Question\Preview.cshtml" />
     <Content Include="Areas\Administration\Views\Question\DisplayTemplates\QuestionViewModel.cshtml" />
-    <Content Include="Areas\Administration\Views\User\Add.cshtml" />
-    <Content Include="Areas\Administration\Views\User\EditorTemplates\UserViewModel.cshtml" />
-    <Content Include="Areas\Administration\Views\User\Remove.cshtml" />
-    <Content Include="Areas\Administration\Views\User\Preview.cshtml" />
-    <Content Include="Areas\Administration\Views\User\DisplayTemplates\UserViewModel.cshtml" />
+    <Content Include="Areas\Administration\Views\Participant\Add.cshtml" />
+    <Content Include="Areas\Administration\Views\Participant\EditorTemplates\UserViewModel.cshtml" />
+    <Content Include="Areas\Administration\Views\Participant\Remove.cshtml" />
+    <Content Include="Areas\Administration\Views\Participant\Preview.cshtml" />
+    <Content Include="Areas\Administration\Views\Participant\DisplayTemplates\UserViewModel.cshtml" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

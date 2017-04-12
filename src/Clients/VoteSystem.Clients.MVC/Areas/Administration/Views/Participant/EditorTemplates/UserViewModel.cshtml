@@ -1,13 +1,13 @@
-﻿@model VoteSystem.Clients.MVC.Areas.Administration.Models.User.UserViewModel
+﻿@model VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystemUser.VoteSystemUserViewModel
 
 <tr>
-    <td class="a-center col-md-1 col-sm-1 col-xs-1">
-        @Html.CheckBoxFor(m => m.IsSelect)
+    <td class="col-md-1 col-sm-1 col-xs-1">
+        @Html.CheckBoxFor(m => m.IsSelected)
         @Html.HiddenFor(m => m.Id)
     </td>
     <td class="col-md-2 col-sm-2 col-xs-2">
-        @Model.FN
-        @Html.HiddenFor(m => m.FN)
+        @Model.FacultyNumber
+        @Html.HiddenFor(m => m.FacultyNumber)
     </td>
     <td class="col-md-3 col-sm-3 col-xs-3">
         @Model.FirstName

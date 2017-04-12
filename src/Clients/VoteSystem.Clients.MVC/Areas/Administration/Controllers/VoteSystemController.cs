@@ -2,8 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
-
-using VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem;
+using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystem;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Data.Services.Contracts;
 

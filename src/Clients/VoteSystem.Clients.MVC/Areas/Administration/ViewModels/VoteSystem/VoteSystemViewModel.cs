@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using VoteSystem.Clients.MVC.Infrastructure.Mapping;
-using VoteSystem.Clients.MVC.ViewModels;
+using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
 using VoteSystem.Services.Web;
 using VoteSystem.Services.Web.Contracts;
 
-namespace VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem
+namespace VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystem
 {
     //public class VoteSystemViewModel : IMapFrom<Data.Entities.VoteSystem>, IMapTo<Data.Entities.VoteSystem>
     //{

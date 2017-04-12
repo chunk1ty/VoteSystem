@@ -1,4 +1,4 @@
-﻿namespace VoteSystem.Clients.MVC.Infrastructure.Mapping
+﻿namespace VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts
 {
     /// <summary>
     /// Map from db model to view model. Must be use only in view models.

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem.VoteSystemViewModel>
+﻿@model IEnumerable<VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystem.VoteSystemViewModel>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -29,7 +29,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table id="admin-grid" class="table table-striped responsive-utilities jambo_table">
+                <table id="admin-grid" class="table table-striped jambo_table">
                     <thead>
                         <tr>
                             <th class="col-md-1 col-sm-1 col-xs-1">
@@ -99,15 +99,15 @@
 
                                 @*Participants*@
                                 <td class="col-md-3 col-sm-3 col-xs-3">
-                                    <a href="@(Url.Action<UserController>(c => c.Add(voteSystem.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<ParticipantController>(c => c.Add(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-plus"></i>
                                         Добави
                                     </a>
-                                    <a href="@(Url.Action<UserController>(c => c.Remove(voteSystem.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<ParticipantController>(c => c.Remove(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-trash-o"></i>
                                         Премахни
                                     </a>
-                                    <a href="@(Url.Action<UserController>(c => c.Preview(voteSystem.Id)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<ParticipantController>(c => c.Preview(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-folder"></i>
                                         Преглед
                                     </a>

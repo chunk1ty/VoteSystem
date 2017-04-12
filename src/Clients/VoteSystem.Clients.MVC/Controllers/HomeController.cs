@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 
 using Microsoft.AspNet.Identity;
-using VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem;
+using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystem;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Clients.MVC.ViewModels;
 using VoteSystem.Data.Services.Contracts;

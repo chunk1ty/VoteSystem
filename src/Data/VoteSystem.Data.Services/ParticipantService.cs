@@ -2,6 +2,7 @@
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
+using VotySystem.Data.DTO;
 
 namespace VoteSystem.Data.Services
 {
@@ -19,6 +20,24 @@ namespace VoteSystem.Data.Services
         public void Add(Participant participant)
         {
             _participantRepository.Add(participant);
+
+            _dbContextSaveChanges.SaveChanges();
+        }
+
+        public void AddParticipants(VoteSystemParticipantsDto voteSystemParticipants)
+        {
+            var voteSystemId = voteSystemParticipants.VoteSystemId;
+
+            foreach (var user in voteSystemParticipants.SelectedVoteSystemUsers)
+            {
+                var currentParticipant = new Participant()
+                {
+                    VoteSystemId = voteSystemId,
+                    VoteSystemUserId = user.Id.ToString()
+                };
+
+                _participantRepository.Add(currentParticipant);
+            }
 
             _dbContextSaveChanges.SaveChanges();
         }

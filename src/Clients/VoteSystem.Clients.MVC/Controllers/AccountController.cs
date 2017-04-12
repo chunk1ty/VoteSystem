@@ -88,7 +88,7 @@ namespace VoteSystem.Clients.MVC.Controllers
                     {
                         if (!await this.userManagerService.IsEmailConfirmedAsync(user.Id))
                         {
-                            this.AddNotification("Потвърдете имейлът си за да влезете.", NotificationType.ERROR);
+                            this.AddNotification("Потвърдете имейлът си за да влезете.", NotificationType.Error);
 
                             return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
                         }
@@ -178,7 +178,7 @@ namespace VoteSystem.Clients.MVC.Controllers
                 {
                     //await this.SendEmalForNewUser(user);
 
-                    this.AddNotification("Проверете имейлът си за да активирате акаунта.", NotificationType.WARNING);
+                    this.AddNotification("Проверете имейлът си за да активирате акаунта.", NotificationType.Warning);
 
                     return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
                 }
@@ -242,7 +242,7 @@ namespace VoteSystem.Clients.MVC.Controllers
 
             await this.userManagerService.UpdateAsync(user);
 
-            this.AddNotification("Успешно променихте вашите данни.", NotificationType.SUCCESS);
+            this.AddNotification("Успешно променихте вашите данни.", NotificationType.Success);
 
             return this.RedirectToAction("UserProfile");
         }
@@ -259,11 +259,11 @@ namespace VoteSystem.Clients.MVC.Controllers
 
             if (result.Succeeded)
             {
-                this.AddNotification("Успешно активирахте вашият акаунт.", NotificationType.SUCCESS);
+                this.AddNotification("Успешно активирахте вашият акаунт.", NotificationType.Success);
             }
             else
             {
-                this.AddNotification("Неуспешно активирахте вашият акаунт.", NotificationType.ERROR);
+                this.AddNotification("Неуспешно активирахте вашият акаунт.", NotificationType.Error);
             }
 
             return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
@@ -288,14 +288,14 @@ namespace VoteSystem.Clients.MVC.Controllers
 
                 if (user == null || !(await this.userManagerService.IsEmailConfirmedAsync(user.Id)))
                 {
-                    this.AddNotification("Въведеният имейл не съществува.", NotificationType.ERROR);
+                    this.AddNotification("Въведеният имейл не съществува.", NotificationType.Error);
 
                     return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
                 }
                
                 await SendEmailForForgotPassword(user);
 
-                this.AddNotification("Проверете вашият имейл за въвеждане на нова парола.", NotificationType.INFO);
+                this.AddNotification("Проверете вашият имейл за въвеждане на нова парола.", NotificationType.Info);
 
                 return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
             }
@@ -331,7 +331,7 @@ namespace VoteSystem.Clients.MVC.Controllers
             var result = await this.userManagerService.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                this.AddNotification("Успешно променихте вашата парола.", NotificationType.SUCCESS);
+                this.AddNotification("Успешно променихте вашата парола.", NotificationType.Success);
 
                 return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
             }

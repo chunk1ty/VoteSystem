@@ -12,7 +12,7 @@ namespace VoteSystem.Data.Entities
         
         public Guid Id { get; set; }
 
-        public int FN { get; set; }
+        public int FacultyNumber { get; set; }
 
         public string Email { get; set; }
 

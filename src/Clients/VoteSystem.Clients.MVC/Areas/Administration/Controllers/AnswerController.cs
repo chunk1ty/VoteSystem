@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-
-using VoteSystem.Clients.MVC.Areas.Administration.Models.Answer;
+using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Answer;
+using VoteSystem.Clients.MVC.Infrastructure.Attributes;
 using VoteSystem.Common.Constants;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
@@ -8,7 +8,8 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
     public class AnswerController : AdminController
     {
         [HttpGet]
-        public ActionResult Answer(string containerPrefix)
+        [AjaxOnly]
+        public ActionResult AddNewAnswer(string containerPrefix)
         {
             ViewBag.ContainerPrefix = containerPrefix;
 

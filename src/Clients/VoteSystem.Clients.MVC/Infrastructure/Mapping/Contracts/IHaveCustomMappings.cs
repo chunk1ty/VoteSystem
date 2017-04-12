@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace VoteSystem.Clients.MVC.Infrastructure.Mapping
+namespace VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts
 {
     public interface IHaveCustomMappings
     {

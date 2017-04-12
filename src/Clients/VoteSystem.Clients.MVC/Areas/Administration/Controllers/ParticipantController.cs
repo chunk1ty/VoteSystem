@@ -1,22 +1,25 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
-
-using VoteSystem.Clients.MVC.Areas.Administration.Models.User;
+using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystem;
+using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystemUser;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
+using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem;
 using VoteSystem.Common.Constants;
 using VoteSystem.Data.Services.Contracts;
+using VotySystem.Data.DTO;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
-    public class UserController : AdminController
+    public class ParticipantController : AdminController
     {
         private readonly IVoteSystemUserService _voteSystemUserService;
         private IParticipantService _participantService;
         private IVoteSystemService _voteSystemService;
 
-        public UserController(
+        public ParticipantController(
             IVoteSystemUserService voteSystemUserService, 
             IParticipantService participantService, 
             IVoteSystemService voteSystemService)
@@ -29,62 +32,47 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Add(int voteSystemId)
         {
-            var voteSystemUserService = _voteSystemUserService
-                                                        .GetAllUnselectUsers(voteSystemId)
-                                                        .To<UserViewModel>()
-                                                        .ToList();
+            var voteSystemUser = _voteSystemUserService
+                                                    .GetUnselectedUsers(voteSystemId)
+                                                    .To<VoteSystemUserViewModel>()
+                                                    .ToList();
 
-            var userSelectedVM = new UserSelectedViewModel()
+            var voteSystemParticipantsViewModel = new VoteSystemParticipantsViewModel
             {
-                Users = voteSystemUserService,
+                VoteSystemUsers = voteSystemUser,
                 VoteSystemId = voteSystemId
             };
 
-            return View(userSelectedVM);
+            return View(voteSystemParticipantsViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(UserSelectedViewModel model)
+        public ActionResult Add(VoteSystemParticipantsViewModel model)
         {
-            //var getSelectedUsers = model.GetSelectedUsers();
+            if (!ValidateRequest(model))
+            {
+                return View(model);
+            }
 
-            //if (getSelectedUsers.Count == 0)
-            //{
-            //    this.ModelState.AddModelError(string.Empty, "Трябва да изберете най-малко един учасник.");
-            //    return this.View(model);
-            //}
+            var voteSystemParticipantsAsDto = Mapper.Map<VoteSystemParticipantsDto>(model);
+            _participantService.AddParticipants(voteSystemParticipantsAsDto);
 
-            //foreach (var participant in getSelectedUsers)
-            //{
-            //    var currentParticipant = new Participant()
-            //    {
-            //        VoteSystemId = model.VoteSystemId,
-            //        // TODO fix it later
-            //        //UserId = participant.Id
-            //    };
+            this.AddNotification("Успешно добавихте учасници!", NotificationType.Success);
 
-            //    this._participantService.Add(currentParticipant);
-            //}
-
-            //// TODO use dbContext.savechanges
-            ////this._participantService.SaveChanges();
-
-            //this.AddNotification("Успешно добавихте учасници!", NotificationType.SUCCESS);
-
-            return this.RedirectToAction<UserController>(c => c.Add(model.VoteSystemId));
+            return this.RedirectToAction<ParticipantController>(c => c.Add(model.VoteSystemId));
         }
 
         public ActionResult Remove(int rateSystemId)
         {
             //var _voteSystemUserService = this._voteSystemUserService
-            //    .GetAllSelectUsers(voteSystemId)
+            //    .GetSelectedUsers(voteSystemId)
             //    .To<UserViewModel>()
             //    .ToList();
 
-            //var userSelectedVM = new UserSelectedViewModel()
+            //var userSelectedVM = new VoteSystemParticipantsViewModel()
             //{
-            //    Users = _voteSystemUserService,
+            //    VoteSystemUsers = _voteSystemUserService,
             //    VoteSystemId = voteSystemId
             //};
 
@@ -94,7 +82,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Remove(UserSelectedViewModel model)
+        public ActionResult Remove(VoteSystemParticipantsViewModel model)
         {
             //var getSelectedUsers = model.GetSelectedUsers();
 
@@ -119,19 +107,19 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             // TODO use dbContext.savechanges
             //this._participantService.SaveChanges();
 
-            return this.RedirectToAction<UserController>(c => c.Remove(model.VoteSystemId));
+            return this.RedirectToAction<ParticipantController>(c => c.Remove(model.VoteSystemId));
         }
 
         public ActionResult Preview(int rateSystemId)
         {
             //var _voteSystemUserService = this._voteSystemUserService
-            //    .GetAllSelectUsers(voteSystemId)
+            //    .GetSelectedUsers(voteSystemId)
             //    .To<UserViewModel>()
             //    .ToList();
 
-            //var userSelectedVM = new UserSelectedViewModel()
+            //var userSelectedVM = new VoteSystemParticipantsViewModel()
             //{
-            //    Users = _voteSystemUserService,
+            //    VoteSystemUsers = _voteSystemUserService,
             //    VoteSystemId = voteSystemId
             //};
 
@@ -142,7 +130,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         public async Task<ActionResult> SentEmails(int rateSystemId)
         {
             //var _voteSystemUserService = this._voteSystemUserService
-            //    .GetAllSelectUsers(voteSystemId)
+            //    .GetSelectedUsers(voteSystemId)
             //    .Select(x => x.Email).ToList();
 
             //var rateSystem = this._voteSystemService.GetById(voteSystemId);
@@ -150,9 +138,27 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             //EmailService email = new EmailService();
             //await email.SendAddedParticipantsAsync(_voteSystemUserService, rateSystem);
 
-            //this.AddNotification("Успешно изпратихте имейли на всички учасници!", NotificationType.SUCCESS);
+            //this.AddNotification("Успешно изпратихте имейли на всички учасници!", NotificationType.Success);
 
-            return this.PartialView(PartialViewConstants.SuccessNotificationPartial);
+            return PartialView(PartialViewConstants.SuccessNotificationPartial);
+        }
+
+        private bool ValidateRequest(VoteSystemParticipantsViewModel model)
+        {
+            var IsValid = true;
+
+            if (!ModelState.IsValid || model == null)
+            {
+                IsValid = false;
+            }
+
+            if (!model.SelectedVoteSystemUsers.Any())
+            {
+                ModelState.AddModelError(string.Empty, "Трябва да изберете най-малко един учасник.");
+                IsValid = false;
+            }
+
+            return IsValid;
         }
     }
 }

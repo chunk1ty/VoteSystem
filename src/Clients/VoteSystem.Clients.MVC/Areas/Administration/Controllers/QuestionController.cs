@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
-
-using VoteSystem.Clients.MVC.Areas.Administration.Models.Question;
-using VoteSystem.Clients.MVC.Areas.Administration.Models.VoteSystem;
+using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Question;
+using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystem;
+using VoteSystem.Clients.MVC.Infrastructure.Attributes;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Common.Constants;
 using VoteSystem.Data.Services.Contracts;
@@ -96,6 +96,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [AjaxOnly]
         public PartialViewResult AddNewQuestion(int voteSystemId)
         {
             var questionViewModel = new QuestionViewModel

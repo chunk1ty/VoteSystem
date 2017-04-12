@@ -13,17 +13,19 @@ namespace VoteSystem.Data.Services
 
         public VoteSystemUserService(IVoteSystemUserRepository voteSystemUserRepository)
         {
-            this._voteSystemUserRepository = voteSystemUserRepository;
+            _voteSystemUserRepository = voteSystemUserRepository;
         }
        
-        public IEnumerable<VoteSystemUser> GetAllUnselectUsers(int voteSystemId)
+        public IEnumerable<VoteSystemUser> GetUnselectedUsers(int voteSystemId)
         {
-            var allUsers = _voteSystemUserRepository.GetAll();
+            var users = _voteSystemUserRepository.GetAll();
 
-            return allUsers.Except(GetAllSelectUsers(voteSystemId));
+            var unselectedUsers = users.Except(GetSelectedUsers(voteSystemId));
+
+            return unselectedUsers;
         }
 
-        public IEnumerable<VoteSystemUser> GetAllSelectUsers(int voteSystemId)
+        public IEnumerable<VoteSystemUser> GetSelectedUsers(int voteSystemId)
         {
             return _voteSystemUserRepository
                                         .GetAll()
