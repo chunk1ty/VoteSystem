@@ -1,4 +1,7 @@
-﻿using VoteSystem.Data.Entities;
+﻿using System;
+using System.Collections.Generic;
+
+using VoteSystem.Data.Entities;
 using VotySystem.Data.DTO;
 
 namespace VoteSystem.Data.Services.Contracts
@@ -11,8 +14,12 @@ namespace VoteSystem.Data.Services.Contracts
 
         void Remove(Participant participant);
 
+        void RemoveParticipants(IEnumerable<Participant> participants);
+
         void Update(Participant participant);
 
-        Participant GetParticipantBySurveyIdAndUserId(int rateSystemId, string userId);
+        Participant GetParticipantBySurveyIdAndUserId(int voteSystemId, Guid userId);
+
+        IEnumerable<Participant> GetParticipantsByVoteSystemId(int voteSystemId);
     }
 }

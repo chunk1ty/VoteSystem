@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace VoteSystem.Data.Services.Contracts
 {
@@ -12,8 +13,8 @@ namespace VoteSystem.Data.Services.Contracts
 
         IEnumerable<Entities.VoteSystem> All();
 
-        IEnumerable<Entities.VoteSystem> GetAllAvailableVoteSystemsForUser(string userId);
+        IEnumerable<Entities.VoteSystem> GetAllAvailableVoteSystemsForUser(Guid userId);
 
-        Entities.VoteSystem GetById(int rateSystemId);
+        Entities.VoteSystem GetById(int voteSystemId);
     }
 }

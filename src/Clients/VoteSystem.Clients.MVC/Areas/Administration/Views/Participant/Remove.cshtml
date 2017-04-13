@@ -1,4 +1,4 @@
-﻿@model VoteSystem.Clients.MVC.ViewModels.UserSelectedViewModel
+﻿@model IList<VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Participant.ParticipantViewModel>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -20,16 +20,6 @@
 @using (Html.BeginForm<ParticipantController>(c => c.Remove(0), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.VoteSystemId)
-
-    // TODO use BeginCollection instead this bullshit
-    for (int i = 0; i < Model.VoteSystemUsers.Count; i++)
-    {
-        @Html.HiddenFor(m => m.VoteSystemUsers[i].Id)
-        @Html.HiddenFor(m => m.VoteSystemUsers[i].FacultyNumber)
-        @Html.HiddenFor(m => m.VoteSystemUsers[i].FirstName)
-        @Html.HiddenFor(m => m.VoteSystemUsers[i].LastName)
-    }
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -56,11 +46,11 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <table id="user-grid" class="table table-striped responsive-utilities jambo_table">
+                    <table id="user-grid" class="table table-striped jambo_table">
                         <thead>
                             <tr>
                                 <th class="col-md-1 col-sm-1 col-xs-1">
-                                    <input id="example-select-all" class="tableflat" type="checkbox" name="select_all" value="1" />
+                                    <input id="select-all-checkbox" type="checkbox" name="select_all" value="1" />
                                 </th>
                                 <th class="col-md-2 col-sm-2 col-xs-2">
                                     Факултетен номер
@@ -77,9 +67,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (int i = 0; i < Model.VoteSystemUsers.Count; i++)
+                            @for (int i = 0; i < Model.Count; i++)
                             {
-                                @Html.EditorFor(m => m.VoteSystemUsers[i], "UserViewModel")
+                                <tr>
+                                    @Html.EditorFor(m => Model[i].VoteSystemUser, "UserViewModel")
+                                    <td>
+                                        @Html.HiddenFor(m => Model[i].Id)
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -90,5 +85,5 @@
 }
 
 @section scripts{
-    @Scripts.Render("~/bundles/userController")
+    @Scripts.Render("~/bundles/participantController")
 }

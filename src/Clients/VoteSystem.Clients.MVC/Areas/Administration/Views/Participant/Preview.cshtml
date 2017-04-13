@@ -1,4 +1,4 @@
-﻿@model VoteSystem.Clients.MVC.ViewModels.VoteSystemParticipantsViewModel
+﻿@model IList<VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Participant.ParticipantViewModel>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -35,28 +35,30 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table id="user-preview-grid" class="table table-striped responsive-utilities jambo_table">
+                <table id="user-preview-grid" class="table table-striped jambo_table">
                     <thead>
-                        <tr>
-                            <th class="col-md-4 col-sm-4 col-xs-4">
-                                Факултетен номер
-                            </th>
-                            <th class="col-md-4 col-sm-4 col-xs-4">
-                                Име
-                            </th>
-                            <th class="col-md-4 col-sm-4 col-xs-4">
-                                Фамилия
-                            </th>
-                            <th class="col-md-4 col-sm-4 col-xs-4">
-                                Имейл
-                            </th>
-                        </tr>
+                    <tr>
+                        <th class="col-md-4 col-sm-4 col-xs-4">
+                            Факултетен номер
+                        </th>
+                        <th class="col-md-4 col-sm-4 col-xs-4">
+                            Име
+                        </th>
+                        <th class="col-md-4 col-sm-4 col-xs-4">
+                            Фамилия
+                        </th>
+                        <th class="col-md-4 col-sm-4 col-xs-4">
+                            Имейл
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @for (int i = 0; i < Model.VoteSystemUsers.Count; i++)
-                        {
-                            @Html.DisplayFor(m => m.VoteSystemUsers[i], "UserViewModel")
-                        }                           
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            @Html.DisplayFor(m => Model[i].VoteSystemUser, "UserViewModel")
+                        </tr>
+                    }
                     </tbody>
                 </table>
             </div>
@@ -64,58 +66,11 @@
     </div>
 </div>
 
+@*Hacky way to pass parameter to js function*@
+<div>
+    @Html.Hidden("vote-system-id", (int)ViewBag.VoteSystemId)
+</div>
+
 @section scripts{
-    @Scripts.Render("~/bundles/userPreviewController")
-
-    <script> 
-        var isSend = false; 
-
-        $('#sent-email-btn').on('click', function () {
-            if (isSend) {
-                alert('Имейлите бяха изпратерни!');
-            } else {
-                $('body').prepend('<div id="site-spinner" />');
-
-                var opts = {
-                    lines: 17,
-                    length: 0,
-                    width: 5,
-                    radius: 25,
-                    corners: 1,
-                    rotate: 0,
-                    color: '#1ABB9C',
-                    speed: 1,
-                    trail: 80,
-                    shadow: true,
-                    hwaccel: true,
-                    className: 'spinner',
-                    zIndex: 2e9,
-                    top: '45%',
-                    left: '50%'
-                };
-
-                var target = document.getElementById('site-spinner');
-                var spinner = new Spinner(opts).spin(target);
-                $('#votesystem-content').hide();
-
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("SentEmails", "User")',
-                    data: { rateSystemId: @Model.VoteSystemId },
-                    success: function (notification) {                        
-                        $('.right_col').prepend(notification);                        
-                        $('#sent-email-btn').addClass('disabled');
-                        $('#votesystem-content').show();
-                        $('#site-spinner').remove();
-                        isSend = true;
-                    },
-                    error: function (ex) {
-                        alert('Can not sent emails' + ex);
-                        $('#votesystem-content').show();
-                        $('#site-spinner').remove();
-                    }
-                });
-            }
-        });
-    </script>
+    @Scripts.Render("~/bundles/participantPreviewController")
 }

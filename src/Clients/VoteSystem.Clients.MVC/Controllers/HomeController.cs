@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 
 using Microsoft.AspNet.Identity;
@@ -22,7 +23,7 @@ namespace VoteSystem.Clients.MVC.Controllers
         public ActionResult Index()
         {
             var voteSystems = _voteSystemService
-                            .GetAllAvailableVoteSystemsForUser(User.Identity.GetUserId())
+                            .GetAllAvailableVoteSystemsForUser(new Guid(User.Identity.GetUserId()))
                             .To<VoteSystemViewModel>()
                             .ToList();
 

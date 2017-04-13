@@ -13,5 +13,7 @@ namespace VoteSystem.Data.Contracts
         void Delete(Participant participant);
 
         IEnumerable<Participant> All();
+
+        IEnumerable<Participant> AllWithVoteSystemUser();
     }
 }

@@ -28,7 +28,7 @@ namespace VoteSystem.Data.Services
         public IEnumerable<VoteSystemUser> GetSelectedUsers(int voteSystemId)
         {
             return _voteSystemUserRepository
-                                        .GetAll()
+                                        .GetWithParticipnats()
                                         .Where(
                                              x => x.Participants
                                                     .Any(y => y.VoteSystemId == voteSystemId));

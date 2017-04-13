@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace VoteSystem.Data.Entities
 {
@@ -13,7 +14,7 @@ namespace VoteSystem.Data.Entities
 
         public bool IsVoted { get; set; }
 
-        public string VoteSystemUserId { get; set; }
+        public Guid VoteSystemUserId { get; set; }
         public virtual VoteSystemUser VoteSystemUser { get; set; }
 
         public int VoteSystemId { get; set; }

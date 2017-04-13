@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystemUser;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
 using VotySystem.Data.DTO;

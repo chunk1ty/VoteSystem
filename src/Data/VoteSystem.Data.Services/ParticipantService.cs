@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
@@ -33,7 +35,7 @@ namespace VoteSystem.Data.Services
                 var currentParticipant = new Participant()
                 {
                     VoteSystemId = voteSystemId,
-                    VoteSystemUserId = user.Id.ToString()
+                    VoteSystemUserId = user.Id
                 };
 
                 _participantRepository.Add(currentParticipant);
@@ -56,13 +58,31 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
-        public Participant GetParticipantBySurveyIdAndUserId(int voteSystemId, string userId)
+        public void RemoveParticipants(IEnumerable<Participant> participants)
+        {
+
+            foreach (var participant in participants)
+            {
+                _participantRepository.Delete(participant);
+            }
+
+            _dbContextSaveChanges.SaveChanges();
+        }
+
+        public Participant GetParticipantBySurveyIdAndUserId(int voteSystemId, Guid userId)
         {
             var participant = _participantRepository
                                                 .All()
                                                 .FirstOrDefault(x => x.VoteSystemId == voteSystemId && x.VoteSystemUserId == userId);
 
             return participant;
+        }
+
+        public IEnumerable<Participant> GetParticipantsByVoteSystemId(int voteSystemId)
+        {
+            return _participantRepository
+                                    .AllWithVoteSystemUser()
+                                    .Where(x => x.VoteSystemId == voteSystemId);
         }
     }
 }

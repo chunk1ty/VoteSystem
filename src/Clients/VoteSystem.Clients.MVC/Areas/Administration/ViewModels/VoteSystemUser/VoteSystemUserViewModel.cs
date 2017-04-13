@@ -1,10 +1,12 @@
-﻿using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
+﻿using System;
+
+using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystemUser
 {
     public class VoteSystemUserViewModel : IMapFrom<Data.Entities.VoteSystemUser>, IMapTo<Data.Entities.VoteSystemUser>
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public int FacultyNumber { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
@@ -15,9 +16,16 @@ namespace VoteSystem.Data.Ef.Repositories
             _voteSystemDbContext = voteSystemDbContext;
         }
 
+        public IEnumerable<VoteSystemUser> GetWithParticipnats()
+        {
+            return _voteSystemDbContext.VoteSystemUsers
+                .Include(x => x.Participants);
+        }
+
         public IEnumerable<VoteSystemUser> GetAll()
         {
-            return _voteSystemDbContext.VoteSystemUsers;
+            return _voteSystemDbContext.VoteSystemUsers
+                .Include(x => x.Participants);
         }
     }
 }

@@ -28,10 +28,6 @@ namespace VoteSystem.Clients.MVC
 
             bundles.Add(new ScriptBundle("~/bundles/resultController").Include("~/Scripts/Custom/resultController.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/userController").Include("~/Scripts/Custom/userController.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/userPreviewController").Include("~/Scripts/Custom/userPreviewController.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/gentallela-js").Include(
                 "~/Content/bootstrap-theme/js/nicescroll/jquery.nicescroll.min.js",
                 "~/Content/bootstrap-theme/js/moment.min.js",
@@ -61,6 +57,13 @@ namespace VoteSystem.Clients.MVC
 
             bundles.Add(new StyleBundle("~/bundles/voteSystemController").Include(
                 "~/Scripts/Custom/voteSystemController.js"));
+
+            // -------------------------------------------------------------
+            bundles.Add(new ScriptBundle("~/bundles/participantController")
+                .Include("~/Scripts/VoteSystem/Areas/Administration/participantController.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/participantPreviewController")
+                .Include("~/Scripts/VoteSystem/Areas/Administration/participantPreviewController.js"));
         }
 
         private static void RegisterStyles(BundleCollection bundles)

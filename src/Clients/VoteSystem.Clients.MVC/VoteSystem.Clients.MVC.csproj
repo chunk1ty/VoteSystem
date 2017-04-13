@@ -252,6 +252,7 @@
     <Compile Include="Areas\Administration\Controllers\QuestionController.cs" />
     <Compile Include="Areas\Administration\Controllers\VoteSystemController.cs" />
     <Compile Include="Areas\Administration\Controllers\ParticipantController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Participant\ParticipantViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\VoteSystem\VoteSystemViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
@@ -559,8 +560,8 @@
     <Content Include="Scripts\Custom\voteSystemController.js" />
     <Content Include="Scripts\Custom\calendars.js" />
     <Content Include="Scripts\Custom\resultController.js" />
-    <Content Include="Scripts\Custom\userController.js" />
-    <Content Include="Scripts\Custom\userPreviewController.js" />
+    <Content Include="Scripts\VoteSystem\Areas\Administration\participantController.js" />
+    <Content Include="Scripts\VoteSystem\Areas\Administration\participantPreviewController.js" />
     <Content Include="Scripts\Custom\home-grid.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
