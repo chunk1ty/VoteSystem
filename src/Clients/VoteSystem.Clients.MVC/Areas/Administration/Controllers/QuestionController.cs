@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
+
 using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Question;
-using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystem;
 using VoteSystem.Clients.MVC.Infrastructure.Attributes;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
+using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem;
 using VoteSystem.Common.Constants;
+using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
-using VotySystem.Data.DTO;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 {
@@ -26,6 +28,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         {
             if (voteSystemId <= 0)
             {
+                // TODO redirect to page 404
                 return Content("voteSystemId cannot be negative number or 0");
             }
 
@@ -36,16 +39,25 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(VoteSystemWithQuestionsViewModel voteSystem)
+        public ActionResult Create(IList<QuestionViewModel> questions)
         {
-            if (!ValidatePostRequest(voteSystem))
+            if (!ValidatePostRequest(questions))
             {
-                return View(voteSystem);
+                return View(questions);
             }
 
-            var voteSystemWithQuestionsAsDto = Mapper.Map<VoteSystemWithQuestionsDto>(voteSystem);
+            try
+            {
+                var questionsAsDbEntities = questions.To<Question>().ToList();
+                _questionService.AddQuestions(questionsAsDbEntities);
 
-            _questionService.AddQuestions(voteSystemWithQuestionsAsDto);
+                this.AddNotification("Успешно добавихте въпроси!", NotificationType.Success);
+            }
+            catch (Exception ex)
+            {
+                //TODO add login logic
+                this.AddNotification("Възникна грешка при добавянето на въпросите!", NotificationType.Error);
+            }
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }
@@ -53,33 +65,43 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Edit(int voteSystemId)
         {
-            var questions = _questionService
+            if (voteSystemId <= 0)
+            {
+                // TODO redirect to page 404
+                return Content("voteSystemId cannot be negative number or 0");
+            }
+
+            var questionsAsViewModel = _questionService
                                     .GetQuestionsWithAnswersByVoteSystemId(voteSystemId)
                                     .To<QuestionViewModel>()
                                     .ToList();
 
             ViewBag.VoteSystemId = voteSystemId;
 
-            var voteSystem = new VoteSystemWithQuestionsViewModel()
-            {
-                Questions = questions
-            };
-
-            return View(voteSystem);
+            return View(questionsAsViewModel);
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(VoteSystemWithQuestionsViewModel voteSystem)
+        public ActionResult Edit(IList<QuestionViewModel> questions)
         {
-            if (!ValidatePostRequest(voteSystem))
+            if (!ValidatePostRequest(questions))
             {
-                return View(voteSystem);
+                return View(questions);
             }
 
-            var voteSystemWithQuestionsAsDto = Mapper.Map<VoteSystemWithQuestionsDto>(voteSystem);
-
-            _questionService.UpdateQuestions(voteSystemWithQuestionsAsDto);
+            try
+            {
+                var questionsAsDbEntities = questions.To<Question>().ToList();
+                _questionService.UpdateQuestions(questionsAsDbEntities);
+               
+                this.AddNotification("Успешно редактирахте въпросите!", NotificationType.Success);
+            }
+            catch (Exception ex)
+            {
+                //TODO add login logic
+                this.AddNotification("Възникна грешка при редактирането на въпросите!", NotificationType.Error);
+            }
 
             return this.RedirectToAction<VoteSystemController>(c => c.Index());
         }
@@ -87,6 +109,12 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Preview(int voteSystemId)
         {
+            if (voteSystemId <= 0)
+            {
+                // TODO redirect to page 404
+                return Content("voteSystemId cannot be negative number or 0");
+            }
+
             var questionsAsViewModel = _questionService
                                                     .GetQuestionsWithAnswersByVoteSystemId(voteSystemId)
                                                     .To<QuestionViewModel>()
@@ -97,8 +125,14 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         [HttpGet]
         [AjaxOnly]
-        public PartialViewResult AddNewQuestion(int voteSystemId)
+        public ActionResult AddNewQuestion(int voteSystemId)
         {
+            if (voteSystemId <= 0)
+            {
+                // TODO redirect to page 404
+                return Content("voteSystemId cannot be negative number or 0");
+            }
+
             var questionViewModel = new QuestionViewModel
             {
                 VoteSystemId = voteSystemId
@@ -107,16 +141,17 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             return PartialView(PartialViewConstants.QuestionPartial, questionViewModel);
         }
 
-        private bool ValidatePostRequest(VoteSystemWithQuestionsViewModel model)
+        private bool ValidatePostRequest(IEnumerable<QuestionViewModel> model)
         {
             bool isValid = true;
 
             if (!ModelState.IsValid || model == null)
             {
                 isValid = false;
+                return isValid;
             }
 
-            if (!model.Questions.Any())
+            if (!model.Any())
             {
                 ModelState.AddModelError(string.Empty, "Моля добавете най-малко един въпрос!");
                 isValid = false;

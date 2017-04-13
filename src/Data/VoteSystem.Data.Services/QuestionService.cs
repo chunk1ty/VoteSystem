@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using VoteSystem.Data.Contracts;
@@ -33,9 +34,14 @@ namespace VoteSystem.Data.Services
         }
 
         // TODO bulk insert
-        public void AddQuestions(VoteSystemWithQuestionsDto voteSystem)
+        public void AddQuestions(IList<Question> questions)
         {
-            foreach (var question in voteSystem.Questions)
+            if (questions == null)
+            {
+                throw new ArgumentNullException(nameof(questions));
+            }
+
+            foreach (var question in questions)
             {
                 _questionRepository.Add(question);
             }
@@ -43,17 +49,27 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
-        public void UpdateQuestions(VoteSystemWithQuestionsDto voteSystem)
+        public void UpdateQuestions(IList<Question> questions)
         {
-            var voteSystemId = voteSystem.Questions.FirstOrDefault().VoteSystemId;
-            var allExistingQuestions = GetQuestionsWithAnswersByVoteSystemId(voteSystemId);
-
-            foreach (var question in allExistingQuestions)
+            if (questions == null)
             {
-                _questionRepository.Delete(question);
+                throw new ArgumentNullException(nameof(questions));
             }
 
-            foreach (var question in voteSystem.Questions)
+            var firstQuestion = questions.FirstOrDefault();
+
+            if (firstQuestion != null)
+            {
+                var voteSystemId = firstQuestion.VoteSystemId;
+                var allExistingQuestions = GetQuestionsWithAnswersByVoteSystemId(voteSystemId);
+
+                foreach (var question in allExistingQuestions)
+                {
+                    _questionRepository.Delete(question);
+                }
+            }
+
+            foreach (var question in questions)
             {
                 _questionRepository.Add(question);
             }
@@ -70,7 +86,7 @@ namespace VoteSystem.Data.Services
 
         public IEnumerable<Question> GetAllQuestions(string voteSystemId)
         {
-            var decodedVoteSystemId = this._identifierProvider.DecodeId(voteSystemId);
+            var decodedVoteSystemId = _identifierProvider.DecodeId(voteSystemId);
            
             return _questionRepository
                             .GetAllQuestionsWithAnswers()

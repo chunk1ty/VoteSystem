@@ -14,6 +14,7 @@ namespace VoteSystem.Clients.MVC.Infrastructure.Attributes
             }
             else
             {
+                // TODO redirect to page 404
                 filterContext.HttpContext.Response.StatusCode = 404;
                 filterContext.Result = new HttpNotFoundResult();
             }

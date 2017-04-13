@@ -4,21 +4,10 @@ namespace VoteSystem.Clients.MVC.Areas.Administration
 {
     public class AdministrationAreaRegistration : AreaRegistration 
     {
-        public override string AreaName 
-        {
-            get 
-            {
-                return "Administration";
-            }
-        }
+        public override string AreaName => "Administration";
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
-            //context.MapRoute(
-            //    "Administration_custom",
-            //    "Administration/{action}",
-            //    new { controller = "VoteSystem", action = "Index" });
-
             context.MapRoute(
                 name: "Administration_default",
                 url: "admin/{controller}/{action}/{id}",

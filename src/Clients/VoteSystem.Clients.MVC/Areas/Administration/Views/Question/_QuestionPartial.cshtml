@@ -28,7 +28,7 @@
             <div class="x_content">
                 <br />
                 <div class="form-horizontal form-label-left">
-                    @using (Html.BeginCollectionItem("NewQuestions"))
+                    @using (Html.BeginCollectionItem("Questions"))
                     {
                         @Html.HiddenFor(m => m.Id)
                         @Html.HiddenFor(m => m.VoteSystemId)

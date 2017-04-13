@@ -33,6 +33,12 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Add(int voteSystemId)
         {
+            // TODO redirect to page 404
+            if (voteSystemId <= 0)
+            {
+                return Content("voteSystemId cannot be negative number or 0");
+            }
+
             var voteSystemUsers = _voteSystemUserService
                                                     .GetUnselectedUsers(voteSystemId)
                                                     .To<VoteSystemUserViewModel>()
@@ -56,10 +62,18 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                 return View(model);
             }
 
-            var voteSystemParticipantsAsDto = Mapper.Map<VoteSystemParticipantsDto>(model);
-            _participantService.AddParticipants(voteSystemParticipantsAsDto);
-
-            this.AddNotification("Успешно добавихте учасници!", NotificationType.Success);
+            try
+            {
+                var voteSystemParticipantsAsDto = Mapper.Map<VoteSystemParticipantsDto>(model);
+                _participantService.AddParticipants(voteSystemParticipantsAsDto);
+              
+                this.AddNotification("Успешно добавихте учасници!", NotificationType.Success);
+            }
+            catch (Exception ex)
+            {
+                //TODO add login logic
+                this.AddNotification("Възникна грешка при добавянето на учасниците!", NotificationType.Error);
+            }
 
             return this.RedirectToAction<VoteSystemController>(x => x.Index());
         }
@@ -67,6 +81,12 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Remove(int voteSystemId)
         {
+            if (voteSystemId <= 0)
+            {
+                // TODO redirect to page 404
+                return Content("voteSystemId cannot be negative number or 0");
+            }
+
             var participants = _participantService
                                                 .GetParticipantsByVoteSystemId(voteSystemId)
                                                 .To<ParticipantViewModel>()
@@ -84,13 +104,21 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                 return View(participants);
             }
 
-            var participantsAsDbEntities = participants
-                                                    .Where(x => x.VoteSystemUser.IsSelected)
-                                                    .To<Participant>();
+            try
+            {
+                var participantsAsDbEntities = participants
+                                                        .Where(x => x.VoteSystemUser.IsSelected)
+                                                        .To<Participant>();
 
-            _participantService.RemoveParticipants(participantsAsDbEntities);
+                _participantService.RemoveParticipants(participantsAsDbEntities);
 
-            this.AddNotification("Успешно премахнахте учасници!", NotificationType.Success);
+                this.AddNotification("Успешно премахнахте учасници!", NotificationType.Success);
+            }
+            catch (Exception ex)
+            {
+                //TODO add login logic
+                this.AddNotification("Възникна грешка при премахването на учасниците!", NotificationType.Error);
+            }
 
             return this.RedirectToAction<VoteSystemController>(x => x.Index());
         }
@@ -98,6 +126,12 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Preview(int voteSystemId)
         {
+            if (voteSystemId <= 0)
+            {
+                // TODO redirect to page 404
+                return Content("voteSystemId cannot be negative number or 0");
+            }
+
             var participants = _participantService
                                             .GetParticipantsByVoteSystemId(voteSystemId)
                                             .To<ParticipantViewModel>()
@@ -110,8 +144,14 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         [HttpGet]
         [AjaxOnly]
-        public PartialViewResult SentEmails(int voteSystemId)
+        public ActionResult SentEmails(int voteSystemId)
         {
+            if (voteSystemId <= 0)
+            {
+                // TODO redirect to page 404
+                return Content("voteSystemId cannot be negative number or 0");
+            }
+
             // TODO implement email service
             this.AddNotification("Успешно изпратихте имейли на всички учасници!", NotificationType.Success);
 

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+
 using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Answer

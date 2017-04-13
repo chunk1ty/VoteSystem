@@ -1,4 +1,4 @@
-﻿@model VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystem.VoteSystemWithQuestionsViewModel
+﻿@model IEnumerable<VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Question.QuestionViewModel>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -25,7 +25,7 @@
             <i class="glyphicon glyphicon-arrow-left"></i>
             Обратно
         </a>
-        <span id="add-more-questions" class="btn btn-dark">
+        <span id="add-question" class="btn btn-dark">
             <i class="fa fa-plus"></i>
             Нов въпрос
         </span>
@@ -36,54 +36,19 @@
     </div>
 
     <div id="question-list">
-        @foreach (var question in Model.Questions)
+        @foreach (var question in Model)
         {
             Html.RenderPartial(PartialViewConstants.QuestionPartial, question);
         }
     </div>
 }
 
+@*Hacky way to pass parameter in to js function*@
+<div>
+    @Html.Hidden("vote-system-id", (int)ViewBag.VoteSystemId)
+</div>
+
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/questionController")
-
-    @*TODO move it back in questionCOntroller when i understand how to pass ViewBag.VoteSystemId*@
-    <script>
-        var newQuestionUrl = "/admin/question/addnewquestion";
-
-        $('#add-more-questions').on('click', function () {
-
-            $.ajax({
-                type: 'GET',
-                url: newQuestionUrl,
-                data: { voteSystemId: '@ViewBag.VoteSystemId' },
-                success: function (html) {
-                    $('#question-list').append(html);
-
-                    $('.close-link').on('click', function () {
-                        $(this)
-                            .closest('div.row')
-                            .remove();
-                    });
-
-                    $('.collapse-link').off().on('click', function () {
-                        var x_panel = $(this).closest('div.x_panel');
-                        var button = $(this).find('i');
-                        var content = x_panel.find('div.x_content');
-
-                        content.slideToggle(200);
-                        (x_panel.hasClass('fixed_height_390') ? x_panel.toggleClass('').toggleClass('fixed_height_390') : '');
-                        (x_panel.hasClass('fixed_height_320') ? x_panel.toggleClass('').toggleClass('fixed_height_320') : '');
-                        button.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
-                        setTimeout(function () {
-                            x_panel.resize();
-                        }, 50);
-                    });
-                },
-                error: function (ex) {
-                    alert('Can not add new question ' + ex);
-                }
-            });
-        });
-    </script>
 }

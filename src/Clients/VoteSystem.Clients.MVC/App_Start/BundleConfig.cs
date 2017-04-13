@@ -52,18 +52,18 @@ namespace VoteSystem.Clients.MVC
             bundles.Add(new StyleBundle("~/bundles/CustomController").Include(
                   "~/Scripts/Custom/CustomController.js"));
 
-            bundles.Add(new StyleBundle("~/bundles/questionController").Include(
-                "~/Scripts/Custom/questionController.js"));
-
-            bundles.Add(new StyleBundle("~/bundles/voteSystemController").Include(
-                "~/Scripts/Custom/voteSystemController.js"));
-
             // -------------------------------------------------------------
             bundles.Add(new ScriptBundle("~/bundles/participantController")
                 .Include("~/Scripts/VoteSystem/Areas/Administration/participantController.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/participantPreviewController")
                 .Include("~/Scripts/VoteSystem/Areas/Administration/participantPreviewController.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/questionController").Include(
+                "~/Scripts/VoteSystem/Areas/Administration/questionController.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/voteSystemController").Include(
+                "~/Scripts/VoteSystem/Areas/Administration/voteSystemController.js"));
         }
 
         private static void RegisterStyles(BundleCollection bundles)

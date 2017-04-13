@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+
 using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Answer;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
 

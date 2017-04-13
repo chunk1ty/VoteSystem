@@ -9,9 +9,9 @@ namespace VoteSystem.Data.Services.Contracts
     {
         void Add(Question question);
 
-        void AddQuestions(VoteSystemWithQuestionsDto voteSystem);
+        void AddQuestions(IList<Question> questions);
 
-        void UpdateQuestions(VoteSystemWithQuestionsDto voteSystem);
+        void UpdateQuestions(IList<Question> questions);
 
         void Delete(Question question);
 
