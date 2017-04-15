@@ -159,7 +159,7 @@
                                     За препоръки или открити бъгове може да ми пишете.
                                 </p>
                             </div>
-                            @using (Html.BeginForm<IntroductionController>(c => c.Index(), FormMethod.Post, null, new { @class = "form-horizontal" }))
+                            @using (Html.BeginForm<HomeController>(c => c.Index(), FormMethod.Post, null, new { @class = "form-horizontal" }))
                             {
                                 @Html.AntiForgeryToken()
                                 <div class="row" style="width: 50%; margin: auto;">
