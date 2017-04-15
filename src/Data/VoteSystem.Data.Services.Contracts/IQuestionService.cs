@@ -15,7 +15,7 @@ namespace VoteSystem.Data.Services.Contracts
 
         void Delete(Question question);
 
-        IEnumerable<Question> GetAllQuestions(string voteSystemId);
+        IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(string voteSystemId);
 
         IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(int voteSystemId);
 

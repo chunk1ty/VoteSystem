@@ -4,7 +4,7 @@ using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Clients.MVC.ViewModels
 {
-    public class ParticipantAnswerViewModel : IMapFrom<ParticipantAnswer>
+    public class ParticipantAnswerViewModel : IMapFrom<Data.Entities.ParticipantAnswer>
     {
         public int Answer { get; set; }
     }

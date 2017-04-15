@@ -47,11 +47,11 @@ namespace VoteSystem.Data.Services
             return _voteSystemRepository.GetAll();
         }
 
-        public IEnumerable<Entities.VoteSystem> GetAllAvailableVoteSystemsForUser(Guid userId)
+        public IEnumerable<Entities.VoteSystem> GetAllAvailableVoteSystemsForUserByUserId(Guid userId)
         {
             // TODO fix it later ?? fix what ??
             return _voteSystemRepository
-                                    .GetAll()
+                                    .GetAllWithParticipants()
                                     .Where(x =>
                                             x.StarDateTime <= DateTime.Now &&
                                             DateTime.Now <= x.EndDateTime &&

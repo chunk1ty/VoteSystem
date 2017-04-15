@@ -6,7 +6,7 @@
 }
 
 @section styles {
-    @RenderSection("styles", required: false)
+    @RenderSection("styles", false)
 
     <style>
         body {            
@@ -55,7 +55,11 @@
                                 </a>
                                 <ul class="nav child_menu" style="display: none">
                                     <li>
-                                        @(Html.ActionLink<HomeController>("Табло", c => c.Index(), new { area = string.Empty }, htmlAttributes: new { title = "Табло" }))
+                                        @(Html.ActionLink<DashboardController>(
+                                                                            "Табло", 
+                                                                            c => c.Index(), 
+                                                                            new { area = string.Empty },
+                                                                            new { title = "Табло" }))
                                     </li>
                                 </ul>
                             </li>
@@ -148,7 +152,7 @@
 @section scripts {
     @Scripts.Render("~/bundles/gentallela-js")
     @Scripts.Render("~/bundles/my-scripts")
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", false)
 
     <script>
         var $getWindowHeight = $(window).height();

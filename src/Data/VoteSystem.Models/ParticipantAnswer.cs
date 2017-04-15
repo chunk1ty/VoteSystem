@@ -12,10 +12,10 @@ namespace VoteSystem.Data.Entities
 
         public DateTime? ModifiedOn { get; set; }
 
-        public string ParticipantId { get; set; }
+        public int ParticipantId { get; set; }
         public virtual Participant Participant { get; set; }
 
-        public int QuestionAnswerId { get; set; }
+        public int AnswerId { get; set; }
         public virtual Answer Answer { get; set; }
     }
 }

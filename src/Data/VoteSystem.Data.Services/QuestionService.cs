@@ -84,7 +84,7 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
-        public IEnumerable<Question> GetAllQuestions(string voteSystemId)
+        public IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(string voteSystemId)
         {
             var decodedVoteSystemId = _identifierProvider.DecodeId(voteSystemId);
            

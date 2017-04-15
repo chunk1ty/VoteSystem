@@ -1,33 +1,46 @@
-﻿using System;
-using System.Linq;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 
 using Microsoft.AspNet.Identity;
-using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystem;
-using VoteSystem.Clients.MVC.Infrastructure.Mapping;
-using VoteSystem.Clients.MVC.ViewModels;
-using VoteSystem.Data.Services.Contracts;
+using VoteSystem.Clients.MVC.ViewModels.Introduction;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : BaseController
     {
-        private readonly IVoteSystemService _voteSystemService;
+        private readonly IIdentityMessageService _identityMessageService;       
 
-        public HomeController(IVoteSystemService voteSystemService)
+        public HomeController(IIdentityMessageService identityMessageService)
         {
-            this._voteSystemService = voteSystemService;
+            _identityMessageService = identityMessageService;            
         }
 
         [HttpGet]
         public ActionResult Index()
-        {
-            var voteSystems = _voteSystemService
-                            .GetAllAvailableVoteSystemsForUser(new Guid(User.Identity.GetUserId()))
-                            .To<VoteSystemViewModel>()
-                            .ToList();
+        {   
+            return View();
+        }
 
-            return this.View(voteSystems);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Index(FeedbackViewModel model)
+        {
+            if (model == null || !ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var message = new IdentityMessage()
+            {
+                Body = model.Body,
+                Destination = model.Destination,
+                Subject = model.Subject
+            };
+
+            await _identityMessageService.SendAsync(message);
+
+            return this.RedirectToAction("Index");
         }
     }
 }

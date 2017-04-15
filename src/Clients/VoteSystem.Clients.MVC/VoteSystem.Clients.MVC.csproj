@@ -258,9 +258,9 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\FillRateSystemController.cs" />
+    <Compile Include="Controllers\ParticipantAnswerController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IntroductionController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
@@ -286,7 +286,8 @@
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="ViewModels\FillRateSystem\FillQuestionsViewModel.cs" />
+    <Compile Include="ViewModels\ParticipantAnswer\ParticipantAnswerViewModel.cs" />
+    <Compile Include="ViewModels\ParticipantAnswer\ParticipantQuestionViewModel.cs" />
     <Compile Include="ViewModels\Introduction\FeedbackViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
@@ -672,7 +673,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Introduction\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -688,12 +689,12 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Shared\_DashboardLayout.cshtml" />
     <Content Include="Settings.StyleCop" />
     <Content Include="Views\Shared\_SocialButtonsPartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
-    <Content Include="Views\FillRateSystem\Fill.cshtml" />
+    <Content Include="Views\ParticipantAnswer\Answer.cshtml" />
     <Content Include="Views\Shared\Notifications\_ErrorNotificationPartial.cshtml" />
     <Content Include="Views\Shared\Notifications\_WarningNotificationPartial.cshtml" />
     <Content Include="Views\Shared\Notifications\_SuccessNotificationPartial.cshtml" />

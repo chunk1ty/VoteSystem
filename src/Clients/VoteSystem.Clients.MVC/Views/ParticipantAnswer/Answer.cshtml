@@ -1,4 +1,4 @@
-﻿@model IList<VoteSystem.Clients.MVC.ViewModels.FillRateSystem.FillQuestionsViewModel>
+﻿@model IList<VoteSystem.Clients.MVC.ViewModels.ParticipantAnswer.ParticipantQuestionViewModel>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -16,14 +16,14 @@
     </style>
 }
 
-@using (Html.BeginForm<FillRateSystemController>(c => c.Fill(string.Empty), FormMethod.Post))
+@using (Html.BeginForm<ParticipantAnswerController>(c => c.Answer(string.Empty), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m[0].RateSystemId)
+    @Html.HiddenFor(m => m[0].VoteSystemId)
 
     <div class="row">
         <div class="text-center">
-            <a href="@(Url.Action<HomeController>(c => c.Index()))" class="btn btn-dark">
+            <a href="@(Url.Action<DashboardController>(c => c.Index()))" class="btn btn-dark">
                 <i class="glyphicon glyphicon-arrow-left"></i>
                 Обратно
             </a>
@@ -38,13 +38,13 @@
         @for (int question = 0; question < Model.Count; question++)
         {
             @Html.HiddenFor(m => m[question].HasMultipleAnswers)
-            @Html.HiddenFor(m => m[question].QuestionName)
+            @Html.HiddenFor(m => m[question].Name)
             @Html.HiddenFor(m => m[question].Id)
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>@Model[question].QuestionName</h2>
+                        <h2>@Model[question].Name</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
                                 <a class="collapse-link">
@@ -64,24 +64,30 @@
                         <div>
                             @Html.ValidationMessage(Model[question].Id.ToString(), new { @class = "my-error-class" })
                         </div>
-                        @for (int answer = 0; answer < Model[question].QuestionAnswers.Count; answer++)
+
+                        @for (int answer = 0; answer < Model[question].Answers.Count; answer++)
                         {
                             if (Model[question].HasMultipleAnswers)
                             {
                                 <div class="radio">
-                                    @Html.CheckBoxFor(m => m[question].QuestionAnswers[answer].IsChecked, new { @class = "flat" })
-                                    @Model[question].QuestionAnswers[answer].Name
-                                    @Html.HiddenFor(m => m[question].QuestionAnswers[answer].Id)
-                                    @Html.HiddenFor(m => m[question].QuestionAnswers[answer].Name)
+                                    @Html.CheckBoxFor(m => m[question].Answers[answer].IsChecked, new { @class = "flat" })
+
+                                    @Model[question].Answers[answer].Name
+                                    @Html.HiddenFor(m => m[question].Answers[answer].Id)
+                                    @Html.HiddenFor(m => m[question].Answers[answer].Name)
                                 </div>
                             }
                             else
                             {
                                 <div class="radio">
-                                    @Html.RadioButtonFor(m => m[question].RadioGroupAnswer, Model[question].QuestionAnswers[answer].Id, new { @class = "flat" })
-                                    @Model[question].QuestionAnswers[answer].Name
-                                    @Html.HiddenFor(m => m[question].QuestionAnswers[answer].Name)
-                                    @Html.HiddenFor(m => m[question].QuestionAnswers[answer].Id)   
+                                    @Html.RadioButtonFor(
+                                       m => m[question].RadioGroupQuestion, 
+                                       Model[question].Answers[answer].Id, 
+                                       new { @class = "flat" })
+
+                                    @Model[question].Answers[answer].Name
+                                    @Html.HiddenFor(m => m[question].Answers[answer].Name)
+                                    @Html.HiddenFor(m => m[question].Answers[answer].Id)   
                                 </div>
                             }
                         }

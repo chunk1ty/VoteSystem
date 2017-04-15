@@ -13,5 +13,7 @@ namespace VoteSystem.Data.Contracts
         Entities.VoteSystem GetById(int voteSystemId);
 
         IEnumerable<Entities.VoteSystem> GetAll();
+
+        IEnumerable<Entities.VoteSystem> GetAllWithParticipants();
     }
 }

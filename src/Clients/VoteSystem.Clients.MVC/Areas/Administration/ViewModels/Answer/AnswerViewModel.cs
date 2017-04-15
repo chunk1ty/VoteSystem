@@ -18,6 +18,6 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Answer
         
         // TODO these properties should be part of another VM
         //public bool IsChecked { get; set; }
-        //public IList<ParticipantAnswerViewModel> UserAnswers { get; set; }
+        //public IList<ParticipantQuestionViewModel> UserAnswers { get; set; }
     }
 }
