@@ -1,4 +1,4 @@
-﻿@model IList<VoteSystem.Clients.MVC.ViewModels.ParticipantAnswer.ParticipantQuestionViewModel>
+﻿@model IList<VoteSystem.Clients.MVC.ViewModels.ParticipantAnswer.ParticipantQuestionAnswerViewModel>
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -16,7 +16,7 @@
     </style>
 }
 
-@using (Html.BeginForm<ParticipantAnswerController>(c => c.Answer(string.Empty), FormMethod.Post))
+@using (Html.BeginForm<ParticipantFillOutController>(c => c.FillOut(string.Empty), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m[0].VoteSystemId)
@@ -81,9 +81,9 @@
                             {
                                 <div class="radio">
                                     @Html.RadioButtonFor(
-                                       m => m[question].RadioGroupQuestion, 
-                                       Model[question].Answers[answer].Id, 
-                                       new { @class = "flat" })
+                                                        m => m[question].RadioGroupParticipantAnswer, 
+                                                        Model[question].Answers[answer].Id, 
+                                                        new { @class = "flat" })
 
                                     @Model[question].Answers[answer].Name
                                     @Html.HiddenFor(m => m[question].Answers[answer].Name)

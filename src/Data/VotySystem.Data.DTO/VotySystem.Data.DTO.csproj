@@ -37,6 +37,7 @@
     <Compile Include="AnswerResultDto.cs" />
     <Compile Include="ParticipantAnswerDto.cs" />
     <Compile Include="ParticipantDto.cs" />
+    <Compile Include="ParticipantQuestionAnswerDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionAnswerDto.cs" />
     <Compile Include="QuestionDto.cs" />

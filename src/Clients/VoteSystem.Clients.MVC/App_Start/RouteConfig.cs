@@ -24,7 +24,7 @@ namespace VoteSystem.Clients.MVC
             routes.MapRoute(
                 name: "Intro",
                 url: "{controller}/{action}",
-                defaults: new { controller = "Introduction", action = "Index" });
+                defaults: new { controller = "Home", action = "Index" });
 
             //routes.MapRoute(
             //   name: "Default",

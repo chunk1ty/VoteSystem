@@ -2,12 +2,13 @@
 
 using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
 using VoteSystem.Data.Entities;
+using VotySystem.Data.DTO;
 
-namespace VoteSystem.Clients.MVC.ViewModels.ParticipantAnswer
+namespace VoteSystem.Clients.MVC.ViewModels.ParticipantFillOut
 {
-    public class ParticipantQuestionViewModel : IMapFrom<Question>, IMapTo<Question>
+    public class ParticipantQuestionAnswerViewModel : IMapFrom<Question>, IMapTo<Question>, IMapTo<ParticipantQuestionAnswerDto>
     {
-        public ParticipantQuestionViewModel()
+        public ParticipantQuestionAnswerViewModel()
         {
             Answers = new List<ParticipantAnswerViewModel>();
         }
@@ -15,9 +16,9 @@ namespace VoteSystem.Clients.MVC.ViewModels.ParticipantAnswer
         public int Id { get; set; }
 
         public string Name { get; set; }
-
-        // dummy way to detect user answer when question has radio group
-        public string RadioGroupQuestion { get; set; }
+        
+        // dummy way to detect participant answer when the question type is radio
+        public string RadioGroupParticipantAnswer { get; set; }
 
         public bool HasMultipleAnswers { get; set; }
 

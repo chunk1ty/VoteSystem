@@ -19,6 +19,6 @@ namespace VoteSystem.Data.Services.Contracts
 
         IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(int voteSystemId);
 
-        IEnumerable<QuestionResultDto> GetQuestionResultByVoteSystemId(int rateSystemId);
+        IEnumerable<QuestionResultDto> GetQuestionResultByVoteSystemId(int voteSystemId);
     }
 }

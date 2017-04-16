@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var getAllQuestionsUrl = $('#get-all-questions-url').val();
+    var getAllQuestionsUrl = $('#get-all-questionRepository-url').val();
 
     $.ajax({
         type: 'GET',

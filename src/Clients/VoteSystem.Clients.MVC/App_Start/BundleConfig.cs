@@ -79,7 +79,7 @@ namespace VoteSystem.Clients.MVC
                  "~/Content/bootstrap-theme/fonts/css/font-awesome.min.css",                
                 "~/Content/bootstrap-theme/css/Custom.css",
                 "~/Content/bootstrap-theme/css/daterangepicker/daterangepicker.css",
-                //"~/Content/bootstrap-theme/css/icheck/green.css",
+                "~/Content/bootstrap-theme/css/icheck/green.css",
                 "~/Content/bootstrap-theme/css/animate.min.css"
                 ));
 

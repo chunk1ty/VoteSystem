@@ -258,7 +258,7 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\ParticipantAnswerController.cs" />
+    <Compile Include="Controllers\ParticipantFillOutController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -286,8 +286,8 @@
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="ViewModels\ParticipantAnswer\ParticipantAnswerViewModel.cs" />
-    <Compile Include="ViewModels\ParticipantAnswer\ParticipantQuestionViewModel.cs" />
+    <Compile Include="ViewModels\ParticipantFillOut\ParticipantAnswerViewModel.cs" />
+    <Compile Include="ViewModels\ParticipantFillOut\ParticipantQuestionAnswerViewModel.cs" />
     <Compile Include="ViewModels\Introduction\FeedbackViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
@@ -301,7 +301,6 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Areas\Administration\ViewModels\Answer\AnswerViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Question\QuestionViewModel.cs" />
-    <Compile Include="ViewModels\ParticipantAnswerViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\VoteSystem\VoteSystemParticipantsViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\VoteSystemUser\VoteSystemUserViewModel.cs" />
   </ItemGroup>
@@ -694,7 +693,7 @@
     <Content Include="Settings.StyleCop" />
     <Content Include="Views\Shared\_SocialButtonsPartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
-    <Content Include="Views\ParticipantAnswer\Answer.cshtml" />
+    <Content Include="Views\ParticipantFillOut\FillOut.cshtml" />
     <Content Include="Views\Shared\Notifications\_ErrorNotificationPartial.cshtml" />
     <Content Include="Views\Shared\Notifications\_WarningNotificationPartial.cshtml" />
     <Content Include="Views\Shared\Notifications\_SuccessNotificationPartial.cshtml" />
