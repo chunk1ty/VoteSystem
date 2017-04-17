@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+
 using VoteSystem.Data.Entities;
 
 namespace VoteSystem.Data.Contracts
@@ -11,6 +13,6 @@ namespace VoteSystem.Data.Contracts
 
         IEnumerable<Question> GetAllQuestionsWithAnswers();
 
-        IEnumerable<Question> GetUsersAnswersByVoteSystemId(int voteSystemId);
+        IEnumerable<Question> GetUsersAnswersByVoteSystemId(Guid voteSystemId);
     }
 }

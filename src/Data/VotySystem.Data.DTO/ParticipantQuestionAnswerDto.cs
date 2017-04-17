@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace VotySystem.Data.DTO
 {
@@ -18,7 +19,7 @@ namespace VotySystem.Data.DTO
 
         public bool HasMultipleAnswers { get; set; }
 
-        public int VoteSystemId { get; set; }
+        public Guid VoteSystemId { get; set; }
 
         public IList<ParticipantAnswerDto> Answers { get; set; }
     }

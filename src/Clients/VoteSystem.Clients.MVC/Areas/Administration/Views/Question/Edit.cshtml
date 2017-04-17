@@ -12,7 +12,7 @@
     </style>
 }
 
-@using (Html.BeginForm<QuestionController>(c => c.Edit(0), FormMethod.Post))
+@using (Html.BeginForm<QuestionController>(c => c.Edit(Guid.Empty), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -45,7 +45,7 @@
 
 @*Hacky way to pass parameter in to js function*@
 <div>
-    @Html.Hidden("vote-system-id", (int)ViewBag.VoteSystemId)
+    @Html.Hidden("vote-system-id", (Guid)ViewBag.VoteSystemId)
 </div>
 
 @section scripts{

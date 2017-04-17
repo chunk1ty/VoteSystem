@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
 
@@ -56,7 +58,7 @@ namespace VoteSystem.Data.Ef.Repositories
             entry.Property(x => x.CreatedOn).IsModified = false;
         }
 
-        public Entities.VoteSystem GetById(int voteSystemId)
+        public Entities.VoteSystem GetById(Guid voteSystemId)
         {
             return _voteSystemDbContext.VoteSystems.Find(voteSystemId);
         }

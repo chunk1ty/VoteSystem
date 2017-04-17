@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystemUser;
@@ -14,7 +15,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystem
             VoteSystemUsers = new List<VoteSystemUserViewModel>();
         }
 
-        public int VoteSystemId { get; set; }
+        public Guid VoteSystemId { get; set; }
 
         public IList<VoteSystemUserViewModel> VoteSystemUsers { get; set; }
 

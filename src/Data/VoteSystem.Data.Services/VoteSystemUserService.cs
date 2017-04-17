@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using VoteSystem.Data.Contracts;
@@ -16,15 +17,28 @@ namespace VoteSystem.Data.Services
             _voteSystemUserRepository = voteSystemUserRepository;
         }
        
-        public IEnumerable<VoteSystemUser> GetUnselectedVoteSystemUsersByVoteSystemId(int voteSystemId)
+        public IEnumerable<VoteSystemUser> GetUnselectedVoteSystemUsersByVoteSystemId(Guid voteSystemId)
         {
-            var users = _voteSystemUserRepository
-                                            .GetWithParticipnats()
-                                            .Where(
-                                                x => x.Participants
-                                                    .Any(y => y.VoteSystemId != voteSystemId));
+            //var users = _voteSystemUserRepository
+            //                                .GetWithParticipnats()
+            //                                .Where(
+            //                                    x => x.Participants
+            //                                        .Any(y => y.VoteSystemId != voteSystemId));
 
-            return users;
+            var users = _voteSystemUserRepository.GetWithParticipnats();
+
+            var unselectedUsers = users.Except(GetSelectedUsers(voteSystemId));
+
+            return unselectedUsers;
+        }
+
+        private IEnumerable<VoteSystemUser> GetSelectedUsers(Guid voteSystemId)
+        {
+            return _voteSystemUserRepository
+                .GetWithParticipnats()
+                .Where(
+                    x => x.Participants
+                        .Any(y => y.VoteSystemId == voteSystemId));
         }
     }
 }

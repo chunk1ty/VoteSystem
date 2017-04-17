@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace VoteSystem.Data.Contracts
 {
@@ -10,7 +11,7 @@ namespace VoteSystem.Data.Contracts
 
         void Update(Entities.VoteSystem voteSystem);
 
-        Entities.VoteSystem GetById(int voteSystemId);
+        Entities.VoteSystem GetById(Guid voteSystemId);
 
         IEnumerable<Entities.VoteSystem> GetAll();
 

@@ -26,7 +26,7 @@ namespace VoteSystem.Data.Services
         }
 
         // TODO use encode votesystem id
-        public void Delete(int voteSystemId)
+        public void Delete(Guid voteSystemId)
         {
             // TODO how to do it with one query
             var voteSystem = _voteSystemRepository.GetById(voteSystemId);
@@ -62,7 +62,7 @@ namespace VoteSystem.Data.Services
             return result;
         }
 
-        public Entities.VoteSystem GetById(int voteSystemId)
+        public Entities.VoteSystem GetById(Guid voteSystemId)
         {
             return _voteSystemRepository.GetById(voteSystemId);
         }

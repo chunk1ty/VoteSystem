@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
@@ -54,7 +55,7 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
-        public Participant GetParticipantByVoteSystemIdAndVoteSystemUserId(int voteSystemId, Guid userId)
+        public Participant GetParticipantByVoteSystemIdAndVoteSystemUserId(Guid voteSystemId, Guid userId)
         {
             var participant = _participantRepository
                                                 .All()
@@ -63,7 +64,7 @@ namespace VoteSystem.Data.Services
             return participant;
         }
 
-        public IEnumerable<Participant> GetParticipantsByVoteSystemId(int voteSystemId)
+        public IEnumerable<Participant> GetParticipantsByVoteSystemId(Guid voteSystemId)
         {
             return _participantRepository
                                     .AllWithVoteSystemUser()

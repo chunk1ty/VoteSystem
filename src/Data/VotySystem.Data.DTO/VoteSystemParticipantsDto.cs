@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+
 using VoteSystem.Data.Entities;
 
 namespace VotySystem.Data.DTO
@@ -10,7 +12,7 @@ namespace VotySystem.Data.DTO
             SelectedVoteSystemUsers = new List<VoteSystemUser>();
         }
 
-        public int VoteSystemId { get; set; }
+        public Guid VoteSystemId { get; set; }
         
         public IList<VoteSystemUser> SelectedVoteSystemUsers { get; set; }
     }

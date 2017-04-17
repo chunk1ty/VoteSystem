@@ -30,10 +30,10 @@ namespace VoteSystem.Clients.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult FillOut(string voteSystemId)
+        public ActionResult FillOut(Guid voteSystemId)
         {
             var questionsAsViewModel = _questionService
-                                            .GetQuestionsWithAnswersByEncodedVoteSystemId(voteSystemId)
+                                            .GetQuestionsWithAnswersByVoteSystemId(voteSystemId)
                                             .To<ParticipantQuestionAnswerViewModel>()
                                             .ToList();
 

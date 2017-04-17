@@ -54,10 +54,15 @@
     });
 
     $('#delete-vote-system-btn').on('click', function () {
+        var token = $('input[name="__RequestVerificationToken"]').val();
+
         $.ajax({
             type: 'POST',
             url: '/admin/votesystem/delete',
-            data: { voteSystemId: selectedVoteSystemId.val() },
+            data: {
+                __RequestVerificationToken: token,
+                 voteSystemId: selectedVoteSystemId.val()
+            },
             success: function () {
                 $('#cancel-btn').trigger('click');
 

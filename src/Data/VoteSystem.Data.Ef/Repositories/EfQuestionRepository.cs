@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Entities;
@@ -56,7 +58,7 @@ namespace VoteSystem.Data.Ef.Repositories
                                     .Include(x => x.Answers);
         }
 
-        public IEnumerable<Question> GetUsersAnswersByVoteSystemId(int voteSystemId)
+        public IEnumerable<Question> GetUsersAnswersByVoteSystemId(Guid voteSystemId)
         {
             var result = _voteSystemDbContext.Questions
                                                 .Where(x => x.VoteSystemId == voteSystemId)
