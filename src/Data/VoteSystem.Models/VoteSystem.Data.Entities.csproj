@@ -34,18 +34,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IAuditInfo.cs" />
-    <Compile Include="Contracts\IDeletableEntity.cs" />
-    <Compile Include="Participant.cs" />
-    <Compile Include="Answer.cs" />
-    <Compile Include="Question.cs" />
-    <Compile Include="VoteSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ParticipantAnswer.cs" />
-    <Compile Include="VoteSystemUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -717,17 +717,17 @@
       <Project>{B744653C-A435-4CD2-A648-3467180CF400}</Project>
       <Name>VoteSystem.Data.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\VoteSystem.Data.Ef\VoteSystem.Data.Ef.csproj">
+      <Project>{2C5B75F9-E146-447E-BD65-F082611821EB}</Project>
+      <Name>VoteSystem.Data.Ef</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\VoteSystem.Data.Entities\VoteSystem.Data.Entities.csproj">
+      <Project>{6904A8C3-01B6-4101-AEAF-29BA1C8ECB3D}</Project>
+      <Name>VoteSystem.Data.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\VoteSystem.Data.Services.Contracts\VoteSystem.Data.Services.Contracts.csproj">
       <Project>{269CC85F-7209-4ED3-BC65-C90804B00B37}</Project>
       <Name>VoteSystem.Data.Services.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\VoteSystem.Data\VoteSystem.Data.Ef.csproj">
-      <Project>{398E47FA-CD30-4EA7-84FF-FE27EF94343C}</Project>
-      <Name>VoteSystem.Data.Ef</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
-      <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
-      <Name>VoteSystem.Data.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\VotySystem.Data.DTO\VotySystem.Data.DTO.csproj">
       <Project>{E73CB871-87EB-4F75-81BE-121A95F50736}</Project>

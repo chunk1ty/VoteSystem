@@ -50,13 +50,13 @@
       <Project>{B744653C-A435-4CD2-A648-3467180CF400}</Project>
       <Name>VoteSystem.Data.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VoteSystem.Data.Entities\VoteSystem.Data.Entities.csproj">
+      <Project>{6904A8C3-01B6-4101-AEAF-29BA1C8ECB3D}</Project>
+      <Name>VoteSystem.Data.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VoteSystem.Data.Services.Contracts\VoteSystem.Data.Services.Contracts.csproj">
       <Project>{269CC85F-7209-4ED3-BC65-C90804B00B37}</Project>
       <Name>VoteSystem.Data.Services.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
-      <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
-      <Name>VoteSystem.Data.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\VotySystem.Data.DTO\VotySystem.Data.DTO.csproj">
       <Project>{E73CB871-87EB-4F75-81BE-121A95F50736}</Project>

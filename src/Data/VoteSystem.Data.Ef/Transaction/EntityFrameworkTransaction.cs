@@ -1,6 +1,4 @@
-﻿using System;
-using System.Transactions;
-
+﻿using System.Transactions;
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
 

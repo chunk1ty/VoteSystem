@@ -108,8 +108,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\VoteSystem.Data\VoteSystem.Data.Ef.csproj">
-      <Project>{398E47FA-CD30-4EA7-84FF-FE27EF94343C}</Project>
+    <ProjectReference Include="..\..\Data\VoteSystem.Data.Ef\VoteSystem.Data.Ef.csproj">
+      <Project>{2C5B75F9-E146-447E-BD65-F082611821EB}</Project>
       <Name>VoteSystem.Data.Ef</Name>
     </ProjectReference>
   </ItemGroup>

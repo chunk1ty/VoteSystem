@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-
 using VoteSystem.Data.Ef.Contracts;
 
 namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
@@ -25,7 +24,7 @@ namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
 
         public virtual IQueryable<TEntity> All()
         {
-            return DbSet.AsQueryable();
+            return Queryable.AsQueryable<TEntity>(DbSet);
         }
 
         public virtual TEntity GetById(object id)

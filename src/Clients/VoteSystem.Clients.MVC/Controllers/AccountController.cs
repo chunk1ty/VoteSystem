@@ -11,7 +11,6 @@ using Microsoft.Owin.Security;
 
 using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem;
 using VoteSystem.Clients.MVC.ViewModels.Account;
-using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Ef.Models;
 using VoteSystem.Data.Entities;
 using VoteSystem.Services.Identity.Contracts;

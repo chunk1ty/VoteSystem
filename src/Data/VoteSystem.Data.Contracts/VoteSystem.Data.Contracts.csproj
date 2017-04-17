@@ -43,8 +43,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
-      <Project>{82CB736C-95EF-42AB-9D42-E6210DF6D20D}</Project>
+    <ProjectReference Include="..\VoteSystem.Data.Entities\VoteSystem.Data.Entities.csproj">
+      <Project>{6904A8C3-01B6-4101-AEAF-29BA1C8ECB3D}</Project>
       <Name>VoteSystem.Data.Entities</Name>
     </ProjectReference>
   </ItemGroup>

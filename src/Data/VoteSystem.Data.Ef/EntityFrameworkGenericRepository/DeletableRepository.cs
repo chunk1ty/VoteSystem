@@ -16,7 +16,7 @@ namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
      
         public override IQueryable<TEntity> All()
         {
-            return base.All().Where(x => !x.IsDeleted);
+            return Queryable.Where(base.All(), x => !x.IsDeleted);
         }
 
         public IQueryable<TEntity> AllWithDeleted()

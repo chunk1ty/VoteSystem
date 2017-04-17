@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 using VoteSystem.Data.Entities;
 
 namespace VotySystem.Data.DTO

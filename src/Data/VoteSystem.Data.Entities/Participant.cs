@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VoteSystem.Data.Entities.Contracts;
 
 namespace VoteSystem.Data.Entities

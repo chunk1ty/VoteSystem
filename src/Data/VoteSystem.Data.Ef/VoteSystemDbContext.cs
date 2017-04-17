@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-
 using Microsoft.AspNet.Identity.EntityFramework;
-
 using VoteSystem.Common.Constants;
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;

@@ -3,7 +3,6 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-
 using VoteSystem.Common.Constants;
 using VoteSystem.Data.Ef.Models;
 using VoteSystem.Data.Entities;
@@ -91,7 +90,7 @@ namespace VoteSystem.Data.Ef.Migrations
                     context.VoteSystemUsers.Add(voteSystemUser);
                 }
 
-                var admin = context.Users.FirstOrDefault(x => x.UserName == "admin@admin.com");
+                var admin = Queryable.FirstOrDefault<AspNetUser>(context.Users, x => x.UserName == "admin@admin.com");
 
                 var voteSystemAdminUser = new VoteSystemUser()
                 {

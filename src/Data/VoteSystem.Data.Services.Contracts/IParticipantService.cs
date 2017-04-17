@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using VoteSystem.Data.Entities;
 using VotySystem.Data.DTO;
 
