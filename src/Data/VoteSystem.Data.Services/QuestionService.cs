@@ -108,12 +108,12 @@ namespace VoteSystem.Data.Services
                                     .Select(x => new QuestionResultDto()
                                     {
                                         Name = x.Name,
-                                        HasMultipleAnswers = x.HasMultipleAnswers,
+                                        Type = x.HasMultipleAnswers,
                                         Answers = x.Answers.Select(
                                                y => new AnswerResultDto()
                                                {
                                                    Name = y.Name,
-                                                   Count = y.ParticipantAnswers.Count
+                                                   AnswerCount = y.ParticipantAnswers.Count
                                                })
                                     });
 

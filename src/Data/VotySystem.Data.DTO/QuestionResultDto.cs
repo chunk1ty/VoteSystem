@@ -11,7 +11,7 @@ namespace VotySystem.Data.DTO
 
         public string Name { get; set; }
 
-        public bool HasMultipleAnswers { get; set; }
+        public bool Type { get; set; }
 
         public IEnumerable<AnswerResultDto> Answers { get; set; }
     }

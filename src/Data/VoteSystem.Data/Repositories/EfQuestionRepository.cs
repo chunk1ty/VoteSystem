@@ -70,10 +70,11 @@ namespace VoteSystem.Data.Ef.Repositories
 
         public IEnumerable<Question> GetUsersAnswersByVoteSystemId(int voteSystemId)
         {
-            return _voteSystemDbContext.Questions
-                                            .Where(x => x.VoteSystemId == voteSystemId)
-                                            .Include(x => x.Answers
-                                                            .Select(y => y.ParticipantAnswers.Count));
+            var result = _voteSystemDbContext.Questions
+                                                .Where(x => x.VoteSystemId == voteSystemId)
+                                                .Include(x => x.Answers.Select(y => y.ParticipantAnswers));
+
+            return result;
         }
     }
 }

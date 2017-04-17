@@ -26,8 +26,6 @@ namespace VoteSystem.Clients.MVC
                "~/Scripts/Custom/home-grid.js",
                "~/Scripts/Custom/calendars.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/resultController").Include("~/Scripts/Custom/resultController.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/gentallela-js").Include(
                 "~/Content/bootstrap-theme/js/nicescroll/jquery.nicescroll.min.js",
                 "~/Content/bootstrap-theme/js/moment.min.js",
@@ -64,6 +62,8 @@ namespace VoteSystem.Clients.MVC
 
             bundles.Add(new StyleBundle("~/bundles/voteSystemController").Include(
                 "~/Scripts/VoteSystem/Areas/Administration/voteSystemController.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/voteSystemResultController").Include("~/Scripts/VoteSystem/Areas/Administration/voteSystemResultController.js"));
         }
 
         private static void RegisterStyles(BundleCollection bundles)

@@ -558,7 +558,7 @@
     <Content Include="Scripts\VoteSystem\Areas\Administration\questionController.js" />
     <Content Include="Scripts\VoteSystem\Areas\Administration\voteSystemController.js" />
     <Content Include="Scripts\Custom\calendars.js" />
-    <Content Include="Scripts\Custom\resultController.js" />
+    <Content Include="Scripts\VoteSystem\Areas\Administration\voteSystemResultController.js" />
     <Content Include="Scripts\VoteSystem\Areas\Administration\participantController.js" />
     <Content Include="Scripts\VoteSystem\Areas\Administration\participantPreviewController.js" />
     <Content Include="Scripts\Custom\home-grid.js" />
