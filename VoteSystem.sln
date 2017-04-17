@@ -15,10 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Web", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Web.Tests", "test\VoteSystem.Services.Web.Tests\VoteSystem.Services.Web.Tests.csproj", "{EBFDB942-73AF-4A97-8909-96308BF54649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web.Routes.Tests", "test\VoteSystem.Web.Routes.Tests\VoteSystem.Web.Routes.Tests.csproj", "{BAADB80A-A13C-403B-AD11-8B1680415890}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Data.Tests", "test\VoteSystem.Services.Data.Tests\VoteSystem.Services.Data.Tests.csproj", "{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Web.Controllers.Tests", "test\VoteSystem.Web.Controllers.Tests\VoteSystem.Web.Controllers.Tests.csproj", "{1EE34F89-872A-4570-B669-1885DFB8FFB1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{60BD349B-1F06-46FD-B2A1-7F0367126AF4}"
@@ -61,6 +57,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Ef", "src\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Entities", "src\Data\VoteSystem.Data.Entities\VoteSystem.Data.Entities.csproj", "{6904A8C3-01B6-4101-AEAF-29BA1C8ECB3D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentation", "{DCAF898D-8959-4BF7-9A96-627B917B3208}"
+	ProjectSection(SolutionItems) = preProject
+		documentation\Andriyan_Krastev.pptx = documentation\Andriyan_Krastev.pptx
+		documentation\Andriyan_Krastev_153708-_v1.1.docx = documentation\Andriyan_Krastev_153708-_v1.1.docx
+		documentation\Architecture.vsdx = documentation\Architecture.vsdx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{7428B4F1-2F28-4893-B99D-5AB4006A3528}"
+	ProjectSection(SolutionItems) = preProject
+		documentation\Screenshots\1.png = documentation\Screenshots\1.png
+		documentation\Screenshots\2.png = documentation\Screenshots\2.png
+		documentation\Screenshots\3.png = documentation\Screenshots\3.png
+		documentation\Screenshots\4.png = documentation\Screenshots\4.png
+		documentation\Screenshots\5.png = documentation\Screenshots\5.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,14 +91,6 @@ Global
 		{EBFDB942-73AF-4A97-8909-96308BF54649}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBFDB942-73AF-4A97-8909-96308BF54649}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBFDB942-73AF-4A97-8909-96308BF54649}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BAADB80A-A13C-403B-AD11-8B1680415890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BAADB80A-A13C-403B-AD11-8B1680415890}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BAADB80A-A13C-403B-AD11-8B1680415890}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BAADB80A-A13C-403B-AD11-8B1680415890}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -138,8 +142,6 @@ Global
 		{67CC40FF-4933-4F83-810E-357E6BC8B973} = {99FC36D3-D963-4263-BF69-8BD11F801E2B}
 		{987BB8B6-3320-4A56-BF9F-A2BC56F6D5DB} = {A5398FDD-2BE7-452F-9808-E5D3C5B58CC3}
 		{EBFDB942-73AF-4A97-8909-96308BF54649} = {DF6EC6DD-0407-4407-AE1A-889FEA57320E}
-		{BAADB80A-A13C-403B-AD11-8B1680415890} = {DF6EC6DD-0407-4407-AE1A-889FEA57320E}
-		{4C7DB21F-1F1D-404F-B66E-E4BEDF0275C7} = {DF6EC6DD-0407-4407-AE1A-889FEA57320E}
 		{1EE34F89-872A-4570-B669-1885DFB8FFB1} = {DF6EC6DD-0407-4407-AE1A-889FEA57320E}
 		{D9B4F554-9392-4605-A2D1-D8761CB6631C} = {9CCBA71E-9C76-4F97-B862-BB9BC856F680}
 		{6A2DE8D2-B860-4C75-A7DF-9B7FF32E7A74} = {D9B4F554-9392-4605-A2D1-D8761CB6631C}
@@ -153,5 +155,6 @@ Global
 		{6FE16DE7-B267-402D-B7EE-7CF56ED1E72D} = {A5398FDD-2BE7-452F-9808-E5D3C5B58CC3}
 		{2C5B75F9-E146-447E-BD65-F082611821EB} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 		{6904A8C3-01B6-4101-AEAF-29BA1C8ECB3D} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
+		{7428B4F1-2F28-4893-B99D-5AB4006A3528} = {DCAF898D-8959-4BF7-9A96-627B917B3208}
 	EndGlobalSection
 EndGlobal

@@ -729,6 +729,10 @@
       <Project>{269CC85F-7209-4ED3-BC65-C90804B00B37}</Project>
       <Name>VoteSystem.Data.Services.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\VoteSystem.Data.Services\VoteSystem.Data.Services.csproj">
+      <Project>{b189968e-4f1d-4301-a27e-1a3c3d652b98}</Project>
+      <Name>VoteSystem.Data.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\VotySystem.Data.DTO\VotySystem.Data.DTO.csproj">
       <Project>{E73CB871-87EB-4F75-81BE-121A95F50736}</Project>
       <Name>VotySystem.Data.DTO</Name>
