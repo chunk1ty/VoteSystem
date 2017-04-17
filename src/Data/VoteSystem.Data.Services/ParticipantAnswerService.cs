@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Entities;
 using VoteSystem.Data.Services.Contracts;
@@ -19,14 +20,25 @@ namespace VoteSystem.Data.Services
             IVoteSystemEfDbContextSaveChanges dbContextSaveChanges,
             IParticipantService participantService)
         {
-            _participantAnswerRepository = participantAnswerRepository;
-            _dbContextSaveChanges = dbContextSaveChanges;
-            _participantService = participantService;
+            _participantAnswerRepository = participantAnswerRepository ?? throw new ArgumentNullException(nameof(participantAnswerRepository));
+            _dbContextSaveChanges = dbContextSaveChanges ?? throw new ArgumentNullException(nameof(dbContextSaveChanges));
+            _participantService = participantService ?? throw new ArgumentNullException(nameof(participantService));
         }
 
         public void Add(IList<ParticipantQuestionAnswerDto> participantQuestionAnswers, Guid userId)
         {
-            var participant = _participantService.GetParticipantBySurveyIdAndUserId(participantQuestionAnswers[0].VoteSystemId, userId);
+            if (participantQuestionAnswers == null)
+            {
+                throw new ArgumentNullException(nameof(participantQuestionAnswers));
+            }
+
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            var voteSystemId = participantQuestionAnswers[0].VoteSystemId;
+            var participant = _participantService.GetParticipantByVoteSystemIdAndVoteSystemUserId(voteSystemId, userId);
 
             foreach (var question in participantQuestionAnswers)
             {

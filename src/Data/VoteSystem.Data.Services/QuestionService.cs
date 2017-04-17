@@ -21,20 +21,13 @@ namespace VoteSystem.Data.Services
             IIdentifierProvider identifierProvider, 
             IVoteSystemEfDbContextSaveChanges dbContextSaveChanges)
         {
-            _questionRepository = questionRepository;
-            _identifierProvider = identifierProvider;
-            _dbContextSaveChanges = dbContextSaveChanges;
-        }
-
-        public void Add(Question question)
-        {
-            _questionRepository.Add(question);
-
-            _dbContextSaveChanges.SaveChanges();
+            _questionRepository = questionRepository ?? throw new ArgumentNullException(nameof(questionRepository));
+            _identifierProvider = identifierProvider ?? throw new ArgumentNullException(nameof(identifierProvider));
+            _dbContextSaveChanges = dbContextSaveChanges ?? throw new ArgumentNullException(nameof(dbContextSaveChanges));
         }
 
         // TODO bulk insert
-        public void AddQuestions(IList<Question> questions)
+        public void AddRange(IList<Question> questions)
         {
             if (questions == null)
             {
@@ -49,7 +42,7 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
-        public void UpdateQuestions(IList<Question> questions)
+        public void UpdateRange(IList<Question> questions)
         {
             if (questions == null)
             {
@@ -77,14 +70,7 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
-        public void Delete(Question question)
-        {
-            _questionRepository.Delete(question);
-
-            _dbContextSaveChanges.SaveChanges();
-        }
-
-        public IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(string voteSystemId)
+        public IEnumerable<Question> GetQuestionsWithAnswersByEncodedVoteSystemId(string voteSystemId)
         {
             var decodedVoteSystemId = _identifierProvider.DecodeId(voteSystemId);
            
@@ -93,6 +79,7 @@ namespace VoteSystem.Data.Services
                             .Where(x => x.VoteSystemId == decodedVoteSystemId && !x.IsDeleted);
         }
 
+        // TODO use encoded votesystemId
         public IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(int voteSystemId)
         {
             // TODO: ASK in memory ?? isn't it to slow instead of sql query ??

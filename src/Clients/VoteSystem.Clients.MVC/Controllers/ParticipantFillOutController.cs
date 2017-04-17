@@ -33,7 +33,7 @@ namespace VoteSystem.Clients.MVC.Controllers
         public ActionResult FillOut(string voteSystemId)
         {
             var questionsAsViewModel = _questionService
-                                            .GetQuestionsWithAnswersByVoteSystemId(voteSystemId)
+                                            .GetQuestionsWithAnswersByEncodedVoteSystemId(voteSystemId)
                                             .To<ParticipantQuestionAnswerViewModel>()
                                             .ToList();
 

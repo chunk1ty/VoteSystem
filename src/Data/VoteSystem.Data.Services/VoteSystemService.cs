@@ -25,10 +25,11 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
+        // TODO use encode votesystem id
         public void Delete(int voteSystemId)
         {
             // TODO how to do it with one query
-            var voteSystem = this._voteSystemRepository.GetById(voteSystemId);
+            var voteSystem = _voteSystemRepository.GetById(voteSystemId);
 
            _voteSystemRepository.Delete(voteSystem);
 
@@ -49,15 +50,16 @@ namespace VoteSystem.Data.Services
 
         public IEnumerable<Entities.VoteSystem> GetAllAvailableVoteSystemsForUserByUserId(Guid userId)
         {
-            // TODO fix it later ?? fix what ??
-            return _voteSystemRepository
-                                    .GetAllWithParticipants()
-                                    .Where(x =>
+            var result = _voteSystemRepository
+                                        .GetAllWithParticipants()
+                                        .Where(x =>
                                             x.StarDateTime <= DateTime.Now &&
                                             DateTime.Now <= x.EndDateTime &&
                                             x.Participants.Any(y =>
-                                                                y.VoteSystemUserId == userId &&
-                                                                y.IsVoted == false));
+                                                                    y.VoteSystemUserId == userId &&
+                                                                    y.IsVoted == false));
+
+            return result;
         }
 
         public Entities.VoteSystem GetById(int voteSystemId)

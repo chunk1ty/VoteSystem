@@ -7,7 +7,5 @@ namespace VoteSystem.Data.Contracts
     public interface IVoteSystemUserRepository
     {
         IEnumerable<VoteSystemUser> GetWithParticipnats();
-
-        IEnumerable<VoteSystemUser> GetAll();
     }
 }

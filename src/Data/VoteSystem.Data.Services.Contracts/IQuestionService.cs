@@ -7,16 +7,13 @@ namespace VoteSystem.Data.Services.Contracts
 {
     public interface IQuestionService
     {
-        void Add(Question question);
+        void AddRange(IList<Question> questions);
 
-        void AddQuestions(IList<Question> questions);
+        void UpdateRange(IList<Question> questions);
 
-        void UpdateQuestions(IList<Question> questions);
+        IEnumerable<Question> GetQuestionsWithAnswersByEncodedVoteSystemId(string voteSystemId);
 
-        void Delete(Question question);
-
-        IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(string voteSystemId);
-
+        // TODO use encoded votesystemId
         IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(int voteSystemId);
 
         IEnumerable<QuestionResultDto> GetQuestionResultByVoteSystemId(int voteSystemId);

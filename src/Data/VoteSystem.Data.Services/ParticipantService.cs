@@ -19,14 +19,7 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges = dbContextSaveChanges;
         }
 
-        public void Add(Participant participant)
-        {
-            _participantRepository.Add(participant);
-
-            _dbContextSaveChanges.SaveChanges();
-        }
-
-        public void AddParticipants(VoteSystemParticipantsDto voteSystemParticipants)
+        public void AddRange(VoteSystemParticipantsDto voteSystemParticipants)
         {
             var voteSystemId = voteSystemParticipants.VoteSystemId;
 
@@ -51,16 +44,8 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
-        public void Remove(Participant participant)
+        public void RemoveRange(IEnumerable<Participant> participants)
         {
-            _participantRepository.Delete(participant);
-
-            _dbContextSaveChanges.SaveChanges();
-        }
-
-        public void RemoveParticipants(IEnumerable<Participant> participants)
-        {
-
             foreach (var participant in participants)
             {
                 _participantRepository.Delete(participant);
@@ -69,7 +54,7 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
-        public Participant GetParticipantBySurveyIdAndUserId(int voteSystemId, Guid userId)
+        public Participant GetParticipantByVoteSystemIdAndVoteSystemUserId(int voteSystemId, Guid userId)
         {
             var participant = _participantRepository
                                                 .All()

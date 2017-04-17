@@ -64,7 +64,7 @@ namespace VoteSystem.Data.Ef.Repositories
 
         public IEnumerable<Entities.VoteSystem> GetAll()
         {
-            return  _voteSystemDbContext.VoteSystems;
+            return _voteSystemDbContext.VoteSystems;
         }
 
         public IEnumerable<Entities.VoteSystem> GetAllWithParticipants()

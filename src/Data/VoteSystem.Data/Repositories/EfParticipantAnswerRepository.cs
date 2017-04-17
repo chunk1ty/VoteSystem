@@ -1,5 +1,5 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Entities;
@@ -14,8 +14,7 @@ namespace VoteSystem.Data.Ef.Repositories
         {
             _voteSystemDbContext = voteSystemDbContext;
         }
-
-        // TODO think better approach to implement CRUD operations, because right now I am repeating the logic in each repository 
+        
         public void Add(ParticipantAnswer participantAnswer)
         {
             var entry = _voteSystemDbContext.Entry(participantAnswer);

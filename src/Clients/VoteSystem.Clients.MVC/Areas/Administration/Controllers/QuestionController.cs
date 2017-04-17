@@ -49,7 +49,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             try
             {
                 var questionsAsDbEntities = questions.To<Question>().ToList();
-                _questionService.AddQuestions(questionsAsDbEntities);
+                _questionService.AddRange(questionsAsDbEntities);
 
                 this.AddNotification("Успешно добавихте въпроси!", NotificationType.Success);
             }
@@ -93,7 +93,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             try
             {
                 var questionsAsDbEntities = questions.To<Question>().ToList();
-                _questionService.UpdateQuestions(questionsAsDbEntities);
+                _questionService.UpdateRange(questionsAsDbEntities);
                
                 this.AddNotification("Успешно редактирахте въпросите!", NotificationType.Success);
             }

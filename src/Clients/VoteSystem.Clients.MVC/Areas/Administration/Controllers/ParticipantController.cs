@@ -40,7 +40,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             }
 
             var voteSystemUsers = _voteSystemUserService
-                                                    .GetUnselectedUsers(voteSystemId)
+                                                    .GetUnselectedVoteSystemUsersByVoteSystemId(voteSystemId)
                                                     .To<VoteSystemUserViewModel>()
                                                     .ToList();
 
@@ -65,7 +65,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
             try
             {
                 var voteSystemParticipantsAsDto = Mapper.Map<VoteSystemParticipantsDto>(model);
-                _participantService.AddParticipants(voteSystemParticipantsAsDto);
+                _participantService.AddRange(voteSystemParticipantsAsDto);
               
                 this.AddNotification("Успешно добавихте учасници!", NotificationType.Success);
             }
@@ -110,7 +110,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                                                         .Where(x => x.VoteSystemUser.IsSelected)
                                                         .To<Participant>();
 
-                _participantService.RemoveParticipants(participantsAsDbEntities);
+                _participantService.RemoveRange(participantsAsDbEntities);
 
                 this.AddNotification("Успешно премахнахте учасници!", NotificationType.Success);
             }

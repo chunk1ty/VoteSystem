@@ -21,11 +21,5 @@ namespace VoteSystem.Data.Ef.Repositories
             return _voteSystemDbContext.VoteSystemUsers
                 .Include(x => x.Participants);
         }
-
-        public IEnumerable<VoteSystemUser> GetAll()
-        {
-            return _voteSystemDbContext.VoteSystemUsers
-                .Include(x => x.Participants);
-        }
     }
 }

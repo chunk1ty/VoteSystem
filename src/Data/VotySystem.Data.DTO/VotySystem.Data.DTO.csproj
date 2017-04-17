@@ -36,16 +36,10 @@
   <ItemGroup>
     <Compile Include="AnswerResultDto.cs" />
     <Compile Include="ParticipantAnswerDto.cs" />
-    <Compile Include="ParticipantDto.cs" />
     <Compile Include="ParticipantQuestionAnswerDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuestionAnswerDto.cs" />
-    <Compile Include="QuestionDto.cs" />
     <Compile Include="QuestionResultDto.cs" />
-    <Compile Include="SurveyDto.cs" />
     <Compile Include="VoteSystemParticipantsDto.cs" />
-    <Compile Include="VoteSystemUserDto.cs" />
-    <Compile Include="VoteSystemWithQuestionsDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VoteSystem.Models\VoteSystem.Data.Entities.csproj">

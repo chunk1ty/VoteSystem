@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
+
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Entities;
@@ -18,7 +18,7 @@ namespace VoteSystem.Data.Ef.Repositories
 
         public void Add(Participant participant)
         {
-            var  entry = _voteSystemDbContext.Entry(participant);
+            var entry = _voteSystemDbContext.Entry(participant);
 
             if (entry.State != EntityState.Detached)
             {
@@ -59,7 +59,7 @@ namespace VoteSystem.Data.Ef.Repositories
 
         public IEnumerable<Participant> All()
         {
-            return  _voteSystemDbContext.Participants;
+            return _voteSystemDbContext.Participants;
         }
 
         public IEnumerable<Participant> AllWithVoteSystemUser()

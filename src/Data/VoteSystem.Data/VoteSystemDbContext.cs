@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+
 using Microsoft.AspNet.Identity.EntityFramework;
+
 using VoteSystem.Common.Constants;
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
@@ -43,18 +45,9 @@ namespace VoteSystem.Data.Ef
 
         public override int SaveChanges()
         {
-            this.ApplyAuditInfoRules();
+            ApplyAuditInfoRules();
             return base.SaveChanges();
         }
-
-        // create DB relations and constrains here
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-
-        //    modelBuilder.Entity<Entities.VoteSystem>()
-        //        .has
-        //}
 
         private void ApplyAuditInfoRules()
         {

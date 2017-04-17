@@ -16,22 +16,15 @@ namespace VoteSystem.Data.Services
             _voteSystemUserRepository = voteSystemUserRepository;
         }
        
-        public IEnumerable<VoteSystemUser> GetUnselectedUsers(int voteSystemId)
+        public IEnumerable<VoteSystemUser> GetUnselectedVoteSystemUsersByVoteSystemId(int voteSystemId)
         {
-            var users = _voteSystemUserRepository.GetAll();
+            var users = _voteSystemUserRepository
+                                            .GetWithParticipnats()
+                                            .Where(
+                                                x => x.Participants
+                                                    .Any(y => y.VoteSystemId != voteSystemId));
 
-            var unselectedUsers = users.Except(GetSelectedUsers(voteSystemId));
-
-            return unselectedUsers;
-        }
-
-        public IEnumerable<VoteSystemUser> GetSelectedUsers(int voteSystemId)
-        {
-            return _voteSystemUserRepository
-                                        .GetWithParticipnats()
-                                        .Where(
-                                             x => x.Participants
-                                                    .Any(y => y.VoteSystemId == voteSystemId));
+            return users;
         }
     }
 }

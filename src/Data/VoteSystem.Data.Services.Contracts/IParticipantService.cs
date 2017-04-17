@@ -8,17 +8,13 @@ namespace VoteSystem.Data.Services.Contracts
 {
     public interface IParticipantService
     {
-        void Add(Participant participant);
+        void AddRange(VoteSystemParticipantsDto voteSystemParticipants);
 
-        void AddParticipants(VoteSystemParticipantsDto voteSystemParticipants);
-
-        void Remove(Participant participant);
-
-        void RemoveParticipants(IEnumerable<Participant> participants);
+        void RemoveRange(IEnumerable<Participant> participants);
 
         void Update(Participant participant);
 
-        Participant GetParticipantBySurveyIdAndUserId(int voteSystemId, Guid userId);
+        Participant GetParticipantByVoteSystemIdAndVoteSystemUserId(int voteSystemId, Guid userId);
 
         IEnumerable<Participant> GetParticipantsByVoteSystemId(int voteSystemId);
     }
