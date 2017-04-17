@@ -1,6 +1,6 @@
 ﻿@using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem
 @{
-    var errorList = Html.GetNotifications(NotificationType.ERROR);
+    var errorList = Html.GetNotifications(NotificationType.Error);
 }
 
 @if (errorList != null)

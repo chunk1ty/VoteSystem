@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
-using VoteSystem.Data;
-using VoteSystem.Data.Migrations;
+using VoteSystem.Data.Ef;
+using VoteSystem.Data.Ef.Migrations;
 
 namespace VoteSystem.Clients.MVC
 {

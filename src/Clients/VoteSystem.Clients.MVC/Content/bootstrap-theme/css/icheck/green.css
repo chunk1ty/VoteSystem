@@ -9,7 +9,8 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url('../Content/bootstrap-theme/css/icheck/green.png') no-repeat;
+    background: url('green.png') no-repeat;
+    background-image: url('green.png');
     border: none;
     cursor: pointer;
 }
@@ -46,8 +47,7 @@
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_flat-green,
     .iradio_flat-green {
-        background-image: url('../Content/bootstrap-theme/css/icheck/green@2x.png');
-        -webkit-background-size: 176px 22px;
+        background-image: url('green@2x.png');
         background-size: 176px 22px;
     }
 }

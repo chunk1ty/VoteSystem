@@ -1,5 +1,6 @@
 ﻿using System.Security.Principal;
-using VoteSystem.Common;
+
+using VoteSystem.Common.Constants;
 
 namespace VoteSystem.Clients.MVC.Infrastructure.Extensions
 {

@@ -1,28 +1,23 @@
-﻿namespace VoteSystem.Data.Models
+﻿using System;
+
+using VoteSystem.Data.Entities.Contracts;
+
+namespace VoteSystem.Data.Entities
 {
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public class Participant
+    public class Participant : IAuditInfo
     {
-        public Participant()
-        {
-            this.ParticipantAnswers = new HashSet<ParticipantAnswer>();
-        }
-
-        [Key]
         public int Id { get; set; }
-
-        public string UserId { get; set; }
-
-        public virtual User User { get; set; }
-
-        public int RateSystemId { get; set; }
-
-        public virtual RateSystem RateSystem { get; set; }
 
         public bool IsVoted { get; set; }
 
-        public ICollection<ParticipantAnswer> ParticipantAnswers { get; set; }
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        public Guid VoteSystemUserId { get; set; }
+        public virtual VoteSystemUser VoteSystemUser { get; set; }
+
+        public int VoteSystemId { get; set; }
+        public virtual VoteSystem VoteSystem { get; set; }
     }
 }

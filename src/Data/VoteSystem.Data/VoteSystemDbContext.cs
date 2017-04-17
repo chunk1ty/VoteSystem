@@ -1,30 +1,42 @@
-﻿namespace VoteSystem.Data
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
+
+using Microsoft.AspNet.Identity.EntityFramework;
+
+using VoteSystem.Common.Constants;
+using VoteSystem.Data.Contracts;
+using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Data.Ef.Models;
+using VoteSystem.Data.Entities;
+using VoteSystem.Data.Entities.Contracts;
+
+namespace VoteSystem.Data.Ef
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-
-    using Microsoft.AspNet.Identity.EntityFramework;
-  
-    using VoteSystem.Data.Common.Models;
-    using VoteSystem.Data.Models;
-
-    public class VoteSystemDbContext : IdentityDbContext<User>, IVoteSystemDbContext
+    public class VoteSystemDbContext : IdentityDbContext<AspNetUser>, IVoteSystemDbContext, IVoteSystemEfDbContextSaveChanges
     {
         public VoteSystemDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base(ConnectionStings.VoteSystemDbConnection, throwIfV1Schema: false)
         {
         }
 
-        public virtual IDbSet<Question> Questions { get; set; }
+        public virtual IDbSet<Entities.VoteSystem> VoteSystems { get; set; }
 
         public virtual IDbSet<Participant> Participants { get; set; }
 
         public virtual IDbSet<ParticipantAnswer> ParticipantAnswers { get; set; }
 
-        public virtual IDbSet<RateSystem> RateSystems { get; set; }
+        public virtual IDbSet<Question> Questions { get; set; }
 
-        public virtual IDbSet<QuestionAnswer> QuestionAnswers { get; set; }
+        public virtual IDbSet<Answer> QuestionAnswers { get; set; }
+
+        public virtual IDbSet<VoteSystemUser> VoteSystemUsers { get; set; }
+
+        public new IDbSet<TEntity> Set<TEntity>() 
+            where TEntity : class
+        {
+            return base.Set<TEntity>();
+        }
 
         public static VoteSystemDbContext Create()
         {
@@ -33,8 +45,14 @@
 
         public override int SaveChanges()
         {
-            this.ApplyAuditInfoRules();
+            ApplyAuditInfoRules();
+
             return base.SaveChanges();
+        }
+
+        public void SetDataBaseTimeout(TimeSpan time)
+        {
+            Database.CommandTimeout = (int)time.TotalSeconds;
         }
 
         private void ApplyAuditInfoRules()
@@ -51,11 +69,11 @@
 
                 if (entry.State == EntityState.Added && entity.CreatedOn == default(DateTime))
                 {
-                    entity.CreatedOn = DateTime.Now;
+                    entity.CreatedOn = DateTime.UtcNow;
                 }
                 else
                 {
-                    entity.ModifiedOn = DateTime.Now;
+                    entity.ModifiedOn = DateTime.UtcNow;
                 }
             }
         }

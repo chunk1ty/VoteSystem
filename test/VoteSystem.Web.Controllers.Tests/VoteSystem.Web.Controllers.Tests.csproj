@@ -72,33 +72,19 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="QuestionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Data\VoteSystem.Data.Common\VoteSystem.Data.Common.csproj">
-      <Project>{8E44BC26-9E2D-4796-86F0-1D9BFBA8598D}</Project>
-      <Name>VoteSystem.Data.Common</Name>
+    <ProjectReference Include="..\..\src\Data\VoteSystem.Data.Services.Contracts\VoteSystem.Data.Services.Contracts.csproj">
+      <Project>{269CC85F-7209-4ED3-BC65-C90804B00B37}</Project>
+      <Name>VoteSystem.Data.Services.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Data\VoteSystem.Data\VoteSystem.Data.csproj">
-      <Project>{398e47fa-cd30-4ea7-84ff-fe27ef94343c}</Project>
-      <Name>VoteSystem.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Data\VoteSystem.Models\VoteSystem.Data.Models.csproj">
+    <ProjectReference Include="..\..\src\Data\VoteSystem.Models\VoteSystem.Data.Entities.csproj">
       <Project>{82cb736c-95ef-42ab-9d42-e6210df6d20d}</Project>
-      <Name>VoteSystem.Data.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Services\VoteSystem.Services.Data\VoteSystem.Services.Data.csproj">
-      <Project>{960e22e8-f9ee-4067-8cc6-f6c1950fbd18}</Project>
-      <Name>VoteSystem.Services.Data</Name>
+      <Name>VoteSystem.Data.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Clients\VoteSystem.Clients.MVC\VoteSystem.Clients.MVC.csproj">
       <Project>{67cc40ff-4933-4f83-810e-357e6bc8b973}</Project>

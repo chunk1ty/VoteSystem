@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+
 using HtmlTags;
 
 namespace VoteSystem.Clients.MVC.Infrastructure.Extensions
@@ -8,6 +9,11 @@ namespace VoteSystem.Clients.MVC.Infrastructure.Extensions
     {
         public static string TimeDisplay(this HtmlHelper helper, DateTime endDate)
         {
+            if (endDate == null)
+            {
+                throw new ArgumentNullException(nameof(endDate));
+            }
+
             TimeSpan ts = endDate - DateTime.Now;
 
             string timeAsString = string.Empty;
@@ -26,8 +32,7 @@ namespace VoteSystem.Clients.MVC.Infrastructure.Extensions
                                             ts.Hours,
                                             ts.Hours == 1 ? string.Empty : "а",
                                             ts.Minutes,
-                                            ts.Minutes == 1 ? "а" : "и",
-                                            ts.Days);
+                                            ts.Minutes == 1 ? "а" : "и");
             }
             else
             {
@@ -44,16 +49,16 @@ namespace VoteSystem.Clients.MVC.Infrastructure.Extensions
             return timeAsString;
         }
 
-        public static HtmlTag RateSystemStatus(this HtmlHelper helper, DateTime startDate, DateTime endDate)
+        public static HtmlTag VoteSystemStatus(this HtmlHelper helper, DateTime startDate, DateTime endDate)
         {
             if (startDate == null)
             {
-                throw new ArgumentNullException("Start date can not be null");
+                throw new ArgumentNullException(nameof(startDate));
             }
 
             if (endDate == null)
             {
-                throw new ArgumentNullException("End date can not be null");
+                throw new ArgumentNullException(nameof(endDate));
             }
             
             HtmlTag status = new HtmlTag("span");

@@ -4,12 +4,17 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Expressions;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+
 using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem;
 using VoteSystem.Clients.MVC.ViewModels.Account;
-using VoteSystem.Data.Models;
+using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Data.Ef.Models;
+using VoteSystem.Data.Entities;
+using VoteSystem.Services.Identity.Contracts;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {
@@ -19,41 +24,17 @@ namespace VoteSystem.Clients.MVC.Controllers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
-        private ApplicationSignInManager signInManager;
-        private ApplicationUserManager userManager;
+        private readonly ISignInService _signInService;
+        private IUserManagerService _userManagerService;
 
         public AccountController()
         {   
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ISignInService signInService, IUserManagerService userManagerService)
         {
-            this.UserManager = userManager;
-            this.SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return this.signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            {
-                this.signInManager = value; 
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return this.userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                this.userManager = value;
-            }
+            _signInService = signInService;
+            _userManagerService = userManagerService;
         }
 
         private IAuthenticationManager AuthenticationManager
@@ -69,18 +50,18 @@ namespace VoteSystem.Clients.MVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var user = await UserManager.FindByNameAsync(User.Identity.Name);
+                var user = await this._userManagerService.FindByNameAsync(User.Identity.Name);
                 if (user == null)
                 {
                     ViewBag.ReturnUrl = returnUrl;
                     return this.View();
                 }
 
-                bool isEmailConfirmed = await UserManager.IsEmailConfirmedAsync(user.Id);
+                bool isEmailConfirmed = await this._userManagerService.IsEmailConfirmedAsync(user.Id);
 
                 if (isEmailConfirmed)
                 {
-                    return this.RedirectToAction("Index", "Home");
+                    return this.RedirectToAction("Index", "Dashboard");
                 }
             }
 
@@ -99,17 +80,17 @@ namespace VoteSystem.Clients.MVC.Controllers
             }
 
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await this.SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await this._signInService.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    var user = await UserManager.FindByNameAsync(model.Email);
+                    var user = await this._userManagerService.FindByNameAsync(model.Email);
 
                     if (user != null)
                     {
-                        if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                        if (!await this._userManagerService.IsEmailConfirmedAsync(user.Id))
                         {
-                            this.AddNotification("Потвърдете имейлът си за да влезете.", NotificationType.ERROR);
+                            this.AddNotification("Потвърдете имейлът си за да влезете.", NotificationType.Error);
 
                             return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
                         }
@@ -131,8 +112,8 @@ namespace VoteSystem.Clients.MVC.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
-            // Require that the user has already logged in via username/password or external login
-            if (!await this.SignInManager.HasBeenVerifiedAsync())
+            // Require that the aspNetUser has already logged in via username/password or external login
+            if (!await this._signInService.HasBeenVerifiedAsync())
             {
                 return this.View("Error");
             }
@@ -152,10 +133,10 @@ namespace VoteSystem.Clients.MVC.Controllers
             }
 
             // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
+            // If a aspNetUser enters incorrect codes for a specified amount of time then the aspNetUser account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await this.SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await this._signInService.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -182,21 +163,24 @@ namespace VoteSystem.Clients.MVC.Controllers
         {
             if (ModelState.IsValid)
             {                
-                var user = new User
+                var user = new AspNetUser
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    FN = model.FacultyNumber,
+                    FacultyNumber = model.FacultyNumber,
                     FirstName = model.FirstName,
                     LastName = model.LastName
                 };
 
-                var result = await this.UserManager.CreateAsync(user, model.Password);
+                user.VoteSystemUser = new VoteSystemUser();
+                user.VoteSystemUser.Email = model.Email;
+
+                var result = await this._userManagerService.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await this.SendEmalForNewUser(user);
+                    //await this.SendEmalForNewUser(user);
 
-                    this.AddNotification("Проверете имейлът си за да активирате акаунта.", NotificationType.WARNING);
+                    this.AddNotification("Проверете имейлът си за да активирате акаунта.", NotificationType.Warning);
 
                     return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
                 }
@@ -211,14 +195,14 @@ namespace VoteSystem.Clients.MVC.Controllers
         {
             string userId = User.Identity.GetUserId();
 
-            var user = await UserManager.FindByIdAsync(userId);
+            var user = await this._userManagerService.FindByIdAsync(userId);
 
             UserInfoViewModel userVM = new UserInfoViewModel()
             {
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                FacultyNumber = user.FN
+                FacultyNumber = user.FacultyNumber
             };           
 
             return View(userVM);
@@ -228,14 +212,14 @@ namespace VoteSystem.Clients.MVC.Controllers
         {
             string userId = User.Identity.GetUserId();
 
-            var user = await UserManager.FindByIdAsync(userId);
+            var user = await this._userManagerService.FindByIdAsync(userId);
 
             UserInfoViewModel userVM = new UserInfoViewModel()
             {
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                FacultyNumber = user.FN
+                FacultyNumber = user.FacultyNumber
             };
 
             return View(userVM);
@@ -251,16 +235,16 @@ namespace VoteSystem.Clients.MVC.Controllers
 
             string userId = User.Identity.GetUserId();
 
-            var user = await UserManager.FindByIdAsync(userId);
+            var user = await this._userManagerService.FindByIdAsync(userId);
             
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Email = model.Email;
-            user.FN = model.FacultyNumber;
+            user.FacultyNumber = model.FacultyNumber;
 
-            await UserManager.UpdateAsync(user);
+            await this._userManagerService.UpdateAsync(user);
 
-            this.AddNotification("Успешно променихте вашите данни.", NotificationType.SUCCESS);
+            this.AddNotification("Успешно променихте вашите данни.", NotificationType.Success);
 
             return this.RedirectToAction("UserProfile");
         }
@@ -273,15 +257,15 @@ namespace VoteSystem.Clients.MVC.Controllers
                 return this.View("Error");
             }
 
-            var result = await this.UserManager.ConfirmEmailAsync(userId, code);
+            var result = await this._userManagerService.ConfirmEmailAsync(userId, code);
 
             if (result.Succeeded)
             {
-                this.AddNotification("Успешно активирахте вашият акаунт.", NotificationType.SUCCESS);
+                this.AddNotification("Успешно активирахте вашият акаунт.", NotificationType.Success);
             }
             else
             {
-                this.AddNotification("Неуспешно активирахте вашият акаунт.", NotificationType.ERROR);
+                this.AddNotification("Неуспешно активирахте вашият акаунт.", NotificationType.Error);
             }
 
             return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
@@ -302,18 +286,18 @@ namespace VoteSystem.Clients.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await this.UserManager.FindByNameAsync(model.Email);
+                var user = await this._userManagerService.FindByNameAsync(model.Email);
 
-                if (user == null || !(await this.UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (user == null || !(await this._userManagerService.IsEmailConfirmedAsync(user.Id)))
                 {
-                    this.AddNotification("Въведеният имейл не съществува.", NotificationType.ERROR);
+                    this.AddNotification("Въведеният имейл не съществува.", NotificationType.Error);
 
                     return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
                 }
                
                 await SendEmailForForgotPassword(user);
 
-                this.AddNotification("Проверете вашият имейл за въвеждане на нова парола.", NotificationType.INFO);
+                this.AddNotification("Проверете вашият имейл за въвеждане на нова парола.", NotificationType.Info);
 
                 return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
             }
@@ -337,7 +321,7 @@ namespace VoteSystem.Clients.MVC.Controllers
                 return this.View(model);
             }
 
-            var user = await this.UserManager.FindByNameAsync(model.Email);
+            var user = await this._userManagerService.FindByNameAsync(model.Email);
 
             if (user == null)
             {                
@@ -346,10 +330,10 @@ namespace VoteSystem.Clients.MVC.Controllers
                 return this.View(model);
             }
 
-            var result = await this.UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await this._userManagerService.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                this.AddNotification("Успешно променихте вашата парола.", NotificationType.SUCCESS);
+                this.AddNotification("Успешно променихте вашата парола.", NotificationType.Success);
 
                 return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
             }
@@ -374,13 +358,13 @@ namespace VoteSystem.Clients.MVC.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
-            var userId = await this.SignInManager.GetVerifiedUserIdAsync();
+            var userId = await this._signInService.GetVerifiedUserIdAsync();
             if (userId == null)
             {
                 return this.View("Error");
             }
 
-            var userFactors = await this.UserManager.GetValidTwoFactorProvidersAsync(userId);
+            var userFactors = await this._userManagerService.GetValidTwoFactorProvidersAsync(userId);
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
             return this.View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
@@ -397,7 +381,7 @@ namespace VoteSystem.Clients.MVC.Controllers
             }
 
             // Generate the token and send it
-            if (!await this.SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
+            if (!await this._signInService.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
                 return this.View("Error");
             }
@@ -415,8 +399,8 @@ namespace VoteSystem.Clients.MVC.Controllers
                 return this.RedirectToAction("Login");
             }
 
-            // Sign in the user with this external login provider if the user already has a login
-            var result = await this.SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            // Sign in the aspNetUser with this external login provider if the aspNetUser already has a login
+            var result = await this._signInService.ExternalSignInAsync(loginInfo, isPersistent: false);
 
             switch (result)
             {
@@ -428,7 +412,7 @@ namespace VoteSystem.Clients.MVC.Controllers
                     return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
                 case SignInStatus.Failure:
                 default:
-                    // If the user does not have an account, then prompt the user to create an account
+                    // If the aspNetUser does not have an account, then prompt the aspNetUser to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return this.View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
@@ -448,26 +432,26 @@ namespace VoteSystem.Clients.MVC.Controllers
 
             if (ModelState.IsValid)
             {
-                // Get the information about the user from the external login provider
+                // Get the information about the aspNetUser from the external login provider
                 var info = await this.AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
                     return this.View("ExternalLoginFailure");
                 }
 
-                var user = new User
+                var user = new AspNetUser
                 {
                     UserName = model.Email,
                     Email = model.Email
                 };
 
-                var result = await this.UserManager.CreateAsync(user);
+                var result = await this._userManagerService.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    result = await this.UserManager.AddLoginAsync(user.Id, info.Login);
+                    result = await this._userManagerService.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await this._signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return this.RedirectToLocal(returnUrl);
                     }
                 }
@@ -484,7 +468,7 @@ namespace VoteSystem.Clients.MVC.Controllers
         public ActionResult LogOff()
         {
             this.AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Index", "Dashboard");
         }
 
         // GET: /Account/ExternalLoginFailure
@@ -498,16 +482,16 @@ namespace VoteSystem.Clients.MVC.Controllers
         {
             if (disposing)
             {
-                if (this.userManager != null)
+                if (this._userManagerService != null)
                 {
-                    this.userManager.Dispose();
-                    this.userManager = null;
+                    this._userManagerService.Dispose();
+                    this._userManagerService = null;
                 }
 
-                if (this.signInManager != null)
+                if (this._userManagerService != null)
                 {
-                    this.signInManager.Dispose();
-                    this.signInManager = null;
+                    this._userManagerService.Dispose();
+                    this._userManagerService = null;
                 }
             }
 
@@ -528,35 +512,35 @@ namespace VoteSystem.Clients.MVC.Controllers
             {
                 return this.Redirect(returnUrl);
             }
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Index", "Dashboard");
         }
 
         // TODO extract in another service ?
-        private async Task SendEmailForForgotPassword(User user)
+        private async Task SendEmailForForgotPassword(AspNetUser aspNetUser)
         {
-            string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-            var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            string code = await this._userManagerService.GeneratePasswordResetTokenAsync(aspNetUser.Id);
+            var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = aspNetUser.Id, code = code }, protocol: Request.Url.Scheme);
 
             UriBuilder url = new UriBuilder(callbackUrl);
             url.Port = -1;
             callbackUrl = url.Uri.ToString();
 
-            await UserManager.SendEmailAsync(user.Id, "Забравена парола.", "Въведете новата парола като натиснете: <a href=\"" + callbackUrl + "\">тук.</a>");
+            await this._userManagerService.SendEmailAsync(aspNetUser.Id, "Забравена парола.", "Въведете новата парола като натиснете: <a href=\"" + callbackUrl + "\">тук.</a>");
         }
 
         // TODO extract in another service ?
-        private async Task SendEmalForNewUser(User user)
+        private async Task SendEmalForNewUser(AspNetUser aspNetUser)
         {
-            await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+            await this._signInService.SignInAsync(aspNetUser, isPersistent: false, rememberBrowser: false);
 
-            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            string code = await this._userManagerService.GenerateEmailConfirmationTokenAsync(aspNetUser.Id);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = aspNetUser.Id, code = code }, protocol: Request.Url.Scheme);
 
             UriBuilder url = new UriBuilder(callbackUrl);
             url.Port = -1;
             callbackUrl = url.Uri.ToString();
 
-            await UserManager.SendEmailAsync(user.Id, "Потвърждаване на имейл.", "Моля потвърдете вашият имейл като натиснете <a href=\"" + callbackUrl + "\">тук.</a>");
+            await this._userManagerService.SendEmailAsync(aspNetUser.Id, "Потвърждаване на имейл.", "Моля потвърдете вашият имейл като натиснете <a href=\"" + callbackUrl + "\">тук.</a>");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

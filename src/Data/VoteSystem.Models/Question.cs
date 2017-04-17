@@ -1,33 +1,34 @@
-﻿namespace VoteSystem.Data.Models
+﻿using System;
+using System.Collections.Generic;
+
+using VoteSystem.Data.Entities.Contracts;
+
+namespace VoteSystem.Data.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    using VoteSystem.Data.Common.Models;
-
-    public class Question : DeletableEntity, IAuditInfo
+    public class Question : IAuditInfo, IDeletableEntity
     {
         public Question()
         {
-            this.QuestionAnswers = new HashSet<QuestionAnswer>();
+            Answers = new HashSet<Answer>();
         }
-        
-        [Key]
+
         public int Id { get; set; }
 
-        public string QuestionName { get; set; }
+        public string Name { get; set; }
 
         public bool HasMultipleAnswers { get; set; }
-
-        public int RateSystemId { get; set; }
-
-        public virtual RateSystem RateSystem { get; set; }
-
-        public ICollection<QuestionAnswer> QuestionAnswers { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
+
+        public int VoteSystemId { get; set; }
+        public virtual VoteSystem VoteSystem { get; set; }
+
+        public ICollection<Answer> Answers { get; set; }
     }
 }

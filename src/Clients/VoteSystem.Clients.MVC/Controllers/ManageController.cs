@@ -2,10 +2,13 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+
 using VoteSystem.Clients.MVC.ViewModels.Manage;
+using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Services.Identity.Contracts;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {
@@ -15,17 +18,17 @@ namespace VoteSystem.Clients.MVC.Controllers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
-        private ApplicationSignInManager signInManager;
-        private ApplicationUserManager userManager;
+        private readonly ISignInService signInService;
+        private IUserManagerService userManagerService;
 
         public ManageController()
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ISignInService signInService, IUserManagerService userManagerService)
         {
-            this.UserManager = userManager;
-            this.SignInManager = signInManager;
+            this.signInService = signInService;
+            this.userManagerService = userManagerService;
         }
 
         public enum ManageMessageId
@@ -39,30 +42,7 @@ namespace VoteSystem.Clients.MVC.Controllers
             Error
         }
 
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return this.signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            {
-                this.signInManager = value; 
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return this.userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                this.userManager = value;
-            }
-        }
-
+        // TODO extract to autherntication project
         private IAuthenticationManager AuthenticationManager
         {
             get
@@ -87,9 +67,9 @@ namespace VoteSystem.Clients.MVC.Controllers
             var model = new IndexViewModel
             {
                 HasPassword = this.HasPassword(),
-                PhoneNumber = await this.UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await this.UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await this.UserManager.GetLoginsAsync(userId),
+                PhoneNumber = await this.userManagerService.GetPhoneNumberAsync(userId),
+                TwoFactor = await this.userManagerService.GetTwoFactorEnabledAsync(userId),
+                Logins = await this.userManagerService.GetLoginsAsync(userId),
                 BrowserRemembered = await this.AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
 
@@ -102,13 +82,13 @@ namespace VoteSystem.Clients.MVC.Controllers
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
         {
             ManageMessageId? message;
-            var result = await this.UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
+            var result = await this.userManagerService.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
             if (result.Succeeded)
             {
-                var user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = await this.userManagerService.FindByIdAsync(User.Identity.GetUserId());
                 if (user != null)
                 {
-                    await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
                 message = ManageMessageId.RemoveLoginSuccess;
             }
@@ -137,15 +117,15 @@ namespace VoteSystem.Clients.MVC.Controllers
             }
 
             // Generate the token and send it
-            var code = await this.UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            if (this.UserManager.SmsService != null)
+            var code = await this.userManagerService.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
+            if (this.userManagerService.SmsService != null)
             {
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
                     Body = "Your security code is: " + code
                 };
-                await this.UserManager.SmsService.SendAsync(message);
+                await this.userManagerService.SmsService.SendAsync(message);
             }
 
             return this.RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
@@ -156,11 +136,11 @@ namespace VoteSystem.Clients.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
         {
-            await this.UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
-            var user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
+            await this.userManagerService.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
+            var user = await this.userManagerService.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
             {
-                await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
 
             return this.RedirectToAction("Index", "Manage");
@@ -171,11 +151,11 @@ namespace VoteSystem.Clients.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
         {
-            await this.UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
-            var user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
+            await this.userManagerService.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
+            var user = await this.userManagerService.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
             {
-                await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
 
             return this.RedirectToAction("Index", "Manage");
@@ -184,7 +164,7 @@ namespace VoteSystem.Clients.MVC.Controllers
         // GET: /Manage/VerifyPhoneNumber
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
-            var code = await this.UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
+            var code = await this.userManagerService.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
 
             // Send an SMS through the SMS provider to verify the phone number
             return phoneNumber == null ? this.View("Error") : this.View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
@@ -200,13 +180,13 @@ namespace VoteSystem.Clients.MVC.Controllers
                 return this.View(model);
             }
 
-            var result = await this.UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber, model.Code);
+            var result = await this.userManagerService.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber, model.Code);
             if (result.Succeeded)
             {
-                var user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = await this.userManagerService.FindByIdAsync(User.Identity.GetUserId());
                 if (user != null)
                 {
-                    await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
                 return this.RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
@@ -219,16 +199,16 @@ namespace VoteSystem.Clients.MVC.Controllers
         // GET: /Manage/RemovePhoneNumber
         public async Task<ActionResult> RemovePhoneNumber()
         {
-            var result = await this.UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
+            var result = await this.userManagerService.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
             if (!result.Succeeded)
             {
                 return this.RedirectToAction("Index", new { Message = ManageMessageId.Error });
             }
 
-            var user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = await this.userManagerService.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
             {
-                await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
 
             return this.RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
@@ -250,13 +230,13 @@ namespace VoteSystem.Clients.MVC.Controllers
                 return this.View(model);
             }
 
-            var result = await this.UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            var result = await this.userManagerService.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
             if (result.Succeeded)
             {
-                var user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = await this.userManagerService.FindByIdAsync(User.Identity.GetUserId());
                 if (user != null)
                 {
-                    await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
                 return this.RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
             }
@@ -278,13 +258,13 @@ namespace VoteSystem.Clients.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await this.UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+                var result = await this.userManagerService.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
                 if (result.Succeeded)
                 {
-                    var user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
+                    var user = await this.userManagerService.FindByIdAsync(User.Identity.GetUserId());
                     if (user != null)
                     {
-                        await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     }
 
                     return this.RedirectToAction("Index", new { Message = ManageMessageId.SetPasswordSuccess });
@@ -304,13 +284,13 @@ namespace VoteSystem.Clients.MVC.Controllers
                 message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : string.Empty;
-            var user = await this.UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = await this.userManagerService.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)
             {
                 return this.View("Error");
             }
 
-            var userLogins = await this.UserManager.GetLoginsAsync(User.Identity.GetUserId());
+            var userLogins = await this.userManagerService.GetLoginsAsync(User.Identity.GetUserId());
             var otherLogins = this.AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
             ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
             return this.View(new ManageLoginsViewModel
@@ -338,22 +318,22 @@ namespace VoteSystem.Clients.MVC.Controllers
                 return this.RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
             }
 
-            var result = await this.UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
+            var result = await this.userManagerService.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? this.RedirectToAction("ManageLogins") : this.RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && this.userManager != null)
+            if (disposing && this.userManagerService != null)
             {
-                this.userManager.Dispose();
-                this.userManager = null;
+                this.userManagerService.Dispose();
+                this.userManagerService = null;
             }
 
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
 
         private void AddErrors(IdentityResult result)
         {
@@ -365,7 +345,7 @@ namespace VoteSystem.Clients.MVC.Controllers
 
         private bool HasPassword()
         {
-            var user = this.UserManager.FindById(User.Identity.GetUserId());
+            var user = this.userManagerService.FindById(User.Identity.GetUserId());
             if (user != null)
             {
                 return user.PasswordHash != null;
@@ -375,7 +355,7 @@ namespace VoteSystem.Clients.MVC.Controllers
 
         private bool HasPhoneNumber()
         {
-            var user = this.UserManager.FindById(User.Identity.GetUserId());
+            var user = this.userManagerService.FindById(User.Identity.GetUserId());
             if (user != null)
             {
                 return user.PhoneNumber != null;

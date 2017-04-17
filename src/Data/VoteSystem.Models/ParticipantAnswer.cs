@@ -1,19 +1,20 @@
-﻿namespace VoteSystem.Data.Models
-{
-    using System.ComponentModel.DataAnnotations;
-    using VoteSystem.Data.Common.Models;
+﻿using System;
 
-    public class ParticipantAnswer : AuditInfo
+using VoteSystem.Data.Entities.Contracts;
+
+namespace VoteSystem.Data.Entities
+{
+    public class ParticipantAnswer : IAuditInfo
     {
-        [Key]
         public int Id { get; set; }
 
-        public string ParticipantId { get; set; }
+        public DateTime CreatedOn { get; set; }
 
-        public virtual Participant Participant { get; set; }
+        public DateTime? ModifiedOn { get; set; }
 
-        public int QuestionAnswerId { get; set; }
+        public int ParticipantId { get; set; }
 
-        public virtual QuestionAnswer QuestionAnswer { get; set; }
+        public int AnswerId { get; set; }
+        public virtual Answer Answer { get; set; }
     }
 }

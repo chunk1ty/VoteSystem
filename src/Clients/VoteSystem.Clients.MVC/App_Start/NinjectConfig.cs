@@ -1,14 +1,25 @@
 using System;
 using System.Data.Entity;
 using System.Web;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Extensions.Conventions;
+using Ninject.Parameters;
 using Ninject.Web.Common;
 using VoteSystem.Clients.MVC;
 using VoteSystem.Common;
+using VoteSystem.Common.Constants;
 using VoteSystem.Data;
-using VoteSystem.Data.Common;
+using VoteSystem.Data.Contracts;
+using VoteSystem.Data.Ef;
+using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Data.Ef.Repositories;
+using VoteSystem.Data.Services;
+using VoteSystem.Data.Services.Contracts;
+using VoteSystem.Services.Identity;
+using VoteSystem.Services.Identity.Contracts;
 using VoteSystem.Services.Web;
 using VoteSystem.Services.Web.Contracts;
 
@@ -67,23 +78,47 @@ namespace VoteSystem.Clients.MVC
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(typeof(IDbGenericRepository<>))
-                .To(typeof(DbGenericRepository<>));
-            kernel.Bind(typeof(IDeletableEntityRepository<>))
-               .To(typeof(DeletableEntityRepository<>));
+            //kernel.Bind(typeof(IRepository<>))
+            //    .To(typeof(Repository<>));
+            //kernel.Bind(typeof(IDeletableRepository<>))
+            //   .To(typeof(DeletableRepository<>));
 
             // TODO check this binding IVoteSystemDbContext
             // InRequestScope for using one db context
-            kernel.Bind(typeof(DbContext)).To(typeof(VoteSystemDbContext))
-                                    .InRequestScope();
+            //kernel.Bind(typeof(DbContext)).To(typeof(VoteSystemDbContext))
+            //                        .InRequestScope();
+
+            // can not register like that because i it use two different instance 
+            //kernel.Bind<VoteSystemDbContext>().ToSelf().InRequestScope();
+            //kernel.Bind<IVoteSystemDbContext>().To<VoteSystemDbContext>().InRequestScope();
+            //kernel.Bind<IVoteSystemEfDbContextSaveChanges>().To<VoteSystemDbContext>().InRequestScope();
+
+           kernel.Bind<VoteSystemDbContext>().ToSelf().InRequestScope();
+          
+           kernel.Bind(typeof(IVoteSystemDbContext),
+                        typeof(IVoteSystemEfDbContextSaveChanges))
+                        .ToMethod(ctx => ctx.Kernel.Get<VoteSystemDbContext>())
+                        .InRequestScope();
+
+            //Rebind(typeof(DbContext), typeof(IVoteSystemDbContext)).To<VoteSystemDbContext>().InRequestScope();
 
             kernel.Bind(b => b.From(GlobalConstants.DataServicesAssembly)
                                     .SelectAllClasses()
                                     .BindDefaultInterface());
 
+            kernel.Bind<ISignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
+            kernel.Bind<IUserManagerService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
+
             // TODO bind the entire assembly
-            kernel.Bind(typeof(ICacheService)).To(typeof(CacheService));
-            kernel.Bind(typeof(IIdentifierProvider)).To(typeof(IdentifierProvider));
+            kernel.Bind<ICacheService>().To<CacheService>();
+            kernel.Bind<IIdentifierProvider>().To<IdentifierProvider>();
+            kernel.Bind<IIdentityMessageService>().To<EmailService>().InSingletonScope();
+
+            kernel.Bind<IVoteSystemRepository>().To<EfVoteSystemRepository>();
+            kernel.Bind<IQuestionRepository>().To<EfQuestionRepository>();
+            kernel.Bind<IVoteSystemUserRepository>().To<EfVoteSystemUserRepository>();
+            kernel.Bind<IParticipantAnswerRepository>().To<EfParticipantAnswerRepository>();
+            kernel.Bind<IParticipantRepository>().To<EfParticipantRepository>();
         }        
     }
 }

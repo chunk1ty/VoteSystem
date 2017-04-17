@@ -5,7 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using VoteSystem.Data;
-using VoteSystem.Data.Models;
+using VoteSystem.Data.Ef;
+using VoteSystem.Data.Ef.Models;
+using VoteSystem.Services.Identity;
 
 namespace VoteSystem.Clients.MVC
 {
@@ -30,7 +32,7 @@ namespace VoteSystem.Clients.MVC
                 {
                     // Enables the application to validate the security stamp when the user logs in.
                     // This is a security feature which is used when you change a password or add an external login to your account.  
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, User>(
+                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, AspNetUser>(
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
