@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
 using VoteSystem.Data.Ef.Models;
 
-namespace VoteSystem.Data.Ef.Contracts
+namespace VoteSystem.Services.Identity.Contracts
 {
     public interface ISignInService : IDisposable
     {

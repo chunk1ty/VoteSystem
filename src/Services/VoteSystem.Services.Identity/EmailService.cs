@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
-
 using Microsoft.AspNet.Identity;
 
-namespace VoteSystem.Authentication
+namespace VoteSystem.Services.Identity
 {
     // TODO do i really need IIdentityMessageService ? try with my custom interface IEmailService
     public class EmailService : IIdentityMessageService

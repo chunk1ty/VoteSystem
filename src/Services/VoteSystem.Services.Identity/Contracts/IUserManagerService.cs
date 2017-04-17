@@ -4,11 +4,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using VoteSystem.Data.Ef.Models;
 
-namespace VoteSystem.Data.Ef.Contracts
+namespace VoteSystem.Services.Identity.Contracts
 {
     public interface IUserManagerService : IDisposable
     {
-        // TODO extract method in appropriate interfaces
         IIdentityMessageService SmsService { get; set; }
 
         Task<IdentityResult> CreateAsync(AspNetUser user, string password);

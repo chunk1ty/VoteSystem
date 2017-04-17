@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using VoteSystem.Data.Entities.Contracts;
 
 namespace VoteSystem.Data.Entities
@@ -8,8 +9,8 @@ namespace VoteSystem.Data.Entities
     {
         public VoteSystem()
         {
-            this.Questions = new HashSet<Question>();
-            this.Participants = new HashSet<Participant>();
+           Questions = new HashSet<Question>();
+           Participants = new HashSet<Participant>();
         }
 
         public int Id { get; set; }

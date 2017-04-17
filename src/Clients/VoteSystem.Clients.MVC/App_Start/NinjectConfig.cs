@@ -8,7 +8,6 @@ using Ninject;
 using Ninject.Extensions.Conventions;
 using Ninject.Parameters;
 using Ninject.Web.Common;
-using VoteSystem.Authentication;
 using VoteSystem.Clients.MVC;
 using VoteSystem.Common;
 using VoteSystem.Common.Constants;
@@ -19,6 +18,8 @@ using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Ef.Repositories;
 using VoteSystem.Data.Services;
 using VoteSystem.Data.Services.Contracts;
+using VoteSystem.Services.Identity;
+using VoteSystem.Services.Identity.Contracts;
 using VoteSystem.Services.Web;
 using VoteSystem.Services.Web.Contracts;
 
@@ -116,7 +117,6 @@ namespace VoteSystem.Clients.MVC
             kernel.Bind<IVoteSystemRepository>().To<EfVoteSystemRepository>();
             kernel.Bind<IQuestionRepository>().To<EfQuestionRepository>();
             kernel.Bind<IVoteSystemUserRepository>().To<EfVoteSystemUserRepository>();
-            kernel.Bind<IAnswerRepository>().To<EfAnswerRepository>();
             kernel.Bind<IParticipantAnswerRepository>().To<EfParticipantAnswerRepository>();
             kernel.Bind<IParticipantRepository>().To<EfParticipantRepository>();
         }        

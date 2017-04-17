@@ -14,23 +14,22 @@ namespace VoteSystem.Data.Ef.Migrations
     {
         public Configuration()
         {
-            // TODO set to false in production and create migration by my self
-            this.AutomaticMigrationsEnabled = true;
-            this.AutomaticMigrationDataLossAllowed = true;
+            // set to false in production and create migration by my self
+           AutomaticMigrationsEnabled = true;
+           AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(VoteSystemDbContext context)
         {
-            this.CreateAdministrator(context);
-            this.CreateUsers(context, 20);
+           CreateAdministrator(context);
+           CreateUsers(context, 20);
         }
 
         private void CreateAdministrator(VoteSystemDbContext context)
         {
-            const string AdministratorUserName = "admin@admin.com";
-            const string AdministratorPassword = "123456";
-
-            // TODO move migration in Authentication project
+            const string administratorUserName = "admin@admin.com";
+            const string administratorPassword = "123456";
+           
             if (!context.Roles.Any())
             {
                 // Create admin role
@@ -44,14 +43,14 @@ namespace VoteSystem.Data.Ef.Migrations
                 var userManager = new UserManager<AspNetUser>(userStore);
                 var user = new AspNetUser
                 {
-                    UserName = AdministratorUserName,
-                    Email = AdministratorUserName,
-                    FN = 10001,
+                    UserName = administratorUserName,
+                    Email = administratorUserName,
+                    FacultyNumber = 10001,
                     FirstName = "Admin",
                     LastName = "Admin",
                     EmailConfirmed = true
                 };
-                userManager.Create(user, AdministratorPassword);
+                userManager.Create(user, administratorPassword);
 
                 // Assign user to admin role
                 userManager.AddToRole(user.Id, GlobalConstants.AdministratorRoleName);
@@ -62,7 +61,7 @@ namespace VoteSystem.Data.Ef.Migrations
         {
             if (!context.VoteSystemUsers.Any())
             {
-                const string UserPassword = "123456";
+                const string userPassword = "123456";
 
                 for (int i = 0; i < numberOfUsers; i++)
                 {
@@ -72,7 +71,7 @@ namespace VoteSystem.Data.Ef.Migrations
                     {
                         UserName = "user" + i + "@abv.bg",
                         Email = "user" + i + "@abv.bg",
-                        FN = 1000 + i,
+                        FacultyNumber = 1000 + i,
                         FirstName = "FirstUserName" + i,
                         LastName = "LastUserName" + i,
                         EmailConfirmed = true
@@ -87,10 +86,23 @@ namespace VoteSystem.Data.Ef.Migrations
                         LastName = "LastUserName" + i,
                     };
 
-                    userManager.Create(user, UserPassword);
+                    userManager.Create(user, userPassword);
 
                     context.VoteSystemUsers.Add(voteSystemUser);
                 }
+
+                var admin = context.Users.FirstOrDefault(x => x.UserName == "admin@admin.com");
+
+                var voteSystemAdminUser = new VoteSystemUser()
+                {
+                    Email = admin.Email,
+                    FacultyNumber = admin.FacultyNumber,
+                    Id = new Guid(admin.Id),
+                    FirstName = "Admin",
+                    LastName = "Admin"
+                };
+
+                context.VoteSystemUsers.Add(voteSystemAdminUser);
 
                 context.SaveChanges();
             }

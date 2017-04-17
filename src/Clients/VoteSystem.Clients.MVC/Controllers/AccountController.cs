@@ -14,6 +14,7 @@ using VoteSystem.Clients.MVC.ViewModels.Account;
 using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Ef.Models;
 using VoteSystem.Data.Entities;
+using VoteSystem.Services.Identity.Contracts;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {
@@ -166,7 +167,7 @@ namespace VoteSystem.Clients.MVC.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    FN = model.FacultyNumber,
+                    FacultyNumber = model.FacultyNumber,
                     FirstName = model.FirstName,
                     LastName = model.LastName
                 };
@@ -201,7 +202,7 @@ namespace VoteSystem.Clients.MVC.Controllers
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                FacultyNumber = user.FN
+                FacultyNumber = user.FacultyNumber
             };           
 
             return View(userVM);
@@ -218,7 +219,7 @@ namespace VoteSystem.Clients.MVC.Controllers
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                FacultyNumber = user.FN
+                FacultyNumber = user.FacultyNumber
             };
 
             return View(userVM);
@@ -239,7 +240,7 @@ namespace VoteSystem.Clients.MVC.Controllers
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Email = model.Email;
-            user.FN = model.FacultyNumber;
+            user.FacultyNumber = model.FacultyNumber;
 
             await this._userManagerService.UpdateAsync(user);
 

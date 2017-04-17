@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{99FC36D3-D963-4263-BF69-8BD11F801E2B}"
 EndProject
@@ -60,15 +60,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Common.Constants
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Services", "src\Data\VoteSystem.Data.Services\VoteSystem.Data.Services.csproj", "{B189968E-4F1D-4301-A27E-1A3C3D652B98}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{EE018710-07C2-4E1B-B6CA-5F73DB6C5684}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Authentication", "src\Authentication\VoteSystem.Authentication\VoteSystem.Authentication.csproj", "{E33BD301-E2C3-4941-920C-4CC057CAE125}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Services.Contracts", "src\Data\VoteSystem.Data.Services.Contracts\VoteSystem.Data.Services.Contracts.csproj", "{269CC85F-7209-4ED3-BC65-C90804B00B37}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Data.Contracts", "src\Data\VoteSystem.Data.Contracts\VoteSystem.Data.Contracts.csproj", "{B744653C-A435-4CD2-A648-3467180CF400}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotySystem.Data.DTO", "src\Data\VotySystem.Data.DTO\VotySystem.Data.DTO.csproj", "{E73CB871-87EB-4F75-81BE-121A95F50736}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteSystem.Services.Identity", "src\Services\VoteSystem.Services.Identity\VoteSystem.Services.Identity.csproj", "{6FE16DE7-B267-402D-B7EE-7CF56ED1E72D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -120,10 +118,6 @@ Global
 		{B189968E-4F1D-4301-A27E-1A3C3D652B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B189968E-4F1D-4301-A27E-1A3C3D652B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B189968E-4F1D-4301-A27E-1A3C3D652B98}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E33BD301-E2C3-4941-920C-4CC057CAE125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E33BD301-E2C3-4941-920C-4CC057CAE125}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E33BD301-E2C3-4941-920C-4CC057CAE125}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E33BD301-E2C3-4941-920C-4CC057CAE125}.Release|Any CPU.Build.0 = Release|Any CPU
 		{269CC85F-7209-4ED3-BC65-C90804B00B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{269CC85F-7209-4ED3-BC65-C90804B00B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{269CC85F-7209-4ED3-BC65-C90804B00B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -136,6 +130,10 @@ Global
 		{E73CB871-87EB-4F75-81BE-121A95F50736}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E73CB871-87EB-4F75-81BE-121A95F50736}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E73CB871-87EB-4F75-81BE-121A95F50736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FE16DE7-B267-402D-B7EE-7CF56ED1E72D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FE16DE7-B267-402D-B7EE-7CF56ED1E72D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FE16DE7-B267-402D-B7EE-7CF56ED1E72D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FE16DE7-B267-402D-B7EE-7CF56ED1E72D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,10 +156,9 @@ Global
 		{6FBE4E09-A4A8-4779-B8F4-E8A26DFE9BFB} = {60BD349B-1F06-46FD-B2A1-7F0367126AF4}
 		{ECFC4270-CADE-42BC-B9C0-8DF660397141} = {6FBE4E09-A4A8-4779-B8F4-E8A26DFE9BFB}
 		{B189968E-4F1D-4301-A27E-1A3C3D652B98} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
-		{EE018710-07C2-4E1B-B6CA-5F73DB6C5684} = {60BD349B-1F06-46FD-B2A1-7F0367126AF4}
-		{E33BD301-E2C3-4941-920C-4CC057CAE125} = {EE018710-07C2-4E1B-B6CA-5F73DB6C5684}
 		{269CC85F-7209-4ED3-BC65-C90804B00B37} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 		{B744653C-A435-4CD2-A648-3467180CF400} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
 		{E73CB871-87EB-4F75-81BE-121A95F50736} = {8103CD5B-2A92-401C-A854-A31E0FD44DE6}
+		{6FE16DE7-B267-402D-B7EE-7CF56ED1E72D} = {A5398FDD-2BE7-452F-9808-E5D3C5B58CC3}
 	EndGlobalSection
 EndGlobal

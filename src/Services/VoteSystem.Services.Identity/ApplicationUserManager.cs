@@ -3,10 +3,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Data.Ef;
 using VoteSystem.Data.Ef.Models;
+using VoteSystem.Services.Identity.Contracts;
 
-namespace VoteSystem.Data.Ef
+namespace VoteSystem.Services.Identity
 {
     public class ApplicationUserManager : UserManager<AspNetUser>, IUserManagerService
     {

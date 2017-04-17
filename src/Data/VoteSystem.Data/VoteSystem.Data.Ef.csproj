@@ -78,20 +78,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationSignInManager.cs" />
-    <Compile Include="ApplicationUserManager.cs" />
-    <Compile Include="Contracts\ISignInService.cs" />
-    <Compile Include="Contracts\IUserManagerService.cs" />
-    <Compile Include="DELETE-ME\IRepository.cs" />
+    <Compile Include="EntityFrameworkGenericRepository\IRepository.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Repositories\EfParticipantAnswerRepository.cs" />
     <Compile Include="Repositories\EfParticipantRepository.cs" />
-    <Compile Include="Repositories\EfAnswerRepository.cs" />
     <Compile Include="Repositories\EfQuestionRepository.cs" />
     <Compile Include="Repositories\EfVoteSystemRepository.cs" />
     <Compile Include="Repositories\EfVoteSystemUserRepository.cs" />
-    <Compile Include="DELETE-ME\Repository.cs" />
-    <Compile Include="DELETE-ME\DeletableRepository.cs" />
+    <Compile Include="EntityFrameworkGenericRepository\Repository.cs" />
+    <Compile Include="EntityFrameworkGenericRepository\DeletableRepository.cs" />
     <Compile Include="Contracts\IVoteSystemDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="VoteSystemDbContext.cs" />

@@ -3,19 +3,15 @@ using System.Data.Entity;
 using System.Linq;
 using VoteSystem.Data.Ef.Contracts;
 
-namespace VoteSystem.Data.Ef
+namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
 {
     public class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
         public Repository(IVoteSystemDbContext voteSystemDbContext)
         {
-            if (voteSystemDbContext == null)
-            {
-                throw new ArgumentNullException(nameof(voteSystemDbContext));
-            }
+            this.VoteSystemDbContext = voteSystemDbContext ?? throw new ArgumentNullException(nameof(voteSystemDbContext));
 
-            this.VoteSystemDbContext = voteSystemDbContext;
             this.DbSet = this.VoteSystemDbContext.Set<TEntity>();
         }
 

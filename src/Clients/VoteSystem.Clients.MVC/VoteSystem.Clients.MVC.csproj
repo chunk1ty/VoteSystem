@@ -710,10 +710,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Authentication\VoteSystem.Authentication\VoteSystem.Authentication.csproj">
-      <Project>{E33BD301-E2C3-4941-920C-4CC057CAE125}</Project>
-      <Name>VoteSystem.Authentication</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\VoteSystem.Common.Constants\VoteSystem.Common.Constants.csproj">
       <Project>{ECFC4270-CADE-42BC-B9C0-8DF660397141}</Project>
       <Name>VoteSystem.Common.Constants</Name>
@@ -741,6 +737,10 @@
     <ProjectReference Include="..\..\Data\VotySystem.Data.DTO\VotySystem.Data.DTO.csproj">
       <Project>{E73CB871-87EB-4F75-81BE-121A95F50736}</Project>
       <Name>VotySystem.Data.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\VoteSystem.Services.Identity\VoteSystem.Services.Identity.csproj">
+      <Project>{6FE16DE7-B267-402D-B7EE-7CF56ED1E72D}</Project>
+      <Name>VoteSystem.Services.Identity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\VoteSystem.Services.Web\VoteSystem.Services.Web.csproj">
       <Project>{987bb8b6-3320-4a56-bf9f-a2bc56f6d5db}</Project>

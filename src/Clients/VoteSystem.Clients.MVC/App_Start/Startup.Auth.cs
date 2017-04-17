@@ -4,10 +4,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using VoteSystem.Authentication;
 using VoteSystem.Data;
 using VoteSystem.Data.Ef;
 using VoteSystem.Data.Ef.Models;
+using VoteSystem.Services.Identity;
 
 namespace VoteSystem.Clients.MVC
 {

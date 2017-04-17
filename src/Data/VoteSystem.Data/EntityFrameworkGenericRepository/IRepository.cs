@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace VoteSystem.Data.Ef
+namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
 {
     public interface IRepository<T> where T : class
     {

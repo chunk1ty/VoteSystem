@@ -4,7 +4,7 @@ using System.Linq;
 using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Entities.Contracts;
 
-namespace VoteSystem.Data.Ef
+namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
 {
     public class DeletableRepository<TEntity> : Repository<TEntity>
         where TEntity : class, IDeletableEntity

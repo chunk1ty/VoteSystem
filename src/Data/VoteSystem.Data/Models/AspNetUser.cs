@@ -11,7 +11,7 @@ namespace VoteSystem.Data.Ef.Models
 {
     public class AspNetUser : IdentityUser
     {
-        public int FN { get; set; }
+        public int FacultyNumber { get; set; }
 
         public string FirstName { get; set; }
 
