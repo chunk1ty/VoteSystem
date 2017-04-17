@@ -14,7 +14,7 @@ namespace VoteSystem.Data.Ef.Transaction
 
         public EntityFrameworkTransaction(IVoteSystemEfDbContextSaveChanges voteSystemDbContext)
         {
-            _voteSystemDbContext = voteSystemDbContext ?? throw new ArgumentNullException(nameof(voteSystemDbContext));
+            _voteSystemDbContext = voteSystemDbContext;
         }
 
         public void SaveChanges()
