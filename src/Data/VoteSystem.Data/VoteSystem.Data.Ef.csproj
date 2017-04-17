@@ -76,8 +76,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IEntityFrameworkTransaction.cs" />
     <Compile Include="EntityFrameworkGenericRepository\IRepository.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Repositories\EfParticipantAnswerRepository.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="EntityFrameworkGenericRepository\DeletableRepository.cs" />
     <Compile Include="Contracts\IVoteSystemDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Transaction\EntityFrameworkTransaction.cs" />
     <Compile Include="VoteSystemDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

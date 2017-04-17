@@ -46,7 +46,13 @@ namespace VoteSystem.Data.Ef
         public override int SaveChanges()
         {
             ApplyAuditInfoRules();
+
             return base.SaveChanges();
+        }
+
+        public void SetDataBaseTimeout(TimeSpan time)
+        {
+            Database.CommandTimeout = (int)time.TotalSeconds;
         }
 
         private void ApplyAuditInfoRules()
