@@ -20,9 +20,9 @@ namespace VoteSystem.Data.Services
             IVoteSystemEfDbContextSaveChanges dbContextSaveChanges,
             IParticipantService participantService)
         {
-            _participantAnswerRepository = participantAnswerRepository ?? throw new ArgumentNullException(nameof(participantAnswerRepository));
-            _dbContextSaveChanges = dbContextSaveChanges ?? throw new ArgumentNullException(nameof(dbContextSaveChanges));
-            _participantService = participantService ?? throw new ArgumentNullException(nameof(participantService));
+            _participantAnswerRepository = participantAnswerRepository;
+            _dbContextSaveChanges = dbContextSaveChanges;
+            _participantService = participantService;
         }
 
         public void Add(IList<ParticipantQuestionAnswerDto> participantQuestionAnswers, Guid userId)

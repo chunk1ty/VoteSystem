@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+
 using VoteSystem.Data.Ef.Contracts;
 
 namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
@@ -10,9 +11,13 @@ namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
     {
         public Repository(IVoteSystemDbContext voteSystemDbContext)
         {
-            this.VoteSystemDbContext = voteSystemDbContext ?? throw new ArgumentNullException(nameof(voteSystemDbContext));
+            if (voteSystemDbContext == null)
+            {
+                throw new ArgumentNullException(nameof(voteSystemDbContext));
+            }
 
-            this.DbSet = this.VoteSystemDbContext.Set<TEntity>();
+            VoteSystemDbContext = voteSystemDbContext;
+            DbSet = VoteSystemDbContext.Set<TEntity>();
         }
 
         protected IDbSet<TEntity> DbSet { get; set; }
@@ -20,17 +25,17 @@ namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
 
         public virtual IQueryable<TEntity> All()
         {
-            return this.DbSet.AsQueryable();
+            return DbSet.AsQueryable();
         }
 
         public virtual TEntity GetById(object id)
         {
-            return this.DbSet.Find(id);
+            return DbSet.Find(id);
         }
 
         public virtual void Add(TEntity entity)
         {
-            var entry = this.VoteSystemDbContext.Entry(entity);
+            var entry = VoteSystemDbContext.Entry(entity);
 
             if (entry.State != EntityState.Detached)
             {
@@ -44,7 +49,7 @@ namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
 
         public virtual void Delete(TEntity entity)
         {
-            var entry = this.VoteSystemDbContext.Entry(entity);
+            var entry = VoteSystemDbContext.Entry(entity);
 
             if (entry.State != EntityState.Deleted)
             {
@@ -52,8 +57,8 @@ namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
             }
             else
             {
-                this.DbSet.Attach(entity);
-                this.DbSet.Remove(entity);
+                DbSet.Attach(entity);
+                DbSet.Remove(entity);
             }
         }
 
@@ -63,7 +68,7 @@ namespace VoteSystem.Data.Ef.EntityFrameworkGenericRepository
 
             if (entry.State == EntityState.Detached)
             {
-                this.DbSet.Attach(entity);
+                DbSet.Attach(entity);
             }
 
             entry.State = EntityState.Modified;

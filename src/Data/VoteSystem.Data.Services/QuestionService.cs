@@ -21,9 +21,9 @@ namespace VoteSystem.Data.Services
             IIdentifierProvider identifierProvider, 
             IVoteSystemEfDbContextSaveChanges dbContextSaveChanges)
         {
-            _questionRepository = questionRepository ?? throw new ArgumentNullException(nameof(questionRepository));
-            _identifierProvider = identifierProvider ?? throw new ArgumentNullException(nameof(identifierProvider));
-            _dbContextSaveChanges = dbContextSaveChanges ?? throw new ArgumentNullException(nameof(dbContextSaveChanges));
+            _questionRepository = questionRepository;
+            _identifierProvider = identifierProvider;
+            _dbContextSaveChanges = dbContextSaveChanges;
         }
 
         // TODO bulk insert

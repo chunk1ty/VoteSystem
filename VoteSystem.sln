@@ -45,13 +45,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "automatic-build", "automati
 		ci-dependencies\jenkins-jobs\automatic-build\config.xml = ci-dependencies\jenkins-jobs\automatic-build\config.xml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentation", "{9CC69D99-A4E0-4280-9162-63B59B0A03C3}"
-	ProjectSection(SolutionItems) = preProject
-		documentation\Andriyan_Krastev.pptx = documentation\Andriyan_Krastev.pptx
-		documentation\Andriyan_Krastev_153708-_v1.1.docx = documentation\Andriyan_Krastev_153708-_v1.1.docx
-		documentation\Architecture.vsdx = documentation\Architecture.vsdx
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIDependencies", "ci-dependencies\CIDependencies\CIDependencies.csproj", "{7230C0D4-D13F-45E4-B667-63D7C0E6AB29}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6FBE4E09-A4A8-4779-B8F4-E8A26DFE9BFB}"
