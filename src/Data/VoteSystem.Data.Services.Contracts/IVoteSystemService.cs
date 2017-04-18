@@ -7,7 +7,7 @@ namespace VoteSystem.Data.Services.Contracts
     {
         void Add(Entities.VoteSystem system);
 
-        void Delete(int voteSystemId);
+        void Delete(Guid voteSystemId);
 
         void Update(Entities.VoteSystem system);
 
@@ -15,6 +15,6 @@ namespace VoteSystem.Data.Services.Contracts
 
         IEnumerable<Entities.VoteSystem> GetAllAvailableVoteSystemsForUserByUserId(Guid userId);
 
-        Entities.VoteSystem GetById(int voteSystemId);
+        Entities.VoteSystem GetById(Guid voteSystemId);
     }
 }

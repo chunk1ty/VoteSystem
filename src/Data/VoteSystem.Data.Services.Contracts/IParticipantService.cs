@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using VoteSystem.Data.Entities;
 using VotySystem.Data.DTO;
 
@@ -13,8 +14,8 @@ namespace VoteSystem.Data.Services.Contracts
 
         void Update(Participant participant);
 
-        Participant GetParticipantByVoteSystemIdAndVoteSystemUserId(int voteSystemId, Guid userId);
+        Participant GetParticipantByVoteSystemIdAndVoteSystemUserId(Guid voteSystemId, Guid userId);
 
-        IEnumerable<Participant> GetParticipantsByVoteSystemId(int voteSystemId);
+        IEnumerable<Participant> GetParticipantsByVoteSystemId(Guid voteSystemId);
     }
 }

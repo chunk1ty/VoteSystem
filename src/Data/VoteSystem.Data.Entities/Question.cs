@@ -25,7 +25,7 @@ namespace VoteSystem.Data.Entities
 
         public DateTime? DeletedOn { get; set; }
 
-        public int VoteSystemId { get; set; }
+        public Guid VoteSystemId { get; set; }
         public virtual VoteSystem VoteSystem { get; set; }
 
         public ICollection<Answer> Answers { get; set; }

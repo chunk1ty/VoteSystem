@@ -1,24 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+
 using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
-using VoteSystem.Services.Web;
-using VoteSystem.Services.Web.Contracts;
 
 namespace VoteSystem.Clients.MVC.Areas.Administration.ViewModels.VoteSystem
 {
     public class VoteSystemViewModel : IMapFrom<Data.Entities.VoteSystem>, IMapTo<Data.Entities.VoteSystem>
     {
-        public int Id { get; set; }
-
-        public string EncodedId
-        {
-            get
-            {
-                IIdentifierProvider identifier = new IdentifierProvider();
-                return identifier.EncodeId(this.Id);
-            }
-        }
+        public Guid Id { get; set; }
 
         [Required]
         [DisplayName("Име")]

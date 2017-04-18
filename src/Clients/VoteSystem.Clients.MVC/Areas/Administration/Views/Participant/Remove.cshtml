@@ -17,7 +17,7 @@
     </style>
 }
 
-@using (Html.BeginForm<ParticipantController>(c => c.Remove(0), FormMethod.Post))
+@using (Html.BeginForm<ParticipantController>(c => c.Remove(Guid.Empty), FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

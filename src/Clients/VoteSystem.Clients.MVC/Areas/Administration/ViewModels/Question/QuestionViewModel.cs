@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -16,7 +17,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Question
        
         public int Id { get; set; }
 
-        public int VoteSystemId { get; set; }
+        public Guid VoteSystemId { get; set; }
 
         [DisplayName("Име на въпроса")]
         [Required(ErrorMessage = "Името на въпросът е задължително.")]

@@ -68,7 +68,7 @@
 
 @*Hacky way to pass parameter in to js function*@
 <div>
-    @Html.Hidden("vote-system-id", (int)ViewBag.VoteSystemId)
+    @Html.Hidden("vote-system-id", (Guid)ViewBag.VoteSystemId)
 </div>
 
 @section scripts{

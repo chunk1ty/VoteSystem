@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 
 using Microsoft.AspNet.Identity;
-using VoteSystem.Clients.MVC.ViewModels.Introduction;
+using VoteSystem.Clients.MVC.ViewModels.Home;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {

@@ -24,14 +24,8 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create(int voteSystemId)
+        public ActionResult Create(Guid voteSystemId)
         {
-            if (voteSystemId <= 0)
-            {
-                // TODO redirect to page 404
-                return Content("voteSystemId cannot be negative number or 0");
-            }
-
             ViewBag.VoteSystemId = voteSystemId;
 
             return View();
@@ -53,7 +47,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
                 this.AddNotification("Успешно добавихте въпроси!", NotificationType.Success);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO add login logic
                 this.AddNotification("Възникна грешка при добавянето на въпросите!", NotificationType.Error);
@@ -63,14 +57,8 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int voteSystemId)
+        public ActionResult Edit(Guid voteSystemId)
         {
-            if (voteSystemId <= 0)
-            {
-                // TODO redirect to page 404
-                return Content("voteSystemId cannot be negative number or 0");
-            }
-
             var questionsAsViewModel = _questionService
                                     .GetQuestionsWithAnswersByVoteSystemId(voteSystemId)
                                     .To<QuestionViewModel>()
@@ -97,7 +85,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                
                 this.AddNotification("Успешно редактирахте въпросите!", NotificationType.Success);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO add login logic
                 this.AddNotification("Възникна грешка при редактирането на въпросите!", NotificationType.Error);
@@ -107,14 +95,8 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         }
 
         [HttpGet]
-        public ActionResult Preview(int voteSystemId)
+        public ActionResult Preview(Guid voteSystemId)
         {
-            if (voteSystemId <= 0)
-            {
-                // TODO redirect to page 404
-                return Content("voteSystemId cannot be negative number or 0");
-            }
-
             var questionsAsViewModel = _questionService
                                                     .GetQuestionsWithAnswersByVoteSystemId(voteSystemId)
                                                     .To<QuestionViewModel>()
@@ -125,14 +107,8 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
         [HttpGet]
         [AjaxOnly]
-        public ActionResult AddNewQuestion(int voteSystemId)
+        public ActionResult AddNewQuestion(Guid voteSystemId)
         {
-            if (voteSystemId <= 0)
-            {
-                // TODO redirect to page 404
-                return Content("voteSystemId cannot be negative number or 0");
-            }
-
             var questionViewModel = new QuestionViewModel
             {
                 VoteSystemId = voteSystemId

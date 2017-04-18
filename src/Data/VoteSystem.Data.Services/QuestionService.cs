@@ -13,16 +13,13 @@ namespace VoteSystem.Data.Services
     public class QuestionService : IQuestionService
     {
         private readonly IQuestionRepository _questionRepository;
-        private readonly IIdentifierProvider _identifierProvider;
         private readonly IVoteSystemEfDbContextSaveChanges _dbContextSaveChanges;
 
         public QuestionService(
-            IQuestionRepository questionRepository, 
-            IIdentifierProvider identifierProvider, 
+            IQuestionRepository questionRepository,
             IVoteSystemEfDbContextSaveChanges dbContextSaveChanges)
         {
             _questionRepository = questionRepository;
-            _identifierProvider = identifierProvider;
             _dbContextSaveChanges = dbContextSaveChanges;
         }
 
@@ -70,25 +67,14 @@ namespace VoteSystem.Data.Services
             _dbContextSaveChanges.SaveChanges();
         }
 
-        public IEnumerable<Question> GetQuestionsWithAnswersByEncodedVoteSystemId(string voteSystemId)
+        public IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(Guid voteSystemId)
         {
-            var decodedVoteSystemId = _identifierProvider.DecodeId(voteSystemId);
-           
             return _questionRepository
                             .GetAllQuestionsWithAnswers()
-                            .Where(x => x.VoteSystemId == decodedVoteSystemId && !x.IsDeleted);
+                            .Where(x => x.VoteSystemId == voteSystemId && !x.IsDeleted);
         }
 
-        // TODO use encoded votesystemId
-        public IEnumerable<Question> GetQuestionsWithAnswersByVoteSystemId(int voteSystemId)
-        {
-            // TODO: ASK in memory ?? isn't it to slow instead of sql query ??
-            return _questionRepository
-                                    .GetAllQuestionsWithAnswers()
-                                    .Where(x => x.VoteSystemId == voteSystemId && !x.IsDeleted);
-        }
-
-        public IEnumerable<QuestionResultDto> GetQuestionResultByVoteSystemId(int voteSystemId)
+        public IEnumerable<QuestionResultDto> GetQuestionResultByVoteSystemId(Guid voteSystemId)
         {
             var result = _questionRepository
                                     .GetUsersAnswersByVoteSystemId(voteSystemId)

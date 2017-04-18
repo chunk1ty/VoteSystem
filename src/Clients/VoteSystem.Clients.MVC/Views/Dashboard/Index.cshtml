@@ -41,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var system in Model)
+                        @foreach (var voteSystem in Model)
                         {
                             <tr>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
@@ -50,16 +50,16 @@
                                     </span>
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
-                                    @system.Name
+                                    @voteSystem.Name
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
-                                    <a href="@(Url.Action<ParticipantFillOutController>( c => c.FillOut(system.EncodedId)))" class="btn btn-dark btn-xs">
+                                    <a href="@(Url.Action<ParticipantFillOutController>( c => c.FillOut(voteSystem.Id)))" class="btn btn-dark btn-xs">
                                         <i class="fa fa-play"></i>
                                         Старт
                                     </a>
                                 </td>
                                 <td class="col-md-3 col-sm-3 col-xs-3">
-                                    @Html.TimeDisplay(system.EndDateTime)
+                                    @Html.TimeDisplay(voteSystem.EndDateTime)
                                 </td>
                             </tr>
                          }

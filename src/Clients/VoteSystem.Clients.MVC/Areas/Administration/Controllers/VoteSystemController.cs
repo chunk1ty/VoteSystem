@@ -55,7 +55,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
                 this.AddNotification("Успешно създадохте система за гласуване!", NotificationType.Success);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // TODO add logic logic
                 this.AddNotification("Възникна грешка при създаването на системата!", NotificationType.Error);
@@ -65,14 +65,8 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int voteSystemId)
+        public ActionResult Edit(Guid voteSystemId)
         {
-            if (voteSystemId <= 0)
-            {
-                // TODO redirect to page 404
-                return Content("voteSystemId cannot be negative number or 0");
-            }
-
             var voteSystem = _voteSystemService.GetById(voteSystemId);
             var voteSystemAsViewModel = Mapper.Map<VoteSystemViewModel>(voteSystem);
 
@@ -95,7 +89,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
                 this.AddNotification("Успешно редактирахте системата за гласуване!", NotificationType.Success);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 this.AddNotification("Възникна грешка при редактирането на системата", NotificationType.Error);
             }
@@ -104,40 +98,24 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
         }
 
         [HttpPost]
-        public ContentResult Delete(int voteSystemId)
+        [ValidateAntiForgeryToken]
+        public ContentResult Delete(Guid voteSystemId)
         {
-            if (voteSystemId <= 0)
-            {
-                // TODO redirect to page 404
-                return Content("voteSystemId cannot be negative number or 0");
-            }
-
             _voteSystemService.Delete(voteSystemId);
 
             return Content("DELETED");
         }
 
         [HttpGet]
-        public ActionResult Result(int voteSystemId)
+        public ActionResult Result(Guid voteSystemId)
         {
-            if (voteSystemId <= 0)
-            {
-                // TODO redirect to page 404
-                return Content("voteSystemId cannot be negative number or 0");
-            }
-
             return View(voteSystemId);
         }
 
         [HttpGet]
         [AjaxOnly]
-        public JsonResult GetVoteSystemResultsById(int voteSystemId)
+        public JsonResult GetVoteSystemResultsById(Guid voteSystemId)
         {
-            if (voteSystemId <= 0)
-            {
-                return Json("-1", JsonRequestBehavior.AllowGet);
-            }
-
             var result = _questionService
                                 .GetQuestionResultByVoteSystemId(voteSystemId)
                                 .ToList();

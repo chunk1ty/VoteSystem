@@ -90,7 +90,7 @@ namespace VoteSystem.Data.Ef.Migrations
                     context.VoteSystemUsers.Add(voteSystemUser);
                 }
 
-                var admin = Queryable.FirstOrDefault<AspNetUser>(context.Users, x => x.UserName == "admin@admin.com");
+                var admin = context.Users.FirstOrDefault(x => x.UserName == "admin@admin.com");
 
                 var voteSystemAdminUser = new VoteSystemUser()
                 {

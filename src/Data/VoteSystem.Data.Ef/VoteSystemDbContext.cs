@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Linq;
+
 using Microsoft.AspNet.Identity.EntityFramework;
+
 using VoteSystem.Common.Constants;
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef.Contracts;
 using VoteSystem.Data.Ef.Models;
 using VoteSystem.Data.Entities;
 using VoteSystem.Data.Entities.Contracts;
-using System.Linq;
 
 namespace VoteSystem.Data.Ef
 {

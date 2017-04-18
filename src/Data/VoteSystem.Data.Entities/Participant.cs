@@ -1,4 +1,5 @@
 ﻿using System;
+
 using VoteSystem.Data.Entities.Contracts;
 
 namespace VoteSystem.Data.Entities
@@ -16,7 +17,7 @@ namespace VoteSystem.Data.Entities
         public Guid VoteSystemUserId { get; set; }
         public virtual VoteSystemUser VoteSystemUser { get; set; }
 
-        public int VoteSystemId { get; set; }
+        public Guid VoteSystemId { get; set; }
         public virtual VoteSystem VoteSystem { get; set; }
     }
 }

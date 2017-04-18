@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using VoteSystem.Clients.MVC.Infrastructure.Mapping.Contracts;
 using VoteSystem.Data.Entities;
@@ -22,7 +23,7 @@ namespace VoteSystem.Clients.MVC.ViewModels.ParticipantFillOut
 
         public bool HasMultipleAnswers { get; set; }
 
-        public int VoteSystemId { get; set; }
+        public Guid VoteSystemId { get; set; }
 
         public IList<ParticipantAnswerViewModel> Answers { get; set; }
     }
