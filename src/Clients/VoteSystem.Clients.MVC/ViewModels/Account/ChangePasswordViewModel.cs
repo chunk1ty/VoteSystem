@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace VoteSystem.Clients.MVC.ViewModels.Manage
+namespace VoteSystem.Clients.MVC.ViewModels.Account
 {
     public class ChangePasswordViewModel
     {

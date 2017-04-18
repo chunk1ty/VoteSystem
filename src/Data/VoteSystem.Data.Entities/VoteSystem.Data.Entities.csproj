@@ -38,6 +38,7 @@
     <Compile Include="Answer.cs" />
     <Compile Include="Contracts\IAuditInfo.cs" />
     <Compile Include="Contracts\IDeletableEntity.cs" />
+    <Compile Include="Factories\IVoteSystemUserFactory.cs" />
     <Compile Include="Participant.cs" />
     <Compile Include="ParticipantAnswer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

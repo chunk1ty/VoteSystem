@@ -44,7 +44,7 @@ namespace VoteSystem.Clients.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult FillOut(IList<ParticipantQuestionAnswerViewModel> participantQuestionAnswers)
         {
-            if (!ValidateRequest(participantQuestionAnswers))
+            if (!ValidateFillOutRequest(participantQuestionAnswers))
             {
                 return View(participantQuestionAnswers);
             }
@@ -58,7 +58,7 @@ namespace VoteSystem.Clients.MVC.Controllers
 
                 this.AddNotification("Благодаря Ви, че гласувахте!", NotificationType.Success);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // TODO add login logic
                 this.AddNotification("Възникна грешка по време на вашето гласувахте!", NotificationType.Error);
@@ -67,7 +67,7 @@ namespace VoteSystem.Clients.MVC.Controllers
             return this.RedirectToAction<DashboardController>(c => c.Index());
         }
 
-        private bool ValidateRequest(IEnumerable<ParticipantQuestionAnswerViewModel> participantQuestionAnswers)
+        private bool ValidateFillOutRequest(IEnumerable<ParticipantQuestionAnswerViewModel> participantQuestionAnswers)
         {
             bool isValid = true;
 

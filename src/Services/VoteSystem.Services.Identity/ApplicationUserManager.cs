@@ -9,7 +9,7 @@ using VoteSystem.Services.Identity.Contracts;
 
 namespace VoteSystem.Services.Identity
 {
-    public class ApplicationUserManager : UserManager<AspNetUser>, IUserManagerService
+    public class ApplicationUserManager : UserManager<AspNetUser>, IIdentityUserManagerService
     {
         public ApplicationUserManager(IUserStore<AspNetUser> store)
             : base(store)
@@ -69,11 +69,6 @@ namespace VoteSystem.Services.Identity
             }
 
             return manager;
-        }
-
-        public AspNetUser FindById(string userId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

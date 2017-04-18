@@ -47,7 +47,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
                 this.AddNotification("Успешно добавихте въпроси!", NotificationType.Success);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO add login logic
                 this.AddNotification("Възникна грешка при добавянето на въпросите!", NotificationType.Error);
@@ -85,7 +85,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
                
                 this.AddNotification("Успешно редактирахте въпросите!", NotificationType.Success);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO add login logic
                 this.AddNotification("Възникна грешка при редактирането на въпросите!", NotificationType.Error);

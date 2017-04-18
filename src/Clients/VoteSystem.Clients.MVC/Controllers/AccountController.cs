@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -7,12 +6,12 @@ using System.Web.Mvc.Expressions;
 
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 
 using VoteSystem.Clients.MVC.Infrastructure.NotificationSystem;
 using VoteSystem.Clients.MVC.ViewModels.Account;
+using VoteSystem.Data.Ef.Factories;
 using VoteSystem.Data.Ef.Models;
-using VoteSystem.Data.Entities;
+using VoteSystem.Data.Entities.Factories;
 using VoteSystem.Services.Identity.Contracts;
 
 namespace VoteSystem.Clients.MVC.Controllers
@@ -20,52 +19,34 @@ namespace VoteSystem.Clients.MVC.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+        private IIdentityUserManagerService _identityUserManagerService;
+        private readonly IIdentitySignInService _identitySignInService;
+        private readonly IIAspNetUserFactory _aspNetUserFactor;
+        private readonly IVoteSystemUserFactory _voteSystemUserFactory;
 
-        private readonly ISignInService _signInService;
-        private IUserManagerService _userManagerService;
-
-        public AccountController()
-        {   
-        }
-
-        public AccountController(ISignInService signInService, IUserManagerService userManagerService)
+        public AccountController(
+            IIdentitySignInService identitySignInService, 
+            IIdentityUserManagerService identityUserManagerService, 
+            IIAspNetUserFactory aspNetUserFactory,
+            IVoteSystemUserFactory voteSystemUserFactory)
         {
-            _signInService = signInService;
-            _userManagerService = userManagerService;
+            _identitySignInService = identitySignInService;
+            _identityUserManagerService = identityUserManagerService;
+            _aspNetUserFactor = aspNetUserFactory;
+            _voteSystemUserFactory = voteSystemUserFactory;
         }
 
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
-
+        [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult> Login(string returnUrl)
+        public ActionResult Login(string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {
-                var user = await this._userManagerService.FindByNameAsync(User.Identity.Name);
-                if (user == null)
-                {
-                    ViewBag.ReturnUrl = returnUrl;
-                    return this.View();
-                }
-
-                bool isEmailConfirmed = await this._userManagerService.IsEmailConfirmedAsync(user.Id);
-
-                if (isEmailConfirmed)
-                {
-                    return this.RedirectToAction("Index", "Dashboard");
-                }
+                return this.RedirectToAction<DashboardController>(x => x.Index());
             }
 
             ViewBag.ReturnUrl = returnUrl;
-            return this.View();
+            return View();
         }
 
         [HttpPost]
@@ -75,84 +56,36 @@ namespace VoteSystem.Clients.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return this.View(model);
+                return View(model);
             }
 
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await this._signInService.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            var result = await _identitySignInService.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
+            if (result == SignInStatus.Success)
             {
-                case SignInStatus.Success:
-                    var user = await this._userManagerService.FindByNameAsync(model.Email);
-
-                    if (user != null)
-                    {
-                        if (!await this._userManagerService.IsEmailConfirmedAsync(user.Id))
-                        {
-                            this.AddNotification("Потвърдете имейлът си за да влезете.", NotificationType.Error);
-
-                            return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
-                        }
-                    }
-
-                    return this.RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return this.View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError(string.Empty, "Невалиден имейл или парола.");
-                    return this.View(model);
+                return RedirectToLocal(returnUrl);
             }
-        }
-        
-        // GET: /Account/VerifyCode
-        [AllowAnonymous]
-        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
-        {
-            // Require that the aspNetUser has already logged in via username/password or external login
-            if (!await this._signInService.HasBeenVerifiedAsync())
-            {
-                return this.View("Error");
-            }
+          
+            ModelState.AddModelError(string.Empty, "Невалиден имейл или парола.");
 
-            return this.View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
+            return View(model);
         }
-       
-        // POST: /Account/VerifyCode
+
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
+        public ActionResult LogOff()
         {
-            if (!ModelState.IsValid)
-            {
-                return this.View(model);
-            }
+            HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a aspNetUser enters incorrect codes for a specified amount of time then the aspNetUser account 
-            // will be locked out for a specified amount of time. 
-            // You can configure the account lockout settings in IdentityConfig
-            var result = await this._signInService.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return this.RedirectToLocal(model.ReturnUrl);
-                case SignInStatus.LockedOut:
-                    return this.View("Lockout");
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError(string.Empty, "Invalid code.");
-                    return this.View(model);
-            }
+            return RedirectToAction("Index", "Dashboard");
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return this.View();
+            return View();
         }
 
         [HttpPost]
@@ -161,42 +94,158 @@ namespace VoteSystem.Clients.MVC.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {                
-                var user = new AspNetUser
-                {
-                    UserName = model.Email,
-                    Email = model.Email,
-                    FacultyNumber = model.FacultyNumber,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
-                };
+            {
+                var user = _aspNetUserFactor.CreateAuthUser();
 
-                user.VoteSystemUser = new VoteSystemUser();
+                user.UserName = model.Email;
+                user.Email = model.Email;
+                user.FacultyNumber = model.FacultyNumber;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+
+                user.VoteSystemUser = _voteSystemUserFactory.CreateVoteSystemUser();
                 user.VoteSystemUser.Email = model.Email;
+                user.VoteSystemUser.FacultyNumber = model.FacultyNumber;
+                user.VoteSystemUser.FirstName = model.FirstName;
+                user.VoteSystemUser.LastName = model.LastName;
+                user.VoteSystemUser.Id = new Guid(user.Id);
 
-                var result = await this._userManagerService.CreateAsync(user, model.Password);
+                var result = await _identityUserManagerService.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
-                    //await this.SendEmalForNewUser(user);
+                    // generate token
+                    //await SendEmalForNewUser(user);
+                    //AddNotification("Проверете имейлът си за да активирате акаунта.", NotificationType.Warning);
 
-                    this.AddNotification("Проверете имейлът си за да активирате акаунта.", NotificationType.Warning);
+                    await _identitySignInService.SignInAsync(user, false, false);
 
                     return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
                 }
 
-                this.AddErrors(result);
+                AddErrors(result);
             }
             
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var result = await _identityUserManagerService.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+
+            if (result.Succeeded)
+            {
+                var user = await _identityUserManagerService.FindByIdAsync(User.Identity.GetUserId());
+
+                if (user != null)
+                {
+                    await _identitySignInService.SignInAsync(user, false, false);
+                }
+
+                return this.RedirectToAction<DashboardController>(x => x.Index());
+            }
+
+            AddErrors(result);
+
             return this.View(model);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ForgotPassword(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _identityUserManagerService.FindByNameAsync(model.Email);
+
+                if (user == null || !(await _identityUserManagerService.IsEmailConfirmedAsync(user.Id)))
+                {
+                    this.AddNotification("Въведеният имейл не съществува.", NotificationType.Error);
+
+                    return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
+                }
+
+                //await SendEmailForForgottenPasswordAsync(user);
+
+                this.AddNotification("Проверете вашият имейл за въвеждане на нова парола.", NotificationType.Info);
+
+                return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ResetPassword(string code)
+        {
+            return code == null ? View("Error") : View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _identityUserManagerService.FindByNameAsync(model.Email);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("IncorectEmail", "Имейл адресът не съществува.");
+
+                return View(model);
+            }
+
+            var result = await _identityUserManagerService.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                this.AddNotification("Успешно променихте вашата парола.", NotificationType.Success);
+
+                return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
+            }
+
+            ModelState.AddModelError(string.Empty, "Невалиден имейл адрес или токен.");
+
+            return View(model);
+
+        }
+
+        [HttpGet]
         public async Task<ActionResult> UserProfile()
         {
             string userId = User.Identity.GetUserId();
 
-            var user = await this._userManagerService.FindByIdAsync(userId);
+            var user = await _identityUserManagerService.FindByIdAsync(userId);
 
-            UserInfoViewModel userVM = new UserInfoViewModel()
+            UserInfoViewModel userVm = new UserInfoViewModel()
             {
                 Email = user.Email,
                 FirstName = user.FirstName,
@@ -204,14 +253,15 @@ namespace VoteSystem.Clients.MVC.Controllers
                 FacultyNumber = user.FacultyNumber
             };           
 
-            return View(userVM);
+            return View(userVm);
         }
-        
+
+        [HttpGet]
         public async Task<ActionResult> EditUserProfile()
         {
             string userId = User.Identity.GetUserId();
 
-            var user = await this._userManagerService.FindByIdAsync(userId);
+            var user = await _identityUserManagerService.FindByIdAsync(userId);
 
             UserInfoViewModel userVM = new UserInfoViewModel()
             {
@@ -225,38 +275,40 @@ namespace VoteSystem.Clients.MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditUserProfile(UserInfoViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                return this.View(model);
+                return View(model);
             }
 
             string userId = User.Identity.GetUserId();
 
-            var user = await this._userManagerService.FindByIdAsync(userId);
+            var user = await _identityUserManagerService.FindByIdAsync(userId);
             
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Email = model.Email;
             user.FacultyNumber = model.FacultyNumber;
 
-            await this._userManagerService.UpdateAsync(user);
+            await _identityUserManagerService.UpdateAsync(user);
 
             this.AddNotification("Успешно променихте вашите данни.", NotificationType.Success);
 
-            return this.RedirectToAction("UserProfile");
+            return this.RedirectToAction<AccountController>(x => x.UserProfile());
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
             {
-                return this.View("Error");
+                return View("Error");
             }
 
-            var result = await this._userManagerService.ConfirmEmailAsync(userId, code);
+            var result = await _identityUserManagerService.ConfirmEmailAsync(userId, code);
 
             if (result.Succeeded)
             {
@@ -269,228 +321,21 @@ namespace VoteSystem.Clients.MVC.Controllers
 
             return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
         }
-       
-        [AllowAnonymous]
-        public ActionResult ForgotPassword(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-
-            return this.View();
-        }
-       
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await this._userManagerService.FindByNameAsync(model.Email);
-
-                if (user == null || !(await this._userManagerService.IsEmailConfirmedAsync(user.Id)))
-                {
-                    this.AddNotification("Въведеният имейл не съществува.", NotificationType.Error);
-
-                    return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
-                }
-               
-                await SendEmailForForgotPassword(user);
-
-                this.AddNotification("Проверете вашият имейл за въвеждане на нова парола.", NotificationType.Info);
-
-                return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
-            }
-           
-            return this.View(model);
-        }
-        
-        [AllowAnonymous]
-        public ActionResult ResetPassword(string code)
-        {
-            return code == null ? this.View("Error") : this.View();
-        }
-       
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return this.View(model);
-            }
-
-            var user = await this._userManagerService.FindByNameAsync(model.Email);
-
-            if (user == null)
-            {                
-                this.ModelState.AddModelError("IncorectEmail", "Имейл адресът не съществува.");
-
-                return this.View(model);
-            }
-
-            var result = await this._userManagerService.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            if (result.Succeeded)
-            {
-                this.AddNotification("Успешно променихте вашата парола.", NotificationType.Success);
-
-                return this.RedirectToAction<AccountController>(c => c.Login(string.Empty));
-            }
-           
-            this.ModelState.AddModelError(string.Empty, "Невалиден имейл адрес или токен.");
-
-            return this.View(model);
-           
-        }
-        
-        // POST: /Account/ExternalLogin
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult ExternalLogin(string provider, string returnUrl)
-        {
-            // Request a redirect to the external login provider
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
-        }
-       
-        // GET: /Account/SendCode
-        [AllowAnonymous]
-        public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
-        {
-            var userId = await this._signInService.GetVerifiedUserIdAsync();
-            if (userId == null)
-            {
-                return this.View("Error");
-            }
-
-            var userFactors = await this._userManagerService.GetValidTwoFactorProvidersAsync(userId);
-            var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-            return this.View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
-        }
-       
-        // POST: /Account/SendCode
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SendCode(SendCodeViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return this.View();
-            }
-
-            // Generate the token and send it
-            if (!await this._signInService.SendTwoFactorCodeAsync(model.SelectedProvider))
-            {
-                return this.View("Error");
-            }
-
-            return this.RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
-        }
-       
-        // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
-        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
-        {
-            var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
-            {
-                return this.RedirectToAction("Login");
-            }
-
-            // Sign in the aspNetUser with this external login provider if the aspNetUser already has a login
-            var result = await this._signInService.ExternalSignInAsync(loginInfo, isPersistent: false);
-
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return this.RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return this.View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
-                case SignInStatus.Failure:
-                default:
-                    // If the aspNetUser does not have an account, then prompt the aspNetUser to create an account
-                    ViewBag.ReturnUrl = returnUrl;
-                    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return this.View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
-            }
-        }
-        
-        // POST: /Account/ExternalLoginConfirmation
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                return this.RedirectToAction("Index", "Manage");
-            }
-
-            if (ModelState.IsValid)
-            {
-                // Get the information about the aspNetUser from the external login provider
-                var info = await this.AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null)
-                {
-                    return this.View("ExternalLoginFailure");
-                }
-
-                var user = new AspNetUser
-                {
-                    UserName = model.Email,
-                    Email = model.Email
-                };
-
-                var result = await this._userManagerService.CreateAsync(user);
-                if (result.Succeeded)
-                {
-                    result = await this._userManagerService.AddLoginAsync(user.Id, info.Login);
-                    if (result.Succeeded)
-                    {
-                        await this._signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return this.RedirectToLocal(returnUrl);
-                    }
-                }
-
-                this.AddErrors(result);
-            }
-
-            ViewBag.ReturnUrl = returnUrl;
-            return this.View(model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
-        {
-            this.AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return this.RedirectToAction("Index", "Dashboard");
-        }
-
-        // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
-        public ActionResult ExternalLoginFailure()
-        {
-            return this.View();
-        }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (this._userManagerService != null)
+                if (_identityUserManagerService != null)
                 {
-                    this._userManagerService.Dispose();
-                    this._userManagerService = null;
+                    _identityUserManagerService.Dispose();
+                    _identityUserManagerService = null;
                 }
 
-                if (this._userManagerService != null)
+                if (_identityUserManagerService != null)
                 {
-                    this._userManagerService.Dispose();
-                    this._userManagerService = null;
+                    _identityUserManagerService.Dispose();
+                    _identityUserManagerService = null;
                 }
             }
 
@@ -509,69 +354,38 @@ namespace VoteSystem.Clients.MVC.Controllers
         {
             if (Url.IsLocalUrl(returnUrl))
             {
-                return this.Redirect(returnUrl);
+                return Redirect(returnUrl);
             }
-            return this.RedirectToAction("Index", "Dashboard");
+
+            return this.RedirectToAction<DashboardController>(x => x.Index());
         }
 
-        // TODO extract in another service ?
-        private async Task SendEmailForForgotPassword(AspNetUser aspNetUser)
+        // TODO move in email service
+        private async Task SendEmailForForgottenPasswordAsync(AspNetUser aspNetUser)
         {
-            string code = await this._userManagerService.GeneratePasswordResetTokenAsync(aspNetUser.Id);
+            string code = await _identityUserManagerService.GeneratePasswordResetTokenAsync(aspNetUser.Id);
             var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = aspNetUser.Id, code = code }, protocol: Request.Url.Scheme);
 
             UriBuilder url = new UriBuilder(callbackUrl);
             url.Port = -1;
             callbackUrl = url.Uri.ToString();
 
-            await this._userManagerService.SendEmailAsync(aspNetUser.Id, "Забравена парола.", "Въведете новата парола като натиснете: <a href=\"" + callbackUrl + "\">тук.</a>");
+            await _identityUserManagerService.SendEmailAsync(aspNetUser.Id, "Забравена парола.", "Въведете новата парола като натиснете: <a href=\"" + callbackUrl + "\">тук.</a>");
         }
 
-        // TODO extract in another service ?
+        // TODO move in email service
         private async Task SendEmalForNewUser(AspNetUser aspNetUser)
         {
-            await this._signInService.SignInAsync(aspNetUser, isPersistent: false, rememberBrowser: false);
+            await _identitySignInService.SignInAsync(aspNetUser, isPersistent: false, rememberBrowser: false);
 
-            string code = await this._userManagerService.GenerateEmailConfirmationTokenAsync(aspNetUser.Id);
+            string code = await _identityUserManagerService.GenerateEmailConfirmationTokenAsync(aspNetUser.Id);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = aspNetUser.Id, code = code }, protocol: Request.Url.Scheme);
 
             UriBuilder url = new UriBuilder(callbackUrl);
             url.Port = -1;
             callbackUrl = url.Uri.ToString();
 
-            await this._userManagerService.SendEmailAsync(aspNetUser.Id, "Потвърждаване на имейл.", "Моля потвърдете вашият имейл като натиснете <a href=\"" + callbackUrl + "\">тук.</a>");
-        }
-
-        internal class ChallengeResult : HttpUnauthorizedResult
-        {
-            public ChallengeResult(string provider, string redirectUri)
-                : this(provider, redirectUri, null)
-            {
-            }
-
-            public ChallengeResult(string provider, string redirectUri, string userId)
-            {
-                this.LoginProvider = provider;
-                this.RedirectUri = redirectUri;
-                this.UserId = userId;
-            }
-
-            public string LoginProvider { get; set; }
-
-            public string RedirectUri { get; set; }
-
-            public string UserId { get; set; }
-
-            public override void ExecuteResult(ControllerContext context)
-            {
-                var properties = new AuthenticationProperties { RedirectUri = this.RedirectUri };
-                if (this.UserId != null)
-                {
-                    properties.Dictionary[XsrfKey] = this.UserId;
-                }
-
-                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, this.LoginProvider);
-            }
+            await _identityUserManagerService.SendEmailAsync(aspNetUser.Id, "Потвърждаване на имейл.", "Моля потвърдете вашият имейл като натиснете <a href=\"" + callbackUrl + "\">тук.</a>");
         }
     }
 }

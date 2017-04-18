@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace VoteSystem.Clients.MVC.ViewModels.Introduction
+namespace VoteSystem.Clients.MVC.ViewModels.Home
 {
     public class FeedbackViewModel
     {

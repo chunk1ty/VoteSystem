@@ -8,7 +8,7 @@ using VoteSystem.Services.Identity.Contracts;
 
 namespace VoteSystem.Services.Identity
 {
-    public class ApplicationSignInManager : SignInManager<AspNetUser, string>, ISignInService
+    public class ApplicationSignInManager : SignInManager<AspNetUser, string>, IIdentitySignInService
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
            : base(userManager, authenticationManager)

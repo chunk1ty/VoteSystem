@@ -63,7 +63,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
               
                 this.AddNotification("Успешно добавихте учасници!", NotificationType.Success);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO add login logic
                 this.AddNotification("Възникна грешка при добавянето на учасниците!", NotificationType.Error);
@@ -102,7 +102,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
                 this.AddNotification("Успешно премахнахте учасници!", NotificationType.Success);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO add login logic
                 this.AddNotification("Възникна грешка при премахването на учасниците!", NotificationType.Error);

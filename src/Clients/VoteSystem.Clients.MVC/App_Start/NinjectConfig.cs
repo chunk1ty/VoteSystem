@@ -6,6 +6,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Extensions.Conventions;
+using Ninject.Extensions.Factory;
+
 using Ninject.Parameters;
 using Ninject.Web.Common;
 using VoteSystem.Clients.MVC;
@@ -15,7 +17,9 @@ using VoteSystem.Data;
 using VoteSystem.Data.Contracts;
 using VoteSystem.Data.Ef;
 using VoteSystem.Data.Ef.Contracts;
+using VoteSystem.Data.Ef.Factories;
 using VoteSystem.Data.Ef.Repositories;
+using VoteSystem.Data.Entities.Factories;
 using VoteSystem.Data.Services;
 using VoteSystem.Data.Services.Contracts;
 using VoteSystem.Services.Identity;
@@ -106,8 +110,8 @@ namespace VoteSystem.Clients.MVC
                                     .SelectAllClasses()
                                     .BindDefaultInterface());
 
-            kernel.Bind<ISignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
-            kernel.Bind<IUserManagerService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
+            kernel.Bind<IIdentitySignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
+            kernel.Bind<IIdentityUserManagerService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
 
             // TODO bind the entire assembly
             kernel.Bind<ICacheService>().To<CacheService>();
@@ -119,6 +123,9 @@ namespace VoteSystem.Clients.MVC
             kernel.Bind<IVoteSystemUserRepository>().To<EfVoteSystemUserRepository>();
             kernel.Bind<IParticipantAnswerRepository>().To<EfParticipantAnswerRepository>();
             kernel.Bind<IParticipantRepository>().To<EfParticipantRepository>();
+
+            kernel.Bind<IIAspNetUserFactory>().ToFactory().InSingletonScope();
+            kernel.Bind<IVoteSystemUserFactory>().ToFactory().InSingletonScope();
         }        
     }
 }

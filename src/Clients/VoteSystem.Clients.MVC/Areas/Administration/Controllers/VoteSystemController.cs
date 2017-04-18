@@ -55,7 +55,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
                 this.AddNotification("Успешно създадохте система за гласуване!", NotificationType.Success);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // TODO add logic logic
                 this.AddNotification("Възникна грешка при създаването на системата!", NotificationType.Error);
@@ -89,7 +89,7 @@ namespace VoteSystem.Clients.MVC.Areas.Administration.Controllers
 
                 this.AddNotification("Успешно редактирахте системата за гласуване!", NotificationType.Success);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 this.AddNotification("Възникна грешка при редактирането на системата", NotificationType.Error);
             }

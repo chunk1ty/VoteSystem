@@ -59,6 +59,7 @@
     <Compile Include="EntityFrameworkGenericRepository\DeletableRepository.cs" />
     <Compile Include="EntityFrameworkGenericRepository\IRepository.cs" />
     <Compile Include="EntityFrameworkGenericRepository\Repository.cs" />
+    <Compile Include="Factories\IAspNetUserFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
