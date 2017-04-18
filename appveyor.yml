@@ -21,7 +21,7 @@ notifications:
 
 environment:
   COVERALLS_REPO_TOKEN:
-    secure: ylRSU7D4gJdDPEb6RslSduGJlo2PKfEFr5Zil 
+    secure: wa33m2iJHeV7W/T71bNBvA+Lh0cHuRbYTgVBWyEvCR3AIdV0mO78jI7WmRpDeyiX 
 
 after_test: 
   - packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"packages\NUnit.ConsoleRunner.3.6.0\tools\nunit3-console.exe" -targetargs:"/domain:single  test\VoteSystem.Services.Web.Tests\bin\Debug\VoteSystem.Services.Web.Tests.dll 
