@@ -21,13 +21,13 @@ namespace VoteSystem.Clients.MVC.Controllers
     {
         private IIdentityUserManagerService _identityUserManagerService;
         private readonly IIdentitySignInService _identitySignInService;
-        private readonly IIAspNetUserFactory _aspNetUserFactor;
+        private readonly IAspNetUserFactory _aspNetUserFactor;
         private readonly IVoteSystemUserFactory _voteSystemUserFactory;
 
         public AccountController(
             IIdentitySignInService identitySignInService, 
             IIdentityUserManagerService identityUserManagerService, 
-            IIAspNetUserFactory aspNetUserFactory,
+            IAspNetUserFactory aspNetUserFactory,
             IVoteSystemUserFactory voteSystemUserFactory)
         {
             _identitySignInService = identitySignInService;

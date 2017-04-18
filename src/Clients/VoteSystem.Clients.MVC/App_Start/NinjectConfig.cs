@@ -124,7 +124,7 @@ namespace VoteSystem.Clients.MVC
             kernel.Bind<IParticipantAnswerRepository>().To<EfParticipantAnswerRepository>();
             kernel.Bind<IParticipantRepository>().To<EfParticipantRepository>();
 
-            kernel.Bind<IIAspNetUserFactory>().ToFactory().InSingletonScope();
+            kernel.Bind<IAspNetUserFactory>().ToFactory().InSingletonScope();
             kernel.Bind<IVoteSystemUserFactory>().ToFactory().InSingletonScope();
         }        
     }

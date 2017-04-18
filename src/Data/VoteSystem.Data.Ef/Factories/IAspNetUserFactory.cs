@@ -2,7 +2,7 @@
 
 namespace VoteSystem.Data.Ef.Factories
 {
-    public interface IIAspNetUserFactory
+    public interface IAspNetUserFactory
     {
         AspNetUser CreateAuthUser();
     }

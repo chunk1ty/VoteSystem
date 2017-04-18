@@ -34,6 +34,7 @@
       <HintPath>..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -53,9 +54,7 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc">
-      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
@@ -72,12 +71,24 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="TestStack.FluentMVCTesting, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\TestStack.FluentMVCTesting.3.0.0\lib\NET45\TestStack.FluentMVCTesting.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountControllerTests.cs" />
     <Compile Include="QuestionControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Data\VoteSystem.Data.Ef\VoteSystem.Data.Ef.csproj">
+      <Project>{2C5B75F9-E146-447E-BD65-F082611821EB}</Project>
+      <Name>VoteSystem.Data.Ef</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Data\VoteSystem.Data.Entities\VoteSystem.Data.Entities.csproj">
+      <Project>{6904A8C3-01B6-4101-AEAF-29BA1C8ECB3D}</Project>
+      <Name>VoteSystem.Data.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Data\VoteSystem.Data.Services.Contracts\VoteSystem.Data.Services.Contracts.csproj">
       <Project>{269CC85F-7209-4ED3-BC65-C90804B00B37}</Project>
       <Name>VoteSystem.Data.Services.Contracts</Name>
@@ -85,6 +96,10 @@
     <ProjectReference Include="..\..\src\Clients\VoteSystem.Clients.MVC\VoteSystem.Clients.MVC.csproj">
       <Project>{67cc40ff-4933-4f83-810e-357e6bc8b973}</Project>
       <Name>VoteSystem.Clients.MVC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Services\VoteSystem.Services.Identity\VoteSystem.Services.Identity.csproj">
+      <Project>{6FE16DE7-B267-402D-B7EE-7CF56ED1E72D}</Project>
+      <Name>VoteSystem.Services.Identity</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
