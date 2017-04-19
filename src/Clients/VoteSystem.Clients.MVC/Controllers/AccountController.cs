@@ -30,10 +30,10 @@ namespace VoteSystem.Clients.MVC.Controllers
             IAspNetUserFactory aspNetUserFactory,
             IVoteSystemUserFactory voteSystemUserFactory)
         {
-            _identitySignInService = identitySignInService;
-            _identityUserManagerService = identityUserManagerService;
-            _aspNetUserFactor = aspNetUserFactory;
-            _voteSystemUserFactory = voteSystemUserFactory;
+            _identitySignInService = identitySignInService ?? throw new ArgumentNullException(nameof(identitySignInService));
+            _identityUserManagerService = identityUserManagerService ?? throw new ArgumentNullException(nameof(identityUserManagerService));
+            _aspNetUserFactor = aspNetUserFactory ?? throw new ArgumentNullException(nameof(aspNetUserFactory));
+            _voteSystemUserFactory = voteSystemUserFactory ?? throw new ArgumentNullException(nameof(voteSystemUserFactory));
         }
 
         [HttpGet]
@@ -78,7 +78,7 @@ namespace VoteSystem.Clients.MVC.Controllers
         {
             HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
-            return RedirectToAction("Index", "Dashboard");
+            return this.RedirectToAction<HomeController>(x => x.Index());
         }
 
         [HttpGet]

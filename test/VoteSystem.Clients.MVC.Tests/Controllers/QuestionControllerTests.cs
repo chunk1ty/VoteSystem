@@ -1,19 +1,10 @@
-﻿using Moq;
+﻿using System;
+using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using System.Web;
-using VoteSystem.Clients.MVC;
 using VoteSystem.Clients.MVC.Areas.Administration.Controllers;
-using VoteSystem.Clients.MVC.Areas.Administration.ViewModels.Question;
-using VoteSystem.Clients.MVC.ViewModels;
 using VoteSystem.Data.Services.Contracts;
 
-namespace VoteSystem.Web.Controllers.Tests
+namespace VoteSystem.Clients.MVC.Tests.Controllers
 {
     [TestFixture]
     public class QuestionControllerTests
