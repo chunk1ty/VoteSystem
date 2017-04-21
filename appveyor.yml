@@ -11,14 +11,6 @@ build:
   project: VoteSystem.sln
   verbosity: minimal
 
-notifications:
-- provider: Email
-  to:
-  - todorov.h@gmail.com
-  on_build_success: true
-  on_build_failure: true
-  on_build_status_changed: true
-
 environment:
   COVERALLS_REPO_TOKEN:
     secure: wa33m2iJHeV7W/T71bNBvA+Lh0cHuRbYTgVBWyEvCR3AIdV0mO78jI7WmRpDeyiX 
