@@ -16,11 +16,6 @@ namespace VoteSystem.Clients.MVC
             //    "{action}", 
             //    new { controller = "Introduction", action = "Index"});
 
-            //routes.MapRoute(
-            //   "SpecificRoute2",
-            //   "{controller}",
-            //   new { controller = "Introduction", action = "Index" });
-
             routes.MapRoute(
                 name: "Intro",
                 url: "{controller}/{action}",

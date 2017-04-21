@@ -243,6 +243,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\GlobalResources.en.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalResources.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\GlobalResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\AutomapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DbConfig.cs" />
@@ -271,6 +281,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Attributes\AjaxOnlyAttribute.cs" />
+    <Compile Include="HttpModules\CultureModule.cs" />
     <Compile Include="Infrastructure\Extensions\CustomHtmlHelpers.cs" />
     <Compile Include="Infrastructure\Extensions\PrincipalExtensions.cs" />
     <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
@@ -730,6 +741,18 @@
       <Project>{987bb8b6-3320-4a56-bf9f-a2bc56f6d5db}</Project>
       <Name>VoteSystem.Services.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\GlobalResources.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\GlobalResources.en.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>GlobalResources.en.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
