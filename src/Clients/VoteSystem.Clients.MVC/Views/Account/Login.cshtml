@@ -47,7 +47,7 @@
                     <p class="change_link">
                         @(Html.ActionLink<AccountController>("Регистрация", c => c.Register()))
                         @(Html.ActionLink<AccountController>("Забравена парола?", c => c.ForgotPassword(returnUrl)))
-                        @(Html.ActionLink<IntroductionController>("Начало", c => c.Index()))
+                        @(Html.ActionLink<HomeController>("Начало", c => c.Index()))
                     </p>
                 </div>
             }

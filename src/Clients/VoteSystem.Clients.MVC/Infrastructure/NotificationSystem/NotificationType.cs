@@ -2,9 +2,9 @@
 {
     public enum NotificationType
     {
-        ERROR,
-        WARNING,
-        SUCCESS,
-        INFO
+        Error,
+        Warning,
+        Success,
+        Info
     }
 }

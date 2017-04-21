@@ -9,16 +9,22 @@ namespace VoteSystem.Clients.MVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-               name: "Culture",
-               url: "{lang}/{controller}/{action}",
-               defaults: new { controller = "Introduction", action = "Index" },
-               constraints: new {lang = "bg|en"});
+            routes.LowercaseUrls = true;
+
+            //routes.MapRoute(
+            //    "SpecificRoute", 
+            //    "{action}", 
+            //    new { controller = "Introduction", action = "Index"});
 
             routes.MapRoute(
                 name: "Intro",
                 url: "{controller}/{action}",
-                defaults: new { controller = "Introduction", action = "Index" });
+                defaults: new { controller = "Home", action = "Index" });
+
+            //routes.MapRoute(
+            //   name: "Default",
+            //   url: "{controller}/{action}",
+            //   defaults: new { controller = "Introduction", action = "Intro"});
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿namespace VoteSystem.Services.Web
+﻿using System;
+using System.Web;
+using System.Web.Caching;
+
+using VoteSystem.Services.Web.Contracts;
+
+namespace VoteSystem.Services.Web
 {
-    using System;
-    using System.Web;
-    using System.Web.Caching;
-
-    using VoteSystem.Services.Web.Contracts;
-
     public class CacheService : ICacheService
     {
         private static readonly object LockObject = new object();

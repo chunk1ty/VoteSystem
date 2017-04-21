@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
+
 using AutoMapper;
+
 using Ninject;
 using VoteSystem.Clients.MVC.Infrastructure.Mapping;
 using VoteSystem.Services.Web.Contracts;
@@ -12,12 +14,6 @@ namespace VoteSystem.Clients.MVC.Controllers
         [Inject]
         public ICacheService Cache { get; set; }
 
-        protected IMapper Mapper
-        {
-            get
-            {
-                return AutoMapperConfig.Configuration.CreateMapper();
-            }
-        }
+        protected IMapper Mapper => AutoMapperConfig.Configuration.CreateMapper();
     }
 }

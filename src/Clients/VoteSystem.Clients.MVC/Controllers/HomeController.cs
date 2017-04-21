@@ -1,29 +1,46 @@
-﻿using System.Linq;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
+
 using Microsoft.AspNet.Identity;
-using VoteSystem.Clients.MVC.Infrastructure.Mapping;
-using VoteSystem.Clients.MVC.ViewModels;
-using VoteSystem.Services.Data.Contracts;
+using VoteSystem.Clients.MVC.ViewModels.Home;
 
 namespace VoteSystem.Clients.MVC.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : BaseController
     {
-        private IRateSystemService rateSystems;
+        private readonly IIdentityMessageService _identityMessageService;       
 
-        public HomeController(IRateSystemService rateSystems)
+        public HomeController(IIdentityMessageService identityMessageService)
         {
-            this.rateSystems = rateSystems;
+            _identityMessageService = identityMessageService;            
         }
 
+        [HttpGet]
         public ActionResult Index()
-        {
-            var systems = this.rateSystems
-                            .AllActive(User.Identity.GetUserId())
-                            .To<RateSystemViewModel>()
-                            .ToList();
+        {   
+            return View();
+        }
 
-            return this.View(systems);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Index(FeedbackViewModel model)
+        {
+            if (model == null || !ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var message = new IdentityMessage()
+            {
+                Body = model.Body,
+                Destination = model.Destination,
+                Subject = model.Subject
+            };
+
+            await _identityMessageService.SendAsync(message);
+
+            return this.RedirectToAction("Index");
         }
     }
 }
